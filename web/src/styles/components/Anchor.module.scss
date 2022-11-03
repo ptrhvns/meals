@@ -1,0 +1,69 @@
+.link {
+  text-decoration: none;
+
+  &:hover,
+  &:hover:visited {
+    text-decoration: underline;
+  }
+}
+
+.blue.link,
+.primary.link {
+  color: var(--blue11);
+
+  &:hover,
+  &:hover:visited {
+    color: var(--blue12);
+  }
+
+  &:visited {
+    color: var(--blue11);
+  }
+}
+
+.red.link {
+  color: var(--red11);
+
+  &:hover,
+  &:hover:visited {
+    color: var(--red12);
+  }
+
+  &:visited {
+    color: var(--red11);
+  }
+}
+
+.filled {
+  display: inline-block;
+  font-size: inherit;
+  line-height: 1.25;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.blue.filled,
+.primary.filled {
+  background-color: var(--blue9);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--blue9);
+  color: white;
+
+  &:active,
+  &:active:hover {
+    background-color: var(--blue11);
+  }
+
+  &:hover {
+    background-color: var(--blue10);
+    border: 1px solid var(--blue10);
+    color: white;
+  }
+}

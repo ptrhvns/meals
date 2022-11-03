@@ -1,0 +1,27 @@
+.alert {
+  border-radius: var(--border-radius);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr min-content;
+  padding: 1rem;
+}
+
+.button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.error {
+  background-color: var(--red3);
+  color: var(--red11);
+
+  a {
+    color: var(--red11);
+  }
+
+  button:hover {
+    color: var(--red12);
+  }
+}

@@ -14,38 +14,6 @@ export default function ErrorPage() {
     console.error("A route error occurred:", error);
   }
 
-  if (isRouteErrorResponse(error)) {
-    return (
-      <>
-        <Helmet>
-          <title>{buildTitle(`Error (${error.status})`)}</title>
-        </Helmet>
-
-        <PageCenteredSection>
-          <div className={classes.content}>
-            <Heading className={classes.title}>Error</Heading>
-
-            <Alert variant="error">
-              <div className={classes.errorSection}>
-                An unexpected error occured.
-              </div>
-              <div className={classes.errorSection}>
-                <i>
-                  {error.statusText} ({error.status})
-                </i>
-              </div>
-              {error.data?.message && (
-                <div className={classes.errorSection}>
-                  <i>{error.data.message}</i>
-                </div>
-              )}
-            </Alert>
-          </div>
-        </PageCenteredSection>
-      </>
-    );
-  }
-
   return (
     <>
       <Helmet>
@@ -57,7 +25,25 @@ export default function ErrorPage() {
           <Heading className={classes.title}>Error</Heading>
 
           <Alert variant="error">
-            <p>An unexpected error occured.</p>
+            <div className={classes.errorSection}>
+              An unexpected error occured.
+            </div>
+
+            {isRouteErrorResponse(error) && (
+              <>
+                <div className={classes.errorSection}>
+                  <i>
+                    {error.statusText} ({error.status})
+                  </i>
+                </div>
+
+                {error.data?.message && (
+                  <div className={classes.errorSection}>
+                    <i>{error.data.message}</i>
+                  </div>
+                )}
+              </>
+            )}
           </Alert>
         </div>
       </PageCenteredSection>

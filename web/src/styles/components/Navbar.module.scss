@@ -1,0 +1,22 @@
+.viewport {
+  align-items: center;
+  border-bottom: 1px solid var(--slate6);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  height: var(--navbar-height);
+}
+
+a.logo.link {
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 0.3rem;
+
+  &:hover,
+  &:hover:visited {
+    background-color: var(--blue3);
+    color: var(--blue11);
+    text-decoration: none;
+  }
+}

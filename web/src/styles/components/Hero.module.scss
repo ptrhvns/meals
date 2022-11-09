@@ -1,0 +1,18 @@
+.content {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  padding-block: 1rem 2rem;
+  text-align: center;
+}
+
+.viewport {
+  align-content: center;
+  background-color: var(--slate1);
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  max-width: 35rem;
+}

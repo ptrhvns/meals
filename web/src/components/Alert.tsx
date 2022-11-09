@@ -12,7 +12,7 @@ interface AlertProps {
   variant: "error";
 }
 
-const Alert = ({ children, onDismiss, variant }: AlertProps) => {
+export default function Alert({ children, onDismiss, variant }: AlertProps) {
   const alertClassName = joinClassNames(classes.alert, classes[variant]);
   const buttonClassName = joinClassNames(classes.button, classes[variant]);
 
@@ -30,6 +30,4 @@ const Alert = ({ children, onDismiss, variant }: AlertProps) => {
       )}
     </div>
   );
-};
-
-export default Alert;
+}

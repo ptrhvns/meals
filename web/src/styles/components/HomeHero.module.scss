@@ -1,0 +1,29 @@
+a.button {
+  margin-top: 1rem;
+  width: 10rem;
+}
+
+button.button {
+  margin-top: 1rem;
+  width: 10rem;
+}
+
+h1.heading {
+  color: var(--slate12);
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: bold;
+  margin-block: 0 1rem;
+  text-shadow: 2px 2px 4px var(--slate9);
+}
+
+.subheading {
+  color: var(--slate11);
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  margin-top: 1rem;
+}
+
+div.viewport {
+  // TODO redo height after home page content is added.
+  // min-height: calc(100vh - var(--navbar-height));
+  padding-block: 10vh 12vh;
+}

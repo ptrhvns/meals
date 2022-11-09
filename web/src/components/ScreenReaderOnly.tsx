@@ -7,5 +7,5 @@ interface ScreenReaderOnlyProps {
 }
 
 export default function ScreenReaderOnly({ children }: ScreenReaderOnlyProps) {
-  return <span className={classes.srOnly}>{children}</span>;
+  return <span className={classes.wrapper}>{children}</span>;
 }

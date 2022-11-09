@@ -4,6 +4,11 @@
   gap: 0.5rem;
   grid-template-columns: 1fr min-content;
   padding: 1rem;
+
+  a,
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .button {

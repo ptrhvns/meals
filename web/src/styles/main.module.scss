@@ -15,17 +15,18 @@
   --navbar-height: 50px;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
-  box-sizing: border-box;
   color: var(--slate12);
   font-family: var(--font-family-sans);
   line-height: 1.25;
+}
 
-  &::after,
-  &::before,
-  & *,
-  & *::after,
-  & *::before {
-    box-sizing: inherit;
-  }
+html {
+  box-sizing: border-box;
 }

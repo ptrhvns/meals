@@ -1,5 +1,6 @@
-// import HomeHero from "../components/HomeHero";
-// import Navbar from "../components/Navbar";
+import ErrorPage from "../components/ErrorPage";
+import HomeHero from "../components/HomeHero";
+import Navbar from "../components/Navbar";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 
@@ -10,9 +11,13 @@ export default function Home() {
         <title>{buildTitle()}</title>
       </Helmet>
 
-      <div>Home</div>
+      <Navbar />
+      <HomeHero />
     </>
   );
-  // <Navbar />
-  // <HomeHero />
 }
+
+export const homeRouterOpts = {
+  element: <Home />,
+  errorElement: <ErrorPage />,
+};

@@ -15,12 +15,15 @@
 }
 
 a.slate.link {
+  border-radius: var(--border-radius);
   color: var(--slate11);
   font-size: 1.5rem;
   font-weight: bold;
+  padding: 0.3rem 0.5rem;
 
   &:hover,
   &:hover:visited {
+    background-color: var(--slate5);
     color: var(--slate12);
     text-decoration: none;
   }

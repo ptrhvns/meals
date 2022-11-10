@@ -1,0 +1,25 @@
+.input {
+  background: white;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--slate7);
+  box-shadow: var(--box-shadow-inset);
+  color: var(--slate11);
+  padding: 0.5rem;
+  width: 100%;
+
+  &:focus {
+    box-shadow: var(--box-shadow-inset-light), var(--box-shadow);
+    outline: 2px solid var(--slate7);
+  }
+}
+
+.error {
+  border: 1px solid var(--red7);
+  box-shadow: var(--box-shadow-inset-error);
+  color: var(--red11);
+
+  &:focus {
+    box-shadow: var(--box-shadow-inset-error), var(--box-shadow-error);
+    outline: 2px solid var(--red7);
+  }
+}

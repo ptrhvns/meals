@@ -1,0 +1,68 @@
+.button {
+  border-radius: var(--border-radius);
+  display: inline-block;
+  font-size: inherit;
+  line-height: 1.25;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:disabled,
+  &:disabled:hover {
+    background-color: var(--blue2);
+    border: 1px solid var(--blue6);
+    color: var(--blue8);
+    cursor: not-allowed;
+  }
+}
+
+.blue.light,
+.primary.light {
+  background-color: var(--blue3);
+  border: 1px solid var(--blue7);
+  color: var(--blue11);
+
+  &:active,
+  &:active:hover {
+    background-color: var(--blue6);
+  }
+
+  &:hover {
+    background-color: var(--blue4);
+    border: 1px solid var(--blue8);
+  }
+}
+
+.blue.filled,
+.primary.filled {
+  background-color: var(--blue9);
+  border: 1px solid var(--blue9);
+  color: white;
+
+  &:active,
+  &:active:hover {
+    background-color: var(--blue11);
+  }
+
+  &:hover {
+    background-color: var(--blue10);
+    border: 1px solid var(--blue10);
+  }
+}
+
+.slate.light {
+  background-color: var(--slate3);
+  border: 1px solid var(--slate7);
+  color: var(--slate11);
+
+  &:active,
+  &:active:hover {
+    background-color: var(--slate6);
+  }
+
+  &:hover {
+    background-color: var(--slate4);
+    border: 1px solid var(--slate8);
+  }
+}

@@ -1,4 +1,3 @@
-import ErrorPage from "../components/ErrorPage";
 import HomeHero from "../components/HomeHero";
 import Navbar from "../components/Navbar";
 import { buildTitle } from "../lib/utils";
@@ -16,8 +15,3 @@ export default function Home() {
     </>
   );
 }
-
-export const homeRouterOpts = {
-  element: <Home />,
-  errorElement: <ErrorPage />,
-};

@@ -15,6 +15,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/no-unresolved": "error",
+    "@typescript-eslint/no-explicit-any": "off",
   },
   settings: {
     "import/parsers": {

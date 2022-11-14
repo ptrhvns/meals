@@ -18,7 +18,7 @@ export default function Signup() {
         <Heading className={classes.heading}>Sign Up</Heading>
 
         <Paragraph className={classes.subheading}>
-          Create an account to save time and work.
+          Create an account to save time.
         </Paragraph>
 
         <SignupForm />

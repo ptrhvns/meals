@@ -1,9 +1,16 @@
 // import { useNavigate } from "react-router-dom"; // TODO
 import Cookies from "js-cookie";
 import signupFetchers from "../fetchers/signup";
-import { ApiResponse, ApiSendFunction, ApiSendParameter } from "../lib/types";
+import {
+  AnyFunction,
+  ApiResponse,
+  ApiSendFunction,
+  ApiSendParameter,
+  FirstParameter,
+} from "../lib/types";
 import { fromPairs, isEmpty, omit, toPairs } from "lodash";
 import { useCallback } from "react";
+import { z } from "zod";
 
 const FETCHERS = {
   ...signupFetchers,
@@ -16,24 +23,31 @@ const DEFAULT_HEADERS_INIT = {
 
 const SAFE_METHODS = ["GET"];
 
-type AnyFunction = (...args: any[]) => any;
-type FirstParameter<F extends AnyFunction> = Parameters<F>[0];
-type FetchReturn = Promise<ApiResponse>;
-
-// TODO how can we ensure that `fn` takes an object paramter which has an
-// appropriate `send` propery in it?
 const wrapFetcher =
-  <F extends (param: FirstParameter<F>) => FetchReturn>(
-    send: ApiSendFunction,
-    fn: F
-  ): ((param: Omit<FirstParameter<F>, "send">) => FetchReturn) =>
-  ({ ...rest }) =>
+  <SendFunction extends ApiSendFunction, FetchFunction extends AnyFunction>(
+    send: SendFunction,
+    fn: FirstParameter<FetchFunction> extends { send: SendFunction }
+      ? FetchFunction
+      : never
+  ) =>
+  ({
+    ...rest
+  }: Omit<FirstParameter<FetchFunction>, "send"> extends infer O
+    ? { [K in keyof O]: O[K] }
+    : never): Promise<ApiResponse> =>
     fn({ send, ...rest });
 
 async function getJson(res: Response): Promise<object> {
   const text = await res.text();
   return isEmpty(text) ? {} : await JSON.parse(text);
 }
+
+const apiResponseSchema = z.object({
+  data: z.optional(z.any()),
+  errors: z.optional(z.record(z.string(), z.array(z.string()))),
+  isError: z.optional(z.boolean()),
+  message: z.optional(z.string()),
+});
 
 export default function useApi() {
   // const navigate = useNavigate(); // TODO
@@ -44,6 +58,7 @@ export default function useApi() {
       data,
       headers_init,
       method,
+      responseDataSchema,
       url,
     }: ApiSendParameter): Promise<ApiResponse> => {
       let body: string | null;
@@ -70,7 +85,7 @@ export default function useApi() {
 
       if (!SAFE_METHODS.includes(method)) {
         try {
-          response = await fetch("/api/csrf_token/", {
+          response = await fetch("/api/shared/csrf_token/", {
             headers,
             method: "GET",
             mode,
@@ -131,20 +146,22 @@ export default function useApi() {
         };
       }
 
-      let json: { message?: string } = {};
+      let json: ApiResponse = {};
 
       if (!response.ok) {
+        console.error("Response was an error:", response);
+
         try {
           json = await getJson(response);
         } catch (error) {
+          console.error("Response JSON was invalid:", error);
           json = {};
         }
 
-        console.error("Response was an error:", response);
-
         return {
           isError: true,
-          message: json.message ?? "The response to your request was an error.",
+          message:
+            json?.message ?? "The response to your request was an error.",
           ...omit(json, "message"),
         };
       }
@@ -152,7 +169,7 @@ export default function useApi() {
       try {
         json = await getJson(response);
       } catch (error) {
-        console.error("Response was in an invalid format:", error);
+        console.error("Response JSON was invalid:", error);
 
         return {
           isError: true,
@@ -160,7 +177,21 @@ export default function useApi() {
         };
       }
 
-      return json || {};
+      const computedSchema = apiResponseSchema.merge(
+        responseDataSchema ?? z.object({})
+      );
+
+      if (!(await computedSchema.spa(json))) {
+        console.error("Response JSON contained invalid information:", json);
+
+        return {
+          isError: true,
+          message:
+            "The response to your request contained invalid information.",
+        };
+      }
+
+      return json;
     },
     [
       /* TODO logout, */
@@ -168,6 +199,7 @@ export default function useApi() {
     ]
   );
 
+  // Wrap fetcher functions to pass in this send function.
   return fromPairs(
     toPairs(FETCHERS).map(([fnName, fn]) => [fnName, wrapFetcher(send, fn)])
   );

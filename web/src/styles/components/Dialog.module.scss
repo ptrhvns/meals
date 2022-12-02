@@ -1,0 +1,49 @@
+.overlay {
+  background: var(--slate12);
+  inset: 0;
+  opacity: 0.5;
+  position: fixed;
+}
+
+.content {
+  background-color: white;
+  border-radius: var(--border-radius);
+  left: 50%;
+  max-width: 90%;
+  padding: 2.5rem 1rem;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  // Fix width once 30rem is 90% of viewport (matches max-width above).
+  @media (min-width: calc(30rem/0.9)) {
+    max-width: 30rem;
+  }
+}
+
+button.closeButton {
+  border-radius: 50%;
+  border: none;
+  color: var(--slate11);
+  height: min-content;
+  outline: none;
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  &:active,
+  &:hover {
+    background-color: var(--slate3);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid var(--slate7);
+  }
+}

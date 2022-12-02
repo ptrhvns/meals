@@ -1,6 +1,6 @@
 import { ApiResponse, ApiSendFunction } from "../lib/types";
 
-async function createSignup({
+function createSignup({
   send,
   data,
 }: {
@@ -14,7 +14,7 @@ async function createSignup({
   return send({
     data,
     method: "POST",
-    url: "/api/signup/",
+    url: "/api/accounts/signup/",
   });
 }
 

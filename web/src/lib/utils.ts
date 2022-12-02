@@ -1,7 +1,8 @@
-import { ApiResponse, Optional } from "./types";
+import { ApiResponse } from "./types";
 import { compact, forOwn, head, join, uniq } from "lodash";
+import { Dispatch, SetStateAction } from "react";
 import {
-  ErrorOption,
+  FieldError,
   FieldValues,
   Path,
   UseFormSetError,
@@ -33,29 +34,32 @@ export function joinClassNames(...args: (string | undefined)[]): string {
  * @template F - field values used with useForm()
  * @param {ApiResponse} response - response from call a useApi() function
  * @param {callbacks} [callbacks] - object of callbacks used to set errors
- * @param {setAlert} callbacks.setAlert - callback from useState()
+ * @param {setFormError} callbacks.setFormError - callback from useState()
  * @param {setError} callbacks.setError - callback from useForm()
  */
 export function handleApiError<F extends FieldValues>(
   response: ApiResponse,
   {
-    setAlert,
-    setError,
+    setFieldError,
+    setFormError,
   }: {
-    setAlert?: (s: Optional<string>) => void;
-    setError?: UseFormSetError<F>;
+    setFieldError?: UseFormSetError<F>;
+    setFormError?: Dispatch<SetStateAction<string | undefined>>;
   } = {}
 ) {
   if (!response.isError) return;
 
-  if (setAlert) setAlert(response.message);
+  if (setFormError) setFormError(response.message);
 
-  if (setError) {
+  if (setFieldError) {
     forOwn(response.errors, (error, fieldName) => {
-      const err = head(error);
+      const message = head(error);
 
       if (error) {
-        setError(fieldName as Path<F>, err as ErrorOption);
+        setFieldError(
+          fieldName as Path<F>,
+          { message, type: "custom" } as FieldError
+        );
       }
     });
   }

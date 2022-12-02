@@ -1,4 +1,4 @@
-import { ComponentType, HTMLAttributes } from "react";
+import { ComponentType, forwardRef, HTMLAttributes } from "react";
 import { joinClassNames } from "../lib/utils";
 
 import classes from "../styles/components/Heading.module.scss";
@@ -9,20 +9,20 @@ interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 
 type TagName = ComponentType | keyof JSX.IntrinsicElements;
 
-export default function Heading({
-  children,
-  className,
-  size = 1,
-  ...restProps
-}: HeadingProps) {
-  const HeadingElement: TagName = `h${size}`;
+const Button = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ children, className, size = 1, ...restProps }, ref) => {
+    const HeadingElement: TagName = `h${size}`;
 
-  return (
-    <HeadingElement
-      className={joinClassNames(classes.heading, className)}
-      {...restProps}
-    >
-      {children}
-    </HeadingElement>
-  );
-}
+    return (
+      <HeadingElement
+        className={joinClassNames(classes.heading, className)}
+        ref={ref}
+        {...restProps}
+      >
+        {children}
+      </HeadingElement>
+    );
+  }
+);
+
+export default Button;

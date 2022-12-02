@@ -10,27 +10,7 @@
 
   &:disabled,
   &:disabled:hover {
-    background-color: var(--blue2);
-    border: 1px solid var(--blue6);
-    color: var(--blue8);
     cursor: not-allowed;
-  }
-}
-
-.blue.light,
-.primary.light {
-  background-color: var(--blue3);
-  border: 1px solid var(--blue7);
-  color: var(--blue11);
-
-  &:active,
-  &:active:hover {
-    background-color: var(--blue6);
-  }
-
-  &:hover {
-    background-color: var(--blue4);
-    border: 1px solid var(--blue8);
   }
 }
 
@@ -45,9 +25,39 @@
     background-color: var(--blue11);
   }
 
+  &:disabled,
+  &:disabled:hover {
+    background-color: var(--blue8);
+    border: 1px solid var(--blue8);
+  }
+
   &:hover {
     background-color: var(--blue10);
     border: 1px solid var(--blue10);
+  }
+}
+
+.blue.light,
+.primary.light {
+  background-color: var(--blue3);
+  border: 1px solid var(--blue7);
+  color: var(--blue11);
+
+  &:active,
+  &:active:hover {
+    background-color: var(--blue6);
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    background-color: var(--blue2);
+    border: 1px solid var(--blue6);
+    color: var(--blue8);
+  }
+
+  &:hover {
+    background-color: var(--blue4);
+    border: 1px solid var(--blue8);
   }
 }
 
@@ -65,4 +75,13 @@
     background-color: var(--slate4);
     border: 1px solid var(--slate8);
   }
+}
+
+.unstyled {
+  background-color: transparent;
+  border-radius: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
 }

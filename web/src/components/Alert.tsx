@@ -1,4 +1,4 @@
-import ScreenReaderOnly from "./ScreenReaderOnly";
+import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinClassNames } from "../lib/utils";
@@ -9,7 +9,7 @@ import classes from "../styles/components/Alert.module.scss";
 interface AlertProps {
   children: ReactNode;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;
-  variant: "error";
+  variant: "error" | "success";
 }
 
 export default function Alert({ children, onDismiss, variant }: AlertProps) {
@@ -22,9 +22,16 @@ export default function Alert({ children, onDismiss, variant }: AlertProps) {
 
       {onDismiss && (
         <div>
-          <button className={buttonClassName} onClick={onDismiss} type="button">
-            <FontAwesomeIcon icon={faTimes} />
-            <ScreenReaderOnly>Dismiss</ScreenReaderOnly>
+          <button
+            aria-label="Dismiss"
+            className={buttonClassName}
+            onClick={onDismiss}
+            title="Dismiss"
+            type="button"
+          >
+            <AccessibleIcon.Root label="Dismiss">
+              <FontAwesomeIcon icon={faTimes} />
+            </AccessibleIcon.Root>
           </button>
         </div>
       )}

@@ -30,3 +30,16 @@
     color: var(--red12);
   }
 }
+
+.success {
+  background-color: var(--grass3);
+  color: var(--grass11);
+
+  a {
+    color: var(--grass11);
+  }
+
+  button:hover {
+    color: var(--grass12);
+  }
+}

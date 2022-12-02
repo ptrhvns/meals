@@ -1,3 +1,12 @@
+[tool.mypy]
+exclude = ["accounts/migrations"]
+mypy_path = "stubs"
+files = ["accounts"]
+show_error_codes = true
+strict = true
+warn_unreachable = true
+warn_unused_ignores = true
+
 [tool.poetry]
 name = "api"
 version = "1.0.0"

@@ -6,7 +6,7 @@ import classes from "../styles/components/Anchor.module.scss";
 type LinkProps = Parameters<typeof Link>[0];
 
 interface AnchorProps extends LinkProps {
-  color?: "blue" | "primary" | "red";
+  color?: "blue" | "grass" | "primary" | "red";
   variant?: "filled" | "link";
 }
 

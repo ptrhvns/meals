@@ -31,6 +31,19 @@
   }
 }
 
+.info {
+  background-color: var(--slate3);
+  color: var(--slate11);
+
+  a {
+    color: var(--slate11);
+  }
+
+  button:hover {
+    color: var(--slate12);
+  } 
+}
+
 .success {
   background-color: var(--grass3);
   color: var(--grass11);

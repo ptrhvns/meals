@@ -1,16 +1,13 @@
 import { ApiResponse, ApiSendFunction } from "../lib/types";
 
-function createSignup({
-  send,
-  data,
-}: {
+export function createSignup(
   data: {
     email: string;
     password: string;
     username: string;
-  };
-  send: ApiSendFunction;
-}): Promise<ApiResponse> {
+  },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
   return send({
     data,
     method: "POST",
@@ -18,4 +15,15 @@ function createSignup({
   });
 }
 
-export default { createSignup };
+export function updateSignupConfirmation(
+  data: {
+    token: string;
+  },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: "/api/accounts/signup_confirmation/",
+  });
+}

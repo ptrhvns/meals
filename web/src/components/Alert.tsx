@@ -9,7 +9,7 @@ import classes from "../styles/components/Alert.module.scss";
 interface AlertProps {
   children: ReactNode;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;
-  variant: "error" | "success";
+  variant: "error" | "info" | "success";
 }
 
 export default function Alert({ children, onDismiss, variant }: AlertProps) {

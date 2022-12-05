@@ -21,6 +21,19 @@
   }
 }
 
+.grass.link {
+  color: var(--grass11);
+
+  &:hover,
+  &:hover:visited {
+    color: var(--grass12);
+  }
+
+  &:visited {
+    color: var(--grass11);
+  }
+}
+
 .red.link {
   color: var(--red11);
 

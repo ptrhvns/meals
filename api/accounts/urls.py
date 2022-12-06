@@ -5,4 +5,5 @@ from accounts import views
 
 urlpatterns: list[URLPattern | URLResolver] = [
     path("signup/", views.signup),
+    path("signup_confirmation/", views.signup_confirmation),
 ]

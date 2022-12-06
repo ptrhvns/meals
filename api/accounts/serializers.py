@@ -3,10 +3,10 @@ from typing import Any, cast
 
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError as DValidationError
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import CharField, ModelSerializer
 from rest_framework.serializers import ValidationError as DRFValidationError
 
-from accounts.models import User
+from accounts.models import EmailConfirmationToken, User
 
 logger = logging.getLogger(__name__)
 
@@ -34,3 +34,11 @@ class SignupSerializer(ModelSerializer):
 
         logger.info("created new user with ID %(user_id)s", {"user_id": user.id})
         return cast(User, user)
+
+
+class SignupConfirmationSerializer(ModelSerializer):
+    class Meta:
+        model = EmailConfirmationToken
+        fields = ("token",)
+
+    token = CharField(max_length=256, required=True)

@@ -1,5 +1,6 @@
 import Alert from "./Alert";
 import Button from "./Button";
+import classes from "../styles/components/SignupForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import Input from "./Input";
@@ -11,8 +12,6 @@ import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-
-import classes from "../styles/components/SignupForm.module.scss";
 
 interface FormData {
   email: string;

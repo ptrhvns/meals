@@ -1,9 +1,8 @@
+import classes from "../styles/components/Hero.module.scss";
 import Content from "./Content";
 import Viewport from "./Viewport";
 import { joinClassNames } from "../lib/utils";
 import { ReactNode } from "react";
-
-import classes from "../styles/components/Hero.module.scss";
 
 interface HeroProps {
   children?: ReactNode;

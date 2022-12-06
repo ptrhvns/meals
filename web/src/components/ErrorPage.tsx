@@ -1,11 +1,10 @@
 import Alert from "./Alert";
+import classes from "../styles/components/ErrorPage.module.scss";
 import Heading from "./Heading";
 import PageCenteredSection from "./PageCenteredSection";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
-
-import classes from "../styles/components/ErrorPage.module.scss";
 
 export default function ErrorPage() {
   const error = useRouteError();

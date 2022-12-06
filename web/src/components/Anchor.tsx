@@ -1,7 +1,6 @@
+import classes from "../styles/components/Anchor.module.scss";
 import { joinClassNames } from "../lib/utils";
 import { Link } from "react-router-dom";
-
-import classes from "../styles/components/Anchor.module.scss";
 
 type LinkProps = Parameters<typeof Link>[0];
 

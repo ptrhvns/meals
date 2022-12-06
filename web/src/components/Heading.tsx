@@ -1,7 +1,6 @@
+import classes from "../styles/components/Heading.module.scss";
 import { ComponentType, forwardRef, HTMLAttributes } from "react";
 import { joinClassNames } from "../lib/utils";
-
-import classes from "../styles/components/Heading.module.scss";
 
 interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   size?: 1 | 2 | 3 | 4 | 5 | 6;

@@ -1,11 +1,10 @@
+import classes from "../styles/routes/Signup.module.scss";
 import Heading from "../components/Heading";
 import PageCenteredSection from "../components/PageCenteredSection";
 import Paragraph from "../components/Paragraph";
 import SignupForm from "../components/SignupForm";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
-
-import classes from "../styles/routes/Signup.module.scss";
 
 export default function Signup() {
   return (

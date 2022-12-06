@@ -1,7 +1,6 @@
+import classes from "../styles/components/Content.module.scss";
 import { HTMLAttributes } from "react";
 import { joinClassNames } from "../lib/utils";
-
-import classes from "../styles/components/Content.module.scss";
 
 type ContentProps = HTMLAttributes<HTMLDivElement>;
 

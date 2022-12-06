@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
-
 import classes from "../styles/components/FormActions.module.scss";
+import { ReactNode } from "react";
 
 interface FormActionsProps {
   children: ReactNode;

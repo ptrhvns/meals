@@ -1,7 +1,6 @@
+import classes from "../styles/components/Viewport.module.scss";
 import { HTMLAttributes } from "react";
 import { joinClassNames } from "../lib/utils";
-
-import classes from "../styles/components/Viewport.module.scss";
 
 type ViewportProps = HTMLAttributes<HTMLDivElement>;
 

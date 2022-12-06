@@ -1,7 +1,6 @@
+import classes from "../styles/components/Input.module.scss";
 import { forwardRef, InputHTMLAttributes } from "react";
 import { joinClassNames } from "../lib/utils";
-
-import classes from "../styles/components/Input.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;

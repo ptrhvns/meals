@@ -1,9 +1,8 @@
 import Anchor from "./Anchor";
+import classes from "../styles/components/HomeHero.module.scss";
 import Heading from "./Heading";
 import Hero from "./Hero";
 import Paragraph from "./Paragraph";
-
-import classes from "../styles/components/HomeHero.module.scss";
 
 export default function HomeHero() {
   return (

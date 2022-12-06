@@ -1,5 +1,6 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import Button from "./Button";
+import classes from "../styles/components/Dialog.module.scss";
 import {
   ComponentPropsWithoutRef,
   ElementRef,
@@ -8,8 +9,6 @@ import {
 } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import classes from "../styles/components/Dialog.module.scss";
 
 type DialogContentRef = ElementRef<typeof DialogPrimitive.Content>;
 

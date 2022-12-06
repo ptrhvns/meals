@@ -1,7 +1,6 @@
+import classes from "../styles/components/Button.module.scss";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import { joinClassNames } from "../lib/utils";
-
-import classes from "../styles/components/Button.module.scss";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "blue" | "primary" | "slate";

@@ -1,10 +1,9 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
+import classes from "../styles/components/Alert.module.scss";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinClassNames } from "../lib/utils";
 import { MouseEventHandler, ReactNode } from "react";
-
-import classes from "../styles/components/Alert.module.scss";
 
 interface AlertProps {
   children: ReactNode;

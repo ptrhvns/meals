@@ -1,10 +1,9 @@
 import Anchor from "./Anchor";
+import classes from "../styles/components/PageCenteredSection.module.scss";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinClassNames } from "../lib/utils";
 import { ReactNode } from "react";
-
-import classes from "../styles/components/PageCenteredSection.module.scss";
 
 interface PageCenteredSectionProps {
   children: ReactNode;

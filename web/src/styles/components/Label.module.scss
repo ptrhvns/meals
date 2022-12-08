@@ -1,4 +1,8 @@
-.wrapper {
+.label {
   color: var(--slate11);
   font-weight: bold;
+
+  &:has(input[type="checkbox"]) {
+    font-weight: normal;
+  }
 }

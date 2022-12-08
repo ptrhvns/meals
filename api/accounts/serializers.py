@@ -3,12 +3,27 @@ from typing import Any, cast
 
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError as DValidationError
-from rest_framework.serializers import CharField, ModelSerializer
+from rest_framework.serializers import (
+    BooleanField,
+    CharField,
+    ModelSerializer,
+    Serializer,
+)
 from rest_framework.serializers import ValidationError as DRFValidationError
 
 from accounts.models import EmailConfirmationToken, User
 
 logger = logging.getLogger(__name__)
+
+
+class LoginSerializer(Serializer):
+    password = CharField(
+        max_length=User._meta.get_field("password").max_length, required=True
+    )
+    remember_me = BooleanField()
+    username = CharField(
+        max_length=User._meta.get_field("username").max_length, required=True
+    )
 
 
 class SignupSerializer(ModelSerializer):

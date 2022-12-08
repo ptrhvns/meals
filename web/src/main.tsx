@@ -1,4 +1,7 @@
+import "./styles/main.module.scss";
 import App from "./routes/App";
+import AuthnProvider from "./providers/AuthnProvider";
+import Dashboard from "./routes/Dashboard";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
@@ -10,8 +13,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 
-import "./styles/main.module.scss";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
+      { path: "dashboard", element: <Dashboard /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },
@@ -30,7 +32,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <HelmetProvider>
-      <RouterProvider router={router} />
+      <AuthnProvider>
+        <RouterProvider router={router} />
+      </AuthnProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import classes from "../styles/routes/SignupConfirmation.module.scss";
 import Heading from "../components/Heading";
 import PageCenteredSection from "../components/PageCenteredSection";
+import RequireGuest from "../components/RequireGuest";
 import useApi from "../hooks/useApi";
 import { buildTitle } from "../lib/utils";
 import { compact, head, join } from "lodash";
@@ -32,10 +33,10 @@ export default function SignupConfirmation() {
     }
 
     setConfirming(false);
-  }, []);
+  });
 
   return (
-    <>
+    <RequireGuest>
       <Helmet>
         <title>{buildTitle("Sign Up Confirmation")}</title>
       </Helmet>
@@ -65,6 +66,6 @@ export default function SignupConfirmation() {
 
         {error && <Alert variant="error">{error}</Alert>}
       </PageCenteredSection>
-    </>
+    </RequireGuest>
   );
 }

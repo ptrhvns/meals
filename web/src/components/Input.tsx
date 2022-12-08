@@ -4,14 +4,19 @@ import { joinClassNames } from "../lib/utils";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
+  wrap?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error = false, ...restProps }: InputProps, ref) => {
+  ({ error = false, wrap = true, ...restProps }: InputProps, ref) => {
     const className = joinClassNames(
       classes.input,
       error ? classes.error : undefined
     );
+
+    if (!wrap) {
+      return <input className={className} ref={ref} {...restProps} />;
+    }
 
     return (
       <div>

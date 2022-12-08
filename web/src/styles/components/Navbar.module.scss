@@ -6,6 +6,12 @@
   height: var(--navbar-height);
 }
 
+.content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 a.logo.link {
   border-radius: var(--border-radius);
   cursor: pointer;

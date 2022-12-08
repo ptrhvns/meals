@@ -5,8 +5,10 @@ type LabelProps = LabelHTMLAttributes<HTMLLabelElement>;
 
 const Label = ({ children, ...restProps }: LabelProps) => {
   return (
-    <div className={classes.wrapper}>
-      <label {...restProps}>{children}</label>
+    <div>
+      <label className={classes.label} {...restProps}>
+        {children}
+      </label>
     </div>
   );
 };

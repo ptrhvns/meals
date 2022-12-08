@@ -5,7 +5,11 @@ import {
   ApiSendParameter,
   FirstParameter,
 } from "../lib/types";
-import { createSignup, updateSignupConfirmation } from "../fetchers/signup";
+import {
+  createSignup,
+  login,
+  updateSignupConfirmation,
+} from "../fetchers/accounts";
 import { isEmpty, omit } from "lodash";
 import { useCallback } from "react";
 import { z } from "zod";
@@ -69,6 +73,8 @@ export default function useApi() {
             mode,
           });
         } catch (error) {
+          console.error("GET CSRF token network error", error);
+
           return {
             isError: true,
             message: "An unexpected error occurred.",
@@ -76,6 +82,8 @@ export default function useApi() {
         }
 
         if (!response.ok) {
+          console.error("GET CSRF token response not OK", response);
+
           return {
             isError: true,
             message: "An unexpected error occurred.",
@@ -85,6 +93,8 @@ export default function useApi() {
         const csrfToken = Cookies.get("csrftoken");
 
         if (!csrfToken) {
+          console.error("CSRF token cookie not found");
+
           return {
             isError: true,
             message: "An unexpected error occurred.",
@@ -97,6 +107,8 @@ export default function useApi() {
       try {
         response = await fetch(url, { body, headers, method, mode });
       } catch (error) {
+        console.error(`${method} ${url} network error`, error);
+
         return {
           isError: true,
           message: "Your request could not be sent due to a network error.",
@@ -107,7 +119,9 @@ export default function useApi() {
         !response.ok &&
         (response.status === 401 || response.status === 403)
       ) {
-        // logout(() => navigate(WEB_ROUTES.login())); // TODO
+        console.error(`${method} ${url} unauthorized (401 | 403)`);
+        // logout(() => navigate(WEB_ROUTES.login()));
+
         return {
           isError: true,
           message: "Your request was not authorized.",
@@ -120,8 +134,14 @@ export default function useApi() {
         try {
           json = await getJson(response);
         } catch (error) {
+          console.error(
+            `${method} ${url} response contained invalid JSON`,
+            error
+          );
           json = {};
         }
+
+        console.error(`${method} ${url} response not OK`, response);
 
         return {
           isError: true,
@@ -133,6 +153,11 @@ export default function useApi() {
       try {
         json = await getJson(response);
       } catch (error) {
+        console.error(
+          `${method} ${url} response contained invalid JSON`,
+          error
+        );
+
         return {
           isError: true,
           message: "An unexpected error occurred.",
@@ -144,6 +169,8 @@ export default function useApi() {
       );
 
       if (!(await computedSchema.spa(json))) {
+        console.error(`${method} ${url} response JSON failed validation`, json);
+
         return {
           isError: true,
           message: "An unexpected error occurred.",
@@ -164,6 +191,7 @@ export default function useApi() {
 
   return {
     createSignup: wrap(createSignup),
+    login: wrap(login),
     updateSignupConfirmation: wrap(updateSignupConfirmation),
   };
 }

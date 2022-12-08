@@ -24,4 +24,6 @@ const Button = forwardRef<HTMLHeadingElement, HeadingProps>(
   }
 );
 
+Button.displayName = "Button";
+
 export default Button;

@@ -11,10 +11,11 @@ export default function Navbar() {
 
   return (
     <Viewport className={classes.viewport}>
-      <Content>
+      <Content className={classes.content}>
         <Anchor className={logoClassName} to="/">
           <FontAwesomeIcon icon={faUtensils} /> Meals
         </Anchor>
+        <Anchor to="/login">Log in</Anchor>
       </Content>
     </Viewport>
   );

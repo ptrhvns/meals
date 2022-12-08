@@ -15,6 +15,21 @@ export function createSignup(
   });
 }
 
+export function login(
+  data: {
+    password: string;
+    remember_me: boolean;
+    username: string;
+  },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: "/api/accounts/login/",
+  });
+}
+
 export function updateSignupConfirmation(
   data: {
     token: string;

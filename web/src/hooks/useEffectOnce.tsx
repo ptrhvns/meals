@@ -1,13 +1,9 @@
 import { AnyFunction } from "../lib/types";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-export function useEffectOnce(callback: AnyFunction, dependencies: Array<any>) {
-  const shouldUseEffect = useRef<boolean>(true);
-
+export function useEffectOnce(callback: AnyFunction, cleanup?: AnyFunction) {
   useEffect(() => {
-    if (shouldUseEffect.current) {
-      shouldUseEffect.current = false;
-      callback();
-    }
-  }, dependencies);
+    callback();
+    return cleanup;
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }

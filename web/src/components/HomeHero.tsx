@@ -10,7 +10,7 @@ export default function HomeHero() {
       <Heading className={classes.heading}>Meals made easy.</Heading>
 
       <Paragraph className={classes.subheading}>
-        Save time, and get rid of boring work. We can help you manage your
+        Save time. Get rid of boring work. We can help you manage your
         recipes, menus, shopping lists, etc.
       </Paragraph>
 

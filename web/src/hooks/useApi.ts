@@ -8,6 +8,7 @@ import {
 import {
   createSignup,
   login,
+  logout,
   updateSignupConfirmation,
 } from "../fetchers/accounts";
 import { isEmpty, omit } from "lodash";
@@ -185,13 +186,18 @@ export default function useApi() {
     ]
   );
 
-  function wrap<F extends AnyFunction>(fn: F) {
+  function wrapWithoutData<F extends AnyFunction>(fn: F) {
+    return (): ReturnType<F> => fn(send);
+  }
+
+  function wrapWithData<F extends AnyFunction>(fn: F) {
     return (data: FirstParameter<F>): ReturnType<F> => fn(data, send);
   }
 
   return {
-    createSignup: wrap(createSignup),
-    login: wrap(login),
-    updateSignupConfirmation: wrap(updateSignupConfirmation),
+    createSignup: wrapWithData(createSignup),
+    login: wrapWithData(login),
+    logout: wrapWithoutData(logout),
+    updateSignupConfirmation: wrapWithData(updateSignupConfirmation),
   };
 }

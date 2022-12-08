@@ -5,11 +5,13 @@ from zoneinfo import ZoneInfo
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.db import Error
 from django.db.transaction import atomic
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -155,4 +157,11 @@ def login(request: Request) -> Response:
     else:
         request.session.set_expiry(0)
 
+    return no_content_response()
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def logout(request: Request) -> Response:
+    auth_logout(request)
     return no_content_response()

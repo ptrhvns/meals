@@ -30,6 +30,13 @@ export function login(
   });
 }
 
+export function logout(send: ApiSendFunction) {
+  return send({
+    method: "POST",
+    url: "/api/accounts/logout/",
+  });
+}
+
 export function updateSignupConfirmation(
   data: {
     token: string;

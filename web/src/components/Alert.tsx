@@ -1,4 +1,5 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
+import Button from "./Button";
 import classes from "../styles/components/Alert.module.scss";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,17 +22,18 @@ export default function Alert({ children, onDismiss, variant }: AlertProps) {
 
       {onDismiss && (
         <div>
-          <button
+          <Button
             aria-label="Dismiss"
             className={buttonClassName}
             onClick={onDismiss}
             title="Dismiss"
             type="button"
+            variant="unstyled"
           >
             <AccessibleIcon.Root label="Dismiss">
               <FontAwesomeIcon icon={faTimes} />
             </AccessibleIcon.Root>
-          </button>
+          </Button>
         </div>
       )}
     </div>

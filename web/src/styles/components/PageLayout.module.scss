@@ -1,0 +1,12 @@
+.content {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 0.5rem;
+}
+
+.viewport {
+  background-color: var(--slate3);
+  min-height: calc(100vh - var(--navbar-height));
+  padding-block: 0.5rem;
+}

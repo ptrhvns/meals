@@ -1,3 +1,4 @@
+import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import RequireAuthn from "../components/RequireAuthn";
@@ -14,7 +15,7 @@ export default function Dashboard() {
       <Navbar />
 
       <PageLayout>
-        <div>Dashboard</div>
+        <Heading>Dashboard</Heading>
       </PageLayout>
     </RequireAuthn>
   );

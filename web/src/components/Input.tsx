@@ -8,10 +8,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error = false, wrap = true, ...restProps }: InputProps, ref) => {
-    const className = joinClassNames(
+  (
+    { className, error = false, wrap = true, ...restProps }: InputProps,
+    ref
+  ) => {
+    className = joinClassNames(
       classes.input,
-      error ? classes.error : undefined
+      error ? classes.error : undefined,
+      className
     );
 
     if (!wrap) {

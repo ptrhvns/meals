@@ -1,5 +1,18 @@
 import { ApiResponse, ApiSendFunction } from "../lib/types";
 
+export function accountsDestroy(
+  data: {
+    password: string;
+  },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: "/api/accounts/destroy/",
+  });
+}
+
 export function createSignup(
   data: {
     email: string;

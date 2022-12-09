@@ -8,72 +8,127 @@
   vertical-align: middle;
   white-space: nowrap;
 
-  &:disabled,
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &:disabled:hover {
     cursor: not-allowed;
   }
 }
 
-.blue.filled,
-.primary.filled {
-  background-color: var(--blue9);
-  border: 1px solid var(--blue9);
-  color: white;
+.blue,
+.primary {
+  &.filled {
+    background-color: var(--blue9);
+    border: 1px solid var(--blue9);
+    color: white;
 
-  &:active,
-  &:active:hover {
-    background-color: var(--blue11);
+    &:active {
+      background-color: var(--blue11);
+    }
+
+    &:disabled {
+      background-color: var(--blue8);
+      border: 1px solid var(--blue8);
+    }
+
+    &:hover {
+      background-color: var(--blue10);
+      border: 1px solid var(--blue10);
+    }
+
+    &:disabled:hover {
+      background-color: var(--blue8);
+      border: 1px solid var(--blue8);
+    }
+
+    &:active:hover {
+      background-color: var(--blue11);
+    }
   }
 
-  &:disabled,
-  &:disabled:hover {
-    background-color: var(--blue8);
-    border: 1px solid var(--blue8);
-  }
+  &.light {
+    background-color: var(--blue3);
+    border: 1px solid var(--blue7);
+    color: var(--blue11);
 
-  &:hover {
-    background-color: var(--blue10);
-    border: 1px solid var(--blue10);
+    &:active {
+      background-color: var(--blue6);
+    }
+
+    &:disabled {
+      background-color: var(--blue2);
+      border: 1px solid var(--blue6);
+      color: var(--blue8);
+    }
+
+    &:hover {
+      background-color: var(--blue4);
+      border: 1px solid var(--blue8);
+    }
+
+    &:active:hover {
+      background-color: var(--blue6);
+    }
+
+    &:disabled:hover {
+      background-color: var(--blue2);
+      border: 1px solid var(--blue6);
+      color: var(--blue8);
+    }
   }
 }
 
-.blue.light,
-.primary.light {
-  background-color: var(--blue3);
-  border: 1px solid var(--blue7);
-  color: var(--blue11);
+.red {
+  &.filled {
+    background-color: var(--red9);
+    border: 1px solid var(--red9);
+    color: white;
 
-  &:active,
-  &:active:hover {
-    background-color: var(--blue6);
-  }
+    &:active {
+      background-color: var(--red11);
+    }
 
-  &:disabled,
-  &:disabled:hover {
-    background-color: var(--blue2);
-    border: 1px solid var(--blue6);
-    color: var(--blue8);
-  }
+    &:disabled {
+      background-color: var(--red8);
+      border: 1px solid var(--red8);
+    }
 
-  &:hover {
-    background-color: var(--blue4);
-    border: 1px solid var(--blue8);
+    &:hover {
+      background-color: var(--red10);
+      border: 1px solid var(--red10);
+    }
+
+    &:active:hover {
+      background-color: var(--red11);
+    }
+
+    &:disabled:hover {
+      background-color: var(--red8);
+      border: 1px solid var(--red8);
+    }
   }
 }
 
-.slate.light {
-  background-color: var(--slate3);
-  border: 1px solid var(--slate7);
-  color: var(--slate11);
+.slate {
+  &.light {
+    background-color: var(--slate3);
+    border: 1px solid var(--slate7);
+    color: var(--slate11);
 
-  &:active,
-  &:active:hover {
-    background-color: var(--slate6);
-  }
+    &:active {
+      background-color: var(--slate6);
+    }
 
-  &:hover {
-    background-color: var(--slate4);
-    border: 1px solid var(--slate8);
+    &:hover {
+      background-color: var(--slate4);
+      border: 1px solid var(--slate8);
+    }
+
+    &:active:hover {
+      background-color: var(--slate6);
+    }
   }
 }
 

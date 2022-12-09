@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 import { joinClassNames } from "../lib/utils";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color?: "blue" | "primary" | "slate";
+  color?: "blue" | "primary" | "red" | "slate";
   variant?: "filled" | "light" | "unstyled";
 }
 

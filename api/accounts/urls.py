@@ -4,6 +4,7 @@ from django.urls.resolvers import URLPattern, URLResolver
 from accounts import views
 
 urlpatterns: list[URLPattern | URLResolver] = [
+    path("destroy/", views.destroy),
     path("login/", views.login),
     path("logout/", views.logout),
     path("signup/", views.signup),

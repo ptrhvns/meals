@@ -16,6 +16,12 @@ from accounts.models import EmailConfirmationToken, User
 logger = logging.getLogger(__name__)
 
 
+class AccountDestroySerializer(Serializer):
+    password = CharField(
+        max_length=User._meta.get_field("password").max_length, required=True
+    )
+
+
 class LoginSerializer(Serializer):
     password = CharField(
         max_length=User._meta.get_field("password").max_length, required=True

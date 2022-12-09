@@ -6,6 +6,7 @@ import {
   FirstParameter,
 } from "../lib/types";
 import {
+  accountsDestroy,
   createSignup,
   login,
   logout,
@@ -74,7 +75,7 @@ export default function useApi() {
             mode,
           });
         } catch (error) {
-          console.error("GET CSRF token network error", error);
+          console.error("GET CSRF token caused a network error", error);
 
           return {
             isError: true,
@@ -83,7 +84,7 @@ export default function useApi() {
         }
 
         if (!response.ok) {
-          console.error("GET CSRF token response not OK", response);
+          console.error("GET CSRF token response was not OK", response);
 
           return {
             isError: true,
@@ -94,7 +95,7 @@ export default function useApi() {
         const csrfToken = Cookies.get("csrftoken");
 
         if (!csrfToken) {
-          console.error("CSRF token cookie not found");
+          console.error("CSRF token cookie was not found");
 
           return {
             isError: true,
@@ -108,7 +109,7 @@ export default function useApi() {
       try {
         response = await fetch(url, { body, headers, method, mode });
       } catch (error) {
-        console.error(`${method} ${url} network error`, error);
+        console.error(`${method} ${url} caused a network error`, error);
 
         return {
           isError: true,
@@ -120,7 +121,7 @@ export default function useApi() {
         !response.ok &&
         (response.status === 401 || response.status === 403)
       ) {
-        console.error(`${method} ${url} unauthorized (401 | 403)`);
+        console.error(`${method} ${url} was unauthorized (401 | 403)`);
         // logout(() => navigate(WEB_ROUTES.login()));
 
         return {
@@ -142,7 +143,7 @@ export default function useApi() {
           json = {};
         }
 
-        console.error(`${method} ${url} response not OK`, response);
+        console.error(`${method} ${url} response was not OK`, response);
 
         return {
           isError: true,
@@ -195,6 +196,7 @@ export default function useApi() {
   }
 
   return {
+    accountsDestroy: wrapWithData(accountsDestroy),
     createSignup: wrapWithData(createSignup),
     login: wrapWithData(login),
     logout: wrapWithoutData(logout),

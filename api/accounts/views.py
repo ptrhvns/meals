@@ -17,6 +17,7 @@ from rest_framework.response import Response
 
 from accounts.models import EmailConfirmationToken, User
 from accounts.serializers import (
+    AccountDestroySerializer,
     LoginSerializer,
     SignupConfirmationSerializer,
     SignupSerializer,
@@ -33,6 +34,53 @@ from shared.lib.responses import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def destroy(request: Request) -> Response:
+    serializer = AccountDestroySerializer(data=request.data)
+
+    if not serializer.is_valid():
+        logger.warning(
+            "account deletion failed with invalid request data for user ID %(user_id)s",
+            {"user_id": request.user.id},  # type: ignore[union-attr]
+        )
+
+        return unprocessable_entity_response(
+            errors=serializer.errors,
+            message=_("The information you provided was invalid."),
+        )
+
+    password = serializer.validated_data["password"]
+
+    logger.info(
+        "checking password for user ID %(user_id)s",
+        {"user_id": request.user.id},  # type: ignore[union-attr]
+    )
+
+    if not request.user.check_password(password):
+        logger.error(
+            "invalid password given for user ID %(user_id)s",
+            {"user_id": request.user.id},  # type: ignore[union-attr]
+        )
+
+        return unprocessable_entity_response(
+            errors={"password": [_("Password is invalid.")]},
+            message=_("The information you provided was invalid."),
+        )
+
+    logger.info(
+        "deleting account for user ID %(user_id)s, username %(username)s",
+        {
+            "user_id": request.user.id,  # type: ignore[union-attr]
+            "username": request.user.username,  # type: ignore[union-attr]
+        },
+    )
+
+    request.user.delete()
+    auth_logout(request)
+    return no_content_response()
 
 
 @api_view(http_method_names=["POST"])

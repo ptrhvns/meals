@@ -48,13 +48,19 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faUtensils} /> Meals
           </Anchor>
 
-          {authenticated ? (
-            <Anchor onClick={onLogoutClick} to="/">
-              Log out
-            </Anchor>
-          ) : (
-            <Anchor to="/login">Log in</Anchor>
-          )}
+          <div>
+            {authenticated ? (
+              <>
+                <Anchor to="/settings">Settings</Anchor>
+                {" "}|{" "}
+                <Anchor onClick={onLogoutClick} to="/">
+                  Log out
+                </Anchor>
+              </>
+            ) : (
+              <Anchor to="/login">Log in</Anchor>
+            )}
+          </div>
         </Content>
       </Viewport>
     </>

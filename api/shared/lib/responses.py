@@ -36,6 +36,10 @@ def created_response(*args: Any, **kwargs: Any) -> Response:
     return response(*args, **dict(kwargs, status=status.HTTP_201_CREATED))
 
 
+def forbidden(*args: Any, **kwargs: Any) -> Response:
+    return response(*args, **dict(kwargs, status=status.HTTP_403_FORBIDDEN))
+
+
 def internal_server_error_response(*args: Any, **kwargs: Any) -> Response:
     return response(*args, **dict(kwargs, status=status.HTTP_500_INTERNAL_SERVER_ERROR))
 

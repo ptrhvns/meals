@@ -7,6 +7,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import NotFound from "./routes/NotFound";
 import React from "react";
+import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "login", element: <Login /> },
+      { path: "settings", element: <Settings /> },
       { path: "signup", element: <Signup /> },
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },
     ],

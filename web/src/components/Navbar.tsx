@@ -33,6 +33,7 @@ export default function Navbar() {
 
     logoutAuthn(() => navigate("/"));
   };
+
   return (
     <>
       <Dialog open={!!error}>

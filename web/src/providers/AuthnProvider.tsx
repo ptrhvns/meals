@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import useApi from "../hooks/useApi";
 import { AuthnContext, AuthnData } from "../contexts/AuthnContext";
 
 interface AuthnProviderProps {

@@ -7,10 +7,10 @@ import {
 } from "../lib/types";
 import {
   accountsDestroy,
-  createSignup,
   login,
   logout,
-  updateSignupConfirmation,
+  signupConfirmationUpdate,
+  signupCreate,
 } from "../fetchers/accounts";
 import { isEmpty, omit } from "lodash";
 import { useCallback } from "react";
@@ -197,9 +197,9 @@ export default function useApi() {
 
   return {
     accountsDestroy: wrapWithData(accountsDestroy),
-    createSignup: wrapWithData(createSignup),
+    createSignup: wrapWithData(signupCreate),
     login: wrapWithData(login),
     logout: wrapWithoutData(logout),
-    updateSignupConfirmation: wrapWithData(updateSignupConfirmation),
+    updateSignupConfirmation: wrapWithData(signupConfirmationUpdate),
   };
 }

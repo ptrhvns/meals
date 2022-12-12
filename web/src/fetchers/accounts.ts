@@ -13,21 +13,6 @@ export function accountsDestroy(
   });
 }
 
-export function createSignup(
-  data: {
-    email: string;
-    password: string;
-    username: string;
-  },
-  send: ApiSendFunction
-): Promise<ApiResponse> {
-  return send({
-    data,
-    method: "POST",
-    url: "/api/accounts/signup/",
-  });
-}
-
 export function login(
   data: {
     password: string;
@@ -50,7 +35,7 @@ export function logout(send: ApiSendFunction) {
   });
 }
 
-export function updateSignupConfirmation(
+export function signupConfirmationUpdate(
   data: {
     token: string;
   },
@@ -60,5 +45,20 @@ export function updateSignupConfirmation(
     data,
     method: "POST",
     url: "/api/accounts/signup_confirmation/",
+  });
+}
+
+export function signupCreate(
+  data: {
+    email: string;
+    password: string;
+    username: string;
+  },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: "/api/accounts/signup/",
   });
 }

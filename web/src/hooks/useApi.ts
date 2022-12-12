@@ -1,10 +1,5 @@
 import Cookies from "js-cookie";
-import {
-  AnyFunction,
-  ApiResponse,
-  ApiSendParameter,
-  FirstParameter,
-} from "../lib/types";
+import useAuthn from "./useAuthn";
 import {
   accountsDestroy,
   login,
@@ -12,8 +7,15 @@ import {
   signupConfirmationUpdate,
   signupCreate,
 } from "../fetchers/accounts";
+import {
+  AnyFunction,
+  ApiResponse,
+  ApiSendParameter,
+  FirstParameter,
+} from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 const DEFAULT_HEADERS_INIT = {
@@ -36,8 +38,8 @@ const apiResponseSchema = z.object({
 });
 
 export default function useApi() {
-  // const navigate = useNavigate(); // TODO
-  // const { logout } = useAuthn(); // TODO
+  const navigate = useNavigate();
+  const { logout: logoutAuthn } = useAuthn();
 
   const send = useCallback(
     async ({
@@ -122,8 +124,9 @@ export default function useApi() {
         (response.status === 401 || response.status === 403)
       ) {
         console.error(`${method} ${url} was unauthorized (401 | 403)`);
-        // logout(() => navigate(WEB_ROUTES.login()));
+        logoutAuthn(() => navigate("/login"));
 
+        // This return value is not very useful as we call navigate() above.
         return {
           isError: true,
           message: "Your request was not authorized.",
@@ -181,10 +184,7 @@ export default function useApi() {
 
       return json;
     },
-    [
-      /* TODO logout, */
-      /* TODO navigate */
-    ]
+    [logoutAuthn, navigate]
   );
 
   function wrapWithoutData<F extends AnyFunction>(fn: F) {

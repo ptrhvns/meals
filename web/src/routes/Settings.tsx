@@ -3,6 +3,7 @@ import classes from "../styles/routes/Settings.module.scss";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
+import PageLayoutHeading from "../components/PageLayoutHeading";
 import Paragraph from "../components/Paragraph";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
@@ -17,12 +18,12 @@ export default function Settings() {
       <Navbar />
 
       <PageLayout>
-        <Heading>Settings</Heading>
+        <PageLayoutHeading>Settings</PageLayoutHeading>
 
         <Heading size={2}>Account</Heading>
 
         <Heading className={classes.deleteAccountHeader} size={3}>
-          Delete my account
+          Delete Account
         </Heading>
 
         <Paragraph>

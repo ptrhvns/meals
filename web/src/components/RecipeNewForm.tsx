@@ -45,6 +45,8 @@ export default function RecipeNewForm() {
 
   const onAlertDismiss = () => setFormError(undefined);
 
+  const onFormDismiss = () => navigate("/dashboard");
+
   return (
     <form onSubmit={onSubmit}>
       {formError && (
@@ -73,6 +75,10 @@ export default function RecipeNewForm() {
           variant="filled"
         >
           Create recipe
+        </Button>
+
+        <Button disabled={submitting} onClick={onFormDismiss} type="button">
+          Dismiss
         </Button>
       </FormActions>
     </form>

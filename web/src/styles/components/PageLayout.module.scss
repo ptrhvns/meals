@@ -2,11 +2,19 @@
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 2.5rem 0.5rem;
+
+  @media(min-width: 27rem) {
+    padding: 0.5rem 1rem 2.5rem 1rem;
+  }
 }
 
 .viewport {
   background-color: var(--slate3);
   min-height: calc(100vh - var(--navbar-height));
   padding-block: 0.5rem;
+
+  @media(min-width: 27rem) {
+    padding-block: 1rem;
+  }
 }

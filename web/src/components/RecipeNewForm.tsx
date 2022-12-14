@@ -1,28 +1,25 @@
 import Alert from "./Alert";
 import Button from "./Button";
-import classes from "../styles/components/AccountDeleteForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import Input from "./Input";
 import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
-import useAuthn from "../hooks/useAuthn";
 import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
 interface FormData {
-  password: string;
+  title: string;
 }
 
-export default function AccountDeleteForm() {
+export default function RecipeNewForm() {
   const [formError, setFormError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const { recipeCreate } = useApi();
   const navigate = useNavigate();
-  const { accountDestroy } = useApi();
-  const { logout } = useAuthn();
 
   const {
     formState: { errors: fieldErrors },
@@ -33,17 +30,7 @@ export default function AccountDeleteForm() {
 
   const onSubmit = handleSubmit(async (data: FormData) => {
     setSubmitting(true);
-
-    if (
-      !window.confirm(
-        "Are you sure you want to delete your account, and permanently delete all of your data?"
-      )
-    ) {
-      setSubmitting(false);
-      return;
-    }
-
-    const response = await accountDestroy(data);
+    const response = await recipeCreate(data);
     setSubmitting(false);
 
     if (response.isError) {
@@ -53,13 +40,13 @@ export default function AccountDeleteForm() {
       });
     }
 
-    logout(() => navigate("/", { replace: true }));
+    navigate(`/recipe/${response.data.id}`, { replace: true });
   });
 
   const onAlertDismiss = () => setFormError(undefined);
 
   return (
-    <form className={classes.form} onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       {formError && (
         <Alert onDismiss={onAlertDismiss} variant="error">
           {formError}
@@ -67,25 +54,25 @@ export default function AccountDeleteForm() {
       )}
 
       <Field>
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="title">Title</Label>
         <Input
           disabled={submitting}
-          error={!!fieldErrors?.password?.message}
-          id="password"
-          type="password"
-          {...register("password", { required: "Password is required." })}
+          error={!!fieldErrors?.title?.message}
+          id="title"
+          type="title"
+          {...register("title", { required: "Title is required." })}
         />
-        <InputError error={fieldErrors?.password?.message} />
+        <InputError error={fieldErrors?.title?.message} />
       </Field>
 
       <FormActions>
         <Button
-          color="red"
+          color="primary"
           disabled={submitting}
           type="submit"
           variant="filled"
         >
-          Delete account
+          Create recipe
         </Button>
       </FormActions>
     </form>

@@ -1,3 +1,4 @@
+import Anchor from "../components/Anchor";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
@@ -16,6 +17,10 @@ export default function Dashboard() {
 
       <PageLayout>
         <Heading>Dashboard</Heading>
+        <Heading size={2}>Recipes</Heading>
+        <Anchor to="/recipe/new" variant="filled">
+          Create recipe
+        </Anchor>
       </PageLayout>
     </RequireAuthn>
   );

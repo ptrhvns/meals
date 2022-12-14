@@ -32,7 +32,7 @@ class LoginSerializer(Serializer):
     )
 
 
-class SignupSerializer(ModelSerializer):
+class SignupCreateSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ("id", "username", "email", "password")
@@ -57,7 +57,7 @@ class SignupSerializer(ModelSerializer):
         return cast(User, user)
 
 
-class SignupConfirmationSerializer(ModelSerializer):
+class SignupConfirmationUpdateSerializer(ModelSerializer):
     class Meta:
         model = EmailConfirmationToken
         fields = ("token",)

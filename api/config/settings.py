@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "accounts.apps.AccountsConfig",
+    "recipes.apps.RecipesConfig",
 ]
 
 MIDDLEWARE = [

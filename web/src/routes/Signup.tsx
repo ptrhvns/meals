@@ -6,6 +6,7 @@ import PageCenteredSection from "../components/PageCenteredSection";
 import Paragraph from "../components/Paragraph";
 import RequireGuest from "../components/RequireGuest";
 import SignupForm from "../components/SignupForm";
+import Subheading from "../components/Subheading";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 
@@ -19,9 +20,7 @@ export default function Signup() {
       <PageCenteredSection contentClassName={classes.content}>
         <Heading className={classes.heading}>Sign Up</Heading>
 
-        <Paragraph className={classes.subheading}>
-          Create an account to save time.
-        </Paragraph>
+        <Subheading>Create an account to save time.</Subheading>
 
         <SignupForm />
 

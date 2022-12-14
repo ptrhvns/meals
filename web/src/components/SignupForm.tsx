@@ -25,7 +25,7 @@ export default function SignupForm() {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>();
   const navigate = useNavigate();
-  const { createSignup } = useApi();
+  const { signupCreate } = useApi();
 
   const {
     formState: { errors: fieldErrors },
@@ -44,7 +44,7 @@ export default function SignupForm() {
 
   const onFormSubmit = handleSubmit(async (data: FormData) => {
     setSubmitting(true);
-    const response = await createSignup(data);
+    const response = await signupCreate(data);
     setSubmitting(false);
 
     if (response.isError) {

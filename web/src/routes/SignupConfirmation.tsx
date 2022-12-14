@@ -19,10 +19,10 @@ export default function SignupConfirmation() {
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState<string>();
   const { token } = useParams() as { token: string };
-  const { updateSignupConfirmation } = useApi();
+  const { signupConfirmationUpdate } = useApi();
 
   useEffectOnce(async () => {
-    const response = await updateSignupConfirmation({ token });
+    const response = await signupConfirmationUpdate({ token });
 
     if (response.isError) {
       setError(

@@ -1,6 +1,6 @@
 import { ApiResponse, ApiSendFunction } from "../lib/types";
 
-export function accountsDestroy(
+export function accountDestroy(
   data: {
     password: string;
   },
@@ -9,7 +9,7 @@ export function accountsDestroy(
   return send({
     data,
     method: "POST",
-    url: "/api/accounts/destroy/",
+    url: "/api/accounts/account/destroy/",
   });
 }
 
@@ -44,7 +44,7 @@ export function signupConfirmationUpdate(
   return send({
     data,
     method: "POST",
-    url: "/api/accounts/signup_confirmation/",
+    url: "/api/accounts/signup_confirmation/update/",
   });
 }
 
@@ -59,6 +59,6 @@ export function signupCreate(
   return send({
     data,
     method: "POST",
-    url: "/api/accounts/signup/",
+    url: "/api/accounts/signup/create/",
   });
 }

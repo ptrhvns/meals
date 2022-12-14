@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import useAuthn from "./useAuthn";
 import {
-  accountsDestroy,
+  accountDestroy,
   login,
   logout,
   signupConfirmationUpdate,
@@ -14,6 +14,7 @@ import {
   FirstParameter,
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
+import { recipeCreate } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -196,10 +197,11 @@ export default function useApi() {
   }
 
   return {
-    accountsDestroy: wrapWithData(accountsDestroy),
-    createSignup: wrapWithData(signupCreate),
+    accountDestroy: wrapWithData(accountDestroy),
     login: wrapWithData(login),
     logout: wrapWithoutData(logout),
-    updateSignupConfirmation: wrapWithData(signupConfirmationUpdate),
+    recipeCreate: wrapWithData(recipeCreate),
+    signupConfirmationUpdate: wrapWithData(signupConfirmationUpdate),
+    signupCreate: wrapWithData(signupCreate),
   };
 }

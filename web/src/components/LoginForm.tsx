@@ -7,6 +7,8 @@ import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
 import useAuthn from "../hooks/useAuthn";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -103,7 +105,7 @@ export default function LoginForm() {
           type="submit"
           variant="filled"
         >
-          Log in
+          <FontAwesomeIcon icon={faRightToBracket} /> Log in
         </Button>
       </FormActions>
     </form>

@@ -5,6 +5,8 @@ import PageLayout from "../components/PageLayout";
 import PageLayoutHeading from "../components/PageLayoutHeading";
 import RequireAuthn from "../components/RequireAuthn";
 import { buildTitle } from "../lib/utils";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 
 export default function Dashboard() {
@@ -20,7 +22,7 @@ export default function Dashboard() {
         <PageLayoutHeading>Dashboard</PageLayoutHeading>
         <Heading size={2}>Recipes</Heading>
         <Anchor to="/recipe/new" variant="filled">
-          Create recipe
+          <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
         </Anchor>
       </PageLayout>
     </RequireAuthn>

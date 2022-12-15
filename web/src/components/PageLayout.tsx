@@ -13,11 +13,11 @@ export default function PageLayout({
   children,
   containerClassName,
 }: PageLayoutProps) {
-  const className = joinClassNames(classes.content, containerClassName);
+  containerClassName = joinClassNames(classes.content, containerClassName);
 
   return (
     <Viewport className={classes.viewport}>
-      <Content className={className}>{children}</Content>
+      <Content className={containerClassName}>{children}</Content>
     </Viewport>
   );
 }

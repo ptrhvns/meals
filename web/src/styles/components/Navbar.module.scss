@@ -1,4 +1,4 @@
-.viewport {
+div.viewport {
   align-items: center;
   border-bottom: 1px solid var(--slate6);
   box-shadow: var(--box-shadow);
@@ -6,10 +6,11 @@
   height: var(--navbar-height);
 }
 
-.content {
+div.content {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  padding: 0;
 }
 
 a.logo.link {

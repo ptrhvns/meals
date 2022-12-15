@@ -11,7 +11,7 @@ from django.db.models import (
 )
 from django.utils.translation import gettext_lazy as _
 
-from accounts.lib.tokens import build_token
+from accounts.utils import build_token
 
 
 class User(AbstractUser):

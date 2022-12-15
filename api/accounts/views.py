@@ -17,10 +17,10 @@ from rest_framework.response import Response
 
 from accounts.models import EmailConfirmationToken, User
 from accounts.serializers import (
-    AccountDestroySerializer,
-    LoginSerializer,
-    SignupConfirmationUpdateSerializer,
-    SignupCreateSerializer,
+    AccountDestroyRequestSerializer,
+    LoginRequestSerializer,
+    SignupConfirmationUpdateRequestSerializer,
+    SignupCreateRequestSerializer,
 )
 from accounts.tasks import send_signup_confirmation
 from shared.lib.client import ClientUrls
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def account_destroy(request: Request) -> Response:
-    serializer = AccountDestroySerializer(data=request.data)
+    serializer = AccountDestroyRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         logger.warning(
@@ -87,7 +87,7 @@ def account_destroy(request: Request) -> Response:
 def login(request: Request) -> Response:
     username = request.data.get("username")
     logger.info("attempting login for username %(username)s", {"username": username})
-    serializer = LoginSerializer(data=request.data)
+    serializer = LoginRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         logger.warning(
@@ -133,7 +133,7 @@ def logout(request: Request) -> Response:
 
 @api_view(http_method_names=["POST"])
 def signup_create(request: Request) -> Response:
-    serializer = SignupCreateSerializer(data=request.data)
+    serializer = SignupCreateRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)
@@ -175,7 +175,7 @@ def signup_create(request: Request) -> Response:
 
 @api_view(http_method_names=["POST"])
 def signup_confirmation_update(request: Request) -> Response:
-    serializer = SignupConfirmationUpdateSerializer(data=request.data)
+    serializer = SignupConfirmationUpdateRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

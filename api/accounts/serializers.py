@@ -16,13 +16,13 @@ from accounts.models import EmailConfirmationToken, User
 logger = logging.getLogger(__name__)
 
 
-class AccountDestroySerializer(Serializer):
+class AccountDestroyRequestSerializer(Serializer):
     password = CharField(
         max_length=User._meta.get_field("password").max_length, required=True
     )
 
 
-class LoginSerializer(Serializer):
+class LoginRequestSerializer(Serializer):
     password = CharField(
         max_length=User._meta.get_field("password").max_length, required=True
     )
@@ -32,7 +32,7 @@ class LoginSerializer(Serializer):
     )
 
 
-class SignupCreateSerializer(ModelSerializer):
+class SignupCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ("id", "username", "email", "password")
@@ -57,7 +57,7 @@ class SignupCreateSerializer(ModelSerializer):
         return cast(User, user)
 
 
-class SignupConfirmationUpdateSerializer(ModelSerializer):
+class SignupConfirmationUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = EmailConfirmationToken
         fields = ("token",)

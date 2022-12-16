@@ -30,29 +30,25 @@ export default function RecipeNewForm() {
     setError: setFieldError,
   } = useForm<FormData>();
 
-  const onSubmit = handleSubmit(async (data: FormData) => {
-    setSubmitting(true);
-    const response = await recipeCreate(data);
-    setSubmitting(false);
-
-    if (response.isError) {
-      return handleApiError<FormData>(response, {
-        setError,
-        setFieldError,
-      });
-    }
-
-    navigate(`/recipe/${response.data.id}`, { replace: true });
-  });
-
-  const onAlertDismiss = () => setError(undefined);
-
-  const onFormDismiss = () => navigate("/dashboard");
-
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      onSubmit={handleSubmit(async (data: FormData) => {
+        setSubmitting(true);
+        const response = await recipeCreate(data);
+        setSubmitting(false);
+
+        if (response.isError) {
+          return handleApiError<FormData>(response, {
+            setError,
+            setFieldError,
+          });
+        }
+
+        navigate(`/recipe/${response.data.id}`, { replace: true });
+      })}
+    >
       {error && (
-        <Alert onDismiss={onAlertDismiss} variant="error">
+        <Alert onDismiss={() => setError(undefined)} variant="error">
           {error}
         </Alert>
       )}
@@ -79,7 +75,11 @@ export default function RecipeNewForm() {
           <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
         </Button>
 
-        <Button disabled={submitting} onClick={onFormDismiss} type="button">
+        <Button
+          disabled={submitting}
+          onClick={() => navigate("/dashboard")}
+          type="button"
+        >
           Dismiss
         </Button>
       </FormActions>

@@ -10,25 +10,21 @@ function AuthnProvider({ children }: AuthnProviderProps) {
     !!localStorage.getItem("authenticated")
   );
 
-  const login = (callback?: () => void): void => {
-    localStorage.setItem("authenticated", "true");
-    setAuthenticated(true);
+  const value: AuthnData = {
+    authenticated,
 
-    if (callback) {
-      callback();
-    }
+    login(callback?: () => void): void {
+      localStorage.setItem("authenticated", "true");
+      setAuthenticated(true);
+      if (callback) callback();
+    },
+
+    logout(callback?: () => void): void {
+      localStorage.removeItem("authenticated");
+      setAuthenticated(false);
+      if (callback) callback();
+    },
   };
-
-  const logout = (callback?: () => void): void => {
-    localStorage.removeItem("authenticated");
-    setAuthenticated(false);
-
-    if (callback) {
-      callback();
-    }
-  };
-
-  const value: AuthnData = { authenticated: authenticated, login, logout };
 
   return (
     <AuthnContext.Provider value={value}>{children}</AuthnContext.Provider>

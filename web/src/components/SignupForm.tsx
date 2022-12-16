@@ -36,36 +36,17 @@ export default function SignupForm() {
     setError: setFieldError,
   } = useForm<FormData>();
 
-  const onDialogOpenChange = (open: boolean) => {
-    if (!open) {
-      navigate("/login", { replace: true });
-    }
-  };
-
-  const onDialogDismiss = () => setOpenSuccessDialog(false);
-
-  const onFormSubmit = handleSubmit(async (data: FormData) => {
-    setSubmitting(true);
-    const response = await signupCreate(data);
-    setSubmitting(false);
-
-    if (response.isError) {
-      return handleApiError<FormData>(response, {
-        setError,
-        setFieldError,
-      });
-    }
-
-    setSuccessMessage(response?.message ?? "You signed up successfully.");
-    setOpenSuccessDialog(true);
-  });
-
-  const onAlertDismiss = () => setError(undefined);
-
   return (
     <>
-      <Dialog open={openSuccessDialog} onOpenChange={onDialogOpenChange}>
-        <DialogContent onDismiss={onDialogDismiss}>
+      <Dialog
+        open={openSuccessDialog}
+        onOpenChange={(open: boolean) => {
+          if (!open) {
+            navigate("/login", { replace: true });
+          }
+        }}
+      >
+        <DialogContent onDismiss={() => setOpenSuccessDialog(false)}>
           <Alert variant="success">
             <DialogTitle asChild>
               <h1 className={classes.dialogHeading}>Sign Up Success</h1>
@@ -75,9 +56,25 @@ export default function SignupForm() {
         </DialogContent>
       </Dialog>
 
-      <form onSubmit={onFormSubmit}>
+      <form
+        onSubmit={handleSubmit(async (data: FormData) => {
+          setSubmitting(true);
+          const response = await signupCreate(data);
+          setSubmitting(false);
+
+          if (response.isError) {
+            return handleApiError<FormData>(response, {
+              setError,
+              setFieldError,
+            });
+          }
+
+          setSuccessMessage(response?.message ?? "You signed up successfully.");
+          setOpenSuccessDialog(true);
+        })}
+      >
         {error && (
-          <Alert onDismiss={onAlertDismiss} variant="error">
+          <Alert onDismiss={() => setError(undefined)} variant="error">
             {error}
           </Alert>
         )}

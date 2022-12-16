@@ -3,7 +3,7 @@ import Button from "./Button";
 import classes from "../styles/components/NavbarMenu.module.scss";
 import useApi from "../hooks/useApi";
 import useAuthn from "../hooks/useAuthn";
-import { Dispatch, MouseEventHandler, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router";
@@ -17,21 +17,6 @@ export default function NavbarMenu({ setError }: NavbarMenuProps) {
   const { logout: logoutApi } = useApi();
   const { logout: logoutAuthn } = useAuthn();
 
-  const onDashboardClick = () => navigate("/");
-  const onSettingsClick = () => navigate("/settings");
-
-  const onLogoutClick: MouseEventHandler<HTMLDivElement> = async (event) => {
-    event.preventDefault();
-    const response = await logoutApi();
-
-    if (response.isError) {
-      setError(response?.message ?? "An unexpected error occurred.");
-      return;
-    }
-
-    logoutAuthn(() => navigate("/"));
-  };
-
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -44,18 +29,33 @@ export default function NavbarMenu({ setError }: NavbarMenuProps) {
         <DropdownMenu.Content className={classes.content}>
           <DropdownMenu.Item
             className={classes.item}
-            onClick={onDashboardClick}
+            onClick={() => navigate("/")}
           >
             Dashboard
           </DropdownMenu.Item>
 
-          <DropdownMenu.Item className={classes.item} onClick={onSettingsClick}>
+          <DropdownMenu.Item
+            className={classes.item}
+            onClick={() => navigate("/settings")}
+          >
             Settings
           </DropdownMenu.Item>
 
           <DropdownMenu.Separator className={classes.separator} />
 
-          <DropdownMenu.Item className={classes.item} onClick={onLogoutClick}>
+          <DropdownMenu.Item
+            className={classes.item}
+            onClick={async () => {
+              const response = await logoutApi();
+
+              if (response.isError) {
+                setError(response?.message ?? "An unexpected error occurred.");
+                return;
+              }
+
+              logoutAuthn(() => navigate("/"));
+            }}
+          >
             Log out
           </DropdownMenu.Item>
         </DropdownMenu.Content>

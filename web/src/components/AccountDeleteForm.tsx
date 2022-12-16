@@ -33,37 +33,36 @@ export default function AccountDeleteForm() {
     setError: setFieldError,
   } = useForm<FormData>();
 
-  const onSubmit = handleSubmit(async (data: FormData) => {
-    setSubmitting(true);
-
-    if (
-      !window.confirm(
-        "Are you sure you want to delete your account, and permanently delete all of your data?"
-      )
-    ) {
-      setSubmitting(false);
-      return;
-    }
-
-    const response = await accountDestroy(data);
-    setSubmitting(false);
-
-    if (response.isError) {
-      return handleApiError<FormData>(response, {
-        setError,
-        setFieldError,
-      });
-    }
-
-    logout(() => navigate("/", { replace: true }));
-  });
-
-  const onAlertDismiss = () => setError(undefined);
-
   return (
-    <form className={classes.form} onSubmit={onSubmit}>
+    <form
+      className={classes.form}
+      onSubmit={handleSubmit(async (data: FormData) => {
+        setSubmitting(true);
+
+        if (
+          !window.confirm(
+            "Are you sure you want to delete your account, and permanently delete all of your data?"
+          )
+        ) {
+          setSubmitting(false);
+          return;
+        }
+
+        const response = await accountDestroy(data);
+        setSubmitting(false);
+
+        if (response.isError) {
+          return handleApiError<FormData>(response, {
+            setError,
+            setFieldError,
+          });
+        }
+
+        logout(() => navigate("/", { replace: true }));
+      })}
+    >
       {error && (
-        <Alert onDismiss={onAlertDismiss} variant="error">
+        <Alert onDismiss={() => setError(undefined)} variant="error">
           {error}
         </Alert>
       )}

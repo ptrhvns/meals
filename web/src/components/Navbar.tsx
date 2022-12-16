@@ -15,21 +15,17 @@ export default function Navbar() {
   const [error, setError] = useState<string>();
   const { authenticated } = useAuthn();
 
-  const logoClassName = joinClassNames(classes.logo, classes.link);
-
-  const onDialogDismiss = () => setError(undefined);
-
   return (
     <>
       <Dialog open={!!error}>
-        <DialogContent onDismiss={onDialogDismiss}>
+        <DialogContent onDismiss={() => setError(undefined)}>
           <Alert variant="error">{error}</Alert>
         </DialogContent>
       </Dialog>
 
       <Viewport className={classes.viewport}>
         <Content className={classes.content}>
-          <Anchor className={logoClassName} to="/">
+          <Anchor className={joinClassNames(classes.logo, classes.link)} to="/">
             <FontAwesomeIcon icon={faUtensils} /> Meals
           </Anchor>
 

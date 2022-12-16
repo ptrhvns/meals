@@ -34,27 +34,25 @@ export default function LoginForm() {
     setError: setFieldError,
   } = useForm<FormData>({ defaultValues: { remember_me: true } });
 
-  const onFormSubmit = handleSubmit(async (data: FormData) => {
-    setSubmitting(true);
-    const response = await login(data);
-    setSubmitting(false);
-
-    if (response.isError) {
-      return handleApiError<FormData>(response, {
-        setError,
-        setFieldError,
-      });
-    }
-
-    authn.login(() => navigate("/dashboard", { replace: true }));
-  });
-
-  const onAlertDismiss = () => setError(undefined);
-
   return (
-    <form onSubmit={onFormSubmit}>
+    <form
+      onSubmit={handleSubmit(async (data: FormData) => {
+        setSubmitting(true);
+        const response = await login(data);
+        setSubmitting(false);
+
+        if (response.isError) {
+          return handleApiError<FormData>(response, {
+            setError,
+            setFieldError,
+          });
+        }
+
+        authn.login(() => navigate("/dashboard", { replace: true }));
+      })}
+    >
       {error && (
-        <Alert onDismiss={onAlertDismiss} variant="error">
+        <Alert onDismiss={() => setError(undefined)} variant="error">
           {error}
         </Alert>
       )}

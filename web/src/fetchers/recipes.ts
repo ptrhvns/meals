@@ -14,3 +14,17 @@ export function recipeCreate(
     url: "/api/recipes/recipe/create",
   });
 }
+
+export function recipeGet(
+  recipeId: string,
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  // Ensure this matches RecipeData type.
+  const responseDataSchema = z.object({ id: z.number(), title: z.string() });
+
+  return send({
+    method: "GET",
+    responseDataSchema,
+    url: `/api/recipes/recipe/${recipeId}`,
+  });
+}

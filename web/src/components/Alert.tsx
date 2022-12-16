@@ -7,13 +7,23 @@ import { joinClassNames } from "../lib/utils";
 import { MouseEventHandler, ReactNode } from "react";
 
 interface AlertProps {
+  alertClassName?: string;
   children: ReactNode;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;
   variant: "error" | "info" | "success";
 }
 
-export default function Alert({ children, onDismiss, variant }: AlertProps) {
-  const alertClassName = joinClassNames(classes.alert, classes[variant]);
+export default function Alert({
+  alertClassName,
+  children,
+  onDismiss,
+  variant,
+}: AlertProps) {
+  alertClassName = joinClassNames(
+    classes.alert,
+    classes[variant],
+    alertClassName
+  );
   const buttonClassName = joinClassNames(classes.button, classes[variant]);
 
   return (

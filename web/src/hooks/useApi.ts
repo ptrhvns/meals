@@ -14,7 +14,7 @@ import {
   FirstParameter,
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
-import { recipeCreate } from "../fetchers/recipes";
+import { recipeCreate, recipeGet } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -31,6 +31,7 @@ async function getJson(res: Response): Promise<object> {
   return isEmpty(text) ? {} : await JSON.parse(text);
 }
 
+// Ensure this matches ApiResponse type.
 const apiResponseSchema = z.object({
   data: z.optional(z.any()),
   errors: z.optional(z.record(z.string(), z.array(z.string()))),
@@ -87,7 +88,7 @@ export default function useApi() {
         }
 
         if (!response.ok) {
-          console.error("GET CSRF token response was not OK", response);
+          console.error("GET CSRF token response status was not OK", response);
 
           return {
             isError: true,
@@ -127,7 +128,7 @@ export default function useApi() {
         console.error(`${method} ${url} was unauthorized (401 | 403)`);
         logoutAuthn(() => navigate("/login"));
 
-        // This return value is not very useful as we call navigate() above.
+        // This return is really only here to satisfy TypeScript.
         return {
           isError: true,
           message: "Your request was not authorized.",
@@ -140,14 +141,10 @@ export default function useApi() {
         try {
           json = await getJson(response);
         } catch (error) {
-          console.error(
-            `${method} ${url} response contained invalid JSON`,
-            error
-          );
           json = {};
         }
 
-        console.error(`${method} ${url} response was not OK`, response);
+        console.error(`${method} ${url} response status was not OK`, response);
 
         return {
           isError: true,
@@ -201,6 +198,7 @@ export default function useApi() {
     login: wrapWithData(login),
     logout: wrapWithoutData(logout),
     recipeCreate: wrapWithData(recipeCreate),
+    recipeGet: wrapWithData(recipeGet),
     signupConfirmationUpdate: wrapWithData(signupConfirmationUpdate),
     signupCreate: wrapWithData(signupCreate),
   };

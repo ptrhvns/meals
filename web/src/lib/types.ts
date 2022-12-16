@@ -6,7 +6,7 @@ export type FirstParameter<F extends AnyFunction> = Parameters<F>[0];
 
 export type Optional<T> = T | undefined | null;
 
-// Ensure zod validation in useApi() matches any changes here.
+// Ensure this matches apiResponseSchema in useApi hook.
 export interface ApiResponse {
   data?: any;
   errors?: { [key: string]: string[] };
@@ -23,3 +23,9 @@ export interface ApiSendParameter {
 }
 
 export type ApiSendFunction = (param: ApiSendParameter) => Promise<ApiResponse>;
+
+// Ensure this matches responseDataSchema in recipe fetchers.
+export interface RecipeData {
+  id: number;
+  title: string;
+};

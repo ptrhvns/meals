@@ -18,10 +18,10 @@ interface FormData {
 }
 
 export default function RecipeNewForm() {
-  const [formError, setFormError] = useState<string>();
+  const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const { recipeCreate } = useApi();
   const navigate = useNavigate();
+  const { recipeCreate } = useApi();
 
   const {
     formState: { errors: fieldErrors },
@@ -37,23 +37,23 @@ export default function RecipeNewForm() {
 
     if (response.isError) {
       return handleApiError<FormData>(response, {
+        setError,
         setFieldError,
-        setFormError,
       });
     }
 
     navigate(`/recipe/${response.data.id}`, { replace: true });
   });
 
-  const onAlertDismiss = () => setFormError(undefined);
+  const onAlertDismiss = () => setError(undefined);
 
   const onFormDismiss = () => navigate("/dashboard");
 
   return (
     <form onSubmit={onSubmit}>
-      {formError && (
+      {error && (
         <Alert onDismiss={onAlertDismiss} variant="error">
-          {formError}
+          {error}
         </Alert>
       )}
 

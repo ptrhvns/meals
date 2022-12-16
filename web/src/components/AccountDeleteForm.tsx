@@ -20,7 +20,7 @@ interface FormData {
 }
 
 export default function AccountDeleteForm() {
-  const [formError, setFormError] = useState<string>();
+  const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
   const { accountDestroy } = useApi();
@@ -50,21 +50,21 @@ export default function AccountDeleteForm() {
 
     if (response.isError) {
       return handleApiError<FormData>(response, {
+        setError,
         setFieldError,
-        setFormError,
       });
     }
 
     logout(() => navigate("/", { replace: true }));
   });
 
-  const onAlertDismiss = () => setFormError(undefined);
+  const onAlertDismiss = () => setError(undefined);
 
   return (
     <form className={classes.form} onSubmit={onSubmit}>
-      {formError && (
+      {error && (
         <Alert onDismiss={onAlertDismiss} variant="error">
-          {formError}
+          {error}
         </Alert>
       )}
 

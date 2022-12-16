@@ -22,7 +22,7 @@ interface FormData {
 }
 
 export default function SignupForm() {
-  const [formError, setFormError] = useState<string>();
+  const [error, setError] = useState<string>();
   const [openSuccessDialog, setOpenSuccessDialog] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>();
@@ -51,8 +51,8 @@ export default function SignupForm() {
 
     if (response.isError) {
       return handleApiError<FormData>(response, {
+        setError,
         setFieldError,
-        setFormError,
       });
     }
 
@@ -60,7 +60,7 @@ export default function SignupForm() {
     setOpenSuccessDialog(true);
   });
 
-  const onAlertDismiss = () => setFormError(undefined);
+  const onAlertDismiss = () => setError(undefined);
 
   return (
     <>
@@ -76,9 +76,9 @@ export default function SignupForm() {
       </Dialog>
 
       <form onSubmit={onFormSubmit}>
-        {formError && (
+        {error && (
           <Alert onDismiss={onAlertDismiss} variant="error">
-            {formError}
+            {error}
           </Alert>
         )}
 

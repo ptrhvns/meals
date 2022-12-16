@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function Recipe() {
-  const [formError, setFormError] = useState<string>();
+  const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
   const [recipe, setRecipe] = useState<RecipeData>();
   const { recipeGet } = useApi();
@@ -26,7 +26,7 @@ export default function Recipe() {
     setLoading(false);
 
     if (response.isError) {
-      handleApiError(response, { setFormError });
+      handleApiError(response, { setError });
       return;
     }
 
@@ -49,17 +49,17 @@ export default function Recipe() {
 
         {loading && <Paragraph>Loading ...</Paragraph>}
 
-        {!loading && formError && (
+        {!loading && error && (
           <Alert
             alertClassName={classes.alert}
-            onDismiss={() => setFormError(undefined)}
+            onDismiss={() => setError(undefined)}
             variant="error"
           >
-            {formError}
+            {error}
           </Alert>
         )}
 
-        {!loading && !formError && <div>TODO - display recipe data</div>}
+        {!loading && !error && <div>TODO - display recipe data</div>}
       </PageLayout>
     </RequireAuthn>
   );

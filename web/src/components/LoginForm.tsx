@@ -21,10 +21,10 @@ interface FormData {
 }
 
 export default function LoginForm() {
+  const [error, setError] = useState<string>();
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const authn = useAuthn();
   const navigate = useNavigate();
-  const [formError, setFormError] = useState<string>();
-  const [submitting, setSubmitting] = useState<boolean>(false);
   const { login } = useApi();
 
   const {
@@ -41,21 +41,21 @@ export default function LoginForm() {
 
     if (response.isError) {
       return handleApiError<FormData>(response, {
+        setError,
         setFieldError,
-        setFormError,
       });
     }
 
     authn.login(() => navigate("/dashboard", { replace: true }));
   });
 
-  const onAlertDismiss = () => setFormError(undefined);
+  const onAlertDismiss = () => setError(undefined);
 
   return (
     <form onSubmit={onFormSubmit}>
-      {formError && (
+      {error && (
         <Alert onDismiss={onAlertDismiss} variant="error">
-          {formError}
+          {error}
         </Alert>
       )}
 

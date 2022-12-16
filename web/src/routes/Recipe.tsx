@@ -4,8 +4,8 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
-import Paragraph from "../components/Paragraph";
 import RequireAuthn from "../components/RequireAuthn";
+import Skeleton from "../components/Skeleton";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
@@ -47,7 +47,19 @@ export default function Recipe() {
           <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
         </Breadcrumbs>
 
-        {loading && <Paragraph>Loading ...</Paragraph>}
+        {loading && (
+          <>
+            <Skeleton className={classes.skeletonTop} width="60%" />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton className={classes.skeletonTop} width="60%" />
+            <Skeleton />
+            <Skeleton />
+            <Skeleton className={classes.skeletonTop} width="60%" />
+            <Skeleton />
+            <Skeleton />
+          </>
+        )}
 
         {!loading && error && (
           <Alert

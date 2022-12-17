@@ -10,7 +10,7 @@ interface SkeletonProps {
 }
 
 export default function Skeleton({
-  backgroundColor = "var(--slate3)",
+  backgroundColor = "var(--slate4)",
   borderRadius = "var(--border-radius)",
   className,
   height = "1rem",

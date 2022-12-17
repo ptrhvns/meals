@@ -13,3 +13,9 @@ class RecipeCreateResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("id",)
+
+
+class RecipeResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = ("id", "title")

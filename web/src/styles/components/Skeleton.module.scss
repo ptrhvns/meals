@@ -1,6 +1,6 @@
 @keyframes pulse {
   from {
-    opacity: 0.4;
+    opacity: 0.3;
   }
 
   to {
@@ -9,6 +9,6 @@
 }
 
 .skeleton {
-  animation: 1250ms linear infinite alternate pulse;
+  animation: 1500ms linear infinite alternate pulse;
   margin-block: 0.5rem;
 }

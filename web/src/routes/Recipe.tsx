@@ -3,10 +3,12 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import RecipeSection from "../components/RecipeSection";
+import RecipeTitle from "../components/RecipeTitle";
 import RequireAuthn from "../components/RequireAuthn";
 import Skeleton from "../components/Skeleton";
 import useApi from "../hooks/useApi";
+import Viewport from "../components/Viewport";
 import { buildTitle, handleApiError } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { RecipeData } from "../lib/types";
@@ -41,38 +43,44 @@ export default function Recipe() {
 
       <Navbar />
 
-      <PageLayout>
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
-        </Breadcrumbs>
+      <Viewport className={classes.viewport}>
+        <RecipeSection containerClassName={classes.recipeSection}>
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
+          </Breadcrumbs>
+        </RecipeSection>
 
         {loading && (
-          <>
-            <Skeleton className={classes.skeletonTop} width="60%" />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton className={classes.skeletonTop} width="60%" />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton className={classes.skeletonTop} width="60%" />
-            <Skeleton />
-            <Skeleton />
-          </>
+          <RecipeSection containerClassName={classes.recipeSection}>
+            <div className={classes.skeletonGroup}>
+              <Skeleton width="60%" />
+              <Skeleton />
+              <Skeleton />
+            </div>
+
+            <div className={classes.skeletonGroup}>
+              <Skeleton width="60%" />
+              <Skeleton />
+              <Skeleton />
+            </div>
+          </RecipeSection>
         )}
 
         {!loading && error && (
-          <Alert
-            alertClassName={classes.alert}
-            onDismiss={() => setError(undefined)}
-            variant="error"
-          >
-            {error}
-          </Alert>
+          <RecipeSection containerClassName={classes.recipeSection}>
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          </RecipeSection>
         )}
 
-        {!loading && !error && <div>TODO - display recipe data</div>}
-      </PageLayout>
+        {!loading && !error && (
+          <RecipeSection containerClassName={classes.recipeSection}>
+            <RecipeTitle recipe={recipe} />
+          </RecipeSection>
+        )}
+      </Viewport>
     </RequireAuthn>
   );
 }

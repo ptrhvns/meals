@@ -9,6 +9,7 @@ import NotFound from "./routes/NotFound";
 import React from "react";
 import Recipe from "./routes/Recipe";
 import RecipeNew from "./routes/RecipeNew";
+import RecipeTitleEdit from "./routes/RecipeTitleEdit";
 import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
@@ -25,8 +26,9 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "login", element: <Login /> },
-      { path: "recipe/new", element: <RecipeNew /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
+      { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
+      { path: "recipe/new", element: <RecipeNew /> },
       { path: "settings", element: <Settings /> },
       { path: "signup", element: <Signup /> },
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },

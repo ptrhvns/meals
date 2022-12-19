@@ -1,5 +1,8 @@
+import Anchor from "./Anchor";
 import classes from "../styles/components/RecipeTitle.module.scss";
 import Heading from "./Heading";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RecipeData } from "../lib/types";
 
 interface RecipeTitleProps {
@@ -12,6 +15,9 @@ export default function RecipeTitle({ recipe }: RecipeTitleProps) {
   return (
     <div className={classes.wrapper}>
       <Heading className={classes.heading}>{recipe.title}</Heading>
+      <Anchor to={`/recipe/${recipe.id}/title/edit`}>
+        <FontAwesomeIcon icon={faPenToSquare} /> Edit
+      </Anchor>
     </div>
   );
 }

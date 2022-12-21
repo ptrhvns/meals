@@ -3,6 +3,7 @@ import Button from "./Button";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import Input from "./Input";
+import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -69,6 +70,7 @@ export default function RecipeTitleEditForm({
           type="text"
           {...register("title", { required: "Title is required." })}
         />
+        <InputError error={fieldErrors?.title?.message} />
       </Field>
 
       <FormActions>

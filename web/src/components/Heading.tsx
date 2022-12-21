@@ -8,7 +8,7 @@ interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 
 type TagName = ComponentType | keyof JSX.IntrinsicElements;
 
-const Button = forwardRef<HTMLHeadingElement, HeadingProps>(
+const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ children, className, size = 1, ...restProps }, ref) => {
     const HeadingElement: TagName = `h${size}`;
 
@@ -24,6 +24,6 @@ const Button = forwardRef<HTMLHeadingElement, HeadingProps>(
   }
 );
 
-Button.displayName = "Button";
+Heading.displayName = "Heading";
 
-export default Button;
+export default Heading;

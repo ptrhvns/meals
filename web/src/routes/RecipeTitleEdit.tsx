@@ -56,8 +56,9 @@ export default function RecipeTitleEdit() {
 
         {loading && (
           <div>
-            <Skeleton width="60%" />
-            <Skeleton />
+            <Skeleton height="1.3rem" width="2rem" />
+            <Skeleton height="2.3rem" />
+            <Skeleton height="2.3rem" width="6.6rem" />
           </div>
         )}
 

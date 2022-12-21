@@ -14,7 +14,11 @@ import {
   FirstParameter,
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
-import { recipeCreate, recipeGet } from "../fetchers/recipes";
+import {
+  recipeCreate,
+  recipeGet,
+  recipeTitleUpdate,
+} from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -185,21 +189,22 @@ export default function useApi() {
     [logoutAuthn, navigate]
   );
 
-  function wrapWithoutData<F extends AnyFunction>(fn: F) {
+  function wrapWithSendOnly<F extends AnyFunction>(fn: F) {
     return (): ReturnType<F> => fn(send);
   }
 
-  function wrapWithData<F extends AnyFunction>(fn: F) {
-    return (data: FirstParameter<F>): ReturnType<F> => fn(data, send);
+  function wrapWithSendAndMore<F extends AnyFunction>(fn: F) {
+    return (more: FirstParameter<F>): ReturnType<F> => fn(more, send);
   }
 
   return {
-    accountDestroy: wrapWithData(accountDestroy),
-    login: wrapWithData(login),
-    logout: wrapWithoutData(logout),
-    recipeCreate: wrapWithData(recipeCreate),
-    recipeGet: wrapWithData(recipeGet),
-    signupConfirmationUpdate: wrapWithData(signupConfirmationUpdate),
-    signupCreate: wrapWithData(signupCreate),
+    accountDestroy: wrapWithSendAndMore(accountDestroy),
+    login: wrapWithSendAndMore(login),
+    logout: wrapWithSendOnly(logout),
+    recipeCreate: wrapWithSendAndMore(recipeCreate),
+    recipeGet: wrapWithSendAndMore(recipeGet),
+    recipeTitleUpdate: wrapWithSendAndMore(recipeTitleUpdate),
+    signupConfirmationUpdate: wrapWithSendAndMore(signupConfirmationUpdate),
+    signupCreate: wrapWithSendAndMore(signupCreate),
   };
 }

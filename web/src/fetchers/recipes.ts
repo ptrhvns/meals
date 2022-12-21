@@ -28,3 +28,14 @@ export function recipeGet(
     url: `/api/recipes/recipe/${recipeId}`,
   });
 }
+
+export function recipeTitleUpdate(
+  more: { recipeId: string; data: { title: string } },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data: more.data,
+    method: "POST",
+    url: `/api/recipes/recipe/${more.recipeId}/title/update`,
+  });
+}

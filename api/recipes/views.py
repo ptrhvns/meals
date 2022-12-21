@@ -9,8 +9,13 @@ from recipes.serializers import (
     RecipeCreateRequestSerializer,
     RecipeCreateResponseSerializer,
     RecipeResponseSerializer,
+    RecipeTitleUpdateRequestSerializer,
 )
-from shared.lib.responses import data_response, invalid_request_data_response
+from shared.lib.responses import (
+    data_response,
+    invalid_request_data_response,
+    no_content_response,
+)
 
 
 @api_view(http_method_names=["GET"])
@@ -32,3 +37,16 @@ def recipe_create(request: Request) -> Response:
     recipe = serializer.save(user=request.user)
     data = RecipeCreateResponseSerializer(instance=recipe).data
     return data_response(data=data)
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def recipe_title_update(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    serializer = RecipeTitleUpdateRequestSerializer(data=request.data, instance=recipe)
+
+    if not serializer.is_valid():
+        return invalid_request_data_response(serializer)
+
+    serializer.save()
+    return no_content_response()

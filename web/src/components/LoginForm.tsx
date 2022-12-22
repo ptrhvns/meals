@@ -1,6 +1,6 @@
 import Alert from "./Alert";
 import Button from "./Button";
-import DivInput from "./DivInput";
+import InputDiv from "./InputDiv";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import Input from "./Input";
@@ -60,7 +60,7 @@ export default function LoginForm() {
 
       <Field>
         <DivLabel htmlFor="username">Username</DivLabel>
-        <DivInput
+        <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.username?.message}
           id="username"
@@ -72,7 +72,7 @@ export default function LoginForm() {
 
       <Field>
         <DivLabel htmlFor="password">Password</DivLabel>
-        <DivInput
+        <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.password?.message}
           id="password"

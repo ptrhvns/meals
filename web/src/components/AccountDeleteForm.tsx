@@ -3,7 +3,7 @@ import Button from "./Button";
 import classes from "../styles/components/AccountDeleteForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
-import Input from "./Input";
+import DivInput from "./DivInput";
 import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
@@ -69,7 +69,7 @@ export default function AccountDeleteForm() {
 
       <Field>
         <Label htmlFor="password">Password</Label>
-        <Input
+        <DivInput
           disabled={submitting}
           error={!!fieldErrors?.password?.message}
           id="password"

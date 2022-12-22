@@ -2,7 +2,7 @@ import Alert from "./Alert";
 import Button from "./Button";
 import Field from "./Field";
 import FormActions from "./FormActions";
-import Input from "./Input";
+import DivInput from "./DivInput";
 import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
@@ -55,7 +55,7 @@ export default function RecipeNewForm() {
 
       <Field>
         <Label htmlFor="title">Title</Label>
-        <Input
+        <DivInput
           disabled={submitting}
           error={!!fieldErrors?.title?.message}
           id="title"

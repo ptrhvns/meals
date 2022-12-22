@@ -1,5 +1,6 @@
 import Alert from "./Alert";
 import Button from "./Button";
+import DivInput from "./DivInput";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import Input from "./Input";
@@ -59,7 +60,7 @@ export default function LoginForm() {
 
       <Field>
         <Label htmlFor="username">Username</Label>
-        <Input
+        <DivInput
           disabled={submitting}
           error={!!fieldErrors?.username?.message}
           id="username"
@@ -71,7 +72,7 @@ export default function LoginForm() {
 
       <Field>
         <Label htmlFor="password">Password</Label>
-        <Input
+        <DivInput
           disabled={submitting}
           error={!!fieldErrors?.password?.message}
           id="password"
@@ -88,7 +89,6 @@ export default function LoginForm() {
             error={!!fieldErrors?.remember_me?.message}
             id="remember_me"
             type="checkbox"
-            wrap={false}
             {...register("remember_me")}
           />{" "}
           Remember me

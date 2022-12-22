@@ -3,7 +3,7 @@ import Button from "./Button";
 import classes from "../styles/components/SignupForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
-import Input from "./Input";
+import DivInput from "./DivInput";
 import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
@@ -81,7 +81,7 @@ export default function SignupForm() {
 
         <Field>
           <Label htmlFor="username">Username</Label>
-          <Input
+          <DivInput
             disabled={submitting}
             error={!!fieldErrors?.username?.message}
             id="username"
@@ -93,7 +93,7 @@ export default function SignupForm() {
 
         <Field>
           <Label htmlFor="email">Email</Label>
-          <Input
+          <DivInput
             disabled={submitting}
             error={!!fieldErrors?.email?.message}
             id="email"
@@ -105,7 +105,7 @@ export default function SignupForm() {
 
         <Field>
           <Label htmlFor="password">Password</Label>
-          <Input
+          <DivInput
             disabled={submitting}
             error={!!fieldErrors?.password?.message}
             id="password"

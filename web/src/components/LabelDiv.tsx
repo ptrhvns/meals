@@ -1,8 +1,8 @@
 import Label, { LabelProps } from "./Label";
 
-type DivLabelProps = LabelProps;
+type LabelDivProps = LabelProps;
 
-const DivLabel = ({ ...restProps }: DivLabelProps) => {
+const LabelDiv = ({ ...restProps }: LabelDivProps) => {
   return (
     <div>
       <Label {...restProps} />
@@ -10,4 +10,4 @@ const DivLabel = ({ ...restProps }: DivLabelProps) => {
   );
 };
 
-export default DivLabel;
+export default LabelDiv;

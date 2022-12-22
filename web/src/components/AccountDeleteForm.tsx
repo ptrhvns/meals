@@ -5,7 +5,7 @@ import Field from "./Field";
 import FormActions from "./FormActions";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
-import DivLabel from "./DivLabel";
+import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
 import useAuthn from "../hooks/useAuthn";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -68,7 +68,7 @@ export default function AccountDeleteForm() {
       )}
 
       <Field>
-        <DivLabel htmlFor="password">Password</DivLabel>
+        <LabelDiv htmlFor="password">Password</LabelDiv>
         <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.password?.message}

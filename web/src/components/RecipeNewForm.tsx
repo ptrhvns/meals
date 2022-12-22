@@ -4,7 +4,7 @@ import Field from "./Field";
 import FormActions from "./FormActions";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
-import DivLabel from "./DivLabel";
+import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,7 +54,7 @@ export default function RecipeNewForm() {
       )}
 
       <Field>
-        <DivLabel htmlFor="title">Title</DivLabel>
+        <LabelDiv htmlFor="title">Title</LabelDiv>
         <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.title?.message}

@@ -5,7 +5,7 @@ import Field from "./Field";
 import FormActions from "./FormActions";
 import DivInput from "./DivInput";
 import InputError from "./InputError";
-import Label from "./Label";
+import DivLabel from "./DivLabel";
 import useApi from "../hooks/useApi";
 import { Dialog, DialogContent, DialogTitle } from "./Dialog";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
@@ -80,7 +80,7 @@ export default function SignupForm() {
         )}
 
         <Field>
-          <Label htmlFor="username">Username</Label>
+          <DivLabel htmlFor="username">Username</DivLabel>
           <DivInput
             disabled={submitting}
             error={!!fieldErrors?.username?.message}
@@ -92,7 +92,7 @@ export default function SignupForm() {
         </Field>
 
         <Field>
-          <Label htmlFor="email">Email</Label>
+          <DivLabel htmlFor="email">Email</DivLabel>
           <DivInput
             disabled={submitting}
             error={!!fieldErrors?.email?.message}
@@ -104,7 +104,7 @@ export default function SignupForm() {
         </Field>
 
         <Field>
-          <Label htmlFor="password">Password</Label>
+          <DivLabel htmlFor="password">Password</DivLabel>
           <DivInput
             disabled={submitting}
             error={!!fieldErrors?.password?.message}

@@ -4,7 +4,7 @@ import Field from "./Field";
 import FormActions from "./FormActions";
 import DivInput from "./DivInput";
 import InputError from "./InputError";
-import Label from "./Label";
+import DivLabel from "./DivLabel";
 import useApi from "../hooks/useApi";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -62,7 +62,7 @@ export default function RecipeTitleEditForm({
       )}
 
       <Field>
-        <Label htmlFor="title">Title</Label>
+        <DivLabel htmlFor="title">Title</DivLabel>
         <DivInput
           disabled={submitting}
           error={!!fieldErrors?.title?.message}

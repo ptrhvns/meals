@@ -5,7 +5,7 @@ import Field from "./Field";
 import FormActions from "./FormActions";
 import Input from "./Input";
 import InputError from "./InputError";
-import Label from "./Label";
+import DivLabel from "./DivLabel";
 import useApi from "../hooks/useApi";
 import useAuthn from "../hooks/useAuthn";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
@@ -59,7 +59,7 @@ export default function LoginForm() {
       )}
 
       <Field>
-        <Label htmlFor="username">Username</Label>
+        <DivLabel htmlFor="username">Username</DivLabel>
         <DivInput
           disabled={submitting}
           error={!!fieldErrors?.username?.message}
@@ -71,7 +71,7 @@ export default function LoginForm() {
       </Field>
 
       <Field>
-        <Label htmlFor="password">Password</Label>
+        <DivLabel htmlFor="password">Password</DivLabel>
         <DivInput
           disabled={submitting}
           error={!!fieldErrors?.password?.message}
@@ -83,7 +83,7 @@ export default function LoginForm() {
       </Field>
 
       <Field>
-        <Label htmlFor="remember_me">
+        <DivLabel htmlFor="remember_me">
           <Input
             disabled={submitting}
             error={!!fieldErrors?.remember_me?.message}
@@ -92,7 +92,7 @@ export default function LoginForm() {
             {...register("remember_me")}
           />{" "}
           Remember me
-        </Label>
+        </DivLabel>
         <InputError error={fieldErrors?.remember_me?.message} />
       </Field>
 

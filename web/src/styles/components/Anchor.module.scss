@@ -1,49 +1,40 @@
-.link {
-  text-decoration: none;
-
-  &:hover,
-  &:hover:visited {
-    text-decoration: underline;
-  }
-}
-
 .blue.link,
 .primary.link {
   color: var(--blue11);
 
+  &:visited {
+    color: var(--blue11);
+  }
+
   &:hover,
   &:hover:visited {
     color: var(--blue12);
-  }
-
-  &:visited {
-    color: var(--blue11);
   }
 }
 
 .grass.link {
   color: var(--grass11);
 
+  &:visited {
+    color: var(--grass11);
+  }
+
   &:hover,
   &:hover:visited {
     color: var(--grass12);
-  }
-
-  &:visited {
-    color: var(--grass11);
   }
 }
 
 .red.link {
   color: var(--red11);
 
+  &:visited {
+    color: var(--red11);
+  }
+
   &:hover,
   &:hover:visited {
     color: var(--red12);
-  }
-
-  &:visited {
-    color: var(--red11);
   }
 }
 
@@ -69,14 +60,14 @@
   border: 1px solid var(--blue9);
   color: white;
 
-  &:active,
-  &:active:hover {
-    background-color: var(--blue11);
-  }
-
   &:hover {
     background-color: var(--blue10);
     border: 1px solid var(--blue10);
     color: white;
+  }
+
+  &:active,
+  &:active:hover {
+    background-color: var(--blue11);
   }
 }

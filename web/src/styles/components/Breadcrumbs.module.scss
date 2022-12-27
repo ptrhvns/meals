@@ -1,5 +1,5 @@
 .child + .child {
   border-left: 1px solid var(--slate9);
-  margin-left: 0.5rem;
-  padding-left: 0.5rem;
+  margin-left: var(--spacing-10);
+  padding-left: var(--spacing-10);
 }

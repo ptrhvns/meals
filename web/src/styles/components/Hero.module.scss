@@ -2,7 +2,7 @@
   align-content: center;
   display: flex;
   justify-content: center;
-  padding-block: 1rem 2rem;
+  padding-block: var(--spacing-15) var(--spacing-30);
   text-align: center;
 }
 

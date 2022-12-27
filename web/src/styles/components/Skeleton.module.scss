@@ -10,5 +10,5 @@
 
 .skeleton {
   animation: 1500ms linear infinite alternate pulse;
-  margin-block: 0.5rem;
+  margin-block: var(--spacing-10);
 }

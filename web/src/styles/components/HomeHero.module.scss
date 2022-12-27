@@ -1,10 +1,10 @@
 a.button {
-  margin-top: 1rem;
+  margin-top: var(--spacing-15);
   width: 10rem;
 }
 
 button.button {
-  margin-top: 1rem;
+  margin-top: var(--spacing-15);
   width: 10rem;
 }
 
@@ -12,14 +12,14 @@ h1.heading {
   color: var(--blue12);
   font-size: clamp(2rem, 7vw, 3rem);
   font-weight: bold;
-  margin-block: 0 1rem;
-  text-shadow: 2px 2px 4px var(--slate9);
+  margin-block: var(--spacing-0) var(--spacing-15);
+  text-shadow: 2px 2px 4px var(--slate8);
 }
 
 .subheading {
   color: var(--slate11);
   font-size: clamp(1.1rem, 4vw, 1.25rem);
-  margin-top: 1rem;
+  margin-top: var(--spacing-15);
 }
 
 div.viewport {

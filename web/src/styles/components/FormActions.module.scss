@@ -1,5 +1,5 @@
 .wrapper {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+  gap: var(--spacing-10);
+  margin-top: var(--spacing-25);
 }

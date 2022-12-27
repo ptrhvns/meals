@@ -2,13 +2,13 @@
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  margin-top: 1rem;
-  padding: 1rem;
+  margin-top: var(--spacing-15);
+  padding: var(--spacing-15);
   text-align: left;
 }
 
 .innerWrapper {
-  margin: 1rem;
+  margin: var(--spacing-15);
   max-width: 30rem;
   text-align: center;
   width: 100%;
@@ -19,7 +19,7 @@ a.slate.link {
   color: var(--slate11);
   font-size: 1.5rem;
   font-weight: bold;
-  padding: 0.3rem 0.5rem;
+  padding: var(--spacing-5) var(--spacing-10);
 
   &:hover,
   &:hover:visited {

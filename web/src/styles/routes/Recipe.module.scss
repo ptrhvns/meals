@@ -1,13 +1,13 @@
 .recipeSection + .recipeSection {
-  margin-top: 1.25rem;
+  margin-top: var(--spacing-20);
 }
 
 .skeletonGroup + .skeletonGroup {
-  margin-top: 1.25rem;
+  margin-top: var(--spacing-20);
 }
 
 .viewport {
   background-color: var(--slate3);
   min-height: calc(100vh - var(--navbar-height));
-  padding-block: 1.25rem;
+  padding-block: var(--spacing-20);
 }

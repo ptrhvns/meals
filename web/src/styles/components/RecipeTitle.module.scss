@@ -6,6 +6,6 @@
 .wrapper {
   align-items: center;
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-15);
   justify-content: space-between;
 }

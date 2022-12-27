@@ -1,9 +1,9 @@
 .alert {
   border-radius: var(--border-radius);
   display: grid;
-  gap: 0.5rem;
+  gap: var(--spacing-10);
   grid-template-columns: 1fr min-content;
-  padding: 1rem;
+  padding: var(--spacing-15);
 
   a,
   a:hover {
@@ -15,7 +15,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: var(--spacing-0);
 }
 
 .error {
@@ -41,7 +41,7 @@
 
   button:hover {
     color: var(--slate12);
-  } 
+  }
 }
 
 .success {

@@ -6,19 +6,17 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ children }: BreadcrumbsProps) {
-  return (
-    <div>
-      {Children.toArray(children).reduce<ReactNode[]>(
-        (elements, child, index) => {
-          elements.push(
-            <span className={classes.child} key={index}>
-              {child}
-            </span>
-          );
-          return elements;
-        },
-        []
-      )}
-    </div>
+  const crumbs = Children.toArray(children).reduce<ReactNode[]>(
+    (elements, child, index) => {
+      if (index > 0) {
+        elements.push(<span className={classes.crumbSeparator}>&gt;</span>);
+      }
+
+      elements.push(<span key={index}>{child}</span>);
+      return elements;
+    },
+    []
   );
+
+  return <div>{crumbs}</div>;
 }

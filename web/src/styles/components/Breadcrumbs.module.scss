@@ -1,5 +1,4 @@
-.child + .child {
-  border-left: 1px solid var(--slate9);
-  margin-left: var(--spacing-10);
-  padding-left: var(--spacing-10);
+.crumbSeparator {
+  color: var(--slate11);
+  margin-inline: var(--spacing-5);
 }

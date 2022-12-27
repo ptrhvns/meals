@@ -1,27 +1,46 @@
 @import "normalize.css/normalize.css";
 
+// Colors
 @import "@radix-ui/colors/blue.css";
 @import "@radix-ui/colors/grass.css";
 @import "@radix-ui/colors/red.css";
 @import "@radix-ui/colors/slate.css";
+@import "@radix-ui/colors/yellow.css";
 
 :root {
+  // Typography
+  --font-family-sans: -apple-system, blinkmacsystemfont, "avenir next", avenir,
+    "segoe ui", "helvetica neue", helvetica, cantarell, ubuntu, roboto, noto,
+    arial, sans-serif;
+
+  // Borders
   --border-radius: 4px;
-  --box-shadow-error: 0 4px 6px -1px rgb(255, 248, 248),
-    0 2px 4px -2px rgb(255, 248, 248);
-  --box-shadow-inset-error: inset 0px 2px 8px var(--red3);
-  --box-shadow-inset-light: inset 0px 2px 8px var(--slate2);
-  --box-shadow-inset: inset 0px 2px 8px var(--slate3);
-  --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --font-family-sans: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
-    "Segoe UI", "Helvetica Neue", Helvetica, Cantarell, Ubuntu, Roboto, Noto,
-    Arial, sans-serif;
+
+  // Shadows
+  --box-shadow-error: 0 4px 6px -1px rgb(255 248 248),
+    0 2px 4px -2px rgb(255 248 248);
+  --box-shadow-inset-error: inset 0 2px 8px var(--red3);
+  --box-shadow-inset-light: inset 0 2px 8px var(--slate2);
+  --box-shadow-inset: inset 0 2px 8px var(--slate3);
+  --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+
+  // Spacing
   --navbar-height: 50px;
+  --spacing-0: 0;
+  --spacing-10: 0.625rem;
+  --spacing-15: 0.9375rem;
+  --spacing-20: 1.25rem;
+  --spacing-25: 1.5625rem;
+  --spacing-30: 1.875rem;
+  --spacing-40: 2.5rem;
+  --spacing-50: 3.125rem;
+  --spacing-5: 0.3125rem;
+  --spacing-60: 3.75rem;
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 

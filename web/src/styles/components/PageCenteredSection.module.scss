@@ -20,16 +20,22 @@ a.slate.link {
   font-size: 1.5rem;
   font-weight: bold;
   padding: var(--spacing-5) var(--spacing-10);
+  text-decoration: none;
 
-  &:hover,
-  &:hover:visited {
+  &:visited {
+    color: var(--slate11);
+  }
+
+  &:hover {
     background-color: var(--slate5);
     color: var(--slate12);
     text-decoration: none;
   }
 
-  &:visited {
-    color: var(--slate11);
+  &:hover:visited {
+    background-color: var(--slate5);
+    color: var(--slate12);
+    text-decoration: none;
   }
 }
 

@@ -15,15 +15,28 @@ div.content {
 
 a.logo.link {
   border-radius: var(--border-radius);
+  color: var(--blue12);
   cursor: pointer;
   font-size: 1.4rem;
   font-weight: bold;
   padding: 0.3rem 0.5rem;
+  text-decoration: none;
 
-  &:hover,
+  &:visited {
+    background-color: var(--blue3);
+    color: var(--blue12);
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: var(--blue3);
+    color: var(--blue12);
+    text-decoration: none;
+  }
+
   &:hover:visited {
     background-color: var(--blue3);
-    color: var(--blue11);
+    color: var(--blue12);
     text-decoration: none;
   }
 }

@@ -10,7 +10,7 @@ interface AlertProps {
   alertClassName?: string;
   children: ReactNode;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;
-  variant: "error" | "info" | "success";
+  variant: "error" | "info" | "success" | "warning";
 }
 
 export default function Alert({

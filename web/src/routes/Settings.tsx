@@ -1,10 +1,10 @@
 import AccountDeleteForm from "../components/AccountDeleteForm";
+import Alert from "../components/Alert";
 import classes from "../styles/routes/Settings.module.scss";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import PageLayoutHeading from "../components/PageLayoutHeading";
-import Paragraph from "../components/Paragraph";
 import { buildTitle } from "../lib/utils";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,10 +28,10 @@ export default function Settings() {
           Delete Account
         </Heading>
 
-        <Paragraph className={classes.deleteAccountWarning}>
+        <Alert alertClassName={classes.deleteAccountWarning} variant="warning">
           <FontAwesomeIcon icon={faCircleExclamation} /> Submitting this form
           will permanently delete your account.
-        </Paragraph>
+        </Alert>
 
         <AccountDeleteForm />
       </PageLayout>

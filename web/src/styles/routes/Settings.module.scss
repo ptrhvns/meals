@@ -1,5 +1,9 @@
-.deleteAccountHeader {
+.deleteAccountHeading {
   border-bottom: 1px solid var(--red6);
   color: var(--red11);
   padding-bottom: var(--spacing-10);
+}
+
+.deleteAccountWarning {
+  max-width: 30rem;
 }

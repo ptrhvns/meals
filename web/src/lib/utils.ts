@@ -12,7 +12,7 @@ export function buildTitle(subtitle?: string): string {
   return subtitle ? `${subtitle} - Meals` : "Meals";
 }
 
-export function joinClassNames(...args: (string | undefined)[]): string {
+export function joinClassNames(...args: (string | undefined | null)[]): string {
   return join(uniq(compact(args)), " ");
 }
 

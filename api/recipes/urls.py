@@ -5,6 +5,7 @@ from recipes import views
 
 urlpatterns: list[URLPattern | URLResolver] = [
     path("recipe/<int:recipe_id>/", views.recipe),
-    path("recipe/create", views.recipe_create),
-    path("recipe/<int:recipe_id>/title/update", views.recipe_title_update),
+    path("recipe/<int:recipe_id>/title/update/", views.recipe_title_update),
+    path("recipe/create/", views.recipe_create),
+    path("recipes/", views.recipes),
 ]

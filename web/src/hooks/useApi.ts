@@ -17,6 +17,7 @@ import { isEmpty, omit } from "lodash";
 import {
   recipeCreate,
   recipeGet,
+  recipesGet,
   recipeTitleUpdate,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
@@ -171,9 +172,13 @@ export default function useApi() {
         };
       }
 
-      const computedSchema = apiResponseSchema.merge(
-        responseDataSchema ?? z.object({})
-      );
+      let computedSchema: z.AnyZodObject = apiResponseSchema;
+
+      if (responseDataSchema) {
+        computedSchema = apiResponseSchema.merge(
+          z.object({ data: responseDataSchema })
+        );
+      }
 
       if (!(await computedSchema.spa(json))) {
         console.error(`${method} ${url} response JSON failed validation`, json);
@@ -193,18 +198,19 @@ export default function useApi() {
     return (): ReturnType<F> => fn(send);
   }
 
-  function wrapWithSendAndMore<F extends AnyFunction>(fn: F) {
-    return (more: FirstParameter<F>): ReturnType<F> => fn(more, send);
+  function wrapWithSendAndArgs<F extends AnyFunction>(fn: F) {
+    return (args: FirstParameter<F>): ReturnType<F> => fn(args, send);
   }
 
   return {
-    accountDestroy: wrapWithSendAndMore(accountDestroy),
-    login: wrapWithSendAndMore(login),
+    accountDestroy: wrapWithSendAndArgs(accountDestroy),
+    login: wrapWithSendAndArgs(login),
     logout: wrapWithSendOnly(logout),
-    recipeCreate: wrapWithSendAndMore(recipeCreate),
-    recipeGet: wrapWithSendAndMore(recipeGet),
-    recipeTitleUpdate: wrapWithSendAndMore(recipeTitleUpdate),
-    signupConfirmationUpdate: wrapWithSendAndMore(signupConfirmationUpdate),
-    signupCreate: wrapWithSendAndMore(signupCreate),
+    recipeCreate: wrapWithSendAndArgs(recipeCreate),
+    recipeGet: wrapWithSendAndArgs(recipeGet),
+    recipesGet: wrapWithSendAndArgs(recipesGet),
+    recipeTitleUpdate: wrapWithSendAndArgs(recipeTitleUpdate),
+    signupConfirmationUpdate: wrapWithSendAndArgs(signupConfirmationUpdate),
+    signupCreate: wrapWithSendAndArgs(signupCreate),
   };
 }

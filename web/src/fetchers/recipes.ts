@@ -1,4 +1,9 @@
-import { ApiResponse, ApiSendFunction } from "../lib/types";
+import {
+  ApiResponse,
+  ApiSendFunction,
+  paginationSchema,
+  recipeSchema,
+} from "../lib/types";
 import { z } from "zod";
 
 export function recipeCreate(
@@ -11,7 +16,7 @@ export function recipeCreate(
     data,
     method: "POST",
     responseDataSchema: z.object({ id: z.number() }),
-    url: "/api/recipes/recipe/create",
+    url: "/api/recipes/recipe/create/",
   });
 }
 
@@ -19,23 +24,47 @@ export function recipeGet(
   recipeId: string,
   send: ApiSendFunction
 ): Promise<ApiResponse> {
-  // Ensure this matches RecipeData type.
-  const responseDataSchema = z.object({ id: z.number(), title: z.string() });
+  return send({
+    method: "GET",
+    responseDataSchema: recipeSchema,
+    url: `/api/recipes/recipe/${recipeId}/`,
+  });
+}
+
+export function recipesGet(
+  data: { page?: number },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(data.page ?? 1);
 
   return send({
     method: "GET",
-    responseDataSchema,
-    url: `/api/recipes/recipe/${recipeId}`,
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/recipes/recipes/?page=${page}`,
   });
 }
 
 export function recipeTitleUpdate(
-  more: { recipeId: string; data: { title: string } },
+  args: { recipeId: string; data: { title: string } },
   send: ApiSendFunction
 ): Promise<ApiResponse> {
   return send({
-    data: more.data,
+    data: args.data,
     method: "POST",
-    url: `/api/recipes/recipe/${more.recipeId}/title/update`,
+    url: `/api/recipes/recipe/${args.recipeId}/title/update/`,
+  });
+}
+
+export function tagAssociate(
+  args: { recipeId: string; data: { name: string } },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data: args.data,
+    method: "POST",
+    url: `/api/recipes/recipe/${args.recipeId}/tag/associate/`,
   });
 }

@@ -1,0 +1,39 @@
+.tabsContent[data-state="active"] {
+  border-bottom: 1px solid var(--slate6);
+  border-left: 1px solid var(--slate6);
+  border-right: 1px solid var(--slate6);
+  border-top: 0;
+  padding-bottom: var(--spacing-15);
+  padding-inline: var(--spacing-10);
+  padding-top: var(--spacing-10);
+
+  @media (min-width: 27rem) {
+    padding-bottom: var(--spacing-20);
+    padding-inline: var(--spacing-15);
+    padding-top: var(--spacing-15);
+  }
+}
+
+.tabsList {
+  border-bottom: 1px solid var(--slate6);
+}
+
+.tabsRoot {
+  margin-bottom: var(--spacing-10);
+}
+
+.tabsTrigger {
+  background-color: white;
+  border-bottom: 0;
+  border-left: 1px solid var(--slate6);
+  border-right: 1px solid var(--slate6);
+  border-top: 1px solid var(--slate6);
+  color: var(--slate11);
+  cursor: pointer;
+  margin-bottom: -1px;
+  padding: var(--spacing-10);
+
+  @media (min-width: 27rem) {
+    padding: var(--spacing-15);
+  }
+}

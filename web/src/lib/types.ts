@@ -24,8 +24,26 @@ export interface ApiSendParameter {
 
 export type ApiSendFunction = (param: ApiSendParameter) => Promise<ApiResponse>;
 
-// Ensure this matches responseDataSchema in recipe fetchers.
+// Ensure this matches RecipeData below.
+export const recipeSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+});
+
+// Ensure this matches recipeSchema above.
 export interface RecipeData {
   id: number;
   title: string;
-};
+}
+
+// Ensure this matches PaginationData below.
+export const paginationSchema = z.object({
+  page: z.number(),
+  total: z.number(),
+});
+
+// Ensure this matches paginationSchema above.
+export interface PaginationData {
+  page: number;
+  total: number;
+}

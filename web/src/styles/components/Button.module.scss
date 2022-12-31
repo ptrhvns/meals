@@ -1,5 +1,6 @@
 .button {
   border-radius: var(--border-radius);
+  cursor: pointer;
   display: inline-block;
   font-size: inherit;
   line-height: 1.25;
@@ -100,18 +101,78 @@
       border: 1px solid var(--red10);
     }
 
-    &:active:hover {
-      background-color: var(--red11);
-    }
-
     &:disabled:hover {
       background-color: var(--red8);
       border: 1px solid var(--red8);
+    }
+
+    &:active:hover {
+      background-color: var(--red11);
+    }
+  }
+
+  &.light {
+    background-color: var(--red3);
+    border: 1px solid var(--red7);
+    color: var(--red11);
+
+    &:active {
+      background-color: var(--red6);
+    }
+
+    &:disabled {
+      background-color: var(--red2);
+      border: 1px solid var(--red6);
+      color: var(--red8);
+    }
+
+    &:hover {
+      background-color: var(--red4);
+      border: 1px solid var(--red8);
+    }
+
+    &:active:hover {
+      background-color: var(--red6);
+    }
+
+    &:disabled:hover {
+      background-color: var(--red2);
+      border: 1px solid var(--red6);
+      color: var(--red8);
     }
   }
 }
 
 .slate {
+  &.filled {
+    background-color: var(--slate9);
+    border: 1px solid var(--slate9);
+    color: white;
+
+    &:active {
+      background-color: var(--slate11);
+    }
+
+    &:disabled {
+      background-color: var(--slate8);
+      border: 1px solid var(--slate8);
+    }
+
+    &:hover {
+      background-color: var(--slate10);
+      border: 1px solid var(--slate10);
+    }
+
+    &:disabled:hover {
+      background-color: var(--slate8);
+      border: 1px solid var(--slate8);
+    }
+
+    &:active:hover {
+      background-color: var(--slate11);
+    }
+  }
+
   &.light {
     background-color: var(--slate3);
     border: 1px solid var(--slate7);
@@ -121,6 +182,12 @@
       background-color: var(--slate6);
     }
 
+    &:disabled {
+      background-color: var(--slate2);
+      border: 1px solid var(--slate6);
+      color: var(--slate8);
+    }
+
     &:hover {
       background-color: var(--slate4);
       border: 1px solid var(--slate8);
@@ -128,6 +195,12 @@
 
     &:active:hover {
       background-color: var(--slate6);
+    }
+
+    &:disabled:hover {
+      background-color: var(--slate2);
+      border: 1px solid var(--slate6);
+      color: var(--slate8);
     }
   }
 }

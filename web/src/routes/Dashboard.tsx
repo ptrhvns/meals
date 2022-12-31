@@ -1,8 +1,10 @@
+import * as TabsPrimitive from "@radix-ui/react-tabs";
 import Anchor from "../components/Anchor";
-import Heading from "../components/Heading";
+import classes from "../styles/routes/Dashboard.module.scss";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import PageLayoutHeading from "../components/PageLayoutHeading";
+import RecipeList from "../components/RecipeList";
 import RequireAuthn from "../components/RequireAuthn";
 import { buildTitle } from "../lib/utils";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
@@ -20,10 +22,31 @@ export default function Dashboard() {
 
       <PageLayout>
         <PageLayoutHeading>Dashboard</PageLayoutHeading>
-        <Heading size={2}>Recipes</Heading>
-        <Anchor to="/recipe/new" variant="filled">
-          <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
-        </Anchor>
+
+        <TabsPrimitive.Root
+          className={classes.tabsRoot}
+          defaultValue="recipeTab"
+        >
+          <TabsPrimitive.List className={classes.tabsList}>
+            <TabsPrimitive.Trigger
+              className={classes.tabsTrigger}
+              value="recipeTab"
+            >
+              Recipes
+            </TabsPrimitive.Trigger>
+          </TabsPrimitive.List>
+
+          <TabsPrimitive.Content
+            className={classes.tabsContent}
+            value="recipeTab"
+          >
+            <Anchor to="/recipe/new" variant="filled">
+              <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
+            </Anchor>
+
+            <RecipeList />
+          </TabsPrimitive.Content>
+        </TabsPrimitive.Root>
       </PageLayout>
     </RequireAuthn>
   );

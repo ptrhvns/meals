@@ -22,5 +22,5 @@ export default function Breadcrumbs({ children }: BreadcrumbsProps) {
     []
   );
 
-  return <nav>{crumbs}</nav>;
+  return <nav aria-label="Breadcrumbs">{crumbs}</nav>;
 }

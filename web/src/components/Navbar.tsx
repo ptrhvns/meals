@@ -23,21 +23,26 @@ export default function Navbar() {
         </DialogContent>
       </Dialog>
 
-      <Viewport className={classes.viewport}>
-        <Content className={classes.content}>
-          <Anchor className={joinClassNames(classes.logo, classes.link)} to="/">
-            <FontAwesomeIcon icon={faUtensils} /> Meals
-          </Anchor>
+      <nav aria-label="Navbar">
+        <Viewport className={classes.viewport}>
+          <Content className={classes.content}>
+            <Anchor
+              className={joinClassNames(classes.logo, classes.link)}
+              to="/"
+            >
+              <FontAwesomeIcon icon={faUtensils} /> Meals
+            </Anchor>
 
-          <div>
-            {authenticated ? (
-              <NavbarMenu setError={setError} />
-            ) : (
-              <Anchor to="/login">Log in</Anchor>
-            )}
-          </div>
-        </Content>
-      </Viewport>
+            <div>
+              {authenticated ? (
+                <NavbarMenu setError={setError} />
+              ) : (
+                <Anchor to="/login">Log in</Anchor>
+              )}
+            </div>
+          </Content>
+        </Viewport>
+      </nav>
     </>
   );
 }

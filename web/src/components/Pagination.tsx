@@ -54,7 +54,7 @@ export default function Pagination({
   const paginationValues = buildPaginationValues(page, total);
 
   return (
-    <nav className={navClassName}>
+    <nav aria-label="Pagination" className={navClassName}>
       <ol className={classes.list}>
         <li>
           <Button

@@ -196,25 +196,25 @@ export default function useApi() {
     [logoutAuthn, navigate]
   );
 
-  function wrapWithSendOnly<F extends AnyFunction>(fn: F) {
+  function withSend<F extends AnyFunction>(fn: F) {
     return (): ReturnType<F> => fn(send);
   }
 
-  function wrapWithSendAndArgs<F extends AnyFunction>(fn: F) {
+  function withSendAndArgs<F extends AnyFunction>(fn: F) {
     return (args: FirstParameter<F>): ReturnType<F> => fn(args, send);
   }
 
   return {
-    accountDestroy: wrapWithSendAndArgs(accountDestroy),
-    login: wrapWithSendAndArgs(login),
-    logout: wrapWithSendOnly(logout),
-    recipeCreate: wrapWithSendAndArgs(recipeCreate),
-    recipeGet: wrapWithSendAndArgs(recipeGet),
-    recipesGet: wrapWithSendAndArgs(recipesGet),
-    recipeTitleUpdate: wrapWithSendAndArgs(recipeTitleUpdate),
-    signupConfirmationUpdate: wrapWithSendAndArgs(signupConfirmationUpdate),
-    signupCreate: wrapWithSendAndArgs(signupCreate),
-    tagAssociate: wrapWithSendAndArgs(tagAssociate),
-    tagsGet: wrapWithSendOnly(tagsGet),
+    accountDestroy: withSendAndArgs(accountDestroy),
+    login: withSendAndArgs(login),
+    logout: withSend(logout),
+    recipeCreate: withSendAndArgs(recipeCreate),
+    recipeGet: withSendAndArgs(recipeGet),
+    recipesGet: withSendAndArgs(recipesGet),
+    recipeTitleUpdate: withSendAndArgs(recipeTitleUpdate),
+    signupConfirmationUpdate: withSendAndArgs(signupConfirmationUpdate),
+    signupCreate: withSendAndArgs(signupCreate),
+    tagAssociate: withSendAndArgs(tagAssociate),
+    tagsGet: withSend(tagsGet),
   };
 }

@@ -1,6 +1,6 @@
+import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import Button from "./Button";
 import classes from "../styles/components/Combobox.module.scss";
-import VisuallyHidden from "./VisuallyHidden";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import {
   FocusEvent,
@@ -239,8 +239,9 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             type="button"
             variant="unstyled"
           >
-            <FontAwesomeIcon icon={faChevronDown} />
-            <VisuallyHidden>Toggle</VisuallyHidden>
+            <AccessibleIcon.Root label="Toggle">
+              <FontAwesomeIcon icon={faChevronDown} />
+            </AccessibleIcon.Root>
           </Button>
         </div>
 

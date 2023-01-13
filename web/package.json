@@ -31,6 +31,7 @@
     "react-hook-form": "^7.40.0",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.5",
+    "react-wrap-balancer": "^0.3.0",
     "zod": "^3.20.2"
   },
   "devDependencies": {

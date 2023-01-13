@@ -1,4 +1,5 @@
 import Anchor from "./Anchor";
+import Balancer from "react-wrap-balancer";
 import classes from "../styles/components/HomeHero.module.scss";
 import Heading from "./Heading";
 import Hero from "./Hero";
@@ -12,8 +13,10 @@ export default function HomeHero() {
       <Heading className={classes.heading}>Meals made easy.</Heading>
 
       <Paragraph className={classes.subheading}>
-        Save time. Get rid of boring work. We can help you manage your
-        recipes, menus, shopping lists, etc.
+        <Balancer>
+          Save time, and get rid of boring work. We can help you manage your
+          recipes, menus, shopping lists, and much more.
+        </Balancer>
       </Paragraph>
 
       <Anchor

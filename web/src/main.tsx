@@ -17,6 +17,7 @@ import TagNew from "./routes/TagNew";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
+import { Provider as WrapBalancerProvider } from "react-wrap-balancer";
 
 const router = createBrowserRouter([
   {
@@ -42,9 +43,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <HelmetProvider>
-      <AuthnProvider>
-        <RouterProvider router={router} />
-      </AuthnProvider>
+      <WrapBalancerProvider>
+        <AuthnProvider>
+          <RouterProvider router={router} />
+        </AuthnProvider>
+      </WrapBalancerProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

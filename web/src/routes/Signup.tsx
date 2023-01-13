@@ -1,7 +1,7 @@
 import Anchor from "../components/Anchor";
 import classes from "../styles/routes/Signup.module.scss";
 import Heading from "../components/Heading";
-import HRElement from "../components/HRElement";
+import HorizontalRule from "../components/HorizontalRule";
 import PageCenteredCard from "../components/PageCenteredCard";
 import Paragraph from "../components/Paragraph";
 import RequireGuest from "../components/RequireGuest";
@@ -24,7 +24,7 @@ export default function Signup() {
 
         <SignupForm />
 
-        <HRElement className={classes.hrelement} />
+        <HorizontalRule className={classes.hrelement} />
 
         <Paragraph>
           Already have an account? <Anchor to="/login">Log in</Anchor>

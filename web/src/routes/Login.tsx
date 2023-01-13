@@ -1,7 +1,7 @@
 import Anchor from "../components/Anchor";
 import classes from "../styles/routes/Login.module.scss";
 import Heading from "../components/Heading";
-import HRElement from "../components/HRElement";
+import HorizontalRule from "../components/HorizontalRule";
 import LoginForm from "../components/LoginForm";
 import PageCenteredCard from "../components/PageCenteredCard";
 import Paragraph from "../components/Paragraph";
@@ -20,7 +20,7 @@ export default function Login() {
         <Heading>Log In</Heading>
         <LoginForm />
 
-        <HRElement className={classes.hrelement} />
+        <HorizontalRule className={classes.hrelement} />
 
         <Paragraph>
           Don&apos;t have an account? <Anchor to="/signup">Sign up</Anchor>

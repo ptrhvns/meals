@@ -15,6 +15,7 @@ import { RecipeData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import Tags from "../components/Tags";
 
 export default function Recipe() {
   const [error, setError] = useState<string>();
@@ -47,7 +48,7 @@ export default function Recipe() {
         <RecipeSection containerClassName={classes.recipeSection}>
           <Breadcrumbs>
             <Anchor to="/dashboard">Dashboard</Anchor>
-            <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
+            Recipe
           </Breadcrumbs>
         </RecipeSection>
 
@@ -76,9 +77,15 @@ export default function Recipe() {
         )}
 
         {!loading && !error && (
-          <RecipeSection containerClassName={classes.recipeSection}>
-            <RecipeTitle recipe={recipe} />
-          </RecipeSection>
+          <>
+            <RecipeSection containerClassName={classes.recipeSection}>
+              <RecipeTitle recipe={recipe} />
+            </RecipeSection>
+
+            <RecipeSection containerClassName={classes.recipeSection}>
+              <Tags recipe={recipe} />
+            </RecipeSection>
+          </>
         )}
       </Viewport>
     </RequireAuthn>

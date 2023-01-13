@@ -3,6 +3,7 @@ import {
   ApiSendFunction,
   paginationSchema,
   recipeSchema,
+  tagSchema,
 } from "../lib/types";
 import { z } from "zod";
 
@@ -65,6 +66,15 @@ export function tagAssociate(
   return send({
     data: args.data,
     method: "POST",
+    responseDataSchema: tagSchema,
     url: `/api/recipes/recipe/${args.recipeId}/tag/associate/`,
+  });
+}
+
+export function tagsGet(send: ApiSendFunction): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ tags: z.array(z.string()) }),
+    url: `/api/recipes/tags/`,
   });
 }

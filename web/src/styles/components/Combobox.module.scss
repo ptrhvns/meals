@@ -1,0 +1,99 @@
+.input {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  color: var(--slate11);
+  padding: 0.5rem;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.inputError {
+  border: none;
+  box-shadow: none;
+  color: var(--red11);
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.inputButton {
+  background: transparent;
+  color: var(--slate11);
+  font-size: 0.8rem;
+  height: 100%;
+  padding-inline: var(--spacing-5);
+  width: 100%;
+}
+
+.inputWrapper {
+  border-radius: var(--border-radius);
+  display: grid;
+  grid-template-columns: 1fr min-content;
+}
+
+.inputWrapperNoFocus {
+  border: 1px solid var(--slate7);
+  box-shadow: var(--box-shadow-inset);
+}
+
+.inputWrapperFocus {
+  border: 1px solid var(--slate7);
+  box-shadow: var(--box-shadow-inset-light), var(--box-shadow);
+  outline: 2px dotted var(--slate11);
+}
+
+.inputWrapperError {
+  border: 1px solid var(--red7);
+  box-shadow: var(--box-shadow-inset-error);
+}
+
+.inputWrapperErrorFocus {
+  border: 1px solid var(--red7);
+  box-shadow: var(--box-shadow-inset-error), var(--box-shadow-error);
+  outline: 2px dotted var(--red11);
+}
+
+.listbox {
+  background-color: white;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--slate7);
+  list-style: none;
+  margin: 0;
+  max-height: 15ex;
+  overflow: auto;
+  padding-block: var(--spacing-5);
+  padding-inline: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.listboxItem {
+  color: var(--slate11);
+  cursor: pointer;
+  padding-block: var(--spacing-5);
+  padding-inline: var(--spacing-10);
+
+  &:hover {
+    background-color: var(--slate4);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.listboxItemActive {
+  background-color: var(--slate3);
+}
+
+.listboxWrapper {
+  position: relative;
+  width: 100%;
+}

@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from recipes.models import Recipe
+from recipes.models import Recipe, Tag
 
 
 class RecipeCreateRequestSerializer(ModelSerializer):
@@ -31,3 +31,15 @@ class RecipeTitleUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("title",)
+
+
+class TagAssociateRequestSerializer(ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ("name",)
+
+
+class TagsResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ("name",)

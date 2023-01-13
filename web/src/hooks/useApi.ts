@@ -19,6 +19,8 @@ import {
   recipeGet,
   recipesGet,
   recipeTitleUpdate,
+  tagAssociate,
+  tagsGet,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -212,5 +214,7 @@ export default function useApi() {
     recipeTitleUpdate: wrapWithSendAndArgs(recipeTitleUpdate),
     signupConfirmationUpdate: wrapWithSendAndArgs(signupConfirmationUpdate),
     signupCreate: wrapWithSendAndArgs(signupCreate),
+    tagAssociate: wrapWithSendAndArgs(tagAssociate),
+    tagsGet: wrapWithSendOnly(tagsGet),
   };
 }

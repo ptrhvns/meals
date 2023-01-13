@@ -13,6 +13,7 @@ import RecipeTitleEdit from "./routes/RecipeTitleEdit";
 import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
+import TagNew from "./routes/TagNew";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "dashboard", element: <Dashboard /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
+      { path: "recipe/:recipeId/tag/new", element: <TagNew /> },
       { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
       { path: "recipe/new", element: <RecipeNew /> },
       { path: "settings", element: <Settings /> },

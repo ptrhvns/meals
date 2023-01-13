@@ -24,6 +24,18 @@ export interface ApiSendParameter {
 
 export type ApiSendFunction = (param: ApiSendParameter) => Promise<ApiResponse>;
 
+// Ensure this matches PaginationData below.
+export const paginationSchema = z.object({
+  page: z.number(),
+  total: z.number(),
+});
+
+// Ensure this matches paginationSchema above.
+export interface PaginationData {
+  page: number;
+  total: number;
+}
+
 // Ensure this matches RecipeData below.
 export const recipeSchema = z.object({
   id: z.number(),
@@ -36,14 +48,14 @@ export interface RecipeData {
   title: string;
 }
 
-// Ensure this matches PaginationData below.
-export const paginationSchema = z.object({
-  page: z.number(),
-  total: z.number(),
+// Ensure this matches TagData below.
+export const tagSchema = z.object({
+  id: z.number(),
+  name: z.string(),
 });
 
-// Ensure this matches paginationSchema above.
-export interface PaginationData {
-  page: number;
-  total: number;
+// Ensure this matches tagSchema above.
+export interface TagData {
+  id: number;
+  name: string;
 }

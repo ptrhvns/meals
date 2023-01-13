@@ -22,7 +22,7 @@ export default function RecipeNew() {
       <PageLayout containerClassName={classes.pageLayout}>
         <Breadcrumbs>
           <Anchor to="/dashboard">Dashboard</Anchor>
-          <Anchor to="/recipe/new">Create Recipe</Anchor>
+          Create Recipe
         </Breadcrumbs>
 
         <Heading>Create Recipe</Heading>

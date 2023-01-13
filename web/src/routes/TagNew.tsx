@@ -1,30 +1,29 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
-import classes from "../styles/routes/RecipeTitleEdit.module.scss";
+import classes from "../styles/routes/TagNew.module.scss";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
-import RecipeTitleEditForm from "../components/RecipeTitleEditForm";
 import RequireAuthn from "../components/RequireAuthn";
 import Skeleton from "../components/Skeleton";
+import TagNewForm from "../components/TagNewForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
-import { RecipeData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-export default function RecipeTitleEdit() {
+export default function TagNew() {
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [recipe, setRecipe] = useState<RecipeData>();
-  const { recipeGet } = useApi();
+  const [tags, setTags] = useState<string[]>([]);
   const { recipeId } = useParams() as { recipeId: string };
+  const { tagsGet } = useApi();
 
   useEffectOnce(async () => {
-    const response = await recipeGet(recipeId);
+    const response = await tagsGet();
     setLoading(false);
 
     if (response.isError) {
@@ -32,13 +31,13 @@ export default function RecipeTitleEdit() {
       return;
     }
 
-    setRecipe(response.data);
+    setTags(response.data.tags.map((t: { name: string }) => t.name));
   });
 
   return (
     <RequireAuthn>
       <Helmet>
-        <title>{buildTitle("Edit Recipe Title")}</title>
+        <title>{buildTitle("Create Tag")}</title>
       </Helmet>
 
       <Navbar />
@@ -47,14 +46,14 @@ export default function RecipeTitleEdit() {
         <Breadcrumbs>
           <Anchor to="/dashboard">Dashboard</Anchor>
           <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
-          Edit Recipe Title
+          Create Tag
         </Breadcrumbs>
 
-        <Heading>Edit Recipe Title</Heading>
+        <Heading>Create Tag</Heading>
 
         {loading && (
           <div>
-            <Skeleton height="1.3rem" width="2rem" />
+            <Skeleton height="1.3rem" width="2.75rem" />
             <Skeleton height="2.3rem" />
             <Skeleton height="2.3rem" width="6.6rem" />
           </div>
@@ -66,7 +65,7 @@ export default function RecipeTitleEdit() {
           </Alert>
         )}
 
-        {!loading && !error && <RecipeTitleEditForm recipe={recipe} />}
+        {!loading && !error && <TagNewForm tags={tags} />}
       </PageLayout>
     </RequireAuthn>
   );

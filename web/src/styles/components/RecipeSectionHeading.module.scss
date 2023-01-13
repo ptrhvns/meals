@@ -1,0 +1,11 @@
+.heading {
+  font-size: 1.3rem;
+  margin: var(--spacing-0);
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-15);
+  justify-content: space-between;
+}

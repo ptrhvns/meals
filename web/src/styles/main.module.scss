@@ -44,6 +44,16 @@
   box-sizing: inherit;
 }
 
+* {
+  &:focus {
+    outline: 2px dotted var(--slate11);
+  }
+
+  &:focus-visible {
+    outline: 2px dotted var(--slate11);
+  }
+}
+
 body {
   color: var(--slate12);
   font-family: var(--font-family-sans);

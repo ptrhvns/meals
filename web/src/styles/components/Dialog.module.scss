@@ -44,6 +44,6 @@ button.closeButton {
 
   &:focus,
   &:focus-visible {
-    outline: 2px solid var(--slate7);
+    outline: 2px dotted var(--slate11);
   }
 }

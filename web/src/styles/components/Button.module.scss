@@ -20,6 +20,14 @@
 
 .blue,
 .primary {
+  &:focus {
+    outline: 2px dotted var(--blue11);
+  }
+
+  &:focus-visible {
+    outline: 2px dotted var(--blue11);
+  }
+
   &.filled {
     background-color: var(--blue9);
     border: 1px solid var(--blue9);
@@ -82,6 +90,14 @@
 }
 
 .red {
+  &:focus {
+    outline: 2px dotted var(--red11);
+  }
+
+  &:focus-visible {
+    outline: 2px dotted var(--red11);
+  }
+
   &.filled {
     background-color: var(--red9);
     border: 1px solid var(--red9);
@@ -144,6 +160,14 @@
 }
 
 .slate {
+  &:focus {
+    outline: 2px dotted var(--slate11);
+  }
+
+  &:focus-visible {
+    outline: 2px dotted var(--slate11);
+  }
+
   &.filled {
     background-color: var(--slate9);
     border: 1px solid var(--slate9);

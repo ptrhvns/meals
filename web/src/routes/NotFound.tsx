@@ -1,7 +1,7 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Heading from "../components/Heading";
-import PageCenteredSection from "../components/PageCenteredSection";
+import PageCenteredCard from "../components/PageCenteredCard";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 
@@ -12,7 +12,7 @@ export default function NotFound() {
         <title>{buildTitle("Not Found (404)")}</title>
       </Helmet>
 
-      <PageCenteredSection>
+      <PageCenteredCard>
         <div>
           <Heading>Not Found (404)</Heading>
 
@@ -25,7 +25,7 @@ export default function NotFound() {
             .
           </Alert>
         </div>
-      </PageCenteredSection>
+      </PageCenteredCard>
     </>
   );
 }

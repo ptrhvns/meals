@@ -2,7 +2,7 @@ import Anchor from "../components/Anchor";
 import classes from "../styles/routes/Signup.module.scss";
 import Heading from "../components/Heading";
 import HRElement from "../components/HRElement";
-import PageCenteredSection from "../components/PageCenteredSection";
+import PageCenteredCard from "../components/PageCenteredCard";
 import Paragraph from "../components/Paragraph";
 import RequireGuest from "../components/RequireGuest";
 import SignupForm from "../components/SignupForm";
@@ -17,7 +17,7 @@ export default function Signup() {
         <title>{buildTitle("Sign Up")}</title>
       </Helmet>
 
-      <PageCenteredSection contentClassName={classes.content}>
+      <PageCenteredCard contentClassName={classes.content}>
         <Heading className={classes.heading}>Sign Up</Heading>
 
         <Subheading>Create an account to save time.</Subheading>
@@ -29,7 +29,7 @@ export default function Signup() {
         <Paragraph>
           Already have an account? <Anchor to="/login">Log in</Anchor>
         </Paragraph>
-      </PageCenteredSection>
+      </PageCenteredCard>
     </RequireGuest>
   );
 }

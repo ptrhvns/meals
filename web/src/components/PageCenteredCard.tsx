@@ -1,19 +1,19 @@
 import Anchor from "./Anchor";
-import classes from "../styles/components/PageCenteredSection.module.scss";
+import classes from "../styles/components/PageCenteredCard.module.scss";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinClassNames } from "../lib/utils";
 import { ReactNode } from "react";
 
-interface PageCenteredSectionProps {
+interface PageCenteredCardProps {
   children: ReactNode;
   contentClassName?: string;
 }
 
-export default function PageCenteredSection({
+export default function PageCenteredCard({
   children,
   contentClassName,
-}: PageCenteredSectionProps) {
+}: PageCenteredCardProps) {
   const linkClassName = joinClassNames(classes.slate, classes.link);
   contentClassName = joinClassNames(classes.content, contentClassName);
 

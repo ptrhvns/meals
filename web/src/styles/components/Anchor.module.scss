@@ -38,7 +38,8 @@
   }
 }
 
-.filled {
+.filled,
+.light {
   display: inline-block;
   font-size: inherit;
   line-height: 1.25;
@@ -69,5 +70,23 @@
   &:active,
   &:active:hover {
     background-color: var(--blue11);
+  }
+}
+
+.blue.light,
+.primary.light {
+  background-color: var(--blue3);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--blue7);
+  color: var(--blue11);
+
+  &:hover {
+    background-color: var(--blue4);
+    border: 1px solid var(--blue8);
+  }
+
+  &:active,
+  &:active:hover {
+    background-color: var(--blue6);
   }
 }

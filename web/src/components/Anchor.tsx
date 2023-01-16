@@ -6,7 +6,7 @@ type LinkProps = Parameters<typeof Link>[0];
 
 interface AnchorProps extends LinkProps {
   color?: "blue" | "grass" | "primary" | "red";
-  variant?: "filled" | "link";
+  variant?: "filled" | "light" | "link";
 }
 
 export default function Anchor({

@@ -74,7 +74,7 @@ export function tagAssociate(
 export function tagsGet(send: ApiSendFunction): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: z.object({ tags: z.array(z.string()) }),
+    responseDataSchema: z.object({ tags: z.array(tagSchema) }),
     url: `/api/recipes/tags/`,
   });
 }

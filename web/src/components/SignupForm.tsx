@@ -106,6 +106,7 @@ export default function SignupForm() {
         <Field>
           <LabelDiv htmlFor="password">Password</LabelDiv>
           <InputDiv
+            autoComplete="new-password"
             disabled={submitting}
             error={!!fieldErrors?.password?.message}
             id="password"

@@ -15,12 +15,6 @@ class RecipeCreateResponseSerializer(ModelSerializer):
         fields = ("id",)
 
 
-class RecipeResponseSerializer(ModelSerializer):
-    class Meta:
-        model = Recipe
-        fields = ("id", "title")
-
-
 class RecipesResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
@@ -42,4 +36,15 @@ class TagAssociateRequestSerializer(ModelSerializer):
 class TagsResponseSerializer(ModelSerializer):
     class Meta:
         model = Tag
-        fields = ("name",)
+        fields = (
+            "id",
+            "name",
+        )
+
+
+class RecipeResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = ("id", "tags", "title")
+
+    tags = TagsResponseSerializer(many=True, required=False)

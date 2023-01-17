@@ -13,6 +13,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isEmpty, isNumber } from "lodash";
 import { joinClassNames } from "../lib/utils";
+import { Optional } from "../lib/types";
 
 interface ComboboxProps extends InputHTMLAttributes<HTMLInputElement> {
   clearErrors: () => void;
@@ -22,9 +23,9 @@ interface ComboboxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 interface ReducerState {
-  inputBlurEvent: FocusEvent<HTMLInputElement, Element> | null;
+  inputBlurEvent: Optional<FocusEvent<HTMLInputElement, Element>>;
   listboxOpen: boolean;
-  matchActiveIndex: number | null;
+  matchActiveIndex: Optional<number>;
   matches: string[];
 }
 

@@ -12,6 +12,7 @@ import {
   ApiResponse,
   ApiSendParameter,
   FirstParameter,
+  Optional,
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
@@ -58,7 +59,7 @@ export default function useApi() {
       responseDataSchema,
       url,
     }: ApiSendParameter): Promise<ApiResponse> => {
-      let body: string | null;
+      let body: Optional<string>;
 
       try {
         body = data ? JSON.stringify(data) : null;

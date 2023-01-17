@@ -1,4 +1,4 @@
-import { ApiResponse } from "./types";
+import { ApiResponse, Optional } from "./types";
 import { compact, forOwn, head, join, uniq } from "lodash";
 import { Dispatch, SetStateAction } from "react";
 import {
@@ -12,7 +12,7 @@ export function buildTitle(subtitle?: string): string {
   return subtitle ? `${subtitle} - Meals` : "Meals";
 }
 
-export function joinClassNames(...args: (string | undefined | null)[]): string {
+export function joinClassNames(...args: Optional<string>[]): string {
   return join(uniq(compact(args)), " ");
 }
 

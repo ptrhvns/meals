@@ -6,8 +6,6 @@ import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import PageLayoutHeading from "../components/PageLayoutHeading";
 import { buildTitle } from "../lib/utils";
-import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 
 export default function Settings() {
@@ -29,8 +27,7 @@ export default function Settings() {
         </Heading>
 
         <Alert alertClassName={classes.deleteAccountWarning} variant="warning">
-          <FontAwesomeIcon icon={faCircleExclamation} /> Submitting this form
-          will permanently delete your account.
+          Submitting this form will permanently delete your account.
         </Alert>
 
         <AccountDeleteForm />

@@ -1,0 +1,18 @@
+.noTagsMessage {
+  color: var(--slate9);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-10);
+  margin-top: var(--spacing-15);
+}
+
+.tag {
+  background-color: var(--purple3);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--purple7);
+  color: var(--purple11);
+  padding: var(--spacing-5) var(--spacing-10);
+}

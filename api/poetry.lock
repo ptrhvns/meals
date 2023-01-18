@@ -590,21 +590,6 @@ flake8 = ">=3.0.0"
 dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit", "pytest", "tox"]
 
 [[package]]
-name = "flake8-logging-format"
-version = "0.9.0"
-description = ""
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "flake8-logging-format-0.9.0.tar.gz", hash = "sha256:e830cc49091e4b8ab9ea3da69a3da074bd631ce9a7db300e5c89fb48ba4a6986"},
-]
-
-[package.extras]
-lint = ["flake8"]
-test = ["PyHamcrest", "pytest", "pytest-cov"]
-
-[[package]]
 name = "gitdb"
 version = "4.0.10"
 description = "Git Object Database"
@@ -1491,4 +1476,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "73c67857c482743441fb3e0a4e95a1b5583ab73ec8461e4ef95a7832b27611a9"
+content-hash = "a1b7f6db26efbe60912c7f9abb581dcb83181003453afb8d8b91d883ba3b6bfc"

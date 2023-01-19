@@ -21,6 +21,7 @@ import {
   recipesGet,
   recipeTitleUpdate,
   tagAssociate,
+  tagDissociate,
   tagsGet,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
@@ -216,6 +217,7 @@ export default function useApi() {
     signupConfirmationUpdate: withSendAndArgs(signupConfirmationUpdate),
     signupCreate: withSendAndArgs(signupCreate),
     tagAssociate: withSendAndArgs(tagAssociate),
+    tagDissociate: withSendAndArgs(tagDissociate),
     tagsGet: withSend(tagsGet),
   };
 }

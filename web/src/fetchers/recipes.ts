@@ -71,6 +71,17 @@ export function tagAssociate(
   });
 }
 
+export function tagDissociate(
+  args: { recipeId: string; tagId: string },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data: args,
+    method: "POST",
+    url: `/api/recipes/recipe/${args.recipeId}/tag/${args.tagId}/dissociate/`,
+  });
+}
+
 export function tagsGet(send: ApiSendFunction): Promise<ApiResponse> {
   return send({
     method: "GET",

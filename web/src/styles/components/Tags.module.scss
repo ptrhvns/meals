@@ -14,5 +14,13 @@
   border-radius: var(--border-radius);
   border: 1px solid var(--purple7);
   color: var(--purple11);
+  font-size: 0.85rem;
   padding: var(--spacing-5) var(--spacing-10);
+}
+
+.tagFormWrapper {
+  border-left: 1px solid var(--purple7);
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
 }

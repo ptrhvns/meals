@@ -120,3 +120,12 @@ def tags(request: Request) -> Response:
     tags = Tag.objects.filter(user=request.user).order_by("name").all()
     serializer = TagsResponseSerializer(tags, many=True)
     return data_response(data={"tags": serializer.data})
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def tag_dissociate(request: Request, recipe_id: int, tag_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    tag = get_object_or_404(Tag, pk=tag_id, recipes=recipe, user=request.user)
+    recipe.tags.remove(tag)  # type: ignore[attr-defined]
+    return no_content_response()

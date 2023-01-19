@@ -61,3 +61,7 @@ export interface RecipeData {
   tags?: TagData[];
   title: string;
 }
+
+export type RecipeReducerAction =
+  | { type: "deleteTag"; payload: string }
+  | { type: "setRecipe"; payload: RecipeData };

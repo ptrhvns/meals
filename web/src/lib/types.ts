@@ -38,26 +38,26 @@ export interface PaginationData {
 
 // Ensure this matches TagData below.
 export const tagSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   name: z.string(),
 });
 
 // Ensure this matches tagSchema above.
 export interface TagData {
-  id: number;
+  id: string;
   name: string;
 }
 
 // Ensure this matches RecipeData below.
 export const recipeSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   tags: z.optional(z.array(tagSchema)),
   title: z.string(),
 });
 
 // Ensure this matches recipeSchema above.
 export interface RecipeData {
-  id: number;
+  id: string;
   tags?: TagData[];
   title: string;
 }

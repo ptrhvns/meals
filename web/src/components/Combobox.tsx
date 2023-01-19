@@ -93,7 +93,7 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             if (inputRef.current) inputRef.current.focus();
             return { ...state, listboxOpen: true };
           case "selectMatch":
-            if (action.payload) {
+            if (isNumber(action.payload)) {
               setValue(state.matches[action.payload]);
             } else if (isNumber(state.matchActiveIndex)) {
               setValue(state.matches[state.matchActiveIndex]);

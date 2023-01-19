@@ -2,7 +2,6 @@ import Alert from "./Alert";
 import Anchor from "./Anchor";
 import classes from "../styles/components/RecipeList.module.scss";
 import Paragraph from "./Paragraph";
-import Skeleton from "./Skeleton";
 import Table from "./Table";
 import useApi from "../hooks/useApi";
 import { handleApiError } from "../lib/utils";
@@ -35,15 +34,6 @@ export default function RecipeList() {
 
   return (
     <>
-      {loading && (
-        <>
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-        </>
-      )}
-
       {!loading && error && (
         <Alert
           alertClassName={classes.alert}

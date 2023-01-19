@@ -6,7 +6,6 @@ import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import RequireAuthn from "../components/RequireAuthn";
-import Skeleton from "../components/Skeleton";
 import TagNewForm from "../components/TagNewForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
@@ -50,14 +49,6 @@ export default function TagNew() {
         </Breadcrumbs>
 
         <Heading>Create Tag</Heading>
-
-        {loading && (
-          <div>
-            <Skeleton height="1.3rem" width="2.75rem" />
-            <Skeleton height="2.3rem" />
-            <Skeleton height="2.3rem" width="6.6rem" />
-          </div>
-        )}
 
         {!loading && error && (
           <Alert onDismiss={() => setError(undefined)} variant="error">

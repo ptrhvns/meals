@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import RecipeSection from "../components/RecipeSection";
 import RecipeTitle from "../components/RecipeTitle";
 import RequireAuthn from "../components/RequireAuthn";
-import Skeleton from "../components/Skeleton";
 import Tags from "../components/Tags";
 import useApi from "../hooks/useApi";
 import Viewport from "../components/Viewport";
@@ -80,22 +79,6 @@ export default function Recipe() {
             Recipe
           </Breadcrumbs>
         </RecipeSection>
-
-        {loading && (
-          <RecipeSection containerClassName={classes.recipeSection}>
-            <div className={classes.skeletonGroup}>
-              <Skeleton width="60%" />
-              <Skeleton />
-              <Skeleton />
-            </div>
-
-            <div className={classes.skeletonGroup}>
-              <Skeleton width="60%" />
-              <Skeleton />
-              <Skeleton />
-            </div>
-          </RecipeSection>
-        )}
 
         {!loading && error && (
           <RecipeSection containerClassName={classes.recipeSection}>

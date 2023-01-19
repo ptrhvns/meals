@@ -7,7 +7,6 @@ import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import RecipeTitleEditForm from "../components/RecipeTitleEditForm";
 import RequireAuthn from "../components/RequireAuthn";
-import Skeleton from "../components/Skeleton";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
@@ -51,14 +50,6 @@ export default function RecipeTitleEdit() {
         </Breadcrumbs>
 
         <Heading>Edit Recipe Title</Heading>
-
-        {loading && (
-          <div>
-            <Skeleton height="1.3rem" width="2rem" />
-            <Skeleton height="2.3rem" />
-            <Skeleton height="2.3rem" width="6.6rem" />
-          </div>
-        )}
 
         {!loading && error && (
           <Alert onDismiss={() => setError(undefined)} variant="error">

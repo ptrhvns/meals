@@ -1,8 +1,8 @@
 .tabsContent[data-state="active"] {
-  border-bottom: 1px solid var(--slate6);
-  border-left: 1px solid var(--slate6);
-  border-right: 1px solid var(--slate6);
-  border-top: 0;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border: 1px solid var(--slate6);
   padding-bottom: var(--spacing-15);
   padding-inline: var(--spacing-10);
   padding-top: var(--spacing-10);
@@ -15,7 +15,7 @@
 }
 
 .tabsList {
-  border-bottom: 1px solid var(--slate6);
+  margin-bottom: -1px;
 }
 
 .tabsRoot {
@@ -24,16 +24,54 @@
 
 .tabsTrigger {
   background-color: white;
-  border-bottom: 0;
-  border-left: 1px solid var(--slate6);
-  border-right: 1px solid var(--slate6);
-  border-top: 1px solid var(--slate6);
   color: var(--slate11);
-  cursor: pointer;
-  margin-bottom: -1px;
-  padding: var(--spacing-10);
+  padding-block: var(--spacing-3);
 
-  @media (min-width: 27rem) {
-    padding: var(--spacing-15);
+  &:focus {
+    .tabsTriggerContentInner {
+      outline: 1px dashed var(--slate11);
+    }
+  }
+
+  &:focus-visible {
+    .tabsTriggerContentInner {
+      outline: 1px dashed var(--slate11);
+    }
+  }
+
+  .tabsTriggerContent {
+    border-radius: var(--border-radius);
+    padding: var(--spacing-5);
+  }
+
+  .tabsTriggerContentInner {
+    border-radius: var(--border-radius);
+    padding: var(--spacing-1) var(--spacing-5);
+  }
+
+  &[data-state="active"] {
+    border-bottom: 1px solid white;
+    border-left: 1px solid var(--slate6);
+    border-right: 1px solid var(--slate6);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    border-top: 1px solid var(--slate6);
+    outline: none;
+  }
+
+  &[data-state="inactive"] {
+    border-bottom: 1px solid var(--slate6);
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    cursor: pointer;
+
+    .tabsTriggerContent {
+      background-color: var(--slate3);
+
+      &:hover {
+        background-color: var(--slate4);
+      }
+    }
   }
 }

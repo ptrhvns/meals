@@ -32,7 +32,18 @@ export default function Dashboard() {
               className={classes.tabsTrigger}
               value="recipeTab"
             >
-              Recipes
+              <div className={classes.tabsTriggerContent}>
+                <div className={classes.tabsTriggerContentInner}>Recipes</div>
+              </div>
+            </TabsPrimitive.Trigger>
+
+            <TabsPrimitive.Trigger
+              className={classes.tabsTrigger}
+              value="tagsTab"
+            >
+              <div className={classes.tabsTriggerContent}>
+                <div className={classes.tabsTriggerContentInner}>Tags</div>
+              </div>
             </TabsPrimitive.Trigger>
           </TabsPrimitive.List>
 
@@ -45,6 +56,13 @@ export default function Dashboard() {
             </Anchor>
 
             <RecipeList />
+          </TabsPrimitive.Content>
+
+          <TabsPrimitive.Content
+            className={classes.tabsContent}
+            value="tagsTab"
+          >
+            Tags{/* TODO build tags tab */}
           </TabsPrimitive.Content>
         </TabsPrimitive.Root>
       </PageLayout>

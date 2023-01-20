@@ -1,17 +1,17 @@
 .noSectionHeader {
-  padding-top: var(--spacing-20);
+  padding-top: var(--spacing20);
 }
 
 .recipeSection + .recipeSection {
-  margin-top: var(--spacing-20);
+  margin-top: var(--spacing20);
 }
 
 .skeletonGroup + .skeletonGroup {
-  margin-top: var(--spacing-20);
+  margin-top: var(--spacing20);
 }
 
 .viewport {
   background-color: var(--slate3);
   min-height: calc(100vh - var(--navbar-height));
-  padding-block: var(--spacing-20);
+  padding-block: var(--spacing20);
 }

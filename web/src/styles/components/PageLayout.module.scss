@@ -7,9 +7,9 @@
 .viewport {
   background-color: var(--slate3);
   min-height: calc(100vh - var(--navbar-height));
-  padding-block: var(--spacing-10);
+  padding-block: var(--spacing10);
 
   @media (min-width: 27rem) {
-    padding-block: var(--spacing-15);
+    padding-block: var(--spacing15);
   }
 }

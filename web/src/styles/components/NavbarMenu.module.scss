@@ -2,7 +2,7 @@
   color: var(--slate11);
   cursor: pointer;
   font-family: inherit;
-  padding: var(--spacing-5) var(--spacing-10);
+  padding: var(--spacing5) var(--spacing10);
 
   &:hover {
     background-color: var(--slate3);
@@ -14,12 +14,12 @@
   border-radius: var(--border-radius);
   border: 1px solid var(--slate6);
   box-shadow: var(--box-shadow);
-  margin-right: var(--spacing-15);
+  margin-right: var(--spacing15);
   min-width: 8rem;
-  padding: var(--spacing-10);
+  padding: var(--spacing10);
 
   @media (min-width: 27rem) {
-    margin-right: var(--spacing-25);
+    margin-right: var(--spacing25);
   }
 }
 
@@ -33,7 +33,7 @@
   height: 1.625rem;
   line-height: 1;
   outline: none;
-  padding: var(--spacing-15) var(--spacing-10);
+  padding: var(--spacing15) var(--spacing10);
   user-select: none;
 
   &[data-highlighted] {
@@ -44,5 +44,5 @@
 .separator {
   background-color: var(--slate6);
   height: 0.0625rem;
-  margin: var(--spacing-5);
+  margin: var(--spacing5);
 }

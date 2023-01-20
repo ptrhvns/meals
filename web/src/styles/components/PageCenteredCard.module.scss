@@ -2,13 +2,13 @@
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  margin-top: var(--spacing-15);
-  padding: var(--spacing-15);
+  margin-top: var(--spacing15);
+  padding: var(--spacing15);
   text-align: left;
 }
 
 .innerWrapper {
-  margin: var(--spacing-15);
+  margin: var(--spacing15);
   max-width: 30rem;
   text-align: center;
   width: 100%;
@@ -19,7 +19,7 @@ a.slate.link {
   color: var(--slate11);
   font-size: 1.5rem;
   font-weight: bold;
-  padding: var(--spacing-5) var(--spacing-10);
+  padding: var(--spacing5) var(--spacing10);
   text-decoration: none;
 
   &:visited {

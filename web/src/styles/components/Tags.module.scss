@@ -5,8 +5,8 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-10);
-  margin-top: var(--spacing-15);
+  gap: var(--spacing10);
+  margin-top: var(--spacing15);
 }
 
 .tag {
@@ -15,7 +15,7 @@
   border: 1px solid var(--purple7);
   color: var(--purple11);
   font-size: 0.85rem;
-  padding: var(--spacing-5) var(--spacing-10);
+  padding: var(--spacing5) var(--spacing10);
 }
 
 .tagFormWrapper {

@@ -28,7 +28,7 @@
   color: var(--slate11);
   font-size: 0.8rem;
   height: 100%;
-  padding-inline: var(--spacing-5);
+  padding-inline: var(--spacing5);
   width: 100%;
 }
 
@@ -68,7 +68,7 @@
   margin: 0;
   max-height: 15ex;
   overflow: auto;
-  padding-block: var(--spacing-5);
+  padding-block: var(--spacing5);
   padding-inline: 0;
   position: absolute;
   width: 100%;
@@ -77,8 +77,8 @@
 .listboxItem {
   color: var(--slate11);
   cursor: pointer;
-  padding-block: var(--spacing-5);
-  padding-inline: var(--spacing-10);
+  padding-block: var(--spacing5);
+  padding-inline: var(--spacing10);
 
   &:hover {
     background-color: var(--slate4);

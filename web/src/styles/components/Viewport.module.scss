@@ -1,7 +1,7 @@
 .viewport {
-  padding-inline: var(--spacing-10);
+  padding-inline: var(--spacing10);
 
   @media (min-width: 27rem) {
-    padding-inline: var(--spacing-15);
+    padding-inline: var(--spacing15);
   }
 }

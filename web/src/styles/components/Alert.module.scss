@@ -57,9 +57,9 @@
 .alert {
   border-radius: var(--border-radius);
   display: grid;
-  gap: var(--spacing-10);
+  gap: var(--spacing10);
   grid-template-columns: 1fr min-content;
-  padding: var(--spacing-15);
+  padding: var(--spacing15);
 
   a {
     text-decoration: underline;
@@ -74,5 +74,5 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: var(--spacing-0);
+  padding: var(--spacing0);
 }

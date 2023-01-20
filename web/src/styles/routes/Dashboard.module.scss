@@ -3,14 +3,14 @@
   border-bottom-right-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   border: 1px solid var(--slate6);
-  padding-bottom: var(--spacing-15);
-  padding-inline: var(--spacing-10);
-  padding-top: var(--spacing-10);
+  padding-bottom: var(--spacing15);
+  padding-inline: var(--spacing10);
+  padding-top: var(--spacing10);
 
   @media (min-width: 27rem) {
-    padding-bottom: var(--spacing-20);
-    padding-inline: var(--spacing-15);
-    padding-top: var(--spacing-15);
+    padding-bottom: var(--spacing20);
+    padding-inline: var(--spacing15);
+    padding-top: var(--spacing15);
   }
 }
 
@@ -19,13 +19,13 @@
 }
 
 .tabsRoot {
-  margin-bottom: var(--spacing-10);
+  margin-bottom: var(--spacing10);
 }
 
 .tabsTrigger {
   background-color: white;
   color: var(--slate11);
-  padding-block: var(--spacing-3);
+  padding-block: var(--spacing3);
 
   &:focus {
     .tabsTriggerContentInner {
@@ -41,12 +41,12 @@
 
   .tabsTriggerContent {
     border-radius: var(--border-radius);
-    padding: var(--spacing-5);
+    padding: var(--spacing5);
   }
 
   .tabsTriggerContentInner {
     border-radius: var(--border-radius);
-    padding: var(--spacing-1) var(--spacing-5);
+    padding: var(--spacing1) var(--spacing5);
   }
 
   &[data-state="active"] {

@@ -48,6 +48,16 @@ export function recipesGet(
   });
 }
 
+export function recipeDestroy(
+  args: { recipeId: string },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/recipe/${args.recipeId}/destroy/`,
+  });
+}
+
 export function recipeTitleUpdate(
   args: { recipeId: string; data: { title: string } },
   send: ApiSendFunction

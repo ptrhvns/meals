@@ -3,13 +3,14 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import Navbar from "../components/Navbar";
+import RecipeDeleteForm from "../components/RecipeDeleteForm";
 import RecipeSection from "../components/RecipeSection";
 import RecipeTitle from "../components/RecipeTitle";
 import RequireAuthn from "../components/RequireAuthn";
 import Tags from "../components/Tags";
 import useApi from "../hooks/useApi";
 import Viewport from "../components/Viewport";
-import { buildTitle, handleApiError } from "../lib/utils";
+import { buildTitle, handleApiError, joinClassNames } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
@@ -96,6 +97,15 @@ export default function Recipe() {
 
             <RecipeSection containerClassName={classes.recipeSection}>
               <Tags dispatch={dispatch} recipe={recipe} />
+            </RecipeSection>
+
+            <RecipeSection
+              containerClassName={joinClassNames(
+                classes.recipeSection,
+                classes.noSectionHeader
+              )}
+            >
+              <RecipeDeleteForm recipe={recipe} />
             </RecipeSection>
           </>
         )}

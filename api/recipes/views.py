@@ -64,6 +64,14 @@ def recipe_title_update(request: Request, recipe_id: int) -> Response:
     return no_content_response()
 
 
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def recipe_destroy(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    recipe.delete()
+    return no_content_response()
+
+
 @api_view(http_method_names=["GET"])
 @permission_classes([IsAuthenticated])
 def recipes(request: Request) -> Response:

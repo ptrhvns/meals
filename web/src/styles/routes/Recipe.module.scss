@@ -1,3 +1,7 @@
+.noSectionHeader {
+  padding-top: var(--spacing-20);
+}
+
 .recipeSection + .recipeSection {
   margin-top: var(--spacing-20);
 }

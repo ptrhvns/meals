@@ -17,6 +17,7 @@ import {
 import { isEmpty, omit } from "lodash";
 import {
   recipeCreate,
+  recipeDestroy,
   recipeGet,
   recipesGet,
   recipeTitleUpdate,
@@ -211,6 +212,7 @@ export default function useApi() {
     login: withSendAndArgs(login),
     logout: withSend(logout),
     recipeCreate: withSendAndArgs(recipeCreate),
+    recipeDestroy: withSendAndArgs(recipeDestroy),
     recipeGet: withSendAndArgs(recipeGet),
     recipesGet: withSendAndArgs(recipesGet),
     recipeTitleUpdate: withSendAndArgs(recipeTitleUpdate),

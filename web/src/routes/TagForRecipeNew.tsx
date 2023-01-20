@@ -1,12 +1,12 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
-import classes from "../styles/routes/TagNew.module.scss";
+import classes from "../styles/routes/TagForRecipeNew.module.scss";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
 import RequireAuthn from "../components/RequireAuthn";
-import TagNewForm from "../components/TagNewForm";
+import TagForRecipeNewForm from "../components/TagForRecipeNewForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
@@ -14,7 +14,7 @@ import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-export default function TagNew() {
+export default function TagForRecipeNew() {
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
   const [tags, setTags] = useState<string[]>([]);
@@ -56,7 +56,7 @@ export default function TagNew() {
           </Alert>
         )}
 
-        {!loading && !error && <TagNewForm tags={tags} />}
+        {!loading && !error && <TagForRecipeNewForm tags={tags} />}
       </PageLayout>
     </RequireAuthn>
   );

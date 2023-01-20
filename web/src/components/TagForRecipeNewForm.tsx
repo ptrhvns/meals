@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
-interface TagNewFormProps {
+interface TagForRecipeNewFormProps {
   tags: string[];
 }
 
@@ -21,7 +21,9 @@ interface FormData {
   name: string;
 }
 
-export default function TagNewForm({ tags }: TagNewFormProps) {
+export default function TagForRecipeNewForm({
+  tags,
+}: TagForRecipeNewFormProps) {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>();
   const navigate = useNavigate();

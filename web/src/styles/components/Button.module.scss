@@ -21,11 +21,11 @@
 .blue,
 .primary {
   &:focus {
-    outline: 2px dotted var(--blue11);
+    outline: 1px dashed var(--blue11);
   }
 
   &:focus-visible {
-    outline: 2px dotted var(--blue11);
+    outline: 1px dashed var(--blue11);
   }
 
   &.filled {
@@ -91,11 +91,11 @@
 
 .red {
   &:focus {
-    outline: 2px dotted var(--red11);
+    outline: 1px dashed var(--red11);
   }
 
   &:focus-visible {
-    outline: 2px dotted var(--red11);
+    outline: 1px dashed var(--red11);
   }
 
   &.filled {
@@ -161,11 +161,11 @@
 
 .slate {
   &:focus {
-    outline: 2px dotted var(--slate11);
+    outline: 1px dashed var(--slate11);
   }
 
   &:focus-visible {
-    outline: 2px dotted var(--slate11);
+    outline: 1px dashed var(--slate11);
   }
 
   &.filled {
@@ -236,4 +236,12 @@
   color: inherit;
   cursor: pointer;
   padding: 0;
+
+  &:focus {
+    outline: 1px dashed var(--slate11);
+  }
+
+  &:focus-visible {
+    outline: 1px dashed var(--slate11);
+  }
 }

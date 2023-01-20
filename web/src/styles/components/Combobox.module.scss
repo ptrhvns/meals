@@ -46,7 +46,7 @@
 .inputWrapperFocus {
   border: 1px solid var(--slate7);
   box-shadow: var(--box-shadow-inset-light), var(--box-shadow);
-  outline: 2px dotted var(--slate11);
+  outline: 1px dashed var(--slate11);
 }
 
 .inputWrapperError {
@@ -57,7 +57,7 @@
 .inputWrapperErrorFocus {
   border: 1px solid var(--red7);
   box-shadow: var(--box-shadow-inset-error), var(--box-shadow-error);
-  outline: 2px dotted var(--red11);
+  outline: 1px dashed var(--red11);
 }
 
 .listbox {

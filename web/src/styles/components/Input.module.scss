@@ -22,6 +22,6 @@
 
   &:focus {
     box-shadow: var(--box-shadow-inset-error), var(--box-shadow-error);
-    outline: 2px dotted var(--red11);
+    outline: 1px dashed var(--red11);
   }
 }

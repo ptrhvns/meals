@@ -14,6 +14,7 @@ import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
 import TagForRecipeNew from "./routes/TagForRecipeNew";
+import TagNew from "./routes/TagNew";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },
       { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
       { path: "recipe/new", element: <RecipeNew /> },
+      { path: "tag/new", element: <TagNew /> },
       { path: "settings", element: <Settings /> },
       { path: "signup", element: <Signup /> },
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },

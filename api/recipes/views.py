@@ -1,5 +1,3 @@
-from typing import cast
-
 from django.core.paginator import Paginator
 from django.db import Error
 from django.db.transaction import atomic
@@ -18,6 +16,7 @@ from recipes.serializers import (
     RecipesResponseSerializer,
     RecipeTitleUpdateRequestSerializer,
     TagAssociateRequestSerializer,
+    TagCreateRequestSerializer,
     TagsResponseSerializer,
 )
 from shared.lib.responses import (
@@ -100,20 +99,40 @@ def tag_associate(request: Request, recipe_id: int) -> Response:
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)
 
-    tag = Tag.objects.filter(
-        name__iexact=serializer.validated_data["name"], user=request.user
-    ).first()
-
-    created = False
-
     try:
         with atomic():
-            if not tag:
-                tag = cast(Tag, serializer.save(user=request.user))
-                created = True
+            tag, created = Tag.objects.get_or_create(
+                defaults={"user": request.user, **serializer.validated_data},
+                name__iexact=serializer.validated_data["name"],
+                user=request.user,
+            )
 
             if not tag.recipes.contains(recipe):
                 tag.recipes.add(recipe)
+    except Error:
+        return internal_server_error_response(
+            message=_("Your information could not be saved.")
+        )
+
+    return created_response() if created else ok_response()
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def tag_create(request: Request) -> Response:
+    serializer = TagCreateRequestSerializer(data=request.data)
+
+    if not serializer.is_valid():
+        return invalid_request_data_response(serializer)
+
+    try:
+        created = (
+            Tag.objects.get_or_create(
+                defaults={"user": request.user, **serializer.validated_data},
+                name__iexact=serializer.validated_data["name"],
+                user=request.user,
+            )
+        )[0]
     except Error:
         return internal_server_error_response(
             message=_("Your information could not be saved.")

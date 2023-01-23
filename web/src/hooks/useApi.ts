@@ -22,6 +22,7 @@ import {
   recipesGet,
   recipeTitleUpdate,
   tagAssociate,
+  tagCreate,
   tagDissociate,
   tagsGet,
 } from "../fetchers/recipes";
@@ -219,6 +220,7 @@ export default function useApi() {
     signupConfirmationUpdate: withSendAndArgs(signupConfirmationUpdate),
     signupCreate: withSendAndArgs(signupCreate),
     tagAssociate: withSendAndArgs(tagAssociate),
+    tagCreate: withSendAndArgs(tagCreate),
     tagDissociate: withSendAndArgs(tagDissociate),
     tagsGet: withSend(tagsGet),
   };

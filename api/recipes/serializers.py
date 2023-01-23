@@ -33,6 +33,12 @@ class TagAssociateRequestSerializer(ModelSerializer):
         fields = ("name",)
 
 
+class TagCreateRequestSerializer(ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ("name",)
+
+
 class TagsResponseSerializer(ModelSerializer):
     class Meta:
         model = Tag

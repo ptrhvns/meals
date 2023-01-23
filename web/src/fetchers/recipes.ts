@@ -81,6 +81,18 @@ export function tagAssociate(
   });
 }
 
+export function tagCreate(
+  args: { name: string },
+  send: ApiSendFunction
+): Promise<ApiResponse> {
+  return send({
+    data: args,
+    method: "POST",
+    responseDataSchema: z.object({ id: z.number() }),
+    url: `/api/recipes/tag/create/`,
+  });
+}
+
 export function tagDissociate(
   args: { recipeId: string; tagId: string },
   send: ApiSendFunction

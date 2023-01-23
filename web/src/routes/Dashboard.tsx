@@ -62,7 +62,9 @@ export default function Dashboard() {
             className={classes.tabsContent}
             value="tagsTab"
           >
-            Tags{/* TODO build tags tab */}
+            <Anchor to="/tag/new" variant="filled">
+              <FontAwesomeIcon icon={faCirclePlus} /> Create tag
+            </Anchor>
           </TabsPrimitive.Content>
         </TabsPrimitive.Root>
       </PageLayout>

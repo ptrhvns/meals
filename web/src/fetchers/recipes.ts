@@ -8,10 +8,8 @@ import {
 import { z } from "zod";
 
 export function recipeCreate(
-  data: {
-    title: string;
-  },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  { data }: { data: { title: string } }
 ): Promise<ApiResponse> {
   return send({
     data,
@@ -22,21 +20,21 @@ export function recipeCreate(
 }
 
 export function recipeGet(
-  recipeId: string,
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  params: { recipeId: string }
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
     responseDataSchema: recipeSchema,
-    url: `/api/recipes/recipe/${recipeId}/`,
+    url: `/api/recipes/recipe/${params.recipeId}/`,
   });
 }
 
 export function recipesGet(
-  data: { page?: number },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  params: { page?: number }
 ): Promise<ApiResponse> {
-  const page = encodeURIComponent(data.page ?? 1);
+  const page = encodeURIComponent(params.page ?? 1);
 
   return send({
     method: "GET",
@@ -49,44 +47,56 @@ export function recipesGet(
 }
 
 export function recipeDestroy(
-  args: { recipeId: string },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  params: { recipeId: string }
 ): Promise<ApiResponse> {
   return send({
     method: "POST",
-    url: `/api/recipes/recipe/${args.recipeId}/destroy/`,
+    url: `/api/recipes/recipe/${params.recipeId}/destroy/`,
   });
 }
 
 export function recipeTitleUpdate(
-  args: { recipeId: string; data: { title: string } },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+  }: {
+    data: { title: string };
+    recipeId: string;
+  }
 ): Promise<ApiResponse> {
   return send({
-    data: args.data,
+    data,
     method: "POST",
-    url: `/api/recipes/recipe/${args.recipeId}/title/update/`,
+    url: `/api/recipes/recipe/${recipeId}/title/update/`,
   });
 }
 
 export function tagAssociate(
-  args: { recipeId: string; data: { name: string } },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+  }: {
+    data: { name: string };
+    recipeId: string;
+  }
 ): Promise<ApiResponse> {
   return send({
-    data: args.data,
+    data,
     method: "POST",
     responseDataSchema: tagSchema,
-    url: `/api/recipes/recipe/${args.recipeId}/tag/associate/`,
+    url: `/api/recipes/recipe/${recipeId}/tag/associate/`,
   });
 }
 
 export function tagCreate(
-  args: { name: string },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  { data }: { data: { name: string } }
 ): Promise<ApiResponse> {
   return send({
-    data: args,
+    data,
     method: "POST",
     responseDataSchema: z.object({ id: z.number() }),
     url: `/api/recipes/tag/create/`,
@@ -94,20 +104,24 @@ export function tagCreate(
 }
 
 export function tagDissociate(
-  args: { recipeId: string; tagId: string },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  { recipeId, tagId }: { recipeId: string; tagId: string }
 ): Promise<ApiResponse> {
   return send({
-    data: args,
     method: "POST",
-    url: `/api/recipes/recipe/${args.recipeId}/tag/${args.tagId}/dissociate/`,
+    url: `/api/recipes/recipe/${recipeId}/tag/${tagId}/dissociate/`,
   });
 }
 
-export function tagsGet(send: ApiSendFunction): Promise<ApiResponse> {
+export function tagsGet(
+  send: ApiSendFunction,
+  params?: { page?: number }
+): Promise<ApiResponse> {
+  const queryParam = params?.page ? `page=${params?.page}` : "";
+
   return send({
     method: "GET",
     responseDataSchema: z.object({ tags: z.array(tagSchema) }),
-    url: `/api/recipes/tags/`,
+    url: `/api/recipes/tags/${queryParam}`,
   });
 }

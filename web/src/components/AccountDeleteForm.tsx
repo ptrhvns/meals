@@ -48,7 +48,7 @@ export default function AccountDeleteForm() {
           return;
         }
 
-        const response = await accountDestroy(data);
+        const response = await accountDestroy({ data });
         setSubmitting(false);
 
         if (response.isError) {

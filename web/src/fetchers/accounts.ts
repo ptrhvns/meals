@@ -1,10 +1,8 @@
 import { ApiResponse, ApiSendFunction } from "../lib/types";
 
 export function accountDestroy(
-  data: {
-    password: string;
-  },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  { data }: { data: { password: string } }
 ): Promise<ApiResponse> {
   return send({
     data,
@@ -14,12 +12,10 @@ export function accountDestroy(
 }
 
 export function login(
-  data: {
-    password: string;
-    remember_me: boolean;
-    username: string;
-  },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  {
+    data,
+  }: { data: { password: string; remember_me: boolean; username: string } }
 ): Promise<ApiResponse> {
   return send({
     data,
@@ -36,10 +32,8 @@ export function logout(send: ApiSendFunction) {
 }
 
 export function signupConfirmationUpdate(
-  data: {
-    token: string;
-  },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  { data }: { data: { token: string } }
 ): Promise<ApiResponse> {
   return send({
     data,
@@ -49,12 +43,8 @@ export function signupConfirmationUpdate(
 }
 
 export function signupCreate(
-  data: {
-    email: string;
-    password: string;
-    username: string;
-  },
-  send: ApiSendFunction
+  send: ApiSendFunction,
+  { data }: { data: { email: string; password: string; username: string } }
 ): Promise<ApiResponse> {
   return send({
     data,

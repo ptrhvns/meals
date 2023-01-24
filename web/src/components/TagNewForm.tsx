@@ -34,7 +34,7 @@ export default function TagNewForm() {
     <form
       onSubmit={handleSubmit(async (data: FormData) => {
         setSubmitting(true);
-        const response = await tagCreate(data);
+        const response = await tagCreate({ data });
         setSubmitting(false);
 
         if (response.isError) {

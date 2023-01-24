@@ -59,7 +59,7 @@ export default function SignupForm() {
       <form
         onSubmit={handleSubmit(async (data: FormData) => {
           setSubmitting(true);
-          const response = await signupCreate(data);
+          const response = await signupCreate({ data });
           setSubmitting(false);
 
           if (response.isError) {

@@ -11,8 +11,8 @@ import {
   AnyFunction,
   ApiResponse,
   ApiSendParameter,
-  FirstParameter,
   Optional,
+  SecondParameter,
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
@@ -200,12 +200,18 @@ export default function useApi() {
     [logoutAuthn, navigate]
   );
 
+  // XXX What's a better way than the following with* functions.
+
   function withSend<F extends AnyFunction>(fn: F) {
     return (): ReturnType<F> => fn(send);
   }
 
   function withSendAndArgs<F extends AnyFunction>(fn: F) {
-    return (args: FirstParameter<F>): ReturnType<F> => fn(args, send);
+    return (args: SecondParameter<F>): ReturnType<F> => fn(send, args);
+  }
+
+  function withSendAndOptionalArgs<F extends AnyFunction>(fn: F) {
+    return (args?: SecondParameter<F>): ReturnType<F> => fn(send, args);
   }
 
   return {
@@ -222,6 +228,6 @@ export default function useApi() {
     tagAssociate: withSendAndArgs(tagAssociate),
     tagCreate: withSendAndArgs(tagCreate),
     tagDissociate: withSendAndArgs(tagDissociate),
-    tagsGet: withSend(tagsGet),
+    tagsGet: withSendAndOptionalArgs(tagsGet),
   };
 }

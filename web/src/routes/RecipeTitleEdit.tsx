@@ -23,7 +23,7 @@ export default function RecipeTitleEdit() {
   const { recipeId } = useParams() as { recipeId: string };
 
   useEffectOnce(async () => {
-    const response = await recipeGet(recipeId);
+    const response = await recipeGet({ recipeId });
     setLoading(false);
 
     if (response.isError) {

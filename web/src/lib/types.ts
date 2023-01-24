@@ -3,6 +3,7 @@ import { z } from "zod";
 export type AnyFunction = (...args: any[]) => any;
 
 export type FirstParameter<F extends AnyFunction> = Parameters<F>[0];
+export type SecondParameter<F extends AnyFunction> = Parameters<F>[1];
 
 export type Optional<T> = T | undefined | null;
 

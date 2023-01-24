@@ -54,7 +54,7 @@ export default function Recipe() {
   );
 
   useEffectOnce(async () => {
-    const response = await recipeGet(recipeId);
+    const response = await recipeGet({ recipeId });
     setLoading(false);
 
     if (response.isError) {

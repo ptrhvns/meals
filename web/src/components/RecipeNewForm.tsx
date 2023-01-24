@@ -34,7 +34,7 @@ export default function RecipeNewForm() {
     <form
       onSubmit={handleSubmit(async (data: FormData) => {
         setSubmitting(true);
-        const response = await recipeCreate(data);
+        const response = await recipeCreate({ data });
         setSubmitting(false);
 
         if (response.isError) {

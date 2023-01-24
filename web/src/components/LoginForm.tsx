@@ -39,7 +39,7 @@ export default function LoginForm() {
     <form
       onSubmit={handleSubmit(async (data: FormData) => {
         setSubmitting(true);
-        const response = await login(data);
+        const response = await login({ data });
         setSubmitting(false);
 
         if (response.isError) {

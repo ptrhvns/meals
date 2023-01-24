@@ -22,7 +22,7 @@ export default function SignupConfirmation() {
   const { signupConfirmationUpdate } = useApi();
 
   useEffectOnce(async () => {
-    const response = await signupConfirmationUpdate({ token });
+    const response = await signupConfirmationUpdate({ data: { token } });
 
     if (response.isError) {
       setError(

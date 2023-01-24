@@ -117,11 +117,14 @@ export function tagsGet(
   send: ApiSendFunction,
   params?: { page?: number }
 ): Promise<ApiResponse> {
-  const queryParam = params?.page ? `page=${params?.page}` : "";
+  const queryParam = params?.page ? `?page=${params?.page}` : "";
 
   return send({
     method: "GET",
-    responseDataSchema: z.object({ tags: z.array(tagSchema) }),
+    responseDataSchema: z.object({
+      pagination: z.optional(paginationSchema),
+      tags: z.array(tagSchema),
+    }),
     url: `/api/recipes/tags/${queryParam}`,
   });
 }

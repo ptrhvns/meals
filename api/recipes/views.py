@@ -145,8 +145,25 @@ def tag_create(request: Request) -> Response:
 @permission_classes([IsAuthenticated])
 def tags(request: Request) -> Response:
     tags = Tag.objects.filter(user=request.user).order_by("name").all()
-    serializer = TagsResponseSerializer(tags, many=True)
-    return data_response(data={"tags": serializer.data})
+    page = request.query_params.get("page")
+
+    if page is None:
+        serializer = TagsResponseSerializer(tags, many=True)
+        return data_response(data={"tags": serializer.data})
+
+    paginator = Paginator(tags, per_page=10)
+    page = paginator.get_page(page)
+    serializer = TagsResponseSerializer(page.object_list, many=True)
+
+    return data_response(
+        data={
+            "pagination": {
+                "page": page.number,
+                "total": paginator.num_pages,
+            },
+            "tags": serializer.data,
+        }
+    )
 
 
 @api_view(http_method_names=["POST"])

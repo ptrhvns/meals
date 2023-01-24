@@ -1,14 +1,15 @@
 import Alert from "./Alert";
 import Anchor from "./Anchor";
 import classes from "../styles/components/RecipeList.module.scss";
+import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
 import useApi from "../hooks/useApi";
 import { handleApiError } from "../lib/utils";
+import { isEmpty } from "lodash";
 import { PaginationData, RecipeData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useState } from "react";
-import Pagination from "./Pagination";
 
 export default function RecipeList() {
   const [error, setError] = useState<string>();
@@ -44,13 +45,13 @@ export default function RecipeList() {
         </Alert>
       )}
 
-      {!loading && !error && !recipes && (
+      {!loading && !error && isEmpty(recipes) && (
         <Paragraph className={classes.noContentMessage}>
           No recipes have been created yet.
         </Paragraph>
       )}
 
-      {!loading && !error && recipes && (
+      {!loading && !error && recipes && !isEmpty(recipes) && (
         <>
           <Table className={classes.table} striped>
             <thead>

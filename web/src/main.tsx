@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
-      { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboard/:activeTab?", element: <Dashboard /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },

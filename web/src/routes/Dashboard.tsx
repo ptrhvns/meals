@@ -11,8 +11,24 @@ import { buildTitle } from "../lib/utils";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
+import { useEffectOnce } from "../hooks/useEffectOnce";
+import { useNavigate, useParams } from "react-router-dom";
+
+// Used as an "enum" of possible names of the tabs in Dashboard.
+const tabs = {
+  recipes: "recipes",
+  tags: "tags",
+};
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  const { activeTab } = useParams();
+
+  useEffectOnce(() => {
+    if (!activeTab || !Object.keys(tabs).includes(activeTab))
+      navigate("/dashboard/recipes");
+  });
+
   return (
     <RequireAuthn>
       <Helmet>
@@ -26,12 +42,13 @@ export default function Dashboard() {
 
         <TabsPrimitive.Root
           className={classes.tabsRoot}
-          defaultValue="recipeTab"
+          onValueChange={(value) => navigate(`/dashboard/${value}`)}
+          value={activeTab}
         >
           <TabsPrimitive.List className={classes.tabsList}>
             <TabsPrimitive.Trigger
               className={classes.tabsTrigger}
-              value="recipeTab"
+              value={tabs.recipes}
             >
               <div className={classes.tabsTriggerContent}>
                 <div className={classes.tabsTriggerContentInner}>Recipes</div>
@@ -40,7 +57,7 @@ export default function Dashboard() {
 
             <TabsPrimitive.Trigger
               className={classes.tabsTrigger}
-              value="tagsTab"
+              value={tabs.tags}
             >
               <div className={classes.tabsTriggerContent}>
                 <div className={classes.tabsTriggerContentInner}>Tags</div>
@@ -50,7 +67,7 @@ export default function Dashboard() {
 
           <TabsPrimitive.Content
             className={classes.tabsContent}
-            value="recipeTab"
+            value={tabs.recipes}
           >
             <Anchor to="/recipe/new" variant="filled">
               <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
@@ -61,7 +78,7 @@ export default function Dashboard() {
 
           <TabsPrimitive.Content
             className={classes.tabsContent}
-            value="tagsTab"
+            value={tabs.tags}
           >
             <Anchor to="/tag/new" variant="filled">
               <FontAwesomeIcon icon={faCirclePlus} /> Create tag

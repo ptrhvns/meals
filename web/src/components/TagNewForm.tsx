@@ -44,8 +44,7 @@ export default function TagNewForm() {
           });
         }
 
-        // TODO navigate to tags tab of dashboard.
-        navigate(`/dashboard`, { replace: true });
+        navigate(`/dashboard/tags`, { replace: true });
       })}
     >
       {error && (
@@ -76,10 +75,9 @@ export default function TagNewForm() {
           <FontAwesomeIcon icon={faCirclePlus} /> Create tag
         </Button>
 
-        {/* TODO navigate to tags tab of dashboard. */}
         <Button
           disabled={submitting}
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/dashboard/tags")}
           type="button"
         >
           Dismiss

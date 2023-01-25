@@ -13,7 +13,7 @@ import RecipeTitleEdit from "./routes/RecipeTitleEdit";
 import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
-import Tag from "./routes/Tag";
+import TagEdit from "./routes/TagEdit";
 import TagForRecipeNew from "./routes/TagForRecipeNew";
 import TagNew from "./routes/TagNew";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       { path: "settings", element: <Settings /> },
       { path: "signup", element: <Signup /> },
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },
-      { path: "tag/:tagId", element: <Tag /> },
+      { path: "tag/:tagId/edit", element: <TagEdit /> },
       { path: "tag/new", element: <TagNew /> },
     ],
   },

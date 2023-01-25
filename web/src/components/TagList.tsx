@@ -65,7 +65,7 @@ export default function TagList() {
               {tags.map((tag) => (
                 <tr key={tag.id}>
                   <td>
-                    <Anchor to={`/tag/${tag.id}`}>{tag.name}</Anchor>
+                    <Anchor to={`/tag/${tag.id}/edit`}>{tag.name}</Anchor>
                   </td>
                 </tr>
               ))}

@@ -24,7 +24,9 @@ import {
   tagAssociate,
   tagCreate,
   tagDissociate,
+  tagGet,
   tagsGet,
+  tagUpdate,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -200,7 +202,7 @@ export default function useApi() {
     [logoutAuthn, navigate]
   );
 
-  // XXX What's a better way than the following with* functions.
+  // XXX What's might work better than the following with* functions?
 
   function withSend<F extends AnyFunction>(fn: F) {
     return (): ReturnType<F> => fn(send);
@@ -228,6 +230,8 @@ export default function useApi() {
     tagAssociate: withSendAndArgs(tagAssociate),
     tagCreate: withSendAndArgs(tagCreate),
     tagDissociate: withSendAndArgs(tagDissociate),
+    tagGet: withSendAndArgs(tagGet),
     tagsGet: withSendAndOptionalArgs(tagsGet),
+    tagUpdate: withSendAndArgs(tagUpdate),
   };
 }

@@ -39,6 +39,12 @@ class TagCreateRequestSerializer(ModelSerializer):
         fields = ("name",)
 
 
+class TagRequestSerializer(ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ("id", "name")
+
+
 class TagsResponseSerializer(ModelSerializer):
     class Meta:
         model = Tag
@@ -46,6 +52,12 @@ class TagsResponseSerializer(ModelSerializer):
             "id",
             "name",
         )
+
+
+class TagUpdateRequestSerializer(ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ("name",)
 
 
 class RecipeResponseSerializer(ModelSerializer):

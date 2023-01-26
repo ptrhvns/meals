@@ -58,13 +58,7 @@ export function recipeDestroy(
 
 export function recipeTitleUpdate(
   send: ApiSendFunction,
-  {
-    data,
-    recipeId,
-  }: {
-    data: { title: string };
-    recipeId: string;
-  }
+  { data, recipeId }: { data: { title: string }; recipeId: string }
 ): Promise<ApiResponse> {
   return send({
     data,
@@ -113,6 +107,17 @@ export function tagDissociate(
   });
 }
 
+export function tagGet(
+  send: ApiSendFunction,
+  { tagId }: { tagId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: tagSchema,
+    url: `/api/recipes/tag/${tagId}/`,
+  });
+}
+
 export function tagsGet(
   send: ApiSendFunction,
   params?: { page?: number }
@@ -126,5 +131,22 @@ export function tagsGet(
       tags: z.array(tagSchema),
     }),
     url: `/api/recipes/tags/${queryParam}`,
+  });
+}
+
+export function tagUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    tagId,
+  }: {
+    data: { name: string };
+    tagId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/tag/${tagId}/update/`,
   });
 }

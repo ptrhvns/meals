@@ -17,7 +17,9 @@ from recipes.serializers import (
     RecipeTitleUpdateRequestSerializer,
     TagAssociateRequestSerializer,
     TagCreateRequestSerializer,
+    TagRequestSerializer,
     TagsResponseSerializer,
+    TagUpdateRequestSerializer,
 )
 from shared.lib.responses import (
     created_response,
@@ -26,6 +28,7 @@ from shared.lib.responses import (
     invalid_request_data_response,
     no_content_response,
     ok_response,
+    unprocessable_entity_response,
 )
 
 
@@ -88,6 +91,14 @@ def recipes(request: Request) -> Response:
             "recipes": serializer.data,
         }
     )
+
+
+@api_view(http_method_names=["GET"])
+@permission_classes([IsAuthenticated])
+def tag(request: Request, tag_id: int) -> Response:
+    tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
+    serializer = TagRequestSerializer(tag)
+    return data_response(data=serializer.data)
 
 
 @api_view(http_method_names=["POST"])
@@ -172,4 +183,29 @@ def tag_dissociate(request: Request, recipe_id: int, tag_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
     tag = get_object_or_404(Tag, pk=tag_id, recipes=recipe, user=request.user)
     recipe.tags.remove(tag)  # type: ignore[attr-defined]
+    return no_content_response()
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def tag_update(request: Request, tag_id: int) -> Response:
+    tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
+    serializer = TagUpdateRequestSerializer(instance=tag, data=request.data)
+
+    if not serializer.is_valid():
+        return invalid_request_data_response(serializer)
+
+    if tag.name == serializer.validated_data["name"]:
+        return no_content_response()
+
+    # Use this test instead of a validator for a better user experience.
+    if Tag.objects.filter(
+        name=serializer.validated_data["name"], user=request.user
+    ).exists():
+        return unprocessable_entity_response(
+            errors={"name": [_("This name is already taken.")]},
+            message=_("The information you provided could not be saved."),
+        )
+
+    serializer.save()
     return no_content_response()

@@ -12,6 +12,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("recipe/create/", views.recipe_create),
     path("recipes/", views.recipes),
     path("tag/<int:tag_id>/", views.tag),
+    path("tag/<int:tag_id>/destroy/", views.tag_destroy),
     path("tag/<int:tag_id>/update/", views.tag_update),
     path("tag/create/", views.tag_create),
     path("tags/", views.tags),

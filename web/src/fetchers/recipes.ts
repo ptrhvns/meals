@@ -97,6 +97,16 @@ export function tagCreate(
   });
 }
 
+export function tagDestroy(
+  send: ApiSendFunction,
+  { tagId }: { tagId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/tag/${tagId}/destroy/`,
+  });
+}
+
 export function tagDissociate(
   send: ApiSendFunction,
   { recipeId, tagId }: { recipeId: string; tagId: string }

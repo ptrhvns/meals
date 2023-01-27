@@ -188,6 +188,14 @@ def tag_dissociate(request: Request, recipe_id: int, tag_id: int) -> Response:
 
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
+def tag_destroy(request: Request, tag_id: int) -> Response:
+    tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
+    tag.delete()
+    return no_content_response()
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
 def tag_update(request: Request, tag_id: int) -> Response:
     tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
     serializer = TagUpdateRequestSerializer(instance=tag, data=request.data)

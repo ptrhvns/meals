@@ -27,7 +27,7 @@ export default function TagForRecipeDeleteForm({
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { handleSubmit } = useForm();
-  const { tagDissociate } = useApi();
+  const { tagUnlink } = useApi();
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function TagForRecipeDeleteForm({
             onSubmit={handleSubmit(async () => {
               setSubmitting(true);
 
-              const response = await tagDissociate({
+              const response = await tagUnlink({
                 recipeId: recipe.id,
                 tagId: tag.id,
               });

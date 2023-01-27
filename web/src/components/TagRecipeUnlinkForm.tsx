@@ -1,7 +1,7 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import Alert from "./Alert";
 import Button from "./Button";
-import classes from "../styles/components/TagRecipeDissociateForm.module.scss";
+import classes from "../styles/components/TagRecipeUnlinkForm.module.scss";
 import FormActions from "./FormActions";
 import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
@@ -13,21 +13,21 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
-interface TagRecipeDissociateFormProps {
+interface TagRecipeUnlinkFormProps {
   recipe: RecipeData;
   tag: TagData;
 }
 
-export default function TagRecipeDissociateForm({
+export default function TagRecipeUnlinkForm({
   recipe,
   tag,
-}: TagRecipeDissociateFormProps) {
+}: TagRecipeUnlinkFormProps) {
   const [confirming, setConfirming] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
   const { handleSubmit } = useForm();
-  const { tagDissociate } = useApi();
+  const { tagUnlink } = useApi();
 
   return (
     <>
@@ -47,7 +47,7 @@ export default function TagRecipeDissociateForm({
             onSubmit={handleSubmit(async () => {
               setSubmitting(true);
 
-              const response = await tagDissociate({
+              const response = await tagUnlink({
                 recipeId: recipe.id,
                 tagId: tag.id,
               });

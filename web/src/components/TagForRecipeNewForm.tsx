@@ -28,7 +28,7 @@ export default function TagForRecipeNewForm({
   const [submitting, setSubmitting] = useState<boolean>();
   const navigate = useNavigate();
   const { recipeId } = useParams() as { recipeId: string };
-  const { tagAssociate } = useApi();
+  const { tagLink } = useApi();
 
   const {
     clearErrors,
@@ -43,7 +43,7 @@ export default function TagForRecipeNewForm({
     <form
       onSubmit={handleSubmit(async (data: FormData) => {
         setSubmitting(true);
-        const response = await tagAssociate({ recipeId, data });
+        const response = await tagLink({ recipeId, data });
         setSubmitting(false);
 
         if (response.isError) {

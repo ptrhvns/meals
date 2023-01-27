@@ -15,8 +15,8 @@ from recipes.serializers import (
     RecipeResponseSerializer,
     RecipesResponseSerializer,
     RecipeTitleUpdateRequestSerializer,
-    TagAssociateRequestSerializer,
     TagCreateRequestSerializer,
+    TagLinkRequestSerializer,
     TagRecipesResponseSerializer,
     TagRequestSerializer,
     TagsResponseSerializer,
@@ -104,33 +104,6 @@ def tag(request: Request, tag_id: int) -> Response:
 
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
-def tag_associate(request: Request, recipe_id: int) -> Response:
-    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    serializer = TagAssociateRequestSerializer(data=request.data)
-
-    if not serializer.is_valid():
-        return invalid_request_data_response(serializer)
-
-    try:
-        with atomic():
-            tag, created = Tag.objects.get_or_create(
-                defaults={"user": request.user, **serializer.validated_data},
-                name__iexact=serializer.validated_data["name"],
-                user=request.user,
-            )
-
-            if not tag.recipes.contains(recipe):
-                tag.recipes.add(recipe)
-    except Error:
-        return internal_server_error_response(
-            message=_("Your information could not be saved.")
-        )
-
-    return created_response() if created else ok_response()
-
-
-@api_view(http_method_names=["POST"])
-@permission_classes([IsAuthenticated])
 def tag_create(request: Request) -> Response:
     serializer = TagCreateRequestSerializer(data=request.data)
 
@@ -145,6 +118,33 @@ def tag_create(request: Request) -> Response:
                 user=request.user,
             )
         )[0]
+    except Error:
+        return internal_server_error_response(
+            message=_("Your information could not be saved.")
+        )
+
+    return created_response() if created else ok_response()
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def tag_link(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    serializer = TagLinkRequestSerializer(data=request.data)
+
+    if not serializer.is_valid():
+        return invalid_request_data_response(serializer)
+
+    try:
+        with atomic():
+            tag, created = Tag.objects.get_or_create(
+                defaults={"user": request.user, **serializer.validated_data},
+                name__iexact=serializer.validated_data["name"],
+                user=request.user,
+            )
+
+            if not tag.recipes.contains(recipe):
+                tag.recipes.add(recipe)
     except Error:
         return internal_server_error_response(
             message=_("Your information could not be saved.")
@@ -180,15 +180,6 @@ def tags(request: Request) -> Response:
 
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
-def tag_dissociate(request: Request, recipe_id: int, tag_id: int) -> Response:
-    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    tag = get_object_or_404(Tag, pk=tag_id, recipes=recipe, user=request.user)
-    recipe.tags.remove(tag)  # type: ignore[attr-defined]
-    return no_content_response()
-
-
-@api_view(http_method_names=["POST"])
-@permission_classes([IsAuthenticated])
 def tag_destroy(request: Request, tag_id: int) -> Response:
     tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
     tag.delete()
@@ -212,6 +203,15 @@ def tag_recipes(request: Request, tag_id: int) -> Response:
             "recipes": serializer.data,
         }
     )
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def tag_unlink(request: Request, recipe_id: int, tag_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    tag = get_object_or_404(Tag, pk=tag_id, recipes=recipe, user=request.user)
+    recipe.tags.remove(tag)  # type: ignore[attr-defined]
+    return no_content_response()
 
 
 @api_view(http_method_names=["POST"])

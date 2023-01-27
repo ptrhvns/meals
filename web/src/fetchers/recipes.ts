@@ -67,24 +67,6 @@ export function recipeTitleUpdate(
   });
 }
 
-export function tagAssociate(
-  send: ApiSendFunction,
-  {
-    data,
-    recipeId,
-  }: {
-    data: { name: string };
-    recipeId: string;
-  }
-): Promise<ApiResponse> {
-  return send({
-    data,
-    method: "POST",
-    responseDataSchema: tagSchema,
-    url: `/api/recipes/recipe/${recipeId}/tag/associate/`,
-  });
-}
-
 export function tagCreate(
   send: ApiSendFunction,
   { data }: { data: { name: string } }
@@ -107,16 +89,6 @@ export function tagDestroy(
   });
 }
 
-export function tagDissociate(
-  send: ApiSendFunction,
-  { recipeId, tagId }: { recipeId: string; tagId: string }
-): Promise<ApiResponse> {
-  return send({
-    method: "POST",
-    url: `/api/recipes/recipe/${recipeId}/tag/${tagId}/dissociate/`,
-  });
-}
-
 export function tagGet(
   send: ApiSendFunction,
   { tagId }: { tagId: string }
@@ -125,6 +97,24 @@ export function tagGet(
     method: "GET",
     responseDataSchema: tagSchema,
     url: `/api/recipes/tag/${tagId}/`,
+  });
+}
+
+export function tagLink(
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+  }: {
+    data: { name: string };
+    recipeId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    responseDataSchema: tagSchema,
+    url: `/api/recipes/recipe/${recipeId}/tag/link/`,
   });
 }
 
@@ -157,6 +147,16 @@ export function tagRecipesGet(
       recipes: z.array(recipeSchema),
     }),
     url: `/api/recipes/tag/${params.tagId}/recipes/?page=${page}`,
+  });
+}
+
+export function tagUnlink(
+  send: ApiSendFunction,
+  { recipeId, tagId }: { recipeId: string; tagId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/tag/${tagId}/unlink/`,
   });
 }
 

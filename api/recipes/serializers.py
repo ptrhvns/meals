@@ -27,13 +27,13 @@ class RecipeTitleUpdateRequestSerializer(ModelSerializer):
         fields = ("title",)
 
 
-class TagAssociateRequestSerializer(ModelSerializer):
+class TagCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("name",)
 
 
-class TagCreateRequestSerializer(ModelSerializer):
+class TagLinkRequestSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("name",)

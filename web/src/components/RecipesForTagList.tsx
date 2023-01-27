@@ -5,7 +5,7 @@ import Heading from "./Heading";
 import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
-import TagRecipeDissociateForm from "./TagRecipeDissociateForm";
+import TagRecipeUnlinkForm from "./TagRecipeUnlinkForm";
 import useApi from "../hooks/useApi";
 import { handleApiError } from "../lib/utils";
 import { isEmpty } from "lodash";
@@ -81,7 +81,7 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
                   </td>
 
                   <td>
-                    <TagRecipeDissociateForm recipe={recipe} tag={tag} />
+                    <TagRecipeUnlinkForm recipe={recipe} tag={tag} />
                   </td>
                 </tr>
               ))}

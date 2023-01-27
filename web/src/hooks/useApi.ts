@@ -21,13 +21,13 @@ import {
   recipeGet,
   recipesGet,
   recipeTitleUpdate,
-  tagAssociate,
   tagCreate,
   tagDestroy,
-  tagDissociate,
   tagGet,
+  tagLink,
   tagRecipesGet,
   tagsGet,
+  tagUnlink,
   tagUpdate,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
@@ -229,13 +229,13 @@ export default function useApi() {
     recipeTitleUpdate: withSendAndArgs(recipeTitleUpdate),
     signupConfirmationUpdate: withSendAndArgs(signupConfirmationUpdate),
     signupCreate: withSendAndArgs(signupCreate),
-    tagAssociate: withSendAndArgs(tagAssociate),
     tagCreate: withSendAndArgs(tagCreate),
     tagDestroy: withSendAndArgs(tagDestroy),
-    tagDissociate: withSendAndArgs(tagDissociate),
     tagGet: withSendAndArgs(tagGet),
+    tagLink: withSendAndArgs(tagLink),
     tagRecipesGet: withSendAndArgs(tagRecipesGet),
     tagsGet: withSendAndOptionalArgs(tagsGet),
+    tagUnlink: withSendAndArgs(tagUnlink),
     tagUpdate: withSendAndArgs(tagUpdate),
   };
 }

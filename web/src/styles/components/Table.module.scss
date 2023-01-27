@@ -5,8 +5,9 @@
 
   tfoot {
     tr {
+      border-top: 1px solid var(--slate7);
+
       th {
-        border-top: 1px solid var(--slate7);
         font-weight: bold;
         padding: var(--spacing10);
         text-align: left;
@@ -20,8 +21,9 @@
 
   thead {
     tr {
+      border-bottom: 1px solid var(--slate7);
+
       th {
-        border-bottom: 1px solid var(--slate7);
         font-weight: bold;
         padding: var(--spacing10);
         text-align: left;
@@ -35,17 +37,18 @@
 
   tbody {
     tr {
+      border-block: 1px solid var(--slate7);
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
       td {
-        border-block: 1px solid var(--slate7);
         padding: var(--spacing10);
         text-align: left;
 
         &:first-of-type {
           padding-left: var(--spacing0);
-        }
-
-        &:last-of-type {
-          border-bottom: none;
         }
       }
     }
@@ -85,7 +88,7 @@
         }
 
         &:hover {
-          background-color: var(--slate4);
+          background-color: var(--slate5);
         }
       }
     }

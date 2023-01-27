@@ -5,6 +5,7 @@ import Heading from "./Heading";
 import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
+import TagRecipeDissociateForm from "./TagRecipeDissociateForm";
 import useApi from "../hooks/useApi";
 import { handleApiError } from "../lib/utils";
 import { isEmpty } from "lodash";
@@ -40,9 +41,11 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
 
   useEffectOnce(handleRecipesGet);
 
+  if (!tag) return null;
+
   return (
     <>
-      <Heading size={2}>Related Recipes</Heading>
+      <Heading size={2}>Linked Recipes</Heading>
 
       {!loading && error && (
         <Alert
@@ -66,6 +69,7 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
             <thead>
               <tr>
                 <th>Title</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -74,6 +78,10 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
                 <tr key={recipe.id}>
                   <td>
                     <Anchor to={`/recipe/${recipe.id}`}>{recipe.title}</Anchor>
+                  </td>
+
+                  <td>
+                    <TagRecipeDissociateForm recipe={recipe} tag={tag} />
                   </td>
                 </tr>
               ))}

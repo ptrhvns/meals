@@ -30,7 +30,9 @@ export default function Recipe() {
   const [{ recipe }, dispatch] = useReducer(
     (state: ReducerState, action: RecipeReducerAction): ReducerState => {
       switch (action.type) {
-        case "deleteTag":
+        case "setRecipe":
+          return { ...state, recipe: action.payload };
+        case "unlinkTag":
           if (state.recipe) {
             return {
               ...state,
@@ -44,8 +46,6 @@ export default function Recipe() {
           }
 
           return state;
-        case "setRecipe":
-          return { ...state, recipe: action.payload };
         default:
           return state;
       }

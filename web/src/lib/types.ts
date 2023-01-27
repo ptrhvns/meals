@@ -64,5 +64,5 @@ export interface RecipeData {
 }
 
 export type RecipeReducerAction =
-  | { type: "deleteTag"; payload: string }
-  | { type: "setRecipe"; payload: RecipeData };
+  | { type: "setRecipe"; payload: RecipeData }
+  | { type: "unlinkTag"; payload: string };

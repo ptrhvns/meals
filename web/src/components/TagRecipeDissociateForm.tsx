@@ -1,31 +1,31 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import Alert from "./Alert";
 import Button from "./Button";
-import classes from "../styles/components/TagForRecipeDeleteForm.module.scss";
+import classes from "../styles/components/TagRecipeDissociateForm.module.scss";
 import FormActions from "./FormActions";
 import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
 import { Dialog, DialogContent } from "./Dialog";
-import { Dispatch, useState } from "react";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { RecipeData, RecipeReducerAction, TagData } from "../lib/types";
+import { RecipeData, TagData } from "../lib/types";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
-interface TagForRecipeDeleteFormProps {
-  dispatch: Dispatch<RecipeReducerAction>;
+interface TagRecipeDissociateFormProps {
   recipe: RecipeData;
   tag: TagData;
 }
 
-export default function TagForRecipeDeleteForm({
-  dispatch,
+export default function TagRecipeDissociateForm({
   recipe,
   tag,
-}: TagForRecipeDeleteFormProps) {
+}: TagRecipeDissociateFormProps) {
   const [confirming, setConfirming] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const navigate = useNavigate();
   const { handleSubmit } = useForm();
   const { tagDissociate } = useApi();
 
@@ -40,12 +40,7 @@ export default function TagForRecipeDeleteForm({
       <Dialog open={confirming}>
         <DialogContent onDismiss={() => setConfirming(false)}>
           <Paragraph>
-            <strong>Are you sure you want to unlink this tag?</strong>
-          </Paragraph>
-
-          <Paragraph>
-            It will only be unlinked from this recipe. To unlink it from other
-            recipes, or to delete it entirely, visit the tag.
+            <strong>Are you sure you want to unlink this recipe?</strong>
           </Paragraph>
 
           <form
@@ -65,8 +60,14 @@ export default function TagForRecipeDeleteForm({
                 return;
               }
 
-              dispatch({ type: "unlinkTag", payload: tag.id });
               setConfirming(false);
+
+              // XXX The following "full reload" navigation is suboptimal for
+              // performance and user experience. However, it's an easy way to
+              // ensure the recipe list state, including pagination, is correct.
+              // Maybe we can improve things in the future with more
+              // sophisticated state management in the ancestor components.
+              navigate(0);
             })}
           >
             <FormActions>
@@ -76,7 +77,7 @@ export default function TagForRecipeDeleteForm({
                 variant="filled"
                 type="submit"
               >
-                Unlink
+                <FontAwesomeIcon icon={faCircleXmark} /> Unlink
               </Button>
 
               <Button
@@ -92,7 +93,6 @@ export default function TagForRecipeDeleteForm({
       </Dialog>
 
       <Button
-        className={classes.button}
         disabled={submitting}
         onClick={() => setConfirming(true)}
         title="Unlink"
@@ -100,7 +100,10 @@ export default function TagForRecipeDeleteForm({
         variant="unstyled"
       >
         <AccessibleIcon.Root label="Unlink">
-          <FontAwesomeIcon icon={faCircleXmark} />
+          <FontAwesomeIcon
+            className={classes.unlinkIcon}
+            icon={faCircleXmark}
+          />
         </AccessibleIcon.Root>
       </Button>
     </>

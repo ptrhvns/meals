@@ -31,7 +31,7 @@ export default function Tags({ dispatch, recipe }: TagsProps) {
         <div className={classes.tags}>
           {recipe.tags.map((tag) => (
             <span className={classes.tag} key={tag.id}>
-              {tag.name}
+              <Anchor to={`/tag/${tag.id}/edit`}>{tag.name}</Anchor>
               <span className={classes.tagFormWrapper}>
                 <TagForRecipeDeleteForm
                   dispatch={dispatch}

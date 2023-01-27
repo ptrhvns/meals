@@ -2,7 +2,7 @@ import Anchor from "./Anchor";
 import classes from "../styles/components/Tags.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
-import TagForRecipeDeleteForm from "./TagForRecipeDeleteForm";
+import TagForRecipeUnlinkForm from "./TagForRecipeUnlinkForm";
 import { Dispatch } from "react";
 import { isEmpty } from "lodash";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
@@ -33,7 +33,7 @@ export default function Tags({ dispatch, recipe }: TagsProps) {
             <span className={classes.tag} key={tag.id}>
               <Anchor to={`/tag/${tag.id}/edit`}>{tag.name}</Anchor>
               <span className={classes.tagFormWrapper}>
-                <TagForRecipeDeleteForm
+                <TagForRecipeUnlinkForm
                   dispatch={dispatch}
                   recipe={recipe}
                   tag={tag}

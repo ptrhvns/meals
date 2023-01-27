@@ -1,7 +1,7 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import Alert from "./Alert";
 import Button from "./Button";
-import classes from "../styles/components/TagForRecipeDeleteForm.module.scss";
+import classes from "../styles/components/TagForRecipeUnlinkForm.module.scss";
 import FormActions from "./FormActions";
 import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
@@ -12,17 +12,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RecipeData, RecipeReducerAction, TagData } from "../lib/types";
 import { useForm } from "react-hook-form";
 
-interface TagForRecipeDeleteFormProps {
+interface TagForRecipeUnlinkFormProps {
   dispatch: Dispatch<RecipeReducerAction>;
   recipe: RecipeData;
   tag: TagData;
 }
 
-export default function TagForRecipeDeleteForm({
+export default function TagForRecipeUnlinkForm({
   dispatch,
   recipe,
   tag,
-}: TagForRecipeDeleteFormProps) {
+}: TagForRecipeUnlinkFormProps) {
   const [confirming, setConfirming] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);

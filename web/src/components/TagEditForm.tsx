@@ -45,7 +45,8 @@ export default function TagEditForm({ tag }: TagEditFormProps) {
       <Dialog open={confirmingDelete}>
         <DialogContent onDismiss={() => setConfirmingDelete(false)}>
           <Paragraph>
-            Are you sure you want to delete this tag from all recipes?
+            Are you sure you want to delete this tag, and unlink it from all
+            recipes?
           </Paragraph>
 
           <form

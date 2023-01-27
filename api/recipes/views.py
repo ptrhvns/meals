@@ -17,6 +17,7 @@ from recipes.serializers import (
     RecipeTitleUpdateRequestSerializer,
     TagAssociateRequestSerializer,
     TagCreateRequestSerializer,
+    TagRecipesResponseSerializer,
     TagRequestSerializer,
     TagsResponseSerializer,
     TagUpdateRequestSerializer,
@@ -192,6 +193,25 @@ def tag_destroy(request: Request, tag_id: int) -> Response:
     tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
     tag.delete()
     return no_content_response()
+
+
+@api_view(http_method_names=["GET"])
+@permission_classes([IsAuthenticated])
+def tag_recipes(request: Request, tag_id: int) -> Response:
+    tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
+    paginator = Paginator(tag.recipes.order_by("title").all(), per_page=10)
+    page = paginator.get_page(request.query_params.get("page", 1))
+    serializer = TagRecipesResponseSerializer(page.object_list, many=True)
+
+    return data_response(
+        data={
+            "pagination": {
+                "page": page.number,
+                "total": paginator.num_pages,
+            },
+            "recipes": serializer.data,
+        }
+    )
 
 
 @api_view(http_method_names=["POST"])

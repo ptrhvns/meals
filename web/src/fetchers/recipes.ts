@@ -144,6 +144,22 @@ export function tagsGet(
   });
 }
 
+export function tagRecipesGet(
+  send: ApiSendFunction,
+  params: { page?: number; tagId: string }
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(params.page ?? 1);
+
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/recipes/tag/${params.tagId}/recipes/?page=${page}`,
+  });
+}
+
 export function tagUpdate(
   send: ApiSendFunction,
   {

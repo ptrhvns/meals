@@ -3,8 +3,10 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/TagEdit.module.scss";
 import Heading from "../components/Heading";
+import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
+import RecipesForTagList from "../components/RecipesForTagList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagEditForm from "../components/TagEditForm";
 import useApi from "../hooks/useApi";
@@ -56,7 +58,16 @@ export default function TagEdit() {
           </Alert>
         )}
 
-        {!loading && !error && <TagEditForm tag={tag} />}
+        {!loading && !error && (
+          <>
+            <TagEditForm tag={tag} />
+
+            <div className={classes.recipesWrapper}>
+              <HorizontalRule />
+              <RecipesForTagList tag={tag} />
+            </div>
+          </>
+        )}
       </PageLayout>
     </RequireAuthn>
   );

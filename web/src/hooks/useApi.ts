@@ -26,6 +26,7 @@ import {
   tagDestroy,
   tagDissociate,
   tagGet,
+  tagRecipesGet,
   tagsGet,
   tagUpdate,
 } from "../fetchers/recipes";
@@ -233,6 +234,7 @@ export default function useApi() {
     tagDestroy: withSendAndArgs(tagDestroy),
     tagDissociate: withSendAndArgs(tagDissociate),
     tagGet: withSendAndArgs(tagGet),
+    tagRecipesGet: withSendAndArgs(tagRecipesGet),
     tagsGet: withSendAndOptionalArgs(tagsGet),
     tagUpdate: withSendAndArgs(tagUpdate),
   };

@@ -1,3 +1,4 @@
+import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import Button from "./Button";
 import classes from "../styles/components/Dialog.module.scss";
@@ -29,13 +30,14 @@ export const DialogContent = forwardRef<DialogContentRef, DialogContentProps>(
         {onDismiss && (
           <DialogPrimitive.Close asChild>
             <Button
-              aria-label="Dismiss"
               className={classes.closeButton}
               onClick={onDismiss}
               title="Dismiss"
               variant="unstyled"
             >
-              <FontAwesomeIcon icon={faTimes} />
+              <AccessibleIcon.Root label="Dismiss">
+                <FontAwesomeIcon icon={faTimes} />
+              </AccessibleIcon.Root>
             </Button>
           </DialogPrimitive.Close>
         )}

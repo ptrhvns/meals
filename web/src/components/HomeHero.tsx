@@ -4,8 +4,6 @@ import classes from "../styles/components/HomeHero.module.scss";
 import Heading from "./Heading";
 import Hero from "./Hero";
 import Paragraph from "./Paragraph";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function HomeHero() {
   return (
@@ -25,7 +23,7 @@ export default function HomeHero() {
         to="/signup"
         variant="filled"
       >
-        <FontAwesomeIcon icon={faUserPlus} /> Sign up
+        Sign up
       </Anchor>
     </Hero>
   );

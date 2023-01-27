@@ -6,8 +6,6 @@ import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -72,7 +70,7 @@ export default function RecipeNewForm() {
           type="submit"
           variant="filled"
         >
-          <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
+          Create
         </Button>
 
         <Button

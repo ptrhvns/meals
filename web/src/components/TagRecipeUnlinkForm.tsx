@@ -77,7 +77,7 @@ export default function TagRecipeUnlinkForm({
                 variant="filled"
                 type="submit"
               >
-                <FontAwesomeIcon icon={faCircleXmark} /> Unlink
+                Unlink
               </Button>
 
               <Button

@@ -8,8 +8,6 @@ import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
 import { Dialog, DialogContent, DialogTitle } from "./Dialog";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -123,7 +121,7 @@ export default function SignupForm() {
             type="submit"
             variant="filled"
           >
-            <FontAwesomeIcon icon={faUserPlus} /> Sign up
+            Sign up
           </Button>
         </FormActions>
       </form>

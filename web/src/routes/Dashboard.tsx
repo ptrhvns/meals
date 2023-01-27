@@ -8,8 +8,6 @@ import RecipeList from "../components/RecipeList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagList from "../components/TagList";
 import { buildTitle } from "../lib/utils";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useNavigate, useParams } from "react-router-dom";
@@ -70,7 +68,7 @@ export default function Dashboard() {
             value={tabs.recipes}
           >
             <Anchor to="/recipe/new" variant="filled">
-              <FontAwesomeIcon icon={faCirclePlus} /> Create recipe
+              Create recipe
             </Anchor>
 
             <RecipeList />
@@ -81,7 +79,7 @@ export default function Dashboard() {
             value={tabs.tags}
           >
             <Anchor to="/tag/new" variant="filled">
-              <FontAwesomeIcon icon={faCirclePlus} /> Create tag
+              Create tag
             </Anchor>
 
             <TagList />

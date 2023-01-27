@@ -8,8 +8,6 @@ import LabelDiv from "./LabelDiv";
 import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
 import { Dialog, DialogContent } from "./Dialog";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleApiError } from "../lib/utils";
 import { TagData } from "../lib/types";
 import { useForm } from "react-hook-form";
@@ -130,7 +128,7 @@ export default function TagEditForm({ tag }: TagEditFormProps) {
             type="submit"
             variant="filled"
           >
-            <FontAwesomeIcon icon={faPenToSquare} /> Update
+            Update
           </Button>
 
           <Button

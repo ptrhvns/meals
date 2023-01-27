@@ -60,7 +60,7 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
                 variant="filled"
                 type="submit"
               >
-                Delete recipe
+                Delete
               </Button>
 
               <Button
@@ -82,7 +82,7 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
         type="button"
         variant="filled"
       >
-        Delete recipe
+        Delete
       </Button>
     </>
   );

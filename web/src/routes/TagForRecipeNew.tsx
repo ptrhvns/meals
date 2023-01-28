@@ -43,7 +43,7 @@ export default function TagForRecipeNew() {
 
       <Navbar />
 
-      <PageLayout containerClassName={classes.pageLayout}>
+      <PageLayout variant="narrow">
         <Breadcrumbs>
           <Anchor to="/dashboard">Dashboard</Anchor>
           <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>

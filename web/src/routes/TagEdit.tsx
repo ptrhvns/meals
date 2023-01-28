@@ -45,7 +45,7 @@ export default function TagEdit() {
 
       <Navbar />
 
-      <PageLayout containerClassName={classes.pageLayout}>
+      <PageLayout variant="narrow">
         <Breadcrumbs>
           <Anchor to="/dashboard/tags">Dashboard</Anchor>
           Edit Tag

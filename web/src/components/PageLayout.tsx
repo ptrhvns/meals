@@ -7,13 +7,19 @@ import { ReactNode } from "react";
 interface PageLayoutProps {
   children: ReactNode;
   containerClassName?: string;
+  variant?: "narrow" | "normal";
 }
 
 export default function PageLayout({
   children,
   containerClassName,
+  variant = "normal",
 }: PageLayoutProps) {
-  containerClassName = joinClassNames(classes.content, containerClassName);
+  containerClassName = joinClassNames(
+    classes.content,
+    classes[variant],
+    containerClassName
+  );
 
   return (
     <Viewport className={classes.viewport}>

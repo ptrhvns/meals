@@ -1,6 +1,5 @@
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
-import classes from "../styles/routes/TagNew.module.scss";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
@@ -18,7 +17,7 @@ export default function TagNew() {
 
       <Navbar />
 
-      <PageLayout containerClassName={classes.pageLayout}>
+      <PageLayout variant="narrow">
         <Breadcrumbs>
           <Anchor to="/dashboard">Dashboard</Anchor>
           Create Tag

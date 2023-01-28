@@ -1,6 +1,5 @@
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
-import classes from "../styles/routes/RecipeNew.module.scss";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
@@ -19,7 +18,7 @@ export default function RecipeNew() {
 
       <Navbar />
 
-      <PageLayout containerClassName={classes.pageLayout}>
+      <PageLayout variant="narrow">
         <Breadcrumbs>
           <Anchor to="/dashboard">Dashboard</Anchor>
           Create Recipe

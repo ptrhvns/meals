@@ -1,7 +1,6 @@
 import Alert from "./Alert";
 import Anchor from "./Anchor";
 import classes from "../styles/components/RecipesForTagList.module.scss";
-import Heading from "./Heading";
 import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
@@ -45,8 +44,6 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
 
   return (
     <>
-      <Heading size={2}>Linked Recipes</Heading>
-
       {!loading && error && (
         <Alert
           alertClassName={classes.alert}

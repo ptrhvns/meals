@@ -6,6 +6,7 @@ import Heading from "../components/Heading";
 import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
+import Paragraph from "../components/Paragraph";
 import RecipesForTagList from "../components/RecipesForTagList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagEditForm from "../components/TagEditForm";
@@ -62,12 +63,18 @@ export default function TagEdit() {
           <>
             <TagEditForm tag={tag} />
 
-            <div className={classes.recipesWrapper}>
-              <HorizontalRule />
-              <RecipesForTagList tag={tag} />
-            </div>
+            <HorizontalRule className={classes.horizontalRule} />
+
+            <Heading size={2}>Linked Recipes</Heading>
+            <RecipesForTagList tag={tag} />
           </>
         )}
+
+        <HorizontalRule className={classes.horizontalRule} />
+
+        <Paragraph>
+          <Anchor to="/dashboard/recipes">Manage all recipes</Anchor>
+        </Paragraph>
       </PageLayout>
     </RequireAuthn>
   );

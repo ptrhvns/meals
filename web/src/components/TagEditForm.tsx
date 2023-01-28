@@ -136,7 +136,6 @@ export default function TagEditForm({ tag }: TagEditFormProps) {
             disabled={submitting}
             onClick={() => setConfirmingDelete(true)}
             type="button"
-            variant="filled"
           >
             Delete
           </Button>

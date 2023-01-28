@@ -57,8 +57,8 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
               <Button
                 color="red"
                 disabled={submitting}
-                variant="filled"
                 type="submit"
+                variant="filled"
               >
                 Delete
               </Button>
@@ -80,7 +80,6 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
         disabled={submitting}
         onClick={() => setConfirming(true)}
         type="button"
-        variant="filled"
       >
         Delete
       </Button>

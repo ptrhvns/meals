@@ -82,7 +82,6 @@ export default function AccountDeleteForm() {
           color="red"
           disabled={submitting}
           type="submit"
-          variant="filled"
         >
           Delete account
         </Button>

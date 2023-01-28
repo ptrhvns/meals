@@ -24,7 +24,7 @@ export default function Signup() {
 
         <SignupForm />
 
-        <HorizontalRule className={classes.hrelement} />
+        <HorizontalRule className={classes.horizontalRule} />
 
         <Paragraph>
           Already have an account? <Anchor to="/login">Log in</Anchor>

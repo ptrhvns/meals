@@ -3,8 +3,10 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/TagForRecipeNew.module.scss";
 import Heading from "../components/Heading";
+import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
 import PageLayout from "../components/PageLayout";
+import Paragraph from "../components/Paragraph";
 import RequireAuthn from "../components/RequireAuthn";
 import TagForRecipeNewForm from "../components/TagForRecipeNewForm";
 import useApi from "../hooks/useApi";
@@ -57,6 +59,12 @@ export default function TagForRecipeNew() {
         )}
 
         {!loading && !error && <TagForRecipeNewForm tags={tags} />}
+
+        <HorizontalRule className={classes.horizontalRule} />
+
+        <Paragraph>
+          <Anchor to="/dashboard/tags">Manage all tags</Anchor>
+        </Paragraph>
       </PageLayout>
     </RequireAuthn>
   );

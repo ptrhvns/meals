@@ -24,6 +24,12 @@ API server:
 - Python
 - Redis
 
+# Testing
+
+For this project, I wanted to try an experiment where I rely on static typing,
+linting, and so on, but don't do any automated testing to see how far I get. If
+the pain get to be too much, then I might change my mind.
+
 ## Setting Up a Development Environment
 
 The following assumes the use of a Linux development environment (tested on

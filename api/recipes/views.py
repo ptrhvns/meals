@@ -157,14 +157,14 @@ def tag_link(request: Request, recipe_id: int) -> Response:
 @permission_classes([IsAuthenticated])
 def tags(request: Request) -> Response:
     tags = Tag.objects.filter(user=request.user).order_by("name").all()
-    page = request.query_params.get("page")
+    page_num = request.query_params.get("page")
 
-    if page is None:
+    if page_num is None:
         serializer = TagsResponseSerializer(tags, many=True)
         return data_response(data={"tags": serializer.data})
 
     paginator = Paginator(tags, per_page=10)
-    page = paginator.get_page(page)
+    page = paginator.get_page(page_num)
     serializer = TagsResponseSerializer(page.object_list, many=True)
 
     return data_response(

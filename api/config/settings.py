@@ -210,3 +210,7 @@ if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 BASE_CLIENT_URI = env("BASE_CLIENT_URI")
+
+if not DEBUG:
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SECURE = True

@@ -151,6 +151,15 @@ Ubuntu 20.04).
 
 ## Updating Development Dependencies
 
+- Identify outdated web packages, and update them:
+
+  ```sh
+  cd web
+  npm outdated
+  $EDITOR package.json # Update package version specifications
+  npm update --save
+  ```
+
 - Identify outdated API packages, and update them:
 
   ```sh

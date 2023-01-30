@@ -9,13 +9,16 @@ This is a website for managing meals (e.g. recipes, menus, shopping lists, etc.)
 Web client:
 
 - FontAwesome
+- Radix UI
 - React
+- Sass
 - TypeScript
 
 API server:
 
 - Celery
 - Django
+- Django REST framework
 - mypy
 - PostgreSQL
 - Python
@@ -23,30 +26,8 @@ API server:
 
 ## Setting Up a Development Environment
 
-The following assumes the use of a Linux (Ubuntu 20.04) development environment.
-
-- Install programming language version managers (see external instructions):
-
-  - [pyenv](https://github.com/pyenv/pyenv)
-  - [nodenv](https://github.com/nodenv/nodenv)
-
-- Install Python:
-
-  ```sh
-  cd api
-  PYTHON_VERSON=$(awk -F/ '{print $1}' .python-version)
-  pyenv install $PYTHON_VERSION
-  ```
-
-- Install [Poetry](https://python-poetry.org) for Python dependency management.
-
-- Install Node.js:
-
-  ```sh
-  cd web
-  NODE_VERSION=$(cat .node-version)
-  nodenv install $NODE_VERSION
-  ```
+The following assumes the use of a Linux development environment (tested on
+Ubuntu 20.04).
 
 - Install [PostgreSQL](https://www.postgresql.org/) (tested on version 12.8):
 
@@ -100,13 +81,44 @@ The following assumes the use of a Linux (Ubuntu 20.04) development environment.
   sudo service redis-server restart
   ```
 
-- Install packages:
+- Install programming language version managers:
+
+  - [pyenv](https://github.com/pyenv/pyenv)
+  - [nodenv](https://github.com/nodenv/nodenv)
+
+- Install Python:
 
   ```sh
   cd api
-  poetry install
+  PYTHON_VERSON=$(awk -F/ '{print $1}' .python-version)
+  pyenv install $PYTHON_VERSION
+  pyenv shell $PYTHON_VERSION
+  ```
 
-  cd ../web
+- Install API packages:
+
+  ```sh
+  cd api
+  python -m venv venv
+  source venv/bin/activate
+  python -m pip install --upgrade pip
+  python -m pip install -r requirements.txt -r requirements-dev.txt
+  python -m pip check # Ensure no broken dependencies
+  ```
+
+- Install Node.js:
+
+  ```sh
+  cd web
+  NODE_VERSION=$(cat .node-version)
+  nodenv install $NODE_VERSION
+  nodenv shell $NODE_VERSION
+  ```
+
+- Install web packages:
+
+  ```sh
+  cd web
   npm install
   ```
 
@@ -117,7 +129,7 @@ The following assumes the use of a Linux (Ubuntu 20.04) development environment.
   cp config/.env.example config/.env
 
   # Generate a SECRET_KEY for use below.
-  poetry run ./manage.py generate_secret_key
+  python manage.py generate_secret_key
 
   # Edit config file, and put in valid values.
   $EDITOR config/.env
@@ -127,14 +139,43 @@ The following assumes the use of a Linux (Ubuntu 20.04) development environment.
 
   ```sh
   cd api
-  poetry run ./manage.py migrate
+  python manage.py migrate
   ```
 
 - Create Django superuser for access to the admin site:
 
   ```sh
   cd api
-  poetry run ./manage.py createsuperuser
+  python manage.py createsuperuser
+  ```
+
+## Updating Development Dependencies
+
+- Identify outdated API packages, and update them:
+
+  ```sh
+  cd api
+  python -m pip list --outdated
+  $EDITOR pyproject.toml # Update package version specifications
+
+  python -m piptools compile \
+    --allow-unsafe \
+    --generate-hashes \
+    --output-file requirements.txt \
+    --resolver=backtracking \
+    --upgrade \
+    pyproject.toml
+  
+  python -m piptools compile \
+    --allow-unsafe \
+    --extra dev \
+    --generate-hashes \
+    --output-file requirements-dev.txt \
+    --resolver=backtracking \
+    --upgrade \
+    pyproject.toml
+
+  python -m piptools sync requirements.txt requirements-dev.txt
   ```
 
 ## Running Development Processes
@@ -143,14 +184,13 @@ The following assumes the use of a Linux (Ubuntu 20.04) development environment.
 
   ```sh
   cd api
-  poetry run ./manage.py runserver
+  python ./manage.py runserver
   ```
 
-- Start Celery (runs background jobs):
+- Start Celery (background jobs):
 
   ```sh
   cd api
-  source .venv/bin/activate
   watchmedo auto-restart --directory=./ -p '*tasks*.py' -R -- celery -A config worker -l INFO
   ```
 

@@ -39,9 +39,7 @@ export default function TagRecipeUnlinkForm({
 
       <Dialog open={confirming}>
         <DialogContent onDismiss={() => setConfirming(false)}>
-          <Paragraph>
-            <strong>Are you sure you want to unlink this recipe?</strong>
-          </Paragraph>
+          <Paragraph>Are you sure you want to unlink this recipe?</Paragraph>
 
           <form
             onSubmit={handleSubmit(async () => {

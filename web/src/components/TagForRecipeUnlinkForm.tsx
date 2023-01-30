@@ -39,9 +39,7 @@ export default function TagForRecipeUnlinkForm({
 
       <Dialog open={confirming}>
         <DialogContent onDismiss={() => setConfirming(false)}>
-          <Paragraph>
-            <strong>Are you sure you want to unlink this tag?</strong>
-          </Paragraph>
+          <Paragraph>Are you sure you want to unlink this tag?</Paragraph>
 
           <Paragraph>
             It will only be unlinked from this recipe. To unlink it from other

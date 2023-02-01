@@ -17,6 +17,7 @@ import { RecipeData, RecipeReducerAction } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useReducer, useState } from "react";
+import Times from "../components/Times";
 
 interface ReducerState {
   recipe?: RecipeData;
@@ -102,6 +103,10 @@ export default function Recipe() {
 
             <RecipeSection containerClassName={classes.recipeSection}>
               <Rating recipe={recipe} />
+            </RecipeSection>
+
+            <RecipeSection containerClassName={classes.recipeSection}>
+              <Times recipe={recipe} />
             </RecipeSection>
 
             <RecipeSection

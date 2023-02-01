@@ -4,6 +4,9 @@ from django.urls.resolvers import URLPattern, URLResolver
 from recipes import views
 
 urlpatterns: list[URLPattern | URLResolver] = [
+    path("rating/<int:recipe_id>/", views.rating),
+    path("rating/<int:recipe_id>/destroy/", views.rating_destroy),
+    path("rating/<int:recipe_id>/update/", views.rating_update),
     path("recipe/<int:recipe_id>/", views.recipe),
     path("recipe/<int:recipe_id>/destroy/", views.recipe_destroy),
     path("recipe/<int:recipe_id>/tag/<int:tag_id>/unlink/", views.tag_unlink),

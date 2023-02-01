@@ -1,4 +1,5 @@
 import "./styles/main.module.scss";
+import "@smastrom/react-rating/style.css";
 import App from "./routes/App";
 import AuthnProvider from "./providers/AuthnProvider";
 import Dashboard from "./routes/Dashboard";
@@ -6,6 +7,7 @@ import ErrorPage from "./components/ErrorPage";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import NotFound from "./routes/NotFound";
+import RatingEdit from "./routes/RatingEdit";
 import React from "react";
 import Recipe from "./routes/Recipe";
 import RecipeNew from "./routes/RecipeNew";
@@ -31,6 +33,7 @@ const router = createBrowserRouter([
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
+      { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },
       { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
       { path: "recipe/new", element: <RecipeNew /> },

@@ -7,6 +7,38 @@ import {
 } from "../lib/types";
 import { z } from "zod";
 
+export function ratingDestroy(
+  send: ApiSendFunction,
+  { recipeId }: { recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/rating/${recipeId}/destroy/`,
+  });
+}
+
+export function ratingGet(
+  send: ApiSendFunction,
+  { recipeId }: { recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ rating: z.number() }),
+    url: `/api/recipes/rating/${recipeId}/`,
+  });
+}
+
+export function ratingUpdate(
+  send: ApiSendFunction,
+  { data, recipeId }: { data: { rating: number }; recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/rating/${recipeId}/update/`,
+  });
+}
+
 export function recipeCreate(
   send: ApiSendFunction,
   { data }: { data: { title: string } }

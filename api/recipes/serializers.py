@@ -3,6 +3,18 @@ from rest_framework.serializers import ModelSerializer
 from recipes.models import Recipe, Tag
 
 
+class RatingResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = ("rating",)
+
+
+class RatingUpdateRequestSerializer(ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = ("rating",)
+
+
 class RecipeCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = Recipe
@@ -66,6 +78,6 @@ class TagUpdateRequestSerializer(ModelSerializer):
 class RecipeResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ("id", "tags", "title")
+        fields = ("id", "rating", "tags", "title")
 
     tags = TagsResponseSerializer(many=True, required=False)

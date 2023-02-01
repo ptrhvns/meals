@@ -22,9 +22,7 @@ export default function Tags({ dispatch, recipe }: TagsProps) {
       </RecipeSectionHeading>
 
       {isEmpty(recipe.tags) && (
-        <Paragraph className={classes.noTagsMessage}>
-          No tags have been created yet.
-        </Paragraph>
+        <Paragraph className={classes.empty}>No tags yet.</Paragraph>
       )}
 
       {recipe.tags && (

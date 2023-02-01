@@ -52,6 +52,7 @@ export interface TagData {
 // Ensure this matches RecipeData below.
 export const recipeSchema = z.object({
   id: z.string(),
+  rating: z.optional(z.number()),
   tags: z.optional(z.array(tagSchema)),
   title: z.string(),
 });
@@ -59,6 +60,7 @@ export const recipeSchema = z.object({
 // Ensure this matches recipeSchema above.
 export interface RecipeData {
   id: string;
+  rating?: number;
   tags?: TagData[];
   title: string;
 }

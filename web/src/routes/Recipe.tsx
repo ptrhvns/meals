@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import Navbar from "../components/Navbar";
+import Rating from "../components/Rating";
 import RecipeDeleteForm from "../components/RecipeDeleteForm";
 import RecipeSection from "../components/RecipeSection";
 import RecipeTitle from "../components/RecipeTitle";
@@ -97,6 +98,10 @@ export default function Recipe() {
 
             <RecipeSection containerClassName={classes.recipeSection}>
               <Tags dispatch={dispatch} recipe={recipe} />
+            </RecipeSection>
+
+            <RecipeSection containerClassName={classes.recipeSection}>
+              <Rating recipe={recipe} />
             </RecipeSection>
 
             <RecipeSection

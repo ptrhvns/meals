@@ -1,0 +1,20 @@
+.inputError {
+  margin-top: var(--spacing5);
+}
+
+.rating {
+  max-width: 9.375rem;
+}
+
+.ratingText {
+  color: var(--slate9);
+  font-size: 1.5rem;
+  margin-top: -0.2rem;
+}
+
+.ratingWrapper {
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+  margin-top: var(--spacing15);
+}

@@ -10,6 +10,8 @@ from rest_framework.response import Response
 
 from recipes.models import Recipe, Tag
 from recipes.serializers import (
+    RatingResponseSerializer,
+    RatingUpdateRequestSerializer,
     RecipeCreateRequestSerializer,
     RecipeCreateResponseSerializer,
     RecipeResponseSerializer,
@@ -31,6 +33,36 @@ from shared.lib.responses import (
     ok_response,
     unprocessable_entity_response,
 )
+
+
+@api_view(http_method_names=["GET"])
+@permission_classes([IsAuthenticated])
+def rating(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    data = RatingResponseSerializer(instance=recipe).data
+    return data_response(data=data)
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def rating_destroy(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    recipe.rating = None
+    recipe.save()
+    return no_content_response()
+
+
+@api_view(http_method_names=["POST"])
+@permission_classes([IsAuthenticated])
+def rating_update(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+    serializer = RatingUpdateRequestSerializer(data=request.data, instance=recipe)
+
+    if not serializer.is_valid():
+        return invalid_request_data_response(serializer)
+
+    serializer.save()
+    return no_content_response()
 
 
 @api_view(http_method_names=["GET"])

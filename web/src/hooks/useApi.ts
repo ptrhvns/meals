@@ -16,6 +16,9 @@ import {
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
+  ratingDestroy,
+  ratingGet,
+  ratingUpdate,
   recipeCreate,
   recipeDestroy,
   recipeGet,
@@ -204,7 +207,7 @@ export default function useApi() {
     [logoutAuthn, navigate]
   );
 
-  // XXX What's might work better than the following with* functions?
+  // XXX What might work better than the following with* functions?
 
   function withSend<F extends AnyFunction>(fn: F) {
     return (): ReturnType<F> => fn(send);
@@ -222,6 +225,9 @@ export default function useApi() {
     accountDestroy: withSendAndArgs(accountDestroy),
     login: withSendAndArgs(login),
     logout: withSend(logout),
+    ratingDestroy: withSendAndArgs(ratingDestroy),
+    ratingGet: withSendAndArgs(ratingGet),
+    ratingUpdate: withSendAndArgs(ratingUpdate),
     recipeCreate: withSendAndArgs(recipeCreate),
     recipeDestroy: withSendAndArgs(recipeDestroy),
     recipeGet: withSendAndArgs(recipeGet),

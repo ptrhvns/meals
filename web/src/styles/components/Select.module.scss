@@ -1,0 +1,22 @@
+.select {
+  background: white;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--slate7);
+  color: var(--slate11);
+  padding: 0.5rem;
+  width: 100%;
+
+  &:focus {
+    box-shadow: var(--box-shadow-inset-light), var(--box-shadow);
+  }
+}
+
+.error {
+  border: 1px solid var(--red7);
+  color: var(--red11);
+
+  &:focus {
+    box-shadow: var(--box-shadow-inset-error), var(--box-shadow-error);
+    outline: 1px dashed var(--red11);
+  }
+}

@@ -1,59 +1,3 @@
-.error {
-  background-color: var(--red3);
-  border-left: 4px solid var(--red9);
-  color: var(--red11);
-
-  a {
-    color: var(--red11);
-  }
-
-  button:hover {
-    color: var(--red12);
-  }
-}
-
-.info {
-  background-color: var(--slate3);
-  border-left: 4px solid var(--slate9);
-  color: var(--slate11);
-
-  a {
-    color: var(--slate11);
-  }
-
-  button:hover {
-    color: var(--slate12);
-  }
-}
-
-.success {
-  background-color: var(--grass3);
-  border-left: 4px solid var(--grass9);
-  color: var(--grass11);
-
-  a {
-    color: var(--grass11);
-  }
-
-  button:hover {
-    color: var(--grass12);
-  }
-}
-
-.warning {
-  background-color: var(--yellow3);
-  border-left: 4px solid var(--yellow9);
-  color: var(--yellow11);
-
-  a {
-    color: var(--yellow11);
-  }
-
-  button:hover {
-    color: var(--yellow12);
-  }
-}
-
 .alert {
   border-radius: var(--border-radius);
   display: grid;
@@ -72,7 +16,65 @@
 
 .button {
   background: transparent;
+  border-radius: 100%;
   border: none;
   cursor: pointer;
-  padding: var(--spacing0);
+  margin-top: calc(var(--spacing4) * -1);
+  padding: var(--spacing5) var(--spacing10);
+}
+
+.error {
+  background-color: var(--red3);
+  border-left: 4px solid var(--red9);
+  color: var(--red11);
+
+  a {
+    color: var(--red11);
+  }
+
+  button:hover {
+    background-color: var(--red5);
+  }
+}
+
+.info {
+  background-color: var(--slate3);
+  border-left: 4px solid var(--slate9);
+  color: var(--slate11);
+
+  a {
+    color: var(--slate11);
+  }
+
+  button:hover {
+    background-color: var(--slate5);
+  }
+}
+
+.success {
+  background-color: var(--grass3);
+  border-left: 4px solid var(--grass9);
+  color: var(--grass11);
+
+  a {
+    color: var(--grass11);
+  }
+
+  button:hover {
+    background-color: var(--grass5);
+  }
+}
+
+.warning {
+  background-color: var(--yellow3);
+  border-left: 4px solid var(--yellow9);
+  color: var(--yellow11);
+
+  a {
+    color: var(--yellow11);
+  }
+
+  button:hover {
+    background-color: var(--yellow5);
+  }
 }

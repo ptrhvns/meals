@@ -29,8 +29,6 @@ export default function Alert({
     classes[variant],
     alertClassName
   );
-  const buttonClassName = joinClassNames(classes.button, classes[variant]);
-
   return (
     <div className={alertClassName} role="alert">
       <div>
@@ -61,7 +59,7 @@ export default function Alert({
         <div>
           <Button
             aria-label="Dismiss"
-            className={buttonClassName}
+            className={classes.button}
             onClick={onDismiss}
             title="Dismiss"
             type="button"

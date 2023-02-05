@@ -39,6 +39,7 @@ dev = [
 ]
 
 [tool.mypy]
+exclude = ["recipes/migrations"]
 files = ["accounts", "recipes", "shared"]
 mypy_path = "stubs"
 show_error_codes = true

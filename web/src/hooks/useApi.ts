@@ -32,6 +32,8 @@ import {
   tagsGet,
   tagUnlink,
   tagUpdate,
+  timeCategoriesGet,
+  timeCreate,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -243,5 +245,7 @@ export default function useApi() {
     tagsGet: withSendAndOptionalArgs(tagsGet),
     tagUnlink: withSendAndArgs(tagUnlink),
     tagUpdate: withSendAndArgs(tagUpdate),
+    timeCategoriesGet: withSend(timeCategoriesGet),
+    timeCreate: withSendAndArgs(timeCreate),
   };
 }

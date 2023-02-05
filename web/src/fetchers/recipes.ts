@@ -4,6 +4,7 @@ import {
   paginationSchema,
   recipeSchema,
   tagSchema,
+  timeCategorySchema,
 } from "../lib/types";
 import { z } from "zod";
 
@@ -206,5 +207,38 @@ export function tagUpdate(
     data,
     method: "POST",
     url: `/api/recipes/tag/${tagId}/update/`,
+  });
+}
+
+export function timeCategoriesGet(send: ApiSendFunction): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      timeCategories: z.array(timeCategorySchema),
+    }),
+    url: `/api/recipes/time_categories/`,
+  });
+}
+
+export function timeCreate(
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+  }: {
+    data: {
+      days: string;
+      hours: string;
+      minutes: string;
+      note: string;
+      time_category: { name: string };
+    };
+    recipeId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/time/create/`,
   });
 }

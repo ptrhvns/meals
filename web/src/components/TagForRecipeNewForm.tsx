@@ -62,6 +62,7 @@ export default function TagForRecipeNewForm({
         <Label htmlFor="name">Name</Label>
         <Combobox
           clearErrors={() => clearErrors("name")}
+          disabled={submitting}
           error={!!fieldErrors?.name?.message}
           id="name"
           options={tags}

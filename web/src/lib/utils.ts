@@ -1,5 +1,13 @@
 import { ApiResponse, Optional } from "./types";
-import { compact, forOwn, head, join, uniq } from "lodash";
+import {
+  compact,
+  forOwn,
+  head,
+  isArray,
+  isPlainObject,
+  join,
+  uniq,
+} from "lodash";
 import { Dispatch, SetStateAction } from "react";
 import {
   FieldError,
@@ -31,15 +39,25 @@ export function handleApiError<F extends FieldValues>(
   if (setError) setError(response.message);
 
   if (setFieldError) {
-    forOwn(response.errors, (error, fieldName) => {
-      const message = head(error);
+    (function processFieldErrors(
+      errors: ApiResponse["errors"],
+      pathElements: string[] = []
+    ) {
+      forOwn(errors, (errorValue, pathElement) => {
+        const newPathElements = [...pathElements, pathElement];
 
-      if (error) {
-        setFieldError(
-          fieldName as Path<F>,
-          { message, type: "custom" } as FieldError
-        );
-      }
-    });
+        if (isPlainObject(errorValue)) {
+          processFieldErrors(errorValue, newPathElements);
+        } else if (isArray(errorValue)) {
+          const message = head(errorValue);
+          const path = join(newPathElements, ".");
+
+          setFieldError(
+            path as Path<F>,
+            { message, type: "custom" } as FieldError
+          );
+        }
+      });
+    })(response.errors);
   }
 }

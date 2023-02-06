@@ -49,22 +49,6 @@ export interface TagData {
   name: string;
 }
 
-// Ensure this matches RecipeData.
-export const recipeSchema = z.object({
-  id: z.string(),
-  rating: z.optional(z.number()),
-  tags: z.optional(z.array(tagSchema)),
-  title: z.string(),
-});
-
-// Ensure this matches recipeSchema.
-export interface RecipeData {
-  id: string;
-  rating?: number;
-  tags?: TagData[];
-  title: string;
-}
-
 // Ensure this matches TimeCategoryData.
 export const timeCategorySchema = z.object({
   id: z.string(),
@@ -95,6 +79,24 @@ export interface TimeData {
   minutes?: number;
   note?: string;
   time_category: TimeCategoryData;
+}
+
+// Ensure this matches RecipeData.
+export const recipeSchema = z.object({
+  id: z.string(),
+  rating: z.optional(z.number()),
+  tags: z.optional(z.array(tagSchema)),
+  times: z.optional(z.array(timeSchema)),
+  title: z.string(),
+});
+
+// Ensure this matches recipeSchema.
+export interface RecipeData {
+  id: string;
+  rating?: number;
+  tags?: TagData[];
+  times?: TimeData[];
+  title: string;
 }
 
 export type RecipeReducerAction =

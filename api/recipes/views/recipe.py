@@ -5,22 +5,37 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 
-from recipes.models import Recipe, Tag
+from recipes.models import Recipe, Tag, Time, TimeCategory
 from shared.lib.responses import data_response
 
 
-class TagsSerializer(ModelSerializer):
+class TagResponseSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("id", "name")
 
 
+class TimeCategoryResponseSerializer(ModelSerializer):
+    class Meta:
+        model = TimeCategory
+        fields = ("id", "name")
+
+
+class TimeResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Time
+        fields = ("days", "hours", "id", "minutes", "note", "time_category")
+
+    time_category = TimeCategoryResponseSerializer()
+
+
 class RecipeResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ("id", "rating", "tags", "title")
+        fields = ("id", "rating", "tags", "times", "title")
 
-    tags = TagsSerializer(many=True, required=False)
+    tags = TagResponseSerializer(many=True, required=False)
+    times = TimeResponseSerializer(many=True, required=False)
 
 
 @api_view(http_method_names=["GET"])

@@ -1,8 +1,8 @@
 import Alert from "./Alert";
 import Button from "./Button";
+import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
-import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
@@ -11,21 +11,27 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+interface TagNewFormProps {
+  tags: string[];
+}
+
 interface FormData {
   name: string;
 }
 
-export default function TagNewForm() {
+export default function TagNewForm({ tags }: TagNewFormProps) {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
   const { tagCreate } = useApi();
 
   const {
+    clearErrors,
     formState: { errors: fieldErrors },
     handleSubmit,
     register,
     setError: setFieldError,
+    setValue,
   } = useForm<FormData>();
 
   return (
@@ -53,12 +59,15 @@ export default function TagNewForm() {
 
       <Field>
         <LabelDiv htmlFor="name">Name</LabelDiv>
-        <InputDiv
+        <Combobox
+          clearErrors={() => clearErrors("name")}
           disabled={submitting}
           error={!!fieldErrors?.name?.message}
           id="name"
-          type="name"
-          {...register("name", { required: "Name is required." })}
+          options={tags}
+          setValue={(value: string) => setValue("name", value)}
+          type="text"
+          {...register("name", { required: "Name is required" })}
         />
         <InputError error={fieldErrors?.name?.message} />
       </Field>

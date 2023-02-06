@@ -39,7 +39,13 @@ class Tag(Model):
     )
 
     class Meta:
-        unique_together = ["name", "user"]
+        constraints = [
+            UniqueConstraint(
+                deferrable=Deferrable.DEFERRED,  # type: ignore[call-arg]
+                fields=["name", "user"],
+                name="recipes_tag_unique_name_user",
+            )
+        ]
 
     def __str__(self) -> str:
         return self.name

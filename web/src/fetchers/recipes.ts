@@ -5,6 +5,7 @@ import {
   recipeSchema,
   tagSchema,
   timeCategorySchema,
+  timeSchema,
 } from "../lib/types";
 import { z } from "zod";
 
@@ -240,5 +241,51 @@ export function timeCreate(
     data,
     method: "POST",
     url: `/api/recipes/recipe/${recipeId}/time/create/`,
+  });
+}
+
+export function timeDestroy(
+  send: ApiSendFunction,
+  { timeId }: { timeId: string }
+) {
+  return send({
+    method: "POST",
+    url: `/api/recipes/time/${timeId}/destroy/`,
+  });
+}
+
+export function timeGet(
+  send: ApiSendFunction,
+  { recipeId, timeId }: { recipeId: string; timeId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: timeSchema,
+    url: `/api/recipes/recipe/${recipeId}/time/${timeId}/`,
+  });
+}
+
+export function timeUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+    timeId,
+  }: {
+    data: {
+      days: string;
+      hours: string;
+      minutes: string;
+      note: string;
+      time_category: { name: string };
+    };
+    recipeId: string;
+    timeId: string;
+  }
+) {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/time/${timeId}/update/`,
   });
 }

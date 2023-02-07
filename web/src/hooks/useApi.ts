@@ -34,6 +34,9 @@ import {
   tagUpdate,
   timeCategoriesGet,
   timeCreate,
+  timeDestroy,
+  timeGet,
+  timeUpdate,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -209,8 +212,9 @@ export default function useApi() {
     [logoutAuthn, navigate]
   );
 
-  // XXX What might work better than the following with* functions?
-
+  // XXX What's better than using the following `with*()` focutions to create a
+  // closure around `send()`, and to ensure that the caller can reference the
+  // other arguments easily?
   function withSend<F extends AnyFunction>(fn: F) {
     return (): ReturnType<F> => fn(send);
   }
@@ -247,5 +251,8 @@ export default function useApi() {
     tagUpdate: withSendAndArgs(tagUpdate),
     timeCategoriesGet: withSend(timeCategoriesGet),
     timeCreate: withSendAndArgs(timeCreate),
+    timeDestroy: withSendAndArgs(timeDestroy),
+    timeGet: withSendAndArgs(timeGet),
+    timeUpdate: withSendAndArgs(timeUpdate),
   };
 }

@@ -24,15 +24,18 @@ export default function Times({ recipe }: TimesProps) {
 
       {!isEmpty(recipe.times) && (
         <ul className={classes.list}>
-          {sortBy(recipe.times, "time_category").map((t) => (
-            <li className={classes.listItem} key={t.id}>
-              <span className={classes.unitsWrapper}>
-                <span>{t.time_category.name}:</span>
-                {t.days && <span>{t.days}d</span>}
-                {t.hours && <span>{t.hours}h</span>}
-                {t.minutes && <span>{t.minutes}m</span>}
-                {t.note && <span>({t.note})</span>}
-              </span>
+          {sortBy(recipe.times, "time_category").map((time) => (
+            <li className={classes.listItem} key={time.id}>
+              <Anchor
+                className={classes.units}
+                to={`/recipe/${recipe.id}/time/${time.id}/edit`}
+              >
+                <span>{time.time_category.name}:</span>
+                {time.days && <span>{time.days}d</span>}
+                {time.hours && <span>{time.hours}h</span>}
+                {time.minutes && <span>{time.minutes}m</span>}
+                {time.note && <span>({time.note})</span>}
+              </Anchor>
             </li>
           ))}
         </ul>

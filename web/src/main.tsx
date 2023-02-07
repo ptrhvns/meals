@@ -18,6 +18,7 @@ import SignupConfirmation from "./routes/SignupConfirmation";
 import TagEdit from "./routes/TagEdit";
 import TagForRecipeNew from "./routes/TagForRecipeNew";
 import TagNew from "./routes/TagNew";
+import TimeForRecipeEdit from "./routes/TimeForRecipeEdit";
 import TimeNew from "./routes/TimeNew";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       { path: "recipe/:recipeId", element: <Recipe /> },
       { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },
+      {
+        path: "recipe/:recipeId/time/:timeId/edit",
+        element: <TimeForRecipeEdit />,
+      },
       { path: "recipe/:recipeId/time/new", element: <TimeNew /> },
       { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
       { path: "recipe/new", element: <RecipeNew /> },

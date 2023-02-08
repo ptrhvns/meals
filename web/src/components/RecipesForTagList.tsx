@@ -55,7 +55,7 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
       )}
 
       {!loading && !error && isEmpty(recipes) && (
-        <Paragraph className={classes.noContentMessage}>
+        <Paragraph variant="dimmed">
           No recipes have been linked to this tag yet.
         </Paragraph>
       )}

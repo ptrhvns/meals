@@ -46,7 +46,7 @@ export default function RecipeList() {
       )}
 
       {!loading && !error && isEmpty(recipes) && (
-        <Paragraph className={classes.noContentMessage}>
+        <Paragraph variant="dimmed">
           No recipes have been created yet.
         </Paragraph>
       )}

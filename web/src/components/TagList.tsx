@@ -47,7 +47,7 @@ export default function TagList() {
       )}
 
       {!loading && !error && isEmpty(tags) && (
-        <Paragraph className={classes.noContentMessage}>
+        <Paragraph variant="dimmed">
           No tags have been created yet.
         </Paragraph>
       )}

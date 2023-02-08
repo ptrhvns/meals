@@ -19,7 +19,7 @@ export default function Times({ recipe }: TimesProps) {
       </RecipeSectionHeading>
 
       {isEmpty(recipe.times) && (
-        <Paragraph className={classes.empty}>No times yet.</Paragraph>
+        <Paragraph variant="dimmed">No times yet.</Paragraph>
       )}
 
       {!isEmpty(recipe.times) && (

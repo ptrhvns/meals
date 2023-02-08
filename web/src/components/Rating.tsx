@@ -20,7 +20,7 @@ export default function Rating({ recipe }: RatingProps) {
       </RecipeSectionHeading>
 
       {!isNumber(recipe.rating) && (
-        <Paragraph className={classes.empty}>No rating yet.</Paragraph>
+        <Paragraph variant="dimmed">No rating yet.</Paragraph>
       )}
 
       {isNumber(recipe.rating) && (

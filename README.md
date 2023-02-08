@@ -27,8 +27,8 @@ API server:
 # Testing
 
 For this project, I wanted to try an experiment where I rely on static typing,
-linting, and so on, but don't do any automated testing to see how far I get. If
-the pain get to be too much, then I might change my mind.
+linting, and so on, but where I don't do any automated testing. If the pain gets
+to be too much, then I will start writing tests.
 
 ## Setting Up a Development Environment
 

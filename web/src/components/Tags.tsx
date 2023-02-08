@@ -29,7 +29,7 @@ export default function Tags({ dispatch, recipe }: TagsProps) {
         <div className={classes.tags}>
           {recipe.tags.map((tag) => (
             <span className={classes.tag} key={tag.id}>
-              <Anchor to={`/tag/${tag.id}/edit`}>{tag.name}</Anchor>
+              {tag.name}
               <span className={classes.tagFormWrapper}>
                 <TagForRecipeUnlinkForm
                   dispatch={dispatch}

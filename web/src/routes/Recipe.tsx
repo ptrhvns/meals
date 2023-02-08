@@ -109,12 +109,7 @@ export default function Recipe() {
               <Times recipe={recipe} />
             </PageSection>
 
-            <PageSection
-              className={joinClassNames(
-                classes.pageSection,
-                classes.noSectionHeader
-              )}
-            >
+            <PageSection className={joinClassNames(classes.pageSection)}>
               <RecipeDeleteForm recipe={recipe} />
             </PageSection>
           </>

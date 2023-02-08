@@ -3,3 +3,11 @@
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+
+.narrow {
+  max-width: 35rem;
+}
+
+.normal {
+  max-width: 64rem;
+}

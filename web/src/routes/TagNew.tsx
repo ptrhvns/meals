@@ -1,9 +1,10 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import RequireAuthn from "../components/RequireAuthn";
 import TagNewForm from "../components/TagNewForm";
 import useApi from "../hooks/useApi";
@@ -38,22 +39,24 @@ export default function TagNew() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          Create Tag
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            Create Tag
+          </Breadcrumbs>
 
-        <Heading>Create Tag</Heading>
+          <Heading>Create Tag</Heading>
 
-        {!loading && error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+          {!loading && error && (
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          )}
 
-        {!loading && !error && <TagNewForm tags={tags} />}
-      </PageLayout>
+          {!loading && !error && <TagNewForm tags={tags} />}
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

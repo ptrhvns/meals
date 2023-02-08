@@ -2,10 +2,11 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/TagForRecipeNew.module.scss";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import Paragraph from "../components/Paragraph";
 import RequireAuthn from "../components/RequireAuthn";
 import TagForRecipeNewForm from "../components/TagForRecipeNewForm";
@@ -43,29 +44,31 @@ export default function TagForRecipeNew() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
-          Create Tag
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
+            Create Tag
+          </Breadcrumbs>
 
-        <Heading>Create Tag</Heading>
+          <Heading>Create Tag</Heading>
 
-        {!loading && error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+          {!loading && error && (
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          )}
 
-        {!loading && !error && <TagForRecipeNewForm tags={tags} />}
+          {!loading && !error && <TagForRecipeNewForm tags={tags} />}
 
-        <HorizontalRule className={classes.horizontalRule} />
+          <HorizontalRule className={classes.horizontalRule} />
 
-        <Paragraph>
-          <Anchor to="/dashboard/tags">Manage all tags</Anchor>
-        </Paragraph>
-      </PageLayout>
+          <Paragraph>
+            <Anchor to="/dashboard/tags">Manage all tags</Anchor>
+          </Paragraph>
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

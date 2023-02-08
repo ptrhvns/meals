@@ -1,17 +1,3 @@
-.content {
-  background-color: white;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-.narrow {
-  max-width: 35rem;
-}
-
-.normal {
-  max-width: 64rem;
-}
-
 .viewport {
   background-color: var(--slate3);
   min-height: calc(100vh - var(--navbar-height));

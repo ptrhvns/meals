@@ -2,10 +2,10 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/TagEdit.module.scss";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
-import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import Paragraph from "../components/Paragraph";
 import RecipesForTagList from "../components/RecipesForTagList";
 import RequireAuthn from "../components/RequireAuthn";
@@ -45,37 +45,36 @@ export default function TagEdit() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard/tags">Dashboard</Anchor>
-          Edit Tag
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection className={classes.pageSection} variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard/tags">Dashboard</Anchor>
+            Edit Tag
+          </Breadcrumbs>
 
-        <Heading>Edit Tag</Heading>
+          <Heading>Edit Tag</Heading>
 
-        {!loading && error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+          {!loading && error && (
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          )}
 
-        {!loading && !error && (
-          <>
-            <TagEditForm tag={tag} />
+          {!loading && !error && <TagEditForm tag={tag} />}
+        </PageSection>
 
-            <HorizontalRule className={classes.horizontalRule} />
-
-            <Heading size={2}>Linked Recipes</Heading>
-            <RecipesForTagList tag={tag} />
-          </>
-        )}
-
-        <HorizontalRule className={classes.horizontalRule} />
-
-        <Paragraph>
-          <Anchor to="/dashboard/recipes">Manage all recipes</Anchor>
-        </Paragraph>
-      </PageLayout>
+        <PageSection className={classes.pageSection} variant="narrow">
+          {!loading && !error && (
+            <>
+              <Heading size={2}>Linked Recipes</Heading>
+              <RecipesForTagList tag={tag} />
+            </>
+          )}
+          <Paragraph>
+            <Anchor to="/dashboard/recipes">Manage all recipes</Anchor>
+          </Paragraph>
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

@@ -1,9 +1,10 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import RequireAuthn from "../components/RequireAuthn";
 import TimeForRecipeEditForm from "../components/TimeForRecipeEditForm";
 import useApi from "../hooks/useApi";
@@ -54,29 +55,31 @@ export default function TimeEdit() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
-          Edit Time
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
+            Edit Time
+          </Breadcrumbs>
 
-        <Heading>Edit Time</Heading>
+          <Heading>Edit Time</Heading>
 
-        {!loading && error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+          {!loading && error && (
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          )}
 
-        {!loading && !error && (
-          <TimeForRecipeEditForm
-            recipeId={recipeId}
-            time={time}
-            timeCategories={timeCategories}
-          />
-        )}
-      </PageLayout>
+          {!loading && !error && (
+            <TimeForRecipeEditForm
+              recipeId={recipeId}
+              time={time}
+              timeCategories={timeCategories}
+            />
+          )}
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

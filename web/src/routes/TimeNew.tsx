@@ -1,9 +1,10 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import RequireAuthn from "../components/RequireAuthn";
 import TimeNewForm from "../components/TimeNewForm";
 import useApi from "../hooks/useApi";
@@ -42,25 +43,27 @@ export default function TimeNew() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
-          Create Time
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
+            Create Time
+          </Breadcrumbs>
 
-        <Heading>Create Time</Heading>
+          <Heading>Create Time</Heading>
 
-        {!loading && error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+          {!loading && error && (
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          )}
 
-        {!loading && !error && (
-          <TimeNewForm recipeId={recipeId} timeCategories={timeCategories} />
-        )}
-      </PageLayout>
+          {!loading && !error && (
+            <TimeNewForm recipeId={recipeId} timeCategories={timeCategories} />
+          )}
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

@@ -2,22 +2,22 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
+import FullPageViewport from "../components/FullPageViewport";
 import Navbar from "../components/Navbar";
+import PageSection from "../components/PageSection";
 import Rating from "../components/Rating";
 import RecipeDeleteForm from "../components/RecipeDeleteForm";
-import RecipeSection from "../components/RecipeSection";
 import RecipeTitle from "../components/RecipeTitle";
 import RequireAuthn from "../components/RequireAuthn";
 import Tags from "../components/Tags";
+import Times from "../components/Times";
 import useApi from "../hooks/useApi";
-import Viewport from "../components/Viewport";
 import { buildTitle, handleApiError, joinClassNames } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useReducer, useState } from "react";
-import Times from "../components/Times";
 
 interface ReducerState {
   recipe?: RecipeData;
@@ -75,51 +75,51 @@ export default function Recipe() {
 
       <Navbar />
 
-      <Viewport className={classes.viewport}>
-        <RecipeSection containerClassName={classes.recipeSection}>
+      <FullPageViewport className={classes.viewport}>
+        <PageSection className={classes.pageSection}>
           <Breadcrumbs>
             <Anchor to="/dashboard">Dashboard</Anchor>
             Recipe
           </Breadcrumbs>
-        </RecipeSection>
+        </PageSection>
 
         {!loading && error && (
-          <RecipeSection containerClassName={classes.recipeSection}>
+          <PageSection className={classes.pageSection}>
             <Alert onDismiss={() => setError(undefined)} variant="error">
               {error}
             </Alert>
-          </RecipeSection>
+          </PageSection>
         )}
 
         {!loading && !error && (
           <>
-            <RecipeSection containerClassName={classes.recipeSection}>
+            <PageSection className={classes.pageSection}>
               <RecipeTitle recipe={recipe} />
-            </RecipeSection>
+            </PageSection>
 
-            <RecipeSection containerClassName={classes.recipeSection}>
+            <PageSection className={classes.pageSection}>
               <Tags dispatch={dispatch} recipe={recipe} />
-            </RecipeSection>
+            </PageSection>
 
-            <RecipeSection containerClassName={classes.recipeSection}>
+            <PageSection className={classes.pageSection}>
               <Rating recipe={recipe} />
-            </RecipeSection>
+            </PageSection>
 
-            <RecipeSection containerClassName={classes.recipeSection}>
+            <PageSection className={classes.pageSection}>
               <Times recipe={recipe} />
-            </RecipeSection>
+            </PageSection>
 
-            <RecipeSection
-              containerClassName={joinClassNames(
-                classes.recipeSection,
+            <PageSection
+              className={joinClassNames(
+                classes.pageSection,
                 classes.noSectionHeader
               )}
             >
               <RecipeDeleteForm recipe={recipe} />
-            </RecipeSection>
+            </PageSection>
           </>
         )}
-      </Viewport>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

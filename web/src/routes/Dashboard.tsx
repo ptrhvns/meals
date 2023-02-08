@@ -1,9 +1,10 @@
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import Anchor from "../components/Anchor";
 import classes from "../styles/routes/Dashboard.module.scss";
+import FullPageViewport from "../components/FullPageViewport";
+import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
-import PageLayoutHeading from "../components/PageLayoutHeading";
+import PageSection from "../components/PageSection";
 import RecipeList from "../components/RecipeList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagList from "../components/TagList";
@@ -35,57 +36,59 @@ export default function Dashboard() {
 
       <Navbar />
 
-      <PageLayout>
-        <PageLayoutHeading>Dashboard</PageLayoutHeading>
+      <FullPageViewport>
+        <PageSection>
+          <Heading>Dashboard</Heading>
 
-        <TabsPrimitive.Root
-          className={classes.tabsRoot}
-          onValueChange={(value) => navigate(`/dashboard/${value}`)}
-          value={activeTab}
-        >
-          <TabsPrimitive.List className={classes.tabsList}>
-            <TabsPrimitive.Trigger
-              className={classes.tabsTrigger}
+          <TabsPrimitive.Root
+            className={classes.tabsRoot}
+            onValueChange={(value) => navigate(`/dashboard/${value}`)}
+            value={activeTab}
+          >
+            <TabsPrimitive.List className={classes.tabsList}>
+              <TabsPrimitive.Trigger
+                className={classes.tabsTrigger}
+                value={tabs.recipes}
+              >
+                <div className={classes.tabsTriggerContent}>
+                  <div className={classes.tabsTriggerContentInner}>Recipes</div>
+                </div>
+              </TabsPrimitive.Trigger>
+
+              <TabsPrimitive.Trigger
+                className={classes.tabsTrigger}
+                value={tabs.tags}
+              >
+                <div className={classes.tabsTriggerContent}>
+                  <div className={classes.tabsTriggerContentInner}>Tags</div>
+                </div>
+              </TabsPrimitive.Trigger>
+            </TabsPrimitive.List>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
               value={tabs.recipes}
             >
-              <div className={classes.tabsTriggerContent}>
-                <div className={classes.tabsTriggerContentInner}>Recipes</div>
-              </div>
-            </TabsPrimitive.Trigger>
+              <Anchor to="/recipe/new" variant="filled">
+                Create recipe
+              </Anchor>
 
-            <TabsPrimitive.Trigger
-              className={classes.tabsTrigger}
+              <RecipeList />
+            </TabsPrimitive.Content>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
               value={tabs.tags}
             >
-              <div className={classes.tabsTriggerContent}>
-                <div className={classes.tabsTriggerContentInner}>Tags</div>
-              </div>
-            </TabsPrimitive.Trigger>
-          </TabsPrimitive.List>
+              <Anchor to="/tag/new" variant="filled">
+                Create tag
+              </Anchor>
 
-          <TabsPrimitive.Content
-            className={classes.tabsContent}
-            value={tabs.recipes}
-          >
-            <Anchor to="/recipe/new" variant="filled">
-              Create recipe
-            </Anchor>
-
-            <RecipeList />
-          </TabsPrimitive.Content>
-
-          <TabsPrimitive.Content
-            className={classes.tabsContent}
-            value={tabs.tags}
-          >
-            <Anchor to="/tag/new" variant="filled">
-              Create tag
-            </Anchor>
-
-            <TagList />
-          </TabsPrimitive.Content>
-        </TabsPrimitive.Root>
-      </PageLayout>
+              <TagList />
+            </TabsPrimitive.Content>
+          </TabsPrimitive.Root>
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

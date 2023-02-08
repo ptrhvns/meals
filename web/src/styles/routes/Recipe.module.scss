@@ -2,16 +2,10 @@
   padding-top: var(--spacing20);
 }
 
-.recipeSection + .recipeSection {
+.pageSection + .pageSection {
   margin-top: var(--spacing20);
 }
 
 .skeletonGroup + .skeletonGroup {
   margin-top: var(--spacing20);
-}
-
-.viewport {
-  background-color: var(--slate3);
-  min-height: calc(100vh - var(--navbar-height));
-  padding-block: var(--spacing20);
 }

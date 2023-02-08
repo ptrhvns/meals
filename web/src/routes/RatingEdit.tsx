@@ -1,9 +1,10 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import RatingEditForm from "../components/RatingEditForm";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
@@ -40,25 +41,27 @@ export default function RatingEdit() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
-          Edit Rating
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            <Anchor to={`/recipe/${recipeId}`}>Recipe</Anchor>
+            Edit Rating
+          </Breadcrumbs>
 
-        <Heading>Edit Rating</Heading>
+          <Heading>Edit Rating</Heading>
 
-        {!loading && error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+          {!loading && error && (
+            <Alert onDismiss={() => setError(undefined)} variant="error">
+              {error}
+            </Alert>
+          )}
 
-        {!loading && !error && (
-          <RatingEditForm rating={rating} recipeId={recipeId} />
-        )}
-      </PageLayout>
+          {!loading && !error && (
+            <RatingEditForm rating={rating} recipeId={recipeId} />
+          )}
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

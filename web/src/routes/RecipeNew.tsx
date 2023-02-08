@@ -1,8 +1,9 @@
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
-import PageLayout from "../components/PageLayout";
+import PageSection from "../components/PageSection";
 import RecipeNewForm from "../components/RecipeNewForm";
 import RequireAuthn from "../components/RequireAuthn";
 import Subheading from "../components/Subheading";
@@ -18,17 +19,19 @@ export default function RecipeNew() {
 
       <Navbar />
 
-      <PageLayout variant="narrow">
-        <Breadcrumbs>
-          <Anchor to="/dashboard">Dashboard</Anchor>
-          Create Recipe
-        </Breadcrumbs>
+      <FullPageViewport>
+        <PageSection variant="narrow">
+          <Breadcrumbs>
+            <Anchor to="/dashboard">Dashboard</Anchor>
+            Create Recipe
+          </Breadcrumbs>
 
-        <Heading>Create Recipe</Heading>
-        <Subheading>Start with a recipe title.</Subheading>
+          <Heading>Create Recipe</Heading>
+          <Subheading>Start with a recipe title.</Subheading>
 
-        <RecipeNewForm />
-      </PageLayout>
+          <RecipeNewForm />
+        </PageSection>
+      </FullPageViewport>
     </RequireAuthn>
   );
 }

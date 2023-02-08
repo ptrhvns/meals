@@ -3,7 +3,7 @@ import classes from "../styles/routes/Login.module.scss";
 import Heading from "../components/Heading";
 import HorizontalRule from "../components/HorizontalRule";
 import LoginForm from "../components/LoginForm";
-import PageCenteredCard from "../components/PageCenteredCard";
+import PageCenteredSection from "../components/PageCenteredSection";
 import Paragraph from "../components/Paragraph";
 import RequireGuest from "../components/RequireGuest";
 import { buildTitle } from "../lib/utils";
@@ -16,7 +16,7 @@ export default function Login() {
         <title>{buildTitle("Log In")}</title>
       </Helmet>
 
-      <PageCenteredCard>
+      <PageCenteredSection>
         <Heading>Log In</Heading>
         <LoginForm />
 
@@ -25,7 +25,7 @@ export default function Login() {
         <Paragraph>
           Don&apos;t have an account? <Anchor to="/signup">Sign up</Anchor>
         </Paragraph>
-      </PageCenteredCard>
+      </PageCenteredSection>
     </RequireGuest>
   );
 }

@@ -1,7 +1,7 @@
 import Alert from "./Alert";
 import classes from "../styles/components/ErrorPage.module.scss";
 import Heading from "./Heading";
-import PageCenteredCard from "./PageCenteredCard";
+import PageCenteredSection from "./PageCenteredSection";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
@@ -19,7 +19,7 @@ export default function ErrorPage() {
         <title>{buildTitle("Error")}</title>
       </Helmet>
 
-      <PageCenteredCard>
+      <PageCenteredSection>
         <div className={classes.content}>
           <Heading className={classes.title}>Error</Heading>
 
@@ -45,7 +45,7 @@ export default function ErrorPage() {
             )}
           </Alert>
         </div>
-      </PageCenteredCard>
+      </PageCenteredSection>
     </>
   );
 }

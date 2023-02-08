@@ -2,7 +2,7 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import classes from "../styles/routes/SignupConfirmation.module.scss";
 import Heading from "../components/Heading";
-import PageCenteredCard from "../components/PageCenteredCard";
+import PageCenteredSection from "../components/PageCenteredSection";
 import RequireGuest from "../components/RequireGuest";
 import useApi from "../hooks/useApi";
 import { buildTitle } from "../lib/utils";
@@ -41,7 +41,7 @@ export default function SignupConfirmation() {
         <title>{buildTitle("Sign Up Confirmation")}</title>
       </Helmet>
 
-      <PageCenteredCard contentClassName={classes.content}>
+      <PageCenteredSection contentClassName={classes.content}>
         <Heading className={classes.heading}>Sign Up Confirmation</Heading>
 
         {confirming && (
@@ -65,7 +65,7 @@ export default function SignupConfirmation() {
         )}
 
         {error && <Alert variant="error">{error}</Alert>}
-      </PageCenteredCard>
+      </PageCenteredSection>
     </RequireGuest>
   );
 }

@@ -107,7 +107,7 @@ Ubuntu 20.04).
   cd api
   python -m venv venv
   source venv/bin/activate
-  python -m pip install --upgrade pip
+  python -m pip install --upgrade pip wheel
   python -m pip install -r requirements.txt -r requirements-dev.txt
   python -m pip check # Ensure no broken dependencies
   ```

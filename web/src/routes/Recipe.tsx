@@ -9,6 +9,7 @@ import Rating from "../components/Rating";
 import RecipeDeleteForm from "../components/RecipeDeleteForm";
 import RecipeTitle from "../components/RecipeTitle";
 import RequireAuthn from "../components/RequireAuthn";
+import Servings from "../components/Servings";
 import Tags from "../components/Tags";
 import Times from "../components/Times";
 import useApi from "../hooks/useApi";
@@ -107,6 +108,10 @@ export default function Recipe() {
 
             <PageSection className={classes.pageSection}>
               <Times recipe={recipe} />
+            </PageSection>
+
+            <PageSection className={classes.pageSection}>
+              <Servings recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

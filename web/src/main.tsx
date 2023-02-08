@@ -12,6 +12,7 @@ import React from "react";
 import Recipe from "./routes/Recipe";
 import RecipeNew from "./routes/RecipeNew";
 import RecipeTitleEdit from "./routes/RecipeTitleEdit";
+import ServingNew from "./routes/ServingNew";
 import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
         element: <TimeForRecipeEdit />,
       },
       { path: "recipe/:recipeId/time/new", element: <TimeNew /> },
+      { path: "recipe/:recipeId/serving/new", element: <ServingNew /> },
       { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
       { path: "recipe/new", element: <RecipeNew /> },
       { path: "settings", element: <Settings /> },

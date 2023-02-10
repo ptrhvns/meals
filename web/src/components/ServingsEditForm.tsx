@@ -36,7 +36,9 @@ export default function ServingsEditForm({ recipe }: ServingsEditFormProps) {
     register,
     setError: setFieldError,
   } = useForm<FormData>({
-    defaultValues: { servings: recipe?.servings ?? 0 },
+    defaultValues: {
+      servings: parseFloat((recipe?.servings || 0).toString()),
+    },
   });
 
   if (!recipe) return null;

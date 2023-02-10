@@ -11,7 +11,7 @@ export default function Servings({ recipe }: ServingsProps) {
 
   return (
     <RecipeSectionHeading heading="Servings">
-      <Anchor to={`/recipe/${recipe.id}/serving/edit`}>Edit</Anchor>
+      <Anchor to={`/recipe/${recipe.id}/servings/edit`}>Edit</Anchor>
     </RecipeSectionHeading>
   );
 }

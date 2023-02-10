@@ -15,7 +15,7 @@ export function ratingDestroy(
 ): Promise<ApiResponse> {
   return send({
     method: "POST",
-    url: `/api/recipes/rating/${recipeId}/destroy/`,
+    url: `/api/recipes/recipes/${recipeId}/rating/destroy/`,
   });
 }
 
@@ -98,6 +98,27 @@ export function recipeTitleUpdate(
     data,
     method: "POST",
     url: `/api/recipes/recipe/${recipeId}/title/update/`,
+  });
+}
+
+export function servingsDestroy(
+  send: ApiSendFunction,
+  { recipeId }: { recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/servings/destroy/`,
+  });
+}
+
+export function servingsUpdate(
+  send: ApiSendFunction,
+  { data, recipeId }: { data: { servings: number }; recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/servings/update/`,
   });
 }
 

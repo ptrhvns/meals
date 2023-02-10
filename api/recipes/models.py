@@ -6,6 +6,7 @@ from django.db.models import Deferrable  # type: ignore[attr-defined]
 from django.db.models import (
     CASCADE,
     CharField,
+    DecimalField,
     ForeignKey,
     ManyToManyField,
     Model,
@@ -21,6 +22,13 @@ from accounts.models import User
 class Recipe(Model):
     rating = PositiveSmallIntegerField(
         blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    servings = DecimalField(
+        blank=True,
+        decimal_places=2,
+        max_digits=6,
+        null=True,
+        validators=[MinValueValidator(0)],
     )
     title = CharField(max_length=256)
     user: ForeignKey[User] = ForeignKey(User, on_delete=CASCADE, related_name="recipes")

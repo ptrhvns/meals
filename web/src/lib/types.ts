@@ -85,6 +85,7 @@ export interface TimeData {
 export const recipeSchema = z.object({
   id: z.string(),
   rating: z.optional(z.number()),
+  servings: z.optional(z.number()),
   tags: z.optional(z.array(tagSchema)),
   times: z.optional(z.array(timeSchema)),
   title: z.string(),
@@ -94,6 +95,7 @@ export const recipeSchema = z.object({
 export interface RecipeData {
   id: string;
   rating?: number;
+  servings?: number;
   tags?: TagData[];
   times?: TimeData[];
   title: string;

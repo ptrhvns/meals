@@ -12,7 +12,7 @@ import React from "react";
 import Recipe from "./routes/Recipe";
 import RecipeNew from "./routes/RecipeNew";
 import RecipeTitleEdit from "./routes/RecipeTitleEdit";
-import ServingEdit from "./routes/ServingEdit";
+import ServingsEdit from "./routes/ServingsEdit";
 import Settings from "./routes/Settings";
 import Signup from "./routes/Signup";
 import SignupConfirmation from "./routes/SignupConfirmation";
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
       { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
-      { path: "recipe/:recipeId/serving/edit", element: <ServingEdit /> },
+      { path: "recipe/:recipeId/servings/edit", element: <ServingsEdit /> },
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },
       {
         path: "recipe/:recipeId/time/:timeId/edit",

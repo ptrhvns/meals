@@ -9,6 +9,8 @@ from recipes.views.recipe_create import recipe_create
 from recipes.views.recipe_destroy import recipe_destroy
 from recipes.views.recipe_title_update import recipe_title_update
 from recipes.views.recipes import recipes
+from recipes.views.servings_destroy import servings_destroy
+from recipes.views.servings_update import servings_update
 from recipes.views.tag import tag
 from recipes.views.tag_create import tag_create
 from recipes.views.tag_destroy import tag_destroy
@@ -25,10 +27,12 @@ from recipes.views.time_update import time_update
 
 urlpatterns: list[URLPattern | URLResolver] = [
     path("rating/<int:recipe_id>/", rating),
-    path("rating/<int:recipe_id>/destroy/", rating_destroy),
     path("rating/<int:recipe_id>/update/", rating_update),
     path("recipe/<int:recipe_id>/", recipe),
     path("recipe/<int:recipe_id>/destroy/", recipe_destroy),
+    path("recipe/<int:recipe_id>/rating/destroy/", rating_destroy),
+    path("recipe/<int:recipe_id>/servings/destroy/", servings_destroy),
+    path("recipe/<int:recipe_id>/servings/update/", servings_update),
     path("recipe/<int:recipe_id>/tag/<int:tag_id>/unlink/", tag_unlink),
     path("recipe/<int:recipe_id>/tag/link/", tag_link),
     path("recipe/<int:recipe_id>/time/<int:time_id>/", time),

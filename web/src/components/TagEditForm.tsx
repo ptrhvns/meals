@@ -1,7 +1,7 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
@@ -103,11 +103,7 @@ export default function TagEditForm({ tag }: TagEditFormProps) {
           navigate(`/dashboard/tags`, { replace: true });
         })}
       >
-        {error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+        <FormError error={error} setError={setError} />
 
         <Field>
           <LabelDiv htmlFor="name">Name</LabelDiv>

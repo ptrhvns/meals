@@ -1,8 +1,8 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import classes from "../styles/components/ServingsEditForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
@@ -105,11 +105,7 @@ export default function ServingsEditForm({ recipe }: ServingsEditFormProps) {
           navigate(`/recipe/${recipe.id}`, { replace: true });
         })}
       >
-        {error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+        <FormError error={error} setError={setError} />
 
         <Field>
           <LabelDiv htmlFor="servings">Servings</LabelDiv>

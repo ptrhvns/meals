@@ -1,7 +1,7 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import classes from "../styles/routes/RatingEditForm.module.scss";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import InputError from "./InputError";
 import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
@@ -71,11 +71,7 @@ export default function RatingEditForm({
         </DialogContent>
       </Dialog>
 
-      {error && (
-        <Alert onDismiss={() => setError(undefined)} variant="error">
-          {error}
-        </Alert>
-      )}
+      <FormError error={error} setError={setError} />
 
       <div className={classes.ratingWrapper}>
         <ReactRating

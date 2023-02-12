@@ -1,8 +1,8 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import classes from "../styles/components/AccountDeleteForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
@@ -59,11 +59,7 @@ export default function AccountDeleteForm() {
         logout(() => navigate("/", { replace: true }));
       })}
     >
-      {error && (
-        <Alert onDismiss={() => setError(undefined)} variant="error">
-          {error}
-        </Alert>
-      )}
+      <FormError error={error} setError={setError} />
 
       <Field>
         <LabelDiv htmlFor="password">Password</LabelDiv>
@@ -78,11 +74,7 @@ export default function AccountDeleteForm() {
       </Field>
 
       <FormActions>
-        <Button
-          color="red"
-          disabled={submitting}
-          type="submit"
-        >
+        <Button color="red" disabled={submitting} type="submit">
           Delete account
         </Button>
       </FormActions>

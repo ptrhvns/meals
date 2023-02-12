@@ -1,4 +1,3 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import Combobox from "./Combobox";
 import Field from "./Field";
@@ -10,6 +9,7 @@ import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FormError from "./FormError";
 
 interface TagNewFormProps {
   tags: string[];
@@ -51,11 +51,7 @@ export default function TagNewForm({ tags }: TagNewFormProps) {
         navigate(`/dashboard/tags`, { replace: true });
       })}
     >
-      {error && (
-        <Alert onDismiss={() => setError(undefined)} variant="error">
-          {error}
-        </Alert>
-      )}
+      <FormError error={error} setError={setError} />
 
       <Field>
         <LabelDiv htmlFor="name">Name</LabelDiv>

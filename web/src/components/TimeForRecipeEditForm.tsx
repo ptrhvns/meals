@@ -1,23 +1,23 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import classes from "../styles/components/TimeForRecipeEditForm.module.scss";
 import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import Input from "./Input";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import Label from "./Label";
 import LabelDiv from "./LabelDiv";
+import Paragraph from "./Paragraph";
 import SublabelDiv from "./SublabelDiv";
 import useApi from "../hooks/useApi";
+import { Dialog, DialogContent } from "./Dialog";
 import { handleApiError } from "../lib/utils";
 import { TimeCategoryData, TimeData } from "../lib/types";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Dialog, DialogContent } from "./Dialog";
-import Paragraph from "./Paragraph";
 
 interface TimeForRecipeEditFormProps {
   recipeId: string;
@@ -132,11 +132,7 @@ export default function TimeForRecipeEditForm({
           navigate(`/recipe/${recipeId}`, { replace: true });
         })}
       >
-        {error && (
-          <Alert onDismiss={() => setError(undefined)} variant="error">
-            {error}
-          </Alert>
-        )}
+        <FormError error={error} setError={setError} />
 
         <Field>
           <LabelDiv htmlFor="category">Category</LabelDiv>

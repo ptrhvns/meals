@@ -1,8 +1,8 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import InputError from "./InputError";
 import Label from "./Label";
 import useApi from "../hooks/useApi";
@@ -52,11 +52,7 @@ export default function TagForRecipeNewForm({
         navigate(`/recipe/${recipeId}`, { replace: true });
       })}
     >
-      {error && (
-        <Alert onDismiss={() => setError(undefined)} variant="error">
-          {error}
-        </Alert>
-      )}
+      <FormError error={error} setError={setError} />
 
       <Field>
         <Label htmlFor="name">Name</Label>

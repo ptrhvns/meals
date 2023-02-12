@@ -1,9 +1,9 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import classes from "../styles/components/TimeNewForm.module.scss";
 import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import Input from "./Input";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
@@ -62,11 +62,7 @@ export default function TimeNewForm({
         navigate(`/recipe/${recipeId}`, { replace: true });
       })}
     >
-      {error && (
-        <Alert onDismiss={() => setError(undefined)} variant="error">
-          {error}
-        </Alert>
-      )}
+      <FormError error={error} setError={setError} />
 
       <Field>
         <LabelDiv htmlFor="category">Category</LabelDiv>

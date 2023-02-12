@@ -1,7 +1,7 @@
-import Alert from "./Alert";
 import Button from "./Button";
 import Field from "./Field";
 import FormActions from "./FormActions";
+import FormError from "./FormError";
 import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
@@ -45,11 +45,7 @@ export default function RecipeNewForm() {
         navigate(`/recipe/${response.data.id}`, { replace: true });
       })}
     >
-      {error && (
-        <Alert onDismiss={() => setError(undefined)} variant="error">
-          {error}
-        </Alert>
-      )}
+      <FormError error={error} setError={setError} />
 
       <Field>
         <LabelDiv htmlFor="title">Title</LabelDiv>

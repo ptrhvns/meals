@@ -43,7 +43,7 @@ export default function TagForRecipeUnlinkForm({
 
           <Paragraph>
             It will only be unlinked from this recipe. To unlink it from other
-            recipes, or to delete it entirely, visit the tag.
+            recipes, or to delete it entirely, manage the tag itself.
           </Paragraph>
 
           <form

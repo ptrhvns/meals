@@ -4,6 +4,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import FullPageViewport from "../components/FullPageViewport";
 import Navbar from "../components/Navbar";
+import Notes from "../components/Notes";
 import PageSection from "../components/PageSection";
 import Rating from "../components/Rating";
 import RecipeDeleteForm from "../components/RecipeDeleteForm";
@@ -112,6 +113,10 @@ export default function Recipe() {
 
             <PageSection className={classes.pageSection}>
               <Servings recipe={recipe} />
+            </PageSection>
+
+            <PageSection className={classes.pageSection}>
+              <Notes recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

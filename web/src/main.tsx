@@ -6,7 +6,7 @@ import Dashboard from "./routes/Dashboard";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
-import NotesNew from "./routes/NotesNew";
+import NotesEdit from "./routes/NotesEdit";
 import NotFound from "./routes/NotFound";
 import RatingEdit from "./routes/RatingEdit";
 import React from "react";
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
-      { path: "recipe/:recipeId/notes/new", element: <NotesNew /> },
+      { path: "recipe/:recipeId/notes/edit", element: <NotesEdit /> },
       { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
       { path: "recipe/:recipeId/servings/edit", element: <ServingsEdit /> },
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },

@@ -1,7 +1,7 @@
 import Anchor from "./Anchor";
+import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
 import { RecipeData } from "../lib/types";
-import Paragraph from "./Paragraph";
 
 interface NotesProps {
   recipe?: RecipeData;
@@ -13,7 +13,7 @@ export default function Notes({ recipe }: NotesProps) {
   return (
     <>
       <RecipeSectionHeading heading="Notes">
-        <Anchor to={`/recipe/${recipe.id}/notes/new`}>Create</Anchor>
+        <Anchor to={`/recipe/${recipe.id}/notes/edit`}>Edit</Anchor>
       </RecipeSectionHeading>
 
       {!recipe?.notes && <Paragraph variant="dimmed">No notes yet.</Paragraph>}

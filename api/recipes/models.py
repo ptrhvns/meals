@@ -41,9 +41,7 @@ class Recipe(Model):
 
 class Tag(Model):
     name = CharField(max_length=256)
-    recipes: ManyToManyField[Recipe, "Tag"] = ManyToManyField(
-        Recipe, related_name="tags"
-    )
+    recipes: ManyToManyField[Recipe, Tag] = ManyToManyField(Recipe, related_name="tags")
     user: ForeignKey[User] = ForeignKey(
         User, blank=False, null=False, on_delete=CASCADE, related_name="tags"
     )
@@ -67,7 +65,7 @@ class Time(Model):
     minutes = PositiveIntegerField(blank=True, null=True)
     note = CharField(blank=True, default="", max_length=64)
     recipe = ForeignKey(Recipe, on_delete=CASCADE, related_name="times")
-    time_category: ForeignKey["TimeCategory"] = ForeignKey(
+    time_category: ForeignKey[TimeCategory] = ForeignKey(
         "TimeCategory", on_delete=CASCADE, related_name="times"
     )
 
@@ -91,7 +89,7 @@ class TimeCategory(Model):
     user: ForeignKey[User] = ForeignKey(
         User, blank=False, null=False, on_delete=CASCADE, related_name="time_categories"
     )
-    recipes: ManyToManyField[Recipe, "TimeCategory"] = ManyToManyField(
+    recipes: ManyToManyField[Recipe, TimeCategory] = ManyToManyField(
         Recipe, through="Time", related_name="time_categories"
     )
 

@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from django.utils.translation import gettext_lazy as _
 from rest_framework import status
@@ -9,9 +9,9 @@ from rest_framework.serializers import BaseSerializer
 
 
 def response(
-    data: Optional[object] = None,
-    errors: Optional[object] = None,
-    message: Optional[str] = None,
+    data: object | None = None,
+    errors: object | None = None,
+    message: str | None = None,
     status: int = status.HTTP_200_OK,
 ) -> Response:
     generic_data = {}

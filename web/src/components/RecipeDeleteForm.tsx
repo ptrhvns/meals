@@ -34,7 +34,9 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
           <Paragraph>Are you sure you want to delete this recipe?</Paragraph>
 
           <form
-            onSubmit={handleSubmit(async () => {
+            onSubmit={async (event) => {
+              event.preventDefault();
+
               if (!recipe) {
                 setConfirming(false);
                 return;
@@ -51,7 +53,7 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
               }
 
               navigate(`/dashboard`, { replace: true });
-            })}
+            }}
           >
             <FormActions>
               <Button

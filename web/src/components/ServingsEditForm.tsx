@@ -50,7 +50,9 @@ export default function ServingsEditForm({ recipe }: ServingsEditFormProps) {
           <Paragraph>Are you sure you want to reset servings?</Paragraph>
 
           <form
-            onSubmit={handleSubmit(async () => {
+            onSubmit={async (event) => {
+              event.preventDefault();
+
               if (!recipe) {
                 setConfirmingReset(false);
                 return;
@@ -67,7 +69,7 @@ export default function ServingsEditForm({ recipe }: ServingsEditFormProps) {
               }
 
               navigate(`/recipe/${recipe.id}`, { replace: true });
-            })}
+            }}
           >
             <FormActions>
               <Button

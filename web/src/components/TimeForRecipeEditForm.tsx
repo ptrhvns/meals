@@ -73,7 +73,9 @@ export default function TimeForRecipeEditForm({
           </Paragraph>
 
           <form
-            onSubmit={handleSubmit(async () => {
+            onSubmit={async (event) => {
+              event.preventDefault();
+
               if (!time) {
                 setConfirmingDelete(false);
                 return;
@@ -90,7 +92,7 @@ export default function TimeForRecipeEditForm({
               }
 
               navigate(`/recipe/${recipeId}`, { replace: true });
-            })}
+            }}
           >
             <FormActions>
               <Button

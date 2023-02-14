@@ -47,7 +47,8 @@ export default function TagForRecipeUnlinkForm({
           </Paragraph>
 
           <form
-            onSubmit={handleSubmit(async () => {
+            onSubmit={async (event) => {
+              event.preventDefault();
               setSubmitting(true);
 
               const response = await tagUnlink({
@@ -65,7 +66,7 @@ export default function TagForRecipeUnlinkForm({
 
               dispatch({ type: "unlinkTag", payload: tag.id });
               setConfirming(false);
-            })}
+            }}
           >
             <FormActions>
               <Button

@@ -48,7 +48,9 @@ export default function TagEditForm({ tag }: TagEditFormProps) {
           </Paragraph>
 
           <form
-            onSubmit={handleSubmit(async () => {
+            onSubmit={async (event) => {
+              event.preventDefault();
+
               if (!tag) {
                 setConfirmingDelete(false);
                 return;
@@ -65,7 +67,7 @@ export default function TagEditForm({ tag }: TagEditFormProps) {
               }
 
               navigate(`/dashboard/tags`, { replace: true });
-            })}
+            }}
           >
             <FormActions>
               <Button

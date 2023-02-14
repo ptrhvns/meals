@@ -193,7 +193,7 @@ def signup_confirmation_update(request: Request) -> Response:
             message=_("The signup confirmation ID provided was invalid.")
         )
 
-    now = datetime.now().replace(tzinfo=ZoneInfo(settings.TIME_ZONE))
+    now = datetime.now(tz=ZoneInfo(settings.TIME_ZONE))
 
     if token.expiration < now:
         token.delete()

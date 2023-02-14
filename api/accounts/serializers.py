@@ -42,7 +42,7 @@ class SignupCreateRequestSerializer(ModelSerializer):
             user = self.instance or User(**self.initial_data)
             password_validation.validate_password(value, user)
         except DValidationError as error:
-            raise DRFValidationError(error.messages)
+            raise DRFValidationError from error
 
         return value
 

@@ -12,6 +12,7 @@ from django.db.models import (
     Model,
     PositiveIntegerField,
     PositiveSmallIntegerField,
+    TextField,
     UniqueConstraint,
 )
 from django.utils.translation import gettext_lazy as _
@@ -20,6 +21,7 @@ from accounts.models import User
 
 
 class Recipe(Model):
+    notes = TextField(blank=True)
     rating = PositiveSmallIntegerField(
         blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )

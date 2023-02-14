@@ -32,7 +32,7 @@ class TimeResponseSerializer(ModelSerializer):
 class RecipeResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ("id", "rating", "servings", "tags", "times", "title")
+        fields = ("id", "notes", "rating", "servings", "tags", "times", "title")
 
     tags = TagResponseSerializer(many=True, required=False)
     times = TimeResponseSerializer(many=True, required=False)

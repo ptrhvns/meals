@@ -16,6 +16,8 @@ import {
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
+  notesDestroy,
+  notesUpdate,
   ratingDestroy,
   ratingGet,
   ratingUpdate,
@@ -233,6 +235,8 @@ export default function useApi() {
     accountDestroy: withSendAndArgs(accountDestroy),
     login: withSendAndArgs(login),
     logout: withSend(logout),
+    notesDestroy: withSendAndArgs(notesDestroy),
+    notesUpdate: withSendAndArgs(notesUpdate),
     ratingDestroy: withSendAndArgs(ratingDestroy),
     ratingGet: withSendAndArgs(ratingGet),
     ratingUpdate: withSendAndArgs(ratingUpdate),

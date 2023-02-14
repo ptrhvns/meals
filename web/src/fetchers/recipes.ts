@@ -9,13 +9,34 @@ import {
 } from "../lib/types";
 import { z } from "zod";
 
+export function notesDestroy(
+  send: ApiSendFunction,
+  { recipeId }: { recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/notes/destroy/`,
+  });
+}
+
+export function notesUpdate(
+  send: ApiSendFunction,
+  { data, recipeId }: { data: { notes: string }; recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/notes/update/`,
+  });
+}
+
 export function ratingDestroy(
   send: ApiSendFunction,
   { recipeId }: { recipeId: string }
 ): Promise<ApiResponse> {
   return send({
     method: "POST",
-    url: `/api/recipes/recipes/${recipeId}/rating/destroy/`,
+    url: `/api/recipes/recipe/${recipeId}/rating/destroy/`,
   });
 }
 

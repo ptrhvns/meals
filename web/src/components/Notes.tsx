@@ -18,7 +18,7 @@ export default function Notes({ recipe }: NotesProps) {
 
       {!recipe?.notes && <Paragraph variant="dimmed">No notes yet.</Paragraph>}
 
-      {recipe?.notes && <Paragraph>TODO: display notes here.</Paragraph>}
+      {recipe?.notes && <Paragraph>{recipe.notes}</Paragraph>}
     </>
   );
 }

@@ -1,6 +1,8 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern, URLResolver
 
+from recipes.views.notes_destroy import notes_destroy
+from recipes.views.notes_update import notes_update
 from recipes.views.rating import rating
 from recipes.views.rating_destroy import rating_destroy
 from recipes.views.rating_update import rating_update
@@ -30,6 +32,8 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("rating/<int:recipe_id>/update/", rating_update),
     path("recipe/<int:recipe_id>/", recipe),
     path("recipe/<int:recipe_id>/destroy/", recipe_destroy),
+    path("recipe/<int:recipe_id>/notes/destroy/", notes_destroy),
+    path("recipe/<int:recipe_id>/notes/update/", notes_update),
     path("recipe/<int:recipe_id>/rating/destroy/", rating_destroy),
     path("recipe/<int:recipe_id>/servings/destroy/", servings_destroy),
     path("recipe/<int:recipe_id>/servings/update/", servings_update),

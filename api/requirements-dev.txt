@@ -23,9 +23,7 @@ async-timeout==4.0.2 \
 attrs==22.2.0 \
     --hash=sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836 \
     --hash=sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99
-    # via
-    #   flake8-bugbear
-    #   pytest
+    # via pytest
 backcall==0.2.0 \
     --hash=sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e \
     --hash=sha256:fbbce6a29f263178a1f7915c1940bde0ec2b2a967566fe1c65c1dfb7422bd255
@@ -158,9 +156,9 @@ decorator==5.1.1 \
     # via
     #   ipdb
     #   ipython
-django==4.1.6 \
-    --hash=sha256:bceb0fe1a386781af0788cae4108622756cd05e7775448deec04a71ddf87685d \
-    --hash=sha256:c6fe7ebe7c017fe59f1029821dae0acb5a2ddcd6c9a0138fd20a8bfefac914bc
+django==4.1.7 \
+    --hash=sha256:44f714b81c5f190d9d2ddad01a532fe502fa01c4cb8faf1d081f4264ed15dcd8 \
+    --hash=sha256:f2f431e75adc40039ace496ad3b9f17227022e8b11566f4b363da44c7e44761e
     # via
     #   api (pyproject.toml)
     #   django-extensions
@@ -193,20 +191,10 @@ factory-boy==3.2.1 \
     --hash=sha256:a98d277b0c047c75eb6e4ab8508a7f81fb03d2cb21986f627913546ef7a2a55e \
     --hash=sha256:eb02a7dd1b577ef606b75a253b9818e6f9eaf996d94449c9d5ebb124f90dc795
     # via api (pyproject.toml)
-faker==16.7.0 \
-    --hash=sha256:4b98c197169e083304afd12c1ee1e5101f5c817161c3d690eb318a15b805108d \
-    --hash=sha256:c522c78f2d7572724bde05de8571205e9a594f95b57e08e388e0677976ebd400
+faker==17.0.0 \
+    --hash=sha256:17cf85aeb0363a3384ccd4c1f52b52ec8f414c7afaab74ae1f4c3e09a06e14de \
+    --hash=sha256:21c3c6c45183308151c14f62afe59bf54ace68f663e0180973698ba2a9a3b2c4
     # via factory-boy
-flake8==6.0.0 \
-    --hash=sha256:3833794e27ff64ea4e9cf5d410082a8b97ff1a06c16aa3d2027339cd0f1195c7 \
-    --hash=sha256:c61007e76655af75e6785a931f452915b371dc48f56efd765247c8fe68f2b181
-    # via
-    #   api (pyproject.toml)
-    #   flake8-bugbear
-flake8-bugbear==23.1.20 \
-    --hash=sha256:04a115e5f9c8e87c38bdbbcdf9f58223ffe05469c07c9a7bd8633330bc4d078b \
-    --hash=sha256:55902ab5a48c5ea53d8689ecd146eda548e72f2724192b9c1d68f6d975d13c06
-    # via api (pyproject.toml)
 gitdb==4.0.10 \
     --hash=sha256:6eb990b69df4e15bad899ea868dc46572c3f75339735663b81de79b06f17eb9a \
     --hash=sha256:c286cf298426064079ed96a9e4a9d39e7f3e9bf15ba60701e95f5492f28415c7
@@ -223,9 +211,9 @@ ipdb==0.13.11 \
     --hash=sha256:c23b6736f01fd4586cc2ecbebdf79a5eb454796853e1cd8f2ed3b7b91d4a3e93 \
     --hash=sha256:f74c2f741c18b909eaf89f19fde973f745ac721744aa1465888ce45813b63a9c
     # via api (pyproject.toml)
-ipython==8.9.0 \
-    --hash=sha256:71618e82e6d59487bea059626e7c79fb4a5b760d1510d02fab1160db6fdfa1f7 \
-    --hash=sha256:9c207b0ef2d276d1bfcfeb9a62804336abbe4b170574ea061500952319b1d78c
+ipython==8.10.0 \
+    --hash=sha256:b13a1d6c1f5818bd388db53b7107d17454129a70de2b87481d555daede5eb49e \
+    --hash=sha256:b38c31e8fc7eff642fc7c597061fff462537cf2314e3225a19c906b7b0d8a345
     # via ipdb
 isort==5.12.0 \
     --hash=sha256:8bef7dde241278824a6d83f44a544709b065191b95b6e50894bdc722fcba0504 \
@@ -247,10 +235,6 @@ matplotlib-inline==0.1.6 \
     --hash=sha256:f1f41aab5328aa5aaea9b16d083b128102f8712542f819fe7e6a420ff581b311 \
     --hash=sha256:f887e5f10ba98e8d2b150ddcf4702c1e5f8b3a20005eb0f74bfdbd360ee6f304
     # via ipython
-mccabe==0.7.0 \
-    --hash=sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325 \
-    --hash=sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e
-    # via flake8
 mdurl==0.1.2 \
     --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
     --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
@@ -316,10 +300,6 @@ pickleshare==0.7.5 \
     --hash=sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca \
     --hash=sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56
     # via ipython
-pip==23.0 \
-    --hash=sha256:aee438284e82c8def684b0bcc50b1f6ed5e941af97fa940e83e2e8ef1a59da9b \
-    --hash=sha256:b5f88adff801f5ef052bcdef3daa31b55eb67b0fccd6d0106c206fa248e0463c
-    # via pip-tools
 pip-tools==6.12.2 \
     --hash=sha256:6a51f4fd67140d5e83703ebfa9610fb61398727151f56a1be02a972d062e4679 \
     --hash=sha256:8b903696df4598b10d469026ef9995c5f9a874b416e88e7a214884ebe4a70245
@@ -365,14 +345,6 @@ pure-eval==0.2.2 \
     --hash=sha256:01eaab343580944bc56080ebe0a674b39ec44a945e6d09ba7db3cb8cec289350 \
     --hash=sha256:2b45320af6dfaa1750f543d714b6d1c520a1688dec6fd24d339063ce0aaa9ac3
     # via stack-data
-pycodestyle==2.10.0 \
-    --hash=sha256:347187bdb476329d98f695c213d7295a846d1152ff4fe9bacb8a9590b8ee7053 \
-    --hash=sha256:8a4eaf0d0495c7395bdab3589ac2db602797d76207242c17d470186815706610
-    # via flake8
-pyflakes==3.0.1 \
-    --hash=sha256:ec55bf7fe21fff7f1ad2f7da62363d749e2a470500eab1b555334b67aa1ef8cf \
-    --hash=sha256:ec8b276a6b60bd80defed25add7e439881c19e64850afd9b346283d4165fd0fd
-    # via flake8
 pygments==2.14.0 \
     --hash=sha256:b3ed06a9e8ac9a9aae5a6f5dbe78a8a58655d17b43b93c078f094ddc476ae297 \
     --hash=sha256:fa7bd7bd2771287c0de303af8bfdfc731f51bd2c6a47ab69d117138893b82717
@@ -469,10 +441,24 @@ rich==13.3.1 \
     --hash=sha256:125d96d20c92b946b983d0d392b84ff945461e5a06d3867e9f9e575f8697b67f \
     --hash=sha256:8aa57747f3fc3e977684f0176a88e789be314a99f99b43b75d1e9cb5dc6db9e9
     # via pytest-clarity
-setuptools==67.2.0 \
-    --hash=sha256:16ccf598aab3b506593c17378473978908a2734d7336755a8769b480906bec1c \
-    --hash=sha256:b440ee5f7e607bb8c9de15259dba2583dd41a38879a7abc1d43a71c59524da48
-    # via pip-tools
+ruff==0.0.246 \
+    --hash=sha256:2474a805c4244cfaf0390a745a0c5ea9e5452f52fbce0be74930fece8bd40b90 \
+    --hash=sha256:449e6632c13902df06ac14ccfc7bad71841ab90bfa64e8cb3f1a2ea91e647df0 \
+    --hash=sha256:45cde6f9df94fb393ffeeada2daca279569b9d53d1d95d49b9b5b418fe70bd23 \
+    --hash=sha256:468f282e26d1845f4a06dcd76fdc355f4288208e6b97f061951a7ffd6725102e \
+    --hash=sha256:529a7d72f48331b97367cd6d42273f3cafa764d9373e74b75561367135958546 \
+    --hash=sha256:5839a213a90220845693c95d7e6a19ab26751b9e37047ef8f4a58dc49230c817 \
+    --hash=sha256:589aff453085cad28b8d1f517161a6b37a6d359cda419f64c009e0f7ff424d72 \
+    --hash=sha256:64af553f8ff4d1f51a24104ac8f81b5ce6df9c230d776fa4dd22db96699efdb0 \
+    --hash=sha256:67d5fa9abdcb764a7cee242fb65e303662c9cb80104a2dd0657e96fca8a7c6d8 \
+    --hash=sha256:734ff8fef2e7105cf6946e525b3e8cbed035edc9d58c4f47aac7205dbd1e55c0 \
+    --hash=sha256:8173a00766b88b47431e8e744f577d06c6c52c0e18181ac29a701a9d5c035b39 \
+    --hash=sha256:ca7d1ee44144460ae119a6212aaff77a671a5729d543b981c786c052011cdfe3 \
+    --hash=sha256:dd4f58b9295615ebb01563a38a5594fcb4664bb6106b2ccd00b90c0f1d14cf8c \
+    --hash=sha256:ebe6052bc87ee51d84af231ccd27e5338fdc30d8bf49e51bdcfceb44c51c5625 \
+    --hash=sha256:f6004332134580f0ede29d86a9a16102ba07c25799e0ab9683359216a419366b \
+    --hash=sha256:f8403e31e64b15c9b3e2745b0400e2f43eea81493ae0fa85e275ed0800a89c19
+    # via api (pyproject.toml)
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
@@ -492,9 +478,9 @@ stack-data==0.6.2 \
     --hash=sha256:32d2dd0376772d01b6cb9fc996f3c8b57a357089dec328ed4b6553d037eaf815 \
     --hash=sha256:cbb2a53eb64e5785878201a97ed7c7b94883f48b87bfb0bbe8b623c74679e4a8
     # via ipython
-stevedore==4.1.1 \
-    --hash=sha256:7f8aeb6e3f90f96832c301bff21a7eb5eefbe894c88c506483d355565d88cc1a \
-    --hash=sha256:aa6436565c069b2946fe4ebff07f5041e0c8bf18c7376dd29edf80cf7d524e4e
+stevedore==5.0.0 \
+    --hash=sha256:2c428d2338976279e8eb2196f7a94910960d9f7ba2f41f3988511e95ca447021 \
+    --hash=sha256:bd5a71ff5e5e5f5ea983880e4a1dd1bb47f8feebbb3d95b592398e2f02194771
     # via bandit
 traitlets==5.9.0 \
     --hash=sha256:9e6ec080259b9a5940c797d58b613b5e31441c2257b87c2e795c5228ae80d2d8 \
@@ -555,3 +541,13 @@ wheel==0.38.4 \
     # via
     #   api (pyproject.toml)
     #   pip-tools
+
+# The following packages are considered to be unsafe in a requirements file:
+pip==23.0 \
+    --hash=sha256:aee438284e82c8def684b0bcc50b1f6ed5e941af97fa940e83e2e8ef1a59da9b \
+    --hash=sha256:b5f88adff801f5ef052bcdef3daa31b55eb67b0fccd6d0106c206fa248e0463c
+    # via pip-tools
+setuptools==67.3.1 \
+    --hash=sha256:23c86b4e44432bfd8899384afc08872ec166a24f48a3f99f293b0a557e6a6b5d \
+    --hash=sha256:daec07fd848d80676694d6bf69c009d28910aeece68a38dbe88b7e1bb6dba12e
+    # via pip-tools

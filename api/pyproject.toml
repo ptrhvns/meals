@@ -23,8 +23,6 @@ dev = [
     "django-types ~= 0.16.0",
     "djangorestframework-types ~= 0.8.0",
     "factory-boy ~= 3.2.1",
-    "flake8 ~= 6.0.0",
-    "flake8-bugbear ~= 23.1.14",
     "ipdb ~= 0.13.9",
     "isort ~= 5.12.0",
     "mypy ~= 1.0.0",
@@ -34,6 +32,7 @@ dev = [
     "pytest-cov ~= 4.0.0",
     "pytest-django ~= 4.5.2",
     "pytest-mock ~= 3.10.0",
+    "ruff ~= 0.0.246",
     "watchdog[watchmedo] ~= 2.2.1",
     "wheel ~= 0.38.4",
 ]
@@ -46,3 +45,10 @@ show_error_codes = true
 strict = true
 warn_unreachable = true
 warn_unused_ignores = true
+
+[tool.ruff]
+exclude = [".git", "__pycache__", "migrations", "venv"]
+ignore = ["E501", "S101"]
+line-length = 88
+select = ["B", "E", "F"]
+target-version = "py311"

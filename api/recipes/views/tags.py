@@ -1,5 +1,4 @@
 from django.core.paginator import Paginator
-from django.utils.translation import gettext_lazy as _
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request

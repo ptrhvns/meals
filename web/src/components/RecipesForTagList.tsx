@@ -45,11 +45,7 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
   return (
     <>
       {!loading && error && (
-        <Alert
-          alertClassName={classes.alert}
-          onDismiss={() => setError(undefined)}
-          variant="error"
-        >
+        <Alert alertClassName={classes.alert} variant="error">
           {error}
         </Alert>
       )}

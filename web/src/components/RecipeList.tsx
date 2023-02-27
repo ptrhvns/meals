@@ -36,11 +36,7 @@ export default function RecipeList() {
   return (
     <>
       {!loading && error && (
-        <Alert
-          alertClassName={classes.alert}
-          onDismiss={() => setError(undefined)}
-          variant="error"
-        >
+        <Alert alertClassName={classes.alert} variant="error">
           {error}
         </Alert>
       )}

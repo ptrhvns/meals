@@ -52,11 +52,7 @@ export default function RecipeTitleEdit() {
 
           <Heading>Edit Recipe Title</Heading>
 
-          {!loading && error && (
-            <Alert onDismiss={() => setError(undefined)} variant="error">
-              {error}
-            </Alert>
-          )}
+          {!loading && error && <Alert variant="error">{error}</Alert>}
 
           {!loading && !error && <RecipeTitleEditForm recipe={recipe} />}
         </PageSection>

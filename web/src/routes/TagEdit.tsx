@@ -54,11 +54,7 @@ export default function TagEdit() {
 
           <Heading>Edit Tag</Heading>
 
-          {!loading && error && (
-            <Alert onDismiss={() => setError(undefined)} variant="error">
-              {error}
-            </Alert>
-          )}
+          {!loading && error && <Alert variant="error">{error}</Alert>}
 
           {!loading && !error && <TagEditForm tag={tag} />}
         </PageSection>

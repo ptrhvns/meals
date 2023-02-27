@@ -53,11 +53,7 @@ export default function TimeNew() {
 
           <Heading>Create Time</Heading>
 
-          {!loading && error && (
-            <Alert onDismiss={() => setError(undefined)} variant="error">
-              {error}
-            </Alert>
-          )}
+          {!loading && error && <Alert variant="error">{error}</Alert>}
 
           {!loading && !error && (
             <TimeNewForm recipeId={recipeId} timeCategories={timeCategories} />

@@ -52,11 +52,7 @@ export default function NotesEdit() {
 
           <Heading>Edit Notes</Heading>
 
-          {!loading && error && (
-            <Alert onDismiss={() => setError(undefined)} variant="error">
-              {error}
-            </Alert>
-          )}
+          {!loading && error && <Alert variant="error">{error}</Alert>}
 
           {!loading && !error && <NotesEditForm recipe={recipe} />}
         </PageSection>

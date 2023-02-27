@@ -88,9 +88,7 @@ export default function Recipe() {
 
         {!loading && error && (
           <PageSection className={classes.pageSection}>
-            <Alert onDismiss={() => setError(undefined)} variant="error">
-              {error}
-            </Alert>
+            <Alert variant="error">{error}</Alert>
           </PageSection>
         )}
 

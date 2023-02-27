@@ -37,19 +37,13 @@ export default function TagList() {
   return (
     <>
       {!loading && error && (
-        <Alert
-          alertClassName={classes.alert}
-          onDismiss={() => setError(undefined)}
-          variant="error"
-        >
+        <Alert alertClassName={classes.alert} variant="error">
           {error}
         </Alert>
       )}
 
       {!loading && !error && isEmpty(tags) && (
-        <Paragraph variant="dimmed">
-          No tags have been created yet.
-        </Paragraph>
+        <Paragraph variant="dimmed">No tags have been created yet.</Paragraph>
       )}
 
       {!loading && !error && tags && !isEmpty(tags) && (

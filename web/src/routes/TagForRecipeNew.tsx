@@ -54,11 +54,7 @@ export default function TagForRecipeNew() {
 
           <Heading>Create Tag</Heading>
 
-          {!loading && error && (
-            <Alert onDismiss={() => setError(undefined)} variant="error">
-              {error}
-            </Alert>
-          )}
+          {!loading && error && <Alert variant="error">{error}</Alert>}
 
           {!loading && !error && <TagForRecipeNewForm tags={tags} />}
 

@@ -10,7 +10,6 @@ import { Dispatch, useState } from "react";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RecipeData, RecipeReducerAction, TagData } from "../lib/types";
-import { useForm } from "react-hook-form";
 
 interface TagForRecipeUnlinkFormProps {
   dispatch: Dispatch<RecipeReducerAction>;
@@ -26,7 +25,6 @@ export default function TagForRecipeUnlinkForm({
   const [confirming, setConfirming] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const { handleSubmit } = useForm();
   const { tagUnlink } = useApi();
 
   return (

@@ -15,6 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 // Used as an "enum" of possible names of the tabs in Dashboard.
 const tabs = {
+  equipment: "equipment",
   recipes: "recipes",
   tags: "tags",
 };
@@ -63,6 +64,17 @@ export default function Dashboard() {
                   <div className={classes.tabsTriggerContentInner}>Tags</div>
                 </div>
               </TabsPrimitive.Trigger>
+
+              <TabsPrimitive.Trigger
+                className={classes.tabsTrigger}
+                value={tabs.equipment}
+              >
+                <div className={classes.tabsTriggerContent}>
+                  <div className={classes.tabsTriggerContentInner}>
+                    Equipment
+                  </div>
+                </div>
+              </TabsPrimitive.Trigger>
             </TabsPrimitive.List>
 
             <TabsPrimitive.Content
@@ -85,6 +97,13 @@ export default function Dashboard() {
               </Anchor>
 
               <TagList />
+            </TabsPrimitive.Content>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
+              value={tabs.equipment}
+            >
+              Equipment
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

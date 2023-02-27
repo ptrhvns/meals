@@ -37,6 +37,16 @@ export function equipmentLink(
   });
 }
 
+export function equipmentUnlink(
+  send: ApiSendFunction,
+  { recipeId, equipmentId }: { recipeId: string; equipmentId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/equipment/${equipmentId}/unlink/`,
+  });
+}
+
 export function notesDestroy(
   send: ApiSendFunction,
   { recipeId }: { recipeId: string }

@@ -37,20 +37,30 @@ export default function Recipe() {
       switch (action.type) {
         case "setRecipe":
           return { ...state, recipe: action.payload };
-        case "unlinkTag":
-          if (state.recipe) {
-            return {
-              ...state,
-              recipe: {
-                ...state.recipe,
-                tags: state.recipe.tags?.filter(
-                  (tag) => tag.id !== action.payload
-                ),
-              },
-            };
-          }
+        case "unlinkEquipment":
+          if (!state.recipe) return state;
 
-          return state;
+          return {
+            ...state,
+            recipe: {
+              ...state.recipe,
+              equipment: state.recipe.equipment?.filter(
+                (eq) => eq.id !== action.payload
+              ),
+            },
+          };
+        case "unlinkTag":
+          if (!state.recipe) return state;
+
+          return {
+            ...state,
+            recipe: {
+              ...state.recipe,
+              tags: state.recipe.tags?.filter(
+                (tag) => tag.id !== action.payload
+              ),
+            },
+          };
         default:
           return state;
       }
@@ -119,7 +129,7 @@ export default function Recipe() {
             </PageSection>
 
             <PageSection className={classes.pageSection}>
-              <Equipment recipe={recipe} />
+              <Equipment dispatch={dispatch} recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

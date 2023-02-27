@@ -1,0 +1,12 @@
+.button {
+  color: var(--slate9);
+  margin-top: -0.2rem;
+
+  &:hover {
+    color: var(--slate11);
+  }
+}
+
+.form {
+  display: inline-block;
+}

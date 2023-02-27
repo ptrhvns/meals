@@ -33,6 +33,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    // prettier-ignore
     children: [
       { index: true, element: <Home /> },
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
@@ -43,10 +44,7 @@ const router = createBrowserRouter([
       { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
       { path: "recipe/:recipeId/servings/edit", element: <ServingsEdit /> },
       { path: "recipe/:recipeId/tag/new", element: <TagForRecipeNew /> },
-      {
-        path: "recipe/:recipeId/time/:timeId/edit",
-        element: <TimeForRecipeEdit />,
-      },
+      { path: "recipe/:recipeId/time/:timeId/edit", element: <TimeForRecipeEdit />, },
       { path: "recipe/:recipeId/time/new", element: <TimeNew /> },
       { path: "recipe/:recipeId/title/edit", element: <RecipeTitleEdit /> },
       { path: "recipe/new", element: <RecipeNew /> },

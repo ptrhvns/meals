@@ -25,6 +25,18 @@ export interface ApiSendParameter {
 
 export type ApiSendFunction = (param: ApiSendParameter) => Promise<ApiResponse>;
 
+// Ensure this matches EquipmentData.
+export const equipmentSchema = z.object({
+  id: z.string(),
+  description: z.string(),
+});
+
+// Ensure this matches equipmentSchema.
+export interface EquipmentData {
+  id: string;
+  description: string;
+}
+
 // Ensure this matches PaginationData.
 export const paginationSchema = z.object({
   page: z.number(),
@@ -83,6 +95,7 @@ export interface TimeData {
 
 // Ensure this matches RecipeData.
 export const recipeSchema = z.object({
+  equipment: z.optional(z.array(equipmentSchema)),
   id: z.string(),
   notes: z.optional(z.string()),
   rating: z.optional(z.number()),
@@ -94,6 +107,7 @@ export const recipeSchema = z.object({
 
 // Ensure this matches recipeSchema.
 export interface RecipeData {
+  equipment?: EquipmentData[];
   id: string;
   notes?: string;
   rating?: number;

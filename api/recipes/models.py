@@ -104,3 +104,29 @@ class TimeCategory(Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Equipment(Model):
+    description = CharField(max_length=256)
+    recipes: ManyToManyField[Recipe, Equipment] = ManyToManyField(
+        Recipe, related_name="equipment"
+    )
+    user: ForeignKey[User] = ForeignKey(
+        User,
+        blank=False,
+        null=False,
+        on_delete=CASCADE,
+        related_name="equipment",
+    )
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                deferrable=Deferrable.DEFERRED,  # type: ignore[call-arg]
+                fields=["description", "user"],
+                name="recipes_equipment_unique_description_user",
+            )
+        ]
+
+    def __str__(self) -> str:
+        return self.description

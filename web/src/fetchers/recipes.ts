@@ -1,6 +1,7 @@
 import {
   ApiResponse,
   ApiSendFunction,
+  equipmentSchema,
   paginationSchema,
   recipeSchema,
   tagSchema,
@@ -8,6 +9,33 @@ import {
   timeSchema,
 } from "../lib/types";
 import { z } from "zod";
+
+export function equipmentGet(send: ApiSendFunction): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      equipment: z.array(equipmentSchema),
+    }),
+    url: `/api/recipes/equipment/`,
+  });
+}
+
+export function equipmentLink(
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+  }: {
+    data: { description: string };
+    recipeId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/equipment/link/`,
+  });
+}
 
 export function notesDestroy(
   send: ApiSendFunction,
@@ -189,7 +217,6 @@ export function tagLink(
   return send({
     data,
     method: "POST",
-    responseDataSchema: tagSchema,
     url: `/api/recipes/recipe/${recipeId}/tag/link/`,
   });
 }

@@ -12,7 +12,7 @@ export default function Equipment({ recipe }: EquipmentProps) {
   return (
     <>
       <RecipeSectionHeading heading="Equipment">
-        <Anchor to={`/recipe/${recipe.id}/equipment/new`}>Edit</Anchor>
+        <Anchor to={`/recipe/${recipe.id}/equipment/new`}>Create</Anchor>
       </RecipeSectionHeading>
     </>
   );

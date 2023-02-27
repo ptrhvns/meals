@@ -5,8 +5,14 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 
-from recipes.models import Recipe, Tag, Time, TimeCategory
+from recipes.models import Equipment, Recipe, Tag, Time, TimeCategory
 from shared.lib.responses import data_response
+
+
+class EquipmentSerializer(ModelSerializer):
+    class Meta:
+        model = Equipment
+        fields = ("description", "id")
 
 
 class TagResponseSerializer(ModelSerializer):
@@ -32,8 +38,9 @@ class TimeResponseSerializer(ModelSerializer):
 class RecipeResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ("id", "notes", "rating", "servings", "tags", "times", "title")
+        fields = ("equipment", "id", "notes", "rating", "servings", "tags", "times", "title")
 
+    equipment = EquipmentSerializer(many=True, required=False)
     tags = TagResponseSerializer(many=True, required=False)
     times = TimeResponseSerializer(many=True, required=False)
 

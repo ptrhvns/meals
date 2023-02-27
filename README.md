@@ -24,7 +24,7 @@ API server:
 - Python
 - Redis
 
-# Testing
+## Testing
 
 For this project, I wanted to try an experiment where I rely on static typing,
 linting, and so on, but where I don't do any automated testing. If the pain gets

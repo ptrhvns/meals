@@ -1,11 +1,14 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import classes from "../styles/routes/EquipmentForRecipeNew.module.scss";
 import EquipmentForRecipeNewForm from "../components/EquipmentForRecipeNewForm";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
+import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
+import Paragraph from "../components/Paragraph";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
@@ -65,6 +68,12 @@ export default function EquipmentForRecipeNew() {
               recipeId={recipeId}
             />
           )}
+
+          <HorizontalRule className={classes.horizontalRule} />
+
+          <Paragraph>
+            <Anchor to="/dashboard/equipment">Manage all equipment</Anchor>
+          </Paragraph>
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

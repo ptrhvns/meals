@@ -5,6 +5,8 @@ import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
 import useApi from "../hooks/useApi";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleApiError } from "../lib/utils";
 import { isEmpty } from "lodash";
 import { PaginationData, TagData } from "../lib/types";
@@ -15,7 +17,7 @@ export default function TagList() {
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
   const [pagination, setPagination] = useState<PaginationData>();
-  const [tags, setTags] = useState<TagData[]>();
+  const [tags, setTags] = useState<TagData[]>([]);
   const { tagsGet } = useApi();
 
   async function handleTagsGet(page?: number) {
@@ -36,17 +38,17 @@ export default function TagList() {
 
   return (
     <>
-      {!loading && error && (
+      {loading ? (
+        <Paragraph>
+          <FontAwesomeIcon icon={faCircleNotch} spin />
+        </Paragraph>
+      ) : error ? (
         <Alert alertClassName={classes.alert} variant="error">
           {error}
         </Alert>
-      )}
-
-      {!loading && !error && isEmpty(tags) && (
+      ) : isEmpty(tags) ? (
         <Paragraph variant="dimmed">No tags have been created yet.</Paragraph>
-      )}
-
-      {!loading && !error && tags && !isEmpty(tags) && (
+      ) : (
         <>
           <Table className={classes.table} striped>
             <thead>

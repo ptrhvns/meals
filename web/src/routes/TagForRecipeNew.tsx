@@ -12,6 +12,8 @@ import RequireAuthn from "../components/RequireAuthn";
 import TagForRecipeNewForm from "../components/TagForRecipeNewForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
@@ -54,9 +56,13 @@ export default function TagForRecipeNew() {
 
           <Heading>Create Tag</Heading>
 
-          {!loading && error && <Alert variant="error">{error}</Alert>}
-
-          {!loading && !error && <TagForRecipeNewForm tags={tags} />}
+          {loading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
+            <TagForRecipeNewForm tags={tags} />
+          )}
 
           <HorizontalRule className={classes.horizontalRule} />
 

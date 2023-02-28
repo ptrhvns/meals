@@ -16,6 +16,8 @@ import Tags from "../components/Tags";
 import Times from "../components/Times";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError, joinClassNames } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
@@ -96,13 +98,15 @@ export default function Recipe() {
           </Breadcrumbs>
         </PageSection>
 
-        {!loading && error && (
+        {loading ? (
+          <PageSection className={classes.pageSection}>
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          </PageSection>
+        ) : error ? (
           <PageSection className={classes.pageSection}>
             <Alert variant="error">{error}</Alert>
           </PageSection>
-        )}
-
-        {!loading && !error && (
+        ) : (
           <>
             <PageSection className={classes.pageSection}>
               <RecipeTitle recipe={recipe} />

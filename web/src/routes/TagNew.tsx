@@ -9,6 +9,8 @@ import RequireAuthn from "../components/RequireAuthn";
 import TagNewForm from "../components/TagNewForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useState } from "react";
@@ -48,9 +50,13 @@ export default function TagNew() {
 
           <Heading>Create Tag</Heading>
 
-          {!loading && error && <Alert variant="error">{error}</Alert>}
-
-          {!loading && !error && <TagNewForm tags={tags} />}
+          {loading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
+            <TagNewForm tags={tags} />
+          )}
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

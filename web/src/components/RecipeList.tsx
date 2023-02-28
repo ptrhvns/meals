@@ -5,6 +5,8 @@ import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
 import useApi from "../hooks/useApi";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleApiError } from "../lib/utils";
 import { isEmpty } from "lodash";
 import { PaginationData, RecipeData } from "../lib/types";
@@ -15,7 +17,7 @@ export default function RecipeList() {
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
   const [pagination, setPagination] = useState<PaginationData>();
-  const [recipes, setRecipes] = useState<RecipeData[]>();
+  const [recipes, setRecipes] = useState<RecipeData[]>([]);
   const { recipesGet } = useApi();
 
   async function handleRecipesGet(page?: number) {
@@ -35,19 +37,19 @@ export default function RecipeList() {
 
   return (
     <>
-      {!loading && error && (
+      {loading ? (
+        <Paragraph>
+          <FontAwesomeIcon icon={faCircleNotch} spin />
+        </Paragraph>
+      ) : error ? (
         <Alert alertClassName={classes.alert} variant="error">
           {error}
         </Alert>
-      )}
-
-      {!loading && !error && isEmpty(recipes) && (
+      ) : isEmpty(recipes) ? (
         <Paragraph variant="dimmed">
           No recipes have been created yet.
         </Paragraph>
-      )}
-
-      {!loading && !error && recipes && !isEmpty(recipes) && (
+      ) : (
         <>
           <Table className={classes.table} striped>
             <thead>

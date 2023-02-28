@@ -12,6 +12,8 @@ import RequireAuthn from "../components/RequireAuthn";
 import TagEditForm from "../components/TagEditForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { TagData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
@@ -54,9 +56,13 @@ export default function TagEdit() {
 
           <Heading>Edit Tag</Heading>
 
-          {!loading && error && <Alert variant="error">{error}</Alert>}
-
-          {!loading && !error && <TagEditForm tag={tag} />}
+          {loading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
+            <TagEditForm tag={tag} />
+          )}
         </PageSection>
 
         <PageSection className={classes.pageSection} variant="narrow">

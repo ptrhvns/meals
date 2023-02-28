@@ -9,6 +9,8 @@ import RatingEditForm from "../components/RatingEditForm";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
@@ -51,9 +53,11 @@ export default function RatingEdit() {
 
           <Heading>Edit Rating</Heading>
 
-          {!loading && error && <Alert variant="error">{error}</Alert>}
-
-          {!loading && !error && (
+          {loading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
             <RatingEditForm rating={rating} recipeId={recipeId} />
           )}
         </PageSection>

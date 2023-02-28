@@ -9,6 +9,8 @@ import RequireAuthn from "../components/RequireAuthn";
 import ServingsEditForm from "../components/ServingsEditForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { RecipeData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
@@ -52,9 +54,13 @@ export default function ServingsEdit() {
 
           <Heading>Edit Servings</Heading>
 
-          {!loading && error && <Alert variant="error">{error}</Alert>}
-
-          {!loading && !error && <ServingsEditForm recipe={recipe} />}
+          {loading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
+            <ServingsEditForm recipe={recipe} />
+          )}
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

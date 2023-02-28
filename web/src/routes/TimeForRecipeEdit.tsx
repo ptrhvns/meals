@@ -9,6 +9,8 @@ import RequireAuthn from "../components/RequireAuthn";
 import TimeForRecipeEditForm from "../components/TimeForRecipeEditForm";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { TimeCategoryData, TimeData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
@@ -65,9 +67,11 @@ export default function TimeEdit() {
 
           <Heading>Edit Time</Heading>
 
-          {!loading && error && <Alert variant="error">{error}</Alert>}
-
-          {!loading && !error && (
+          {loading ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
             <TimeForRecipeEditForm
               recipeId={recipeId}
               time={time}

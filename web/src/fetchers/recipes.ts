@@ -10,6 +10,17 @@ import {
 } from "../lib/types";
 import { z } from "zod";
 
+export function equipmentCreate(
+  send: ApiSendFunction,
+  { data }: { data: { description: string } }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/equipment/create/`,
+  });
+}
+
 export function equipmentGet(send: ApiSendFunction): Promise<ApiResponse> {
   return send({
     method: "GET",

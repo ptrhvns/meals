@@ -4,6 +4,7 @@ import App from "./routes/App";
 import AuthnProvider from "./providers/AuthnProvider";
 import Dashboard from "./routes/Dashboard";
 import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
+import EquipmentNew from "./routes/EquipmentNew";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
+      { path: "equipment/new", element: <EquipmentNew /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
       { path: "recipe/:recipeId/equipment/new", element: <EquipmentForRecipeNew /> },

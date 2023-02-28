@@ -16,6 +16,7 @@ import {
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
+  equipmentCreate,
   equipmentGet,
   equipmentLink,
   equipmentUnlink,
@@ -236,6 +237,7 @@ export default function useApi() {
 
   return {
     accountDestroy: withSendAndArgs(accountDestroy),
+    equipmentCreate: withSendAndArgs(equipmentCreate),
     equipmentGet: withSend(equipmentGet),
     equipmentLink: withSendAndArgs(equipmentLink),
     equipmentUnlink: withSendAndArgs(equipmentUnlink),

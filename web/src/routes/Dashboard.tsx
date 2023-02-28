@@ -103,7 +103,9 @@ export default function Dashboard() {
               className={classes.tabsContent}
               value={tabs.equipment}
             >
-              Equipment
+              <Anchor to="/equipment/new" variant="filled">
+                Create equipment
+              </Anchor>
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

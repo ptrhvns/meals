@@ -42,7 +42,7 @@ export default function TagNew() {
       <FullPageViewport>
         <PageSection variant="narrow">
           <Breadcrumbs>
-            <Anchor to="/dashboard">Dashboard</Anchor>
+            <Anchor to="/dashboard/tags">Dashboard</Anchor>
             Create Tag
           </Breadcrumbs>
 

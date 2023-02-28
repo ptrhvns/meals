@@ -65,7 +65,7 @@ export default function EquipmentForRecipeNewForm({
           options={equipment}
           setValue={(value: string) => setValue("description", value)}
           type="text"
-          {...register("description", { required: "description is required." })}
+          {...register("description", { required: "Description is required." })}
         />
         <InputError error={fieldErrors?.description?.message} />
       </Field>

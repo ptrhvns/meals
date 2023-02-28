@@ -3,7 +3,7 @@ import "@smastrom/react-rating/style.css";
 import App from "./routes/App";
 import AuthnProvider from "./providers/AuthnProvider";
 import Dashboard from "./routes/Dashboard";
-import EquipmentNew from "./routes/EquipmentNew";
+import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
-      { path: "recipe/:recipeId/equipment/new", element: <EquipmentNew /> },
+      { path: "recipe/:recipeId/equipment/new", element: <EquipmentForRecipeNew /> },
       { path: "recipe/:recipeId/notes/edit", element: <NotesEdit /> },
       { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
       { path: "recipe/:recipeId/servings/edit", element: <ServingsEdit /> },

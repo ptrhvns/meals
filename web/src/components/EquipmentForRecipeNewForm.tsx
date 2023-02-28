@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { handleApiError } from "../lib/utils";
 
-interface EquipmentNewFormProps {
+interface EquipmentForRecipeNewFormProps {
   equipment: string[];
   recipeId: string;
 }
@@ -20,10 +20,10 @@ interface FormData {
   description: string;
 }
 
-export default function EquipmentNewForm({
+export default function EquipmentForRecipeNewForm({
   equipment,
   recipeId,
-}: EquipmentNewFormProps) {
+}: EquipmentForRecipeNewFormProps) {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>();
   const navigate = useNavigate();

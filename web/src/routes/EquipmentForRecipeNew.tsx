@@ -1,7 +1,7 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
-import EquipmentNewForm from "../components/EquipmentNewForm";
+import EquipmentForRecipeNewForm from "../components/EquipmentForRecipeNewForm";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -14,7 +14,7 @@ import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-export default function EquipmentNew() {
+export default function EquipmentForRecipeNew() {
   const [equipment, setEquipment] = useState<string[]>([]);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
@@ -56,7 +56,10 @@ export default function EquipmentNew() {
           {!loading && error && <Alert variant="error">{error}</Alert>}
 
           {!loading && !error && (
-            <EquipmentNewForm equipment={equipment} recipeId={recipeId} />
+            <EquipmentForRecipeNewForm
+              equipment={equipment}
+              recipeId={recipeId}
+            />
           )}
         </PageSection>
       </FullPageViewport>

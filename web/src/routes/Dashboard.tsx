@@ -82,7 +82,7 @@ export default function Dashboard() {
               value={tabs.recipes}
             >
               <Anchor to="/recipe/new" variant="filled">
-                Create recipe
+                Create
               </Anchor>
 
               <RecipeList />
@@ -93,7 +93,7 @@ export default function Dashboard() {
               value={tabs.tags}
             >
               <Anchor to="/tag/new" variant="filled">
-                Create tag
+                Create
               </Anchor>
 
               <TagList />
@@ -104,7 +104,7 @@ export default function Dashboard() {
               value={tabs.equipment}
             >
               <Anchor to="/equipment/new" variant="filled">
-                Create equipment
+                Create
               </Anchor>
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>

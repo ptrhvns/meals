@@ -39,7 +39,7 @@ export default function TagForRecipeUnlinkForm({
         <DialogContent onDismiss={() => setConfirming(false)}>
           <Paragraph>Are you sure you want to unlink this tag?</Paragraph>
 
-          <Paragraph>
+          <Paragraph variant="dimmed">
             It will only be unlinked from this recipe. To unlink it from other
             recipes, or to delete it entirely, manage the tag itself.
           </Paragraph>

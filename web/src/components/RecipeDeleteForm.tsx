@@ -5,7 +5,6 @@ import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
 import { Dialog, DialogContent } from "./Dialog";
 import { RecipeData } from "../lib/types";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -18,7 +17,6 @@ export default function RecipeDeleteForm({ recipe }: RecipeDeleteFormProps) {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { handleSubmit } = useForm();
   const { recipeDestroy } = useApi();
 
   return (

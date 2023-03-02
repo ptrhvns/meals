@@ -9,7 +9,6 @@ import { Dialog, DialogContent } from "./Dialog";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RecipeData, TagData } from "../lib/types";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
@@ -26,7 +25,6 @@ export default function TagRecipeUnlinkForm({
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { handleSubmit } = useForm();
   const { tagUnlink } = useApi();
 
   return (

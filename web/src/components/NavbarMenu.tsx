@@ -1,3 +1,4 @@
+import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Button from "./Button";
 import classes from "../styles/components/NavbarMenu.module.scss";
@@ -21,7 +22,9 @@ export default function NavbarMenu({ setError }: NavbarMenuProps) {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <Button className={classes.button} variant="unstyled">
-          <FontAwesomeIcon icon={faBars} /> Menu
+          <AccessibleIcon.Root label="Menu">
+            <FontAwesomeIcon icon={faBars} />
+          </AccessibleIcon.Root>
         </Button>
       </DropdownMenu.Trigger>
 

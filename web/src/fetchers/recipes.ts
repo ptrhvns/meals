@@ -75,6 +75,22 @@ export function equipmentPieceGet(
   });
 }
 
+export function equipmentRecipesGet(
+  send: ApiSendFunction,
+  params: { page?: number; equipmentId: string }
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(params.page ?? 1);
+
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/recipes/equipment/${params.equipmentId}/recipes/?page=${page}`,
+  });
+}
+
 export function equipmentUnlink(
   send: ApiSendFunction,
   { recipeId, equipmentId }: { recipeId: string; equipmentId: string }

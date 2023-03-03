@@ -21,13 +21,29 @@ export function equipmentCreate(
   });
 }
 
-export function equipmentGet(send: ApiSendFunction): Promise<ApiResponse> {
+export function equipmentDestroy(
+  send: ApiSendFunction,
+  { equipmentId }: { equipmentId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/equipment/${equipmentId}/destroy/`,
+  });
+}
+
+export function equipmentGet(
+  send: ApiSendFunction,
+  params?: { page?: number }
+): Promise<ApiResponse> {
+  const queryParam = params?.page ? `?page=${params?.page}` : "";
+
   return send({
     method: "GET",
     responseDataSchema: z.object({
       equipment: z.array(equipmentSchema),
+      pagination: z.optional(paginationSchema),
     }),
-    url: `/api/recipes/equipment/`,
+    url: `/api/recipes/equipment/${queryParam}`,
   });
 }
 
@@ -48,6 +64,17 @@ export function equipmentLink(
   });
 }
 
+export function equipmentPieceGet(
+  send: ApiSendFunction,
+  { equipmentId }: { equipmentId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: equipmentSchema,
+    url: `/api/recipes/equipment-piece/${equipmentId}/`,
+  });
+}
+
 export function equipmentUnlink(
   send: ApiSendFunction,
   { recipeId, equipmentId }: { recipeId: string; equipmentId: string }
@@ -55,6 +82,23 @@ export function equipmentUnlink(
   return send({
     method: "POST",
     url: `/api/recipes/recipe/${recipeId}/equipment/${equipmentId}/unlink/`,
+  });
+}
+
+export function equipmentUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    equipmentId,
+  }: {
+    data: { description: string };
+    equipmentId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/equipment/${equipmentId}/update/`,
   });
 }
 

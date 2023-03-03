@@ -17,9 +17,12 @@ import {
 import { isEmpty, omit } from "lodash";
 import {
   equipmentCreate,
+  equipmentDestroy,
   equipmentGet,
   equipmentLink,
+  equipmentPieceGet,
   equipmentUnlink,
+  equipmentUpdate,
   notesDestroy,
   notesUpdate,
   ratingDestroy,
@@ -238,9 +241,12 @@ export default function useApi() {
   return {
     accountDestroy: withSendAndArgs(accountDestroy),
     equipmentCreate: withSendAndArgs(equipmentCreate),
-    equipmentGet: withSend(equipmentGet),
+    equipmentDestroy: withSendAndArgs(equipmentDestroy),
+    equipmentGet: withSendAndOptionalArgs(equipmentGet),
     equipmentLink: withSendAndArgs(equipmentLink),
+    equipmentPieceGet: withSendAndArgs(equipmentPieceGet),
     equipmentUnlink: withSendAndArgs(equipmentUnlink),
+    equipmentUpdate: withSendAndArgs(equipmentUpdate),
     login: withSendAndArgs(login),
     logout: withSend(logout),
     notesDestroy: withSendAndArgs(notesDestroy),

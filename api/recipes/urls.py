@@ -3,8 +3,11 @@ from django.urls.resolvers import URLPattern, URLResolver
 
 from recipes.views.equipment import equipment
 from recipes.views.equipment_create import equipment_create
+from recipes.views.equipment_destroy import equipment_destroy
 from recipes.views.equipment_link import equipment_link
+from recipes.views.equipment_piece import equipment_piece
 from recipes.views.equipment_unlink import equipment_unlink
+from recipes.views.equipment_update import equipment_update
 from recipes.views.notes_destroy import notes_destroy
 from recipes.views.notes_update import notes_update
 from recipes.views.rating import rating
@@ -33,7 +36,10 @@ from recipes.views.time_update import time_update
 
 # fmt: off
 urlpatterns: list[URLPattern | URLResolver] = [
+    path("equipment-piece/<int:equipment_id>/", equipment_piece),
     path("equipment/", equipment),
+    path("equipment/<int:equipment_id>/destroy/", equipment_destroy),
+    path("equipment/<int:equipment_id>/update/", equipment_update),
     path("equipment/create/", equipment_create),
     path("rating/<int:recipe_id>/", rating),
     path("rating/<int:recipe_id>/update/", rating_update),

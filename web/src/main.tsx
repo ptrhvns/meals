@@ -3,6 +3,7 @@ import "@smastrom/react-rating/style.css";
 import App from "./routes/App";
 import AuthnProvider from "./providers/AuthnProvider";
 import Dashboard from "./routes/Dashboard";
+import EquipmentEdit from "./routes/EquipmentEdit";
 import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
 import EquipmentNew from "./routes/EquipmentNew";
 import ErrorPage from "./components/ErrorPage";
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
+      { path: "equipment/:equipmentId/edit", element: <EquipmentEdit /> },
       { path: "equipment/new", element: <EquipmentNew /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },

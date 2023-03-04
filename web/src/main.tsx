@@ -8,6 +8,7 @@ import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
 import EquipmentNew from "./routes/EquipmentNew";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./routes/Home";
+import IngredientNew from "./routes/IngredientNew";
 import Login from "./routes/Login";
 import NotesEdit from "./routes/NotesEdit";
 import NotFound from "./routes/NotFound";
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
       { path: "recipe/:recipeId/equipment/new", element: <EquipmentForRecipeNew /> },
+      { path: "recipe/:recipeId/ingredient/new", element: <IngredientNew /> },
       { path: "recipe/:recipeId/notes/edit", element: <NotesEdit /> },
       { path: "recipe/:recipeId/rating/edit", element: <RatingEdit /> },
       { path: "recipe/:recipeId/servings/edit", element: <ServingsEdit /> },

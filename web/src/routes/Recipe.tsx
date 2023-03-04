@@ -23,6 +23,7 @@ import { RecipeData, RecipeReducerAction } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useReducer, useState } from "react";
+import Ingredients from "../components/Ingredients";
 
 interface ReducerState {
   recipe?: RecipeData;
@@ -134,6 +135,10 @@ export default function Recipe() {
 
             <PageSection className={classes.pageSection}>
               <Equipment dispatch={dispatch} recipe={recipe} />
+            </PageSection>
+
+            <PageSection className={classes.pageSection}>
+              <Ingredients recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

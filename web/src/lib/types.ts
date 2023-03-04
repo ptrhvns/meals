@@ -93,10 +93,19 @@ export interface TimeData {
   time_category: TimeCategoryData;
 }
 
+export const ingredientSchema = z.object({
+  // TODO
+});
+
+interface IngredientData {
+  // TODO
+}
+
 // Ensure this matches RecipeData.
 export const recipeSchema = z.object({
   equipment: z.optional(z.array(equipmentSchema)),
   id: z.string(),
+  ingredients: z.optional(z.array(ingredientSchema)),
   notes: z.optional(z.string()),
   rating: z.optional(z.number()),
   servings: z.optional(z.number()),
@@ -109,6 +118,7 @@ export const recipeSchema = z.object({
 export interface RecipeData {
   equipment?: EquipmentData[];
   id: string;
+  ingredients: IngredientData[];
   notes?: string;
   rating?: number;
   servings?: number;

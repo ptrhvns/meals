@@ -25,7 +25,7 @@ export default function Equipment({ dispatch, recipe }: EquipmentProps) {
         <Paragraph variant="dimmed">No equipment yet.</Paragraph>
       )}
 
-      {recipe.equipment && (
+      {!isEmpty(recipe.equipment) && (
         <ul className={classes.list}>
           {sortBy(recipe.equipment, "description").map((eq) => (
             <li className={classes.listItem} key={eq.id}>

@@ -12,7 +12,7 @@ export default function Paragraph({
   variant = "normal",
   ...restProps
 }: ParagraphProps) {
-  className = joinClassNames(className, classes[variant]);
+  className = joinClassNames(classes.paragraph, classes[variant], className);
 
   return (
     <p className={className} {...restProps}>

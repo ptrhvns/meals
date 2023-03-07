@@ -1,5 +1,4 @@
 import Button from "./Button";
-import classes from "../styles/components/ServingsEditForm.module.scss";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
@@ -112,7 +111,6 @@ export default function ServingsEditForm({ recipe }: ServingsEditFormProps) {
         <Field>
           <LabelDiv htmlFor="servings">Servings</LabelDiv>
           <InputDiv
-            className={classes.input}
             disabled={submitting}
             error={!!fieldErrors?.servings?.message}
             id="servings"

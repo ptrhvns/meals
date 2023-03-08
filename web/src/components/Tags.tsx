@@ -1,9 +1,10 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Tags.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
 import TagForRecipeUnlinkForm from "./TagForRecipeUnlinkForm";
 import { Dispatch } from "react";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isEmpty } from "lodash";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
 
@@ -18,7 +19,12 @@ export default function Tags({ dispatch, recipe }: TagsProps) {
   return (
     <>
       <RecipeSectionHeading heading="Tags">
-        <Anchor to={`/recipe/${recipe.id}/tag/new`}>Create</Anchor>
+        <AnchorIcon
+          color="slate"
+          icon={faPlus}
+          label="Create"
+          to={`/recipe/${recipe.id}/tag/new`}
+        />
       </RecipeSectionHeading>
 
       {isEmpty(recipe.tags) && (

@@ -10,7 +10,8 @@
   margin-top: var(--spacing5);
 }
 
-.units {
-  display: inline-flex;
-  gap: 0.25rem;
+.listItemContent {
+  border-left: 1px solid var(--slate8);
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
 }

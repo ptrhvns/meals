@@ -1,9 +1,10 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Equipment.module.scss";
 import EquipmentForRecipeUnlinkForm from "./EquipmentForRecipeUnlinkForm";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
 import { Dispatch } from "react";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isEmpty, sortBy } from "lodash";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
 
@@ -18,7 +19,12 @@ export default function Equipment({ dispatch, recipe }: EquipmentProps) {
   return (
     <>
       <RecipeSectionHeading heading="Equipment">
-        <Anchor to={`/recipe/${recipe.id}/equipment/new`}>Create</Anchor>
+        <AnchorIcon
+          color="slate"
+          icon={faPlus}
+          label="Create"
+          to={`/recipe/${recipe.id}/equipment/new`}
+        />
       </RecipeSectionHeading>
 
       {isEmpty(recipe.equipment) && (
@@ -33,8 +39,8 @@ export default function Equipment({ dispatch, recipe }: EquipmentProps) {
                 dispatch={dispatch}
                 equipment={eq}
                 recipe={recipe}
-              />{" "}
-              {eq.description}
+              />
+              <span className={classes.listItemContent}>{eq.description}</span>
             </li>
           ))}
         </ul>

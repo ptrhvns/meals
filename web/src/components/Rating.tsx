@@ -1,7 +1,8 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Rating.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { isNumber } from "lodash";
 import { Rating as ReactRating } from "@smastrom/react-rating";
 import { RecipeData } from "../lib/types";
@@ -16,7 +17,12 @@ export default function Rating({ recipe }: RatingProps) {
   return (
     <>
       <RecipeSectionHeading heading="Rating">
-        <Anchor to={`/recipe/${recipe.id}/rating/edit`}>Edit</Anchor>
+        <AnchorIcon
+          color="slate"
+          icon={faPenToSquare}
+          label="Edit"
+          to={`/recipe/${recipe.id}/rating/edit`}
+        />
       </RecipeSectionHeading>
 
       {!isNumber(recipe.rating) && (

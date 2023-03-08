@@ -1,6 +1,7 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { RecipeData } from "../lib/types";
 
 interface ServingsProps {
@@ -13,7 +14,12 @@ export default function Servings({ recipe }: ServingsProps) {
   return (
     <>
       <RecipeSectionHeading heading="Servings">
-        <Anchor to={`/recipe/${recipe.id}/servings/edit`}>Edit</Anchor>
+        <AnchorIcon
+          color="slate"
+          icon={faPenToSquare}
+          label="Edit"
+          to={`/recipe/${recipe.id}/servings/edit`}
+        />
       </RecipeSectionHeading>
 
       {!recipe?.servings && (

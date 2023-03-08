@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 type LinkProps = Parameters<typeof Link>[0];
 
-interface AnchorProps extends LinkProps {
-  color?: "blue" | "grass" | "primary" | "red";
+export interface AnchorProps extends LinkProps {
+  color?: "blue" | "grass" | "primary" | "red" | "slate";
   variant?: "filled" | "light" | "link";
 }
 

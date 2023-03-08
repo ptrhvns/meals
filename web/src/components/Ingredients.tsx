@@ -1,8 +1,9 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Ingredients.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
 import { compact, isEmpty, join, sortBy } from "lodash";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { RecipeData } from "../lib/types";
 
 interface IngredientsProps {
@@ -15,7 +16,12 @@ export default function Ingredients({ recipe }: IngredientsProps) {
   return (
     <>
       <RecipeSectionHeading heading="Ingredients">
-        <Anchor to={`/recipe/${recipe.id}/ingredient/new`}>Create</Anchor>
+        <AnchorIcon
+          color="slate"
+          icon={faPlus}
+          label="Create"
+          to={`/recipe/${recipe.id}/ingredient/new`}
+        />
       </RecipeSectionHeading>
 
       {isEmpty(recipe.ingredients) && (

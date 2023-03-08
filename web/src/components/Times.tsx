@@ -1,7 +1,8 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Times.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
+import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isEmpty, sortBy } from "lodash";
 import { RecipeData } from "../lib/types";
 
@@ -15,7 +16,12 @@ export default function Times({ recipe }: TimesProps) {
   return (
     <>
       <RecipeSectionHeading heading="Times">
-        <Anchor to={`/recipe/${recipe.id}/time/new`}>Create</Anchor>
+        <AnchorIcon
+          color="slate"
+          icon={faPlus}
+          label="Create"
+          to={`/recipe/${recipe.id}/time/new`}
+        />
       </RecipeSectionHeading>
 
       {isEmpty(recipe.times) && (
@@ -26,16 +32,19 @@ export default function Times({ recipe }: TimesProps) {
         <ul className={classes.list}>
           {sortBy(recipe.times, "time_category").map((time) => (
             <li className={classes.listItem} key={time.id}>
-              <Anchor
-                className={classes.units}
+              <AnchorIcon
+                color="slate"
+                icon={faPenToSquare}
+                label="Edit"
                 to={`/recipe/${recipe.id}/time/${time.id}/edit`}
-              >
-                <span>{time.time_category.name}:</span>
-                {time.days && <span>{time.days}d</span>}
-                {time.hours && <span>{time.hours}h</span>}
-                {time.minutes && <span>{time.minutes}m</span>}
+              />
+              <span className={classes.listItemContent}>
+                {time.time_category.name}:{" "}
+                {time.days && <span>{time.days}d</span>}{" "}
+                {time.hours && <span>{time.hours}h</span>}{" "}
+                {time.minutes && <span>{time.minutes}m</span>}{" "}
                 {time.note && <span>({time.note})</span>}
-              </Anchor>
+              </span>
             </li>
           ))}
         </ul>

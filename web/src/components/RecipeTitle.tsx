@@ -1,6 +1,7 @@
-import Anchor from "./Anchor";
+import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/RecipeTitle.module.scss";
 import Heading from "./Heading";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { RecipeData } from "../lib/types";
 
 interface RecipeTitleProps {
@@ -13,7 +14,12 @@ export default function RecipeTitle({ recipe }: RecipeTitleProps) {
   return (
     <div className={classes.wrapper}>
       <Heading className={classes.heading}>{recipe.title}</Heading>
-      <Anchor to={`/recipe/${recipe.id}/title/edit`}>Edit</Anchor>
+      <AnchorIcon
+        color="slate"
+        icon={faPenToSquare}
+        label="Edit"
+        to={`/recipe/${recipe.id}/title/edit`}
+      />
     </div>
   );
 }

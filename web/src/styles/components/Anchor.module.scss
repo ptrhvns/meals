@@ -38,6 +38,19 @@
   }
 }
 
+.slate.link {
+  color: var(--slate11);
+
+  &:visited {
+    color: var(--slate11);
+  }
+
+  &:hover,
+  &:hover:visited {
+    color: var(--slate12);
+  }
+}
+
 .filled,
 .light {
   display: inline-block;

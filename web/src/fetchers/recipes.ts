@@ -1,14 +1,27 @@
 import {
   ApiResponse,
   ApiSendFunction,
+  brandSchema,
   equipmentSchema,
+  foodSchema,
   paginationSchema,
   recipeSchema,
   tagSchema,
   timeCategorySchema,
   timeSchema,
+  unitSchema,
 } from "../lib/types";
 import { z } from "zod";
+
+export function brandsGet(send: ApiSendFunction): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      brands: z.array(brandSchema),
+    }),
+    url: `/api/recipes/brands/`,
+  });
+}
 
 export function equipmentCreate(
   send: ApiSendFunction,
@@ -115,6 +128,38 @@ export function equipmentUpdate(
     data,
     method: "POST",
     url: `/api/recipes/equipment/${equipmentId}/update/`,
+  });
+}
+
+export function foodGet(send: ApiSendFunction): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      brands: z.array(foodSchema),
+    }),
+    url: `/api/recipes/food/`,
+  });
+}
+
+export function ingredientCreate(
+  send: ApiSendFunction,
+  {
+    data,
+    recipeId,
+  }: {
+    data: {
+      amount?: string;
+      brand?: string;
+      food: string;
+      unit?: string;
+    };
+    recipeId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/ingredient/create/`,
   });
 }
 
@@ -437,5 +482,15 @@ export function timeUpdate(
     data,
     method: "POST",
     url: `/api/recipes/recipe/${recipeId}/time/${timeId}/update/`,
+  });
+}
+
+export function unitsGet(send: ApiSendFunction): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      units: z.array(unitSchema),
+    }),
+    url: `/api/recipes/units/`,
   });
 }

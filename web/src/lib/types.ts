@@ -25,6 +25,18 @@ export interface ApiSendParameter {
 
 export type ApiSendFunction = (param: ApiSendParameter) => Promise<ApiResponse>;
 
+// Ensure this matches BrandData.
+export const brandSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
+// Ensure this matches brandSchema.
+export interface BrandData {
+  id: string;
+  name: string;
+}
+
 // Ensure this matches EquipmentData.
 export const equipmentSchema = z.object({
   id: z.string(),
@@ -35,6 +47,18 @@ export const equipmentSchema = z.object({
 export interface EquipmentData {
   id: string;
   description: string;
+}
+
+// Ensure this matches FoodData.
+export const foodSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
+// Ensure this matches foodSchema.
+export interface FoodData {
+  id: string;
+  name: string;
 }
 
 // Ensure this matches PaginationData.
@@ -93,12 +117,36 @@ export interface TimeData {
   time_category: TimeCategoryData;
 }
 
-export const ingredientSchema = z.object({
-  // TODO
+// Ensure this matches UnitsData.
+export const unitSchema = z.object({
+  id: z.string(),
+  name: z.string(),
 });
 
+// Ensure this matches unitsSchema.
+export interface UnitData {
+  id: string;
+  name: string;
+}
+
+// Ensure this matches IngredientData.
+export const ingredientSchema = z.object({
+  amount: z.optional(z.number()),
+  brand: z.optional(brandSchema),
+  food: foodSchema,
+  id: z.string(),
+  order: z.number(),
+  unit: z.optional(unitSchema),
+});
+
+// Ensure this matches ingredientSchema.
 interface IngredientData {
-  // TODO
+  amount?: number;
+  brand?: BrandData;
+  food: FoodData;
+  id: string;
+  order: number;
+  unit?: UnitData;
 }
 
 // Ensure this matches RecipeData.

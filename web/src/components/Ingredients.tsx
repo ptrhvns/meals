@@ -1,7 +1,8 @@
 import Anchor from "./Anchor";
+import classes from "../styles/components/Ingredients.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
-import { isEmpty } from "lodash";
+import { compact, isEmpty, join, sortBy } from "lodash";
 import { RecipeData } from "../lib/types";
 
 interface IngredientsProps {
@@ -22,7 +23,21 @@ export default function Ingredients({ recipe }: IngredientsProps) {
       )}
 
       {!isEmpty(recipe.ingredients) && (
-        <Paragraph>TODO display ingredients</Paragraph>
+        <ul className={classes.list}>
+          {sortBy(recipe.ingredients, "order").map((ingredient) => (
+            <li className={classes.listItem} key={ingredient.id}>
+              {join(
+                compact([
+                  ingredient.amount,
+                  ingredient.unit?.name,
+                  ingredient.brand?.name,
+                  ingredient.food.name,
+                ]),
+                " "
+              )}
+            </li>
+          ))}
+        </ul>
       )}
     </>
   );

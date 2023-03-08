@@ -16,6 +16,7 @@ import {
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
+  brandsGet,
   equipmentCreate,
   equipmentDestroy,
   equipmentGet,
@@ -24,6 +25,8 @@ import {
   equipmentRecipesGet,
   equipmentUnlink,
   equipmentUpdate,
+  foodGet,
+  ingredientCreate,
   notesDestroy,
   notesUpdate,
   ratingDestroy,
@@ -49,6 +52,7 @@ import {
   timeDestroy,
   timeGet,
   timeUpdate,
+  unitsGet,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -241,6 +245,7 @@ export default function useApi() {
 
   return {
     accountDestroy: withSendAndArgs(accountDestroy),
+    brandsGet: withSend(brandsGet),
     equipmentCreate: withSendAndArgs(equipmentCreate),
     equipmentDestroy: withSendAndArgs(equipmentDestroy),
     equipmentGet: withSendAndOptionalArgs(equipmentGet),
@@ -249,6 +254,8 @@ export default function useApi() {
     equipmentRecipesGet: withSendAndArgs(equipmentRecipesGet),
     equipmentUnlink: withSendAndArgs(equipmentUnlink),
     equipmentUpdate: withSendAndArgs(equipmentUpdate),
+    foodGet: withSend(foodGet),
+    ingredientCreate: withSendAndArgs(ingredientCreate),
     login: withSendAndArgs(login),
     logout: withSend(logout),
     notesDestroy: withSendAndArgs(notesDestroy),
@@ -278,5 +285,6 @@ export default function useApi() {
     timeDestroy: withSendAndArgs(timeDestroy),
     timeGet: withSendAndArgs(timeGet),
     timeUpdate: withSendAndArgs(timeUpdate),
+    unitsGet: withSend(unitsGet),
   };
 }

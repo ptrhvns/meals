@@ -1,6 +1,7 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern, URLResolver
 
+from recipes.views.brands import brands
 from recipes.views.equipment import equipment
 from recipes.views.equipment_create import equipment_create
 from recipes.views.equipment_destroy import equipment_destroy
@@ -9,6 +10,8 @@ from recipes.views.equipment_piece import equipment_piece
 from recipes.views.equipment_recipes import equipment_recipes
 from recipes.views.equipment_unlink import equipment_unlink
 from recipes.views.equipment_update import equipment_update
+from recipes.views.food import food
+from recipes.views.ingredient_create import ingredient_create
 from recipes.views.notes_destroy import notes_destroy
 from recipes.views.notes_update import notes_update
 from recipes.views.rating import rating
@@ -34,21 +37,25 @@ from recipes.views.time_categories import time_categories
 from recipes.views.time_create import time_create
 from recipes.views.time_destroy import time_destroy
 from recipes.views.time_update import time_update
+from recipes.views.units import units
 
 # fmt: off
 urlpatterns: list[URLPattern | URLResolver] = [
+    path("brands/", brands),
     path("equipment-piece/<int:equipment_id>/", equipment_piece),
     path("equipment/", equipment),
     path("equipment/<int:equipment_id>/destroy/", equipment_destroy),
     path("equipment/<int:equipment_id>/recipes/", equipment_recipes),
     path("equipment/<int:equipment_id>/update/", equipment_update),
     path("equipment/create/", equipment_create),
+    path("food/", food),
     path("rating/<int:recipe_id>/", rating),
     path("rating/<int:recipe_id>/update/", rating_update),
     path("recipe/<int:recipe_id>/", recipe),
     path("recipe/<int:recipe_id>/destroy/", recipe_destroy),
     path("recipe/<int:recipe_id>/equipment/<int:equipment_id>/unlink/", equipment_unlink),
     path("recipe/<int:recipe_id>/equipment/link/", equipment_link),
+    path("recipe/<int:recipe_id>/ingredient/create/", ingredient_create),
     path("recipe/<int:recipe_id>/notes/destroy/", notes_destroy),
     path("recipe/<int:recipe_id>/notes/update/", notes_update),
     path("recipe/<int:recipe_id>/rating/destroy/", rating_destroy),
@@ -70,4 +77,5 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("tags/", tags),
     path("time/<int:time_id>/destroy/", time_destroy),
     path("time_categories/", time_categories),
+    path("units/", units),
 ]

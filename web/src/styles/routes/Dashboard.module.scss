@@ -22,6 +22,7 @@
 .tabsTrigger {
   border-radius: var(--border-radius);
   border: 1px solid var(--slate6);
+  cursor: pointer;
   padding: var(--spacing5);
 
   &:focus {

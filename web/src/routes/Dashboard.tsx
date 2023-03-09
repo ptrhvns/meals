@@ -52,29 +52,21 @@ export default function Dashboard() {
                 className={classes.tabsTrigger}
                 value={tabs.recipes}
               >
-                <div className={classes.tabsTriggerContent}>
-                  <div className={classes.tabsTriggerContentInner}>Recipes</div>
-                </div>
+                Recipes
               </TabsPrimitive.Trigger>
 
               <TabsPrimitive.Trigger
                 className={classes.tabsTrigger}
                 value={tabs.tags}
               >
-                <div className={classes.tabsTriggerContent}>
-                  <div className={classes.tabsTriggerContentInner}>Tags</div>
-                </div>
+                Tags
               </TabsPrimitive.Trigger>
 
               <TabsPrimitive.Trigger
                 className={classes.tabsTrigger}
                 value={tabs.equipment}
               >
-                <div className={classes.tabsTriggerContent}>
-                  <div className={classes.tabsTriggerContentInner}>
-                    Equipment
-                  </div>
-                </div>
+                Equipment
               </TabsPrimitive.Trigger>
             </TabsPrimitive.List>
 

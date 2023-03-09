@@ -1,31 +1,28 @@
 .tabsContent[data-state="active"] {
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+  border-radius: var(--border-radius);
   border: 1px solid var(--slate6);
-  padding-bottom: var(--spacing15);
-  padding-inline: var(--spacing10);
-  padding-top: var(--spacing10);
+  padding: var(--spacing10);
 
   @media (min-width: 27rem) {
-    padding-bottom: var(--spacing20);
-    padding-inline: var(--spacing15);
-    padding-top: var(--spacing15);
+    padding: var(--spacing15);
   }
-}
-
-.tabsList {
-  margin-bottom: -1px;
 }
 
 .tabsRoot {
   margin-bottom: var(--spacing10);
 }
 
+.tabsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing5);
+  margin-bottom: var(--spacing5);
+}
+
 .tabsTrigger {
-  background-color: white;
-  color: var(--slate11);
-  padding-block: var(--spacing3);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--slate6);
+  padding: var(--spacing5);
 
   &:focus {
     .tabsTriggerContentInner {
@@ -39,39 +36,11 @@
     }
   }
 
-  .tabsTriggerContent {
-    border-radius: var(--border-radius);
-    padding: var(--spacing5);
-  }
-
-  .tabsTriggerContentInner {
-    border-radius: var(--border-radius);
-    padding: var(--spacing1) var(--spacing5);
-  }
-
   &[data-state="active"] {
-    border-bottom: 1px solid white;
-    border-left: 1px solid var(--slate6);
-    border-right: 1px solid var(--slate6);
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-    border-top: 1px solid var(--slate6);
-    outline: none;
+    background-color: white;
   }
 
   &[data-state="inactive"] {
-    border-bottom: 1px solid var(--slate6);
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-    border-top: 1px solid white;
-    cursor: pointer;
-
-    .tabsTriggerContent {
-      background-color: var(--slate3);
-
-      &:hover {
-        background-color: var(--slate4);
-      }
-    }
+    background-color: var(--slate3);
   }
 }

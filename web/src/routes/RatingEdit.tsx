@@ -32,7 +32,7 @@ export default function RatingEdit() {
       return;
     }
 
-    setRating(response.data.rating);
+    setRating(response.data.rating.rating);
   });
 
   return (

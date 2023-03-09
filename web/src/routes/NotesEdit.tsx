@@ -33,7 +33,7 @@ export default function NotesEdit() {
       return;
     }
 
-    setRecipe(response.data);
+    setRecipe(response.data.recipe);
   });
 
   return (

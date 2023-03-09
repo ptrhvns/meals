@@ -20,4 +20,4 @@ class RecipeResponseSerializer(ModelSerializer):
 def rating(request: Request, recipe_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
     data = RecipeResponseSerializer(instance=recipe).data
-    return data_response(data=data)
+    return data_response(data={"rating": data})

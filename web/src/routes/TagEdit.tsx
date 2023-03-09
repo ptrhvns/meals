@@ -36,7 +36,7 @@ export default function TagEdit() {
       return;
     }
 
-    setTag(response.data);
+    setTag(response.data.tag);
   });
 
   return (

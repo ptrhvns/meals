@@ -107,5 +107,4 @@ def time_create(request: Request, recipe_id: int) -> Response:
             message=_("Your information could not be saved.")
         )
 
-    data = TimeResponseSerializer(instance=time).data
-    return created_response(data=data)
+    return created_response()

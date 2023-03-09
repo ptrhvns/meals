@@ -80,7 +80,7 @@ export default function Recipe() {
       return;
     }
 
-    dispatch({ type: "setRecipe", payload: response.data });
+    dispatch({ type: "setRecipe", payload: response.data.recipe });
   });
 
   return (

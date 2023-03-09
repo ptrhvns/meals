@@ -30,4 +30,4 @@ def recipe_create(request: Request) -> Response:
 
     recipe = serializer.save(user=request.user)
     data = RecipeResponseSerializer(instance=recipe).data
-    return data_response(data=data)
+    return data_response(data={"recipe": data})

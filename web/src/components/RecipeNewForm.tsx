@@ -42,7 +42,7 @@ export default function RecipeNewForm() {
           });
         }
 
-        navigate(`/recipe/${response.data.id}`, { replace: true });
+        navigate(`/recipe/${response.data.recipe.id}`, { replace: true });
       })}
     >
       <FormError error={error} setError={setError} />

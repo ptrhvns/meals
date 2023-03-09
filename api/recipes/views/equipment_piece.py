@@ -20,4 +20,4 @@ class EquipmentResponseSerializer(ModelSerializer):
 def equipment_piece(request: Request, equipment_id: int) -> Response:
     equipment = get_object_or_404(Equipment, pk=equipment_id, user=request.user)
     serializer = EquipmentResponseSerializer(equipment)
-    return data_response(data=serializer.data)
+    return data_response(data={"equipmentPiece": serializer.data})

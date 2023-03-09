@@ -33,7 +33,7 @@ export default function RecipeTitleEdit() {
       return;
     }
 
-    setRecipe(response.data);
+    setRecipe(response.data.recipe);
   });
 
   return (

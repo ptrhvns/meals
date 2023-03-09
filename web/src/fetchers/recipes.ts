@@ -84,7 +84,7 @@ export function equipmentPieceGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: equipmentSchema,
+    responseDataSchema: z.object({ equipmentPiece: equipmentSchema }),
     url: `/api/recipes/equipment-piece/${equipmentId}/`,
   });
 }
@@ -239,7 +239,7 @@ export function ratingGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: z.object({ rating: z.number() }),
+    responseDataSchema: z.object({ rating: z.object({ rating: z.number() }) }),
     url: `/api/recipes/rating/${recipeId}/`,
   });
 }
@@ -273,7 +273,7 @@ export function recipeGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: recipeSchema,
+    responseDataSchema: z.object({ recipe: recipeSchema }),
     url: `/api/recipes/recipe/${params.recipeId}/`,
   });
 }
@@ -364,7 +364,7 @@ export function tagGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: tagSchema,
+    responseDataSchema: z.object({ tag: tagSchema }),
     url: `/api/recipes/tag/${tagId}/`,
   });
 }
@@ -494,7 +494,7 @@ export function timeGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: timeSchema,
+    responseDataSchema: z.object({ time: timeSchema }),
     url: `/api/recipes/recipe/${recipeId}/time/${timeId}/`,
   });
 }

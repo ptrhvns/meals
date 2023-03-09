@@ -36,7 +36,7 @@ export default function EquipmentEdit() {
       return;
     }
 
-    setEquipment(response.data);
+    setEquipment(response.data.equipmentPiece);
   });
 
   return (

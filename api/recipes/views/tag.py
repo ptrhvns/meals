@@ -20,4 +20,4 @@ class TagRequestSerializer(ModelSerializer):
 def tag(request: Request, tag_id: int) -> Response:
     tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
     serializer = TagRequestSerializer(tag)
-    return data_response(data=serializer.data)
+    return data_response(data={"tag": serializer.data})

@@ -4,6 +4,7 @@ import {
   brandSchema,
   equipmentSchema,
   foodSchema,
+  ingredientSchema,
   paginationSchema,
   recipeSchema,
   tagSchema,
@@ -160,6 +161,44 @@ export function ingredientCreate(
     data,
     method: "POST",
     url: `/api/recipes/recipe/${recipeId}/ingredient/create/`,
+  });
+}
+
+export function ingredientDestroy(
+  send: ApiSendFunction,
+  { ingredientId }: { ingredientId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/ingredient/${ingredientId}/destroy/`,
+  });
+}
+
+export function ingredientGet(
+  send: ApiSendFunction,
+  { ingredientId }: { ingredientId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: ingredientSchema,
+    url: `/api/recipes/ingredient/${ingredientId}/`,
+  });
+}
+
+export function ingredientUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    ingredientId,
+  }: {
+    data: { amount?: string; brand?: string; food: string; unit?: string };
+    ingredientId: string;
+  }
+) {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/ingredient/${ingredientId}/update/`,
   });
 }
 

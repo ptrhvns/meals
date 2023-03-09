@@ -140,7 +140,7 @@ export const ingredientSchema = z.object({
 });
 
 // Ensure this matches ingredientSchema.
-interface IngredientData {
+export interface IngredientData {
   amount?: number;
   brand?: BrandData;
   food: FoodData;

@@ -43,5 +43,9 @@
 
   &[data-state="inactive"] {
     background-color: var(--slate3);
+
+    &:hover {
+      background-color: var(--slate5);
+    }
   }
 }

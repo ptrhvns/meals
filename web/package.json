@@ -6,9 +6,9 @@
   "scripts": {
     "build": "tsc && vite build",
     "check:lint": "eslint --ext=.js,.jsx,.ts,.tsx .",
-    "check:types": "tsc --noEmit"
+    "check:types": "tsc --noEmit",
     "dev": "vite",
-    "preview": "vite preview",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",

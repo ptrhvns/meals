@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 export default function EquipmentNew() {
   const [equipment, setEquipment] = useState<string[]>([]);
@@ -39,6 +40,8 @@ export default function EquipmentNew() {
       <Helmet>
         <title>{buildTitle("Create Equipment")}</title>
       </Helmet>
+
+      <Navbar/>
 
       <FullPageViewport>
         <PageSection variant="narrow">

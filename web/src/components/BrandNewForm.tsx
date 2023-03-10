@@ -46,7 +46,7 @@ export default function BrandNewForm({ brands }: BrandNewFormProps) {
           return;
         }
 
-        navigate(`/dashboard/brand`, { replace: true });
+        navigate(`/dashboard/brands`, { replace: true });
       })}
     >
       <FormError error={error} setError={setError} />

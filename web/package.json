@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
-    "compile": "tsc --noEmit",
     "dev": "vite",
     "lint": "eslint --ext=.js,.jsx,.ts,.tsx .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",

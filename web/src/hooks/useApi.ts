@@ -250,7 +250,7 @@ export default function useApi() {
   return {
     accountDestroy: withSendAndArgs(accountDestroy),
     brandCreate: withSendAndArgs(brandCreate),
-    brandsGet: withSend(brandsGet),
+    brandsGet: withSendAndOptionalArgs(brandsGet),
     equipmentCreate: withSendAndArgs(equipmentCreate),
     equipmentDestroy: withSendAndArgs(equipmentDestroy),
     equipmentGet: withSendAndOptionalArgs(equipmentGet),

@@ -25,13 +25,19 @@ export function brandCreate(
   });
 }
 
-export function brandsGet(send: ApiSendFunction): Promise<ApiResponse> {
+export function brandsGet(
+  send: ApiSendFunction,
+  params?: { page?: number }
+): Promise<ApiResponse> {
+  const queryParam = params?.page ? `?page=${params?.page}` : "";
+
   return send({
     method: "GET",
     responseDataSchema: z.object({
       brands: z.array(brandSchema),
+      pagination: z.optional(paginationSchema),
     }),
-    url: `/api/recipes/brands/`,
+    url: `/api/recipes/brands/${queryParam}`,
   });
 }
 

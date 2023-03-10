@@ -1,5 +1,6 @@
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import Anchor from "../components/Anchor";
+import BrandList from "../components/BrandList";
 import classes from "../styles/routes/Dashboard.module.scss";
 import EquipmentList from "../components/EquipmentList";
 import FullPageViewport from "../components/FullPageViewport";
@@ -118,6 +119,8 @@ export default function Dashboard() {
               <Anchor to="/brand/new" variant="filled">
                 Create
               </Anchor>
+
+              <BrandList />
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

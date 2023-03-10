@@ -115,7 +115,9 @@ export default function Dashboard() {
               className={classes.tabsContent}
               value={tabs.brands}
             >
-              Brands
+              <Anchor to="/brand/new" variant="filled">
+                Create
+              </Anchor>
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

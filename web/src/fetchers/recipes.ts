@@ -14,6 +14,17 @@ import {
 } from "../lib/types";
 import { z } from "zod";
 
+export function brandCreate(
+  send: ApiSendFunction,
+  { data }: { data: { name: string } }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/brand/create/`,
+  });
+}
+
 export function brandsGet(send: ApiSendFunction): Promise<ApiResponse> {
   return send({
     method: "GET",

@@ -1,6 +1,7 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern, URLResolver
 
+from recipes.views.brand_create import brand_create
 from recipes.views.brands import brands
 from recipes.views.equipment import equipment
 from recipes.views.equipment_create import equipment_create
@@ -44,6 +45,7 @@ from recipes.views.units import units
 
 # fmt: off
 urlpatterns: list[URLPattern | URLResolver] = [
+    path("brand/create/", brand_create),
     path("brands/", brands),
     path("equipment-piece/<int:equipment_id>/", equipment_piece),
     path("equipment/", equipment),

@@ -199,7 +199,7 @@ export default function IngredientEditForm({
             type="submit"
             variant="filled"
           >
-            Create
+            Update
           </Button>
 
           <Button

@@ -38,9 +38,10 @@ export default function IngredientEdit() {
       unitsGet(),
     ]);
 
+    setLoading(false);
+
     for (let i = 0; i < responses.length; i++) {
       if (responses[i].isError) {
-        setLoading(false);
         handleApiError(responses[i], { setError });
         return;
       }
@@ -50,7 +51,6 @@ export default function IngredientEdit() {
     setFood(responses[1].data.food.map((f: { name: string }) => f.name));
     setIngredient(responses[2].data.ingredient);
     setUnits(responses[3].data.units.map((b: { name: string }) => b.name));
-    setLoading(false);
   });
 
   return (

@@ -61,7 +61,7 @@ export default function BrandList() {
               {brands.map((brand) => (
                 <tr key={brand.id}>
                   <td>
-                    <Anchor to={`/brands/${brand.id}/edit`}>
+                    <Anchor to={`/brand/${brand.id}/edit`}>
                       {brand.name}
                     </Anchor>
                   </td>

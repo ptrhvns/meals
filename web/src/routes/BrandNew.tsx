@@ -44,7 +44,7 @@ export default function BrandNew() {
       <FullPageViewport>
         <PageSection variant="narrow">
           <Breadcrumbs>
-            <Anchor to="/dashboard/brand">Dashboard</Anchor>
+            <Anchor to="/dashboard/brands">Dashboard</Anchor>
             Create Brand
           </Breadcrumbs>
 

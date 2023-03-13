@@ -17,7 +17,10 @@ import {
 import { isEmpty, omit } from "lodash";
 import {
   brandCreate,
+  brandDestroy,
+  brandGet,
   brandsGet,
+  brandUpdate,
   equipmentCreate,
   equipmentDestroy,
   equipmentGet,
@@ -250,7 +253,10 @@ export default function useApi() {
   return {
     accountDestroy: withSendAndArgs(accountDestroy),
     brandCreate: withSendAndArgs(brandCreate),
+    brandDestroy: withSendAndArgs(brandDestroy),
+    brandGet: withSendAndArgs(brandGet),
     brandsGet: withSendAndOptionalArgs(brandsGet),
+    brandUpdate: withSendAndArgs(brandUpdate),
     equipmentCreate: withSendAndArgs(equipmentCreate),
     equipmentDestroy: withSendAndArgs(equipmentDestroy),
     equipmentGet: withSendAndOptionalArgs(equipmentGet),

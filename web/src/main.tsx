@@ -2,6 +2,7 @@ import "./styles/main.module.scss";
 import "@smastrom/react-rating/style.css";
 import App from "./routes/App";
 import AuthnProvider from "./providers/AuthnProvider";
+import BrandEdit from "./routes/BrandEdit";
 import BrandNew from "./routes/BrandNew";
 import Dashboard from "./routes/Dashboard";
 import EquipmentEdit from "./routes/EquipmentEdit";
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
     // prettier-ignore
     children: [
       { index: true, element: <Home /> },
+      { path: "brand/:brandId/edit", element: <BrandEdit /> },
       { path: "brand/new", element: <BrandNew /> },
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
       { path: "equipment/:equipmentId/edit", element: <EquipmentEdit /> },

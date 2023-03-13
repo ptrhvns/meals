@@ -25,6 +25,27 @@ export function brandCreate(
   });
 }
 
+export function brandDestroy(
+  send: ApiSendFunction,
+  { brandId }: { brandId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/brand/${brandId}/destroy/`,
+  });
+}
+
+export function brandGet(
+  send: ApiSendFunction,
+  { brandId }: { brandId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ brand: brandSchema }),
+    url: `/api/recipes/brand/${brandId}/`,
+  });
+}
+
 export function brandsGet(
   send: ApiSendFunction,
   params?: { page?: number }
@@ -38,6 +59,23 @@ export function brandsGet(
       pagination: z.optional(paginationSchema),
     }),
     url: `/api/recipes/brands/${queryParam}`,
+  });
+}
+
+export function brandUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    brandId,
+  }: {
+    data: { name: string };
+    brandId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/brand/${brandId}/update/`, // TODO api
   });
 }
 

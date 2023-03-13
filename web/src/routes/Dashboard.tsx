@@ -19,6 +19,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const tabs = {
   brands: "brands",
   equipment: "equipment",
+  food: "food",
   recipes: "recipes",
   tags: "tags",
 };
@@ -77,6 +78,13 @@ export default function Dashboard() {
               >
                 Brands
               </TabsPrimitive.Trigger>
+
+              <TabsPrimitive.Trigger
+                className={classes.tabsTrigger}
+                value={tabs.food}
+              >
+                Food
+              </TabsPrimitive.Trigger>
             </TabsPrimitive.List>
 
             <TabsPrimitive.Content
@@ -121,6 +129,13 @@ export default function Dashboard() {
               </Anchor>
 
               <BrandList />
+            </TabsPrimitive.Content>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
+              value={tabs.food}
+            >
+              Food
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

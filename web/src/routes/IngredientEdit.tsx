@@ -48,7 +48,7 @@ export default function IngredientEdit() {
     }
 
     setBrands(responses[0].data.brands.map((b: { name: string }) => b.name));
-    setFood(responses[1].data.food.map((f: { name: string }) => f.name));
+    setFood(responses[1].data.foodMany.map((f: { name: string }) => f.name));
     setIngredient(responses[2].data.ingredient);
     setUnits(responses[3].data.units.map((b: { name: string }) => b.name));
   });

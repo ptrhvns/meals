@@ -25,10 +25,10 @@ export default function EquipmentEdit() {
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
   const { equipmentId } = useParams() as { equipmentId: string };
-  const { equipmentPieceGet } = useApi();
+  const { equipmentOneGet } = useApi();
 
   useEffectOnce(async () => {
-    const response = await equipmentPieceGet({ equipmentId });
+    const response = await equipmentOneGet({ equipmentId });
     setLoading(false);
 
     if (response.isError) {
@@ -36,7 +36,7 @@ export default function EquipmentEdit() {
       return;
     }
 
-    setEquipment(response.data.equipmentPiece);
+    setEquipment(response.data.equipmentOne);
   });
 
   return (

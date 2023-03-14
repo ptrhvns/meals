@@ -30,7 +30,7 @@ export default function FoodNew() {
       return;
     }
 
-    setFood(response.data.food.map((e: { name: string }) => e.name));
+    setFood(response.data.foodMany.map((e: { name: string }) => e.name));
   });
 
   return (

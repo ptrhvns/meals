@@ -41,7 +41,7 @@ export default function IngredientNew() {
     }
 
     setBrands(responses[0].data.brands.map((b: { name: string }) => b.name));
-    setFood(responses[1].data.food.map((f: { name: string }) => f.name));
+    setFood(responses[1].data.foodMany.map((f: { name: string }) => f.name));
     setUnits(responses[2].data.units.map((b: { name: string }) => b.name));
     setLoading(false);
   });

@@ -31,7 +31,7 @@ export default function FoodList() {
     }
 
     setPagination(response.data.pagination);
-    setFood(response.data.food);
+    setFood(response.data.foodMany);
   }
 
   useEffectOnce(handleFoodGet);

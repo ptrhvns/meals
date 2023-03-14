@@ -9,7 +9,7 @@ from recipes.models import Equipment
 from shared.lib.responses import data_response
 
 
-class EquipmentResponseSerializer(ModelSerializer):
+class EquipmentOneResponseSerializer(ModelSerializer):
     class Meta:
         model = Equipment
         fields = ("description", "id")
@@ -17,7 +17,7 @@ class EquipmentResponseSerializer(ModelSerializer):
 
 @api_view(http_method_names=["GET"])
 @permission_classes([IsAuthenticated])
-def equipment_piece(request: Request, equipment_id: int) -> Response:
+def equipment_one(request: Request, equipment_id: int) -> Response:
     equipment = get_object_or_404(Equipment, pk=equipment_id, user=request.user)
-    serializer = EquipmentResponseSerializer(equipment)
-    return data_response(data={"equipmentPiece": serializer.data})
+    serializer = EquipmentOneResponseSerializer(equipment)
+    return data_response(data={"equipmentOne": serializer.data})

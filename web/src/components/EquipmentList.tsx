@@ -14,15 +14,15 @@ import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useState } from "react";
 
 export default function EquipmentList() {
+  const [equipment, setEquipment] = useState<EquipmentData[]>([]);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
   const [pagination, setPagination] = useState<PaginationData>();
-  const [equipment, setEquipment] = useState<EquipmentData[]>([]);
-  const { equipmentGet } = useApi();
+  const { equipmentManyGet } = useApi();
 
   async function handleEquipmentGet(page?: number) {
     page ||= 1;
-    const response = await equipmentGet({ page });
+    const response = await equipmentManyGet({ page });
     setLoading(false);
 
     if (response.isError) {
@@ -31,7 +31,7 @@ export default function EquipmentList() {
     }
 
     setPagination(response.data.pagination);
-    setEquipment(response.data.equipment);
+    setEquipment(response.data.equipmentMany);
   }
 
   useEffectOnce(handleEquipmentGet);

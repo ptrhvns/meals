@@ -4,6 +4,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import EquipmentNewForm from "../components/EquipmentNewForm";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
+import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
@@ -13,16 +14,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
 
 export default function EquipmentNew() {
   const [equipment, setEquipment] = useState<string[]>([]);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
-  const { equipmentGet } = useApi();
+  const { equipmentManyGet } = useApi();
 
   useEffectOnce(async () => {
-    const response = await equipmentGet();
+    const response = await equipmentManyGet();
     setLoading(false);
 
     if (response.isError) {
@@ -31,7 +31,9 @@ export default function EquipmentNew() {
     }
 
     setEquipment(
-      response.data.equipment.map((e: { description: string }) => e.description)
+      response.data.equipmentMany.map(
+        (e: { description: string }) => e.description
+      )
     );
   });
 
@@ -41,7 +43,7 @@ export default function EquipmentNew() {
         <title>{buildTitle("Create Equipment")}</title>
       </Helmet>
 
-      <Navbar/>
+      <Navbar />
 
       <FullPageViewport>
         <PageSection variant="narrow">

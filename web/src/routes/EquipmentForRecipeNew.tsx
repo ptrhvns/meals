@@ -23,11 +23,11 @@ export default function EquipmentForRecipeNew() {
   const [equipment, setEquipment] = useState<string[]>([]);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
-  const { equipmentGet } = useApi();
+  const { equipmentManyGet } = useApi();
   const { recipeId } = useParams() as { recipeId: string };
 
   useEffectOnce(async () => {
-    const response = await equipmentGet();
+    const response = await equipmentManyGet();
     setLoading(false);
 
     if (response.isError) {
@@ -36,7 +36,9 @@ export default function EquipmentForRecipeNew() {
     }
 
     setEquipment(
-      response.data.equipment.map((e: { description: string }) => e.description)
+      response.data.equipmentMany.map(
+        (e: { description: string }) => e.description
+      )
     );
   });
 

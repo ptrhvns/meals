@@ -100,7 +100,7 @@ export function equipmentDestroy(
   });
 }
 
-export function equipmentGet(
+export function equipmentManyGet(
   send: ApiSendFunction,
   params?: { page?: number }
 ): Promise<ApiResponse> {
@@ -109,10 +109,10 @@ export function equipmentGet(
   return send({
     method: "GET",
     responseDataSchema: z.object({
-      equipment: z.array(equipmentSchema),
+      equipmentMany: z.array(equipmentSchema),
       pagination: z.optional(paginationSchema),
     }),
-    url: `/api/recipes/equipment/${queryParam}`,
+    url: `/api/recipes/equipment-many/${queryParam}`,
   });
 }
 
@@ -133,14 +133,14 @@ export function equipmentLink(
   });
 }
 
-export function equipmentPieceGet(
+export function equipmentOneGet(
   send: ApiSendFunction,
   { equipmentId }: { equipmentId: string }
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: z.object({ equipmentPiece: equipmentSchema }),
-    url: `/api/recipes/equipment-piece/${equipmentId}/`,
+    responseDataSchema: z.object({ equipmentOne: equipmentSchema }),
+    url: `/api/recipes/equipment-one/${equipmentId}/`,
   });
 }
 
@@ -207,7 +207,7 @@ export function foodManyGet(
   return send({
     method: "GET",
     responseDataSchema: z.object({
-      brands: z.array(foodSchema),
+      foodMany: z.array(foodSchema),
     }),
     url: `/api/recipes/food-many/${queryParam}`,
   });
@@ -251,7 +251,7 @@ export function ingredientGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: ingredientSchema,
+    responseDataSchema: z.object({ ingredient: ingredientSchema }),
     url: `/api/recipes/ingredient/${ingredientId}/`,
   });
 }
@@ -333,7 +333,6 @@ export function recipeCreate(
   return send({
     data,
     method: "POST",
-    responseDataSchema: z.object({ id: z.number() }),
     url: "/api/recipes/recipe/create/",
   });
 }
@@ -414,7 +413,6 @@ export function tagCreate(
   return send({
     data,
     method: "POST",
-    responseDataSchema: z.object({ id: z.number() }),
     url: `/api/recipes/tag/create/`,
   });
 }

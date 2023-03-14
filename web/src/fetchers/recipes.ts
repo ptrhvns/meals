@@ -187,6 +187,17 @@ export function equipmentUpdate(
   });
 }
 
+export function foodCreate(
+  send: ApiSendFunction,
+  { data }: { data: { name: string } }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/food/create/`,
+  });
+}
+
 export function foodGet(send: ApiSendFunction): Promise<ApiResponse> {
   return send({
     method: "GET",

@@ -9,6 +9,7 @@ import EquipmentEdit from "./routes/EquipmentEdit";
 import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
 import EquipmentNew from "./routes/EquipmentNew";
 import ErrorPage from "./components/ErrorPage";
+import FoodNew from "./routes/FoodNew";
 import Home from "./routes/Home";
 import IngredientEdit from "./routes/IngredientEdit";
 import IngredientNew from "./routes/IngredientNew";
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path: "dashboard/:activeTab?", element: <Dashboard /> },
       { path: "equipment/:equipmentId/edit", element: <EquipmentEdit /> },
       { path: "equipment/new", element: <EquipmentNew /> },
+      { path: "food/new", element: <FoodNew /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
       { path: "recipe/:recipeId/equipment/new", element: <EquipmentForRecipeNew /> },

@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import BrandList from "../components/BrandList";
 import classes from "../styles/routes/Dashboard.module.scss";
 import EquipmentList from "../components/EquipmentList";
+import FoodList from "../components/FoodList";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -138,6 +139,8 @@ export default function Dashboard() {
               <Anchor to="/food/new" variant="filled">
                 Create
               </Anchor>
+
+              <FoodList />
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

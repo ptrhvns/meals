@@ -19,10 +19,10 @@ export default function FoodNew() {
   const [error, setError] = useState<string>();
   const [food, setFood] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const { foodGet } = useApi();
+  const { foodManyGet } = useApi();
 
   useEffectOnce(async () => {
-    const response = await foodGet();
+    const response = await foodManyGet();
     setLoading(false);
 
     if (response.isError) {

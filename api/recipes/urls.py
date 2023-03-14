@@ -14,8 +14,8 @@ from recipes.views.equipment_piece import equipment_piece
 from recipes.views.equipment_recipes import equipment_recipes
 from recipes.views.equipment_unlink import equipment_unlink
 from recipes.views.equipment_update import equipment_update
-from recipes.views.food import food
 from recipes.views.food_create import food_create
+from recipes.views.food_many import food_many
 from recipes.views.ingredient import ingredient
 from recipes.views.ingredient_create import ingredient_create
 from recipes.views.ingredient_destroy import ingredient_destroy
@@ -60,7 +60,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("equipment/<int:equipment_id>/recipes/", equipment_recipes),
     path("equipment/<int:equipment_id>/update/", equipment_update),
     path("equipment/create/", equipment_create),
-    path("food/", food),
+    path("food-many/", food_many),
     path("food/create/", food_create),
     path("ingredient/<int:ingredient_id>/", ingredient),
     path("ingredient/<int:ingredient_id>/destroy/", ingredient_destroy),

@@ -24,7 +24,7 @@ export default function IngredientEdit() {
   const [ingredient, setIngredient] = useState<IngredientData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [units, setUnits] = useState<string[]>([]);
-  const { brandsGet, foodGet, ingredientGet, unitsGet } = useApi();
+  const { brandsGet, foodManyGet, ingredientGet, unitsGet } = useApi();
   const { recipeId, ingredientId } = useParams() as {
     ingredientId: string;
     recipeId: string;
@@ -33,7 +33,7 @@ export default function IngredientEdit() {
   useEffectOnce(async () => {
     const responses = await Promise.all([
       brandsGet(),
-      foodGet(),
+      foodManyGet(),
       ingredientGet({ ingredientId }),
       unitsGet(),
     ]);

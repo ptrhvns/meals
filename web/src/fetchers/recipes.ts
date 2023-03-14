@@ -198,13 +198,18 @@ export function foodCreate(
   });
 }
 
-export function foodGet(send: ApiSendFunction): Promise<ApiResponse> {
+export function foodManyGet(
+  send: ApiSendFunction,
+  params?: { page?: number }
+): Promise<ApiResponse> {
+  const queryParam = params?.page ? `?page=${params?.page}` : "";
+
   return send({
     method: "GET",
     responseDataSchema: z.object({
       brands: z.array(foodSchema),
     }),
-    url: `/api/recipes/food/`,
+    url: `/api/recipes/food-many/${queryParam}`,
   });
 }
 

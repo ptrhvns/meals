@@ -22,11 +22,15 @@ export default function IngredientNew() {
   const [food, setFood] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [units, setUnits] = useState<string[]>([]);
-  const { brandsGet, foodGet, unitsGet } = useApi();
+  const { brandsGet, foodManyGet, unitsGet } = useApi();
   const { recipeId } = useParams() as { recipeId: string };
 
   useEffectOnce(async () => {
-    const responses = await Promise.all([brandsGet(), foodGet(), unitsGet()]);
+    const responses = await Promise.all([
+      brandsGet(),
+      foodManyGet(),
+      unitsGet(),
+    ]);
 
     for (let i = 0; i < responses.length; i++) {
       if (responses[i].isError) {

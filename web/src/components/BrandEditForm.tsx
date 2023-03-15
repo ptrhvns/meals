@@ -127,7 +127,7 @@ export default function BrandEditForm({ brand, brands }: BrandEditFormProps) {
             options={brands}
             setValue={(value: string) => setValue("name", value)}
             type="text"
-            {...register("name", { required: "Brand is required." })}
+            {...register("name", { required: "Name is required." })}
           />
           <InputError error={fieldErrors?.name?.message} />
         </Field>

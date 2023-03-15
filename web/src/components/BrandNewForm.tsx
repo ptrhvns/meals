@@ -61,7 +61,7 @@ export default function BrandNewForm({ brands }: BrandNewFormProps) {
           options={brands}
           setValue={(value: string) => setValue("name", value)}
           type="text"
-          {...register("name", { required: "Brand is required." })}
+          {...register("name", { required: "Name is required." })}
         />
         <InputError error={fieldErrors?.name?.message} />
       </Field>

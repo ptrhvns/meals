@@ -75,7 +75,7 @@ export function brandUpdate(
   return send({
     data,
     method: "POST",
-    url: `/api/recipes/brand/${brandId}/update/`, // TODO api
+    url: `/api/recipes/brand/${brandId}/update/`,
   });
 }
 
@@ -198,6 +198,16 @@ export function foodCreate(
   });
 }
 
+export function foodDestroy(
+  send: ApiSendFunction,
+  { foodId }: { foodId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/food/${foodId}/destroy/`,
+  });
+}
+
 export function foodManyGet(
   send: ApiSendFunction,
   params?: { page?: number }
@@ -210,6 +220,34 @@ export function foodManyGet(
       foodMany: z.array(foodSchema),
     }),
     url: `/api/recipes/food-many/${queryParam}`,
+  });
+}
+
+export function foodOneGet(
+  send: ApiSendFunction,
+  { foodId }: { foodId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ foodOne: foodSchema }),
+    url: `/api/recipes/food-one/${foodId}/`,
+  });
+}
+
+export function foodUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    foodId,
+  }: {
+    data: { name: string };
+    foodId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/food/${foodId}/update/`,
   });
 }
 

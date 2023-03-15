@@ -23,6 +23,7 @@ const tabs = {
   food: "food",
   recipes: "recipes",
   tags: "tags",
+  units: "units",
 };
 
 export default function Dashboard() {
@@ -86,6 +87,13 @@ export default function Dashboard() {
               >
                 Food
               </TabsPrimitive.Trigger>
+
+              <TabsPrimitive.Trigger
+                className={classes.tabsTrigger}
+                value={tabs.units}
+              >
+                Units
+              </TabsPrimitive.Trigger>
             </TabsPrimitive.List>
 
             <TabsPrimitive.Content
@@ -141,6 +149,13 @@ export default function Dashboard() {
               </Anchor>
 
               <FoodList />
+            </TabsPrimitive.Content>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
+              value={tabs.units}
+            >
+              Units
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

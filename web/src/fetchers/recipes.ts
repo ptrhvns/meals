@@ -631,6 +631,17 @@ export function timeUpdate(
   });
 }
 
+export function unitCreate(
+  send: ApiSendFunction,
+  { data }: { data: { name: string } }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/unit/create/`,
+  });
+}
+
 export function unitsGet(send: ApiSendFunction): Promise<ApiResponse> {
   return send({
     method: "GET",

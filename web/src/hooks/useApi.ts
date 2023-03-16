@@ -63,6 +63,7 @@ import {
   timeDestroy,
   timeGet,
   timeUpdate,
+  unitCreate,
   unitsGet,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
@@ -307,6 +308,7 @@ export default function useApi() {
     timeDestroy: withSendAndArgs(timeDestroy),
     timeGet: withSendAndArgs(timeGet),
     timeUpdate: withSendAndArgs(timeUpdate),
+    unitCreate: withSendAndArgs(unitCreate),
     unitsGet: withSend(unitsGet),
   };
 }

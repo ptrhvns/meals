@@ -31,6 +31,7 @@ import TagForRecipeNew from "./routes/TagForRecipeNew";
 import TagNew from "./routes/TagNew";
 import TimeForRecipeEdit from "./routes/TimeForRecipeEdit";
 import TimeNew from "./routes/TimeNew";
+import UnitNew from "./routes/UnitNew";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },
       { path: "tag/:tagId/edit", element: <TagEdit /> },
       { path: "tag/new", element: <TagNew /> },
+      { path: "unit/new", element: <UnitNew /> },
     ],
   },
   { path: "*", element: <NotFound /> },

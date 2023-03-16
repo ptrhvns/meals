@@ -155,7 +155,9 @@ export default function Dashboard() {
               className={classes.tabsContent}
               value={tabs.units}
             >
-              Units
+              <Anchor to="/unit/new" variant="filled">
+                Create
+              </Anchor>
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

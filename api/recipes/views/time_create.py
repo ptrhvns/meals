@@ -3,7 +3,7 @@ from typing import Any
 from django.db import Error
 from django.db.transaction import atomic
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -39,7 +39,7 @@ class TimeRequestSerializer(ModelSerializer):
 
     def validate(self, data: dict[str, Any]) -> dict[str, Any]:
         units = ["days", "hours", "minutes"]
-        error = _("At least one unit is required.")
+        error = gettext_lazy("At least one unit is required.")
 
         if not any([data.get(u) for u in units]):
             raise ValidationError({u: error for u in units})
@@ -104,7 +104,7 @@ def time_create(request: Request, recipe_id: int) -> Response:
             time.save()
     except Error:
         return internal_server_error_response(
-            message=_("Your information could not be saved.")
+            message=gettext_lazy("Your information could not be saved.")
         )
 
     return created_response()

@@ -9,7 +9,7 @@ from django.contrib.auth import logout as auth_logout
 from django.db import Error
 from django.db.transaction import atomic
 from django.utils.timezone import now
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -49,7 +49,7 @@ def account_destroy(request: Request) -> Response:
 
         return unprocessable_entity_response(
             errors=serializer.errors,
-            message=_("The information you provided was invalid."),
+            message=gettext_lazy("The information you provided was invalid."),
         )
 
     password = serializer.validated_data["password"]
@@ -66,8 +66,8 @@ def account_destroy(request: Request) -> Response:
         )
 
         return unprocessable_entity_response(
-            errors={"password": [_("Password is invalid.")]},
-            message=_("The information you provided was invalid."),
+            errors={"password": [gettext_lazy("Password is invalid.")]},
+            message=gettext_lazy("The information you provided was invalid."),
         )
 
     logger.info(
@@ -152,7 +152,7 @@ def signup_create(request: Request) -> Response:
             )
     except Error:
         return internal_server_error_response(
-            message=_("Your information could not be saved.")
+            message=gettext_lazy("Your information could not be saved.")
         )
 
     site_url = ClientUrls.home
@@ -166,7 +166,7 @@ def signup_create(request: Request) -> Response:
     send_signup_confirmation.delay(user.id, site_url, confirmation_url)
 
     return created_response(
-        message=_(
+        message=gettext_lazy(
             "You were signed up successfully. Please check your email for our"
             " message, and visit the link to confirm your address."
         )
@@ -190,7 +190,7 @@ def signup_confirmation_update(request: Request) -> Response:
             {"token": token_id},
         )
         return unprocessable_entity_response(
-            message=_("The signup confirmation ID provided was invalid.")
+            message=gettext_lazy("The signup confirmation ID provided was invalid.")
         )
 
     now = datetime.now(tz=ZoneInfo(settings.TIME_ZONE))
@@ -198,7 +198,7 @@ def signup_confirmation_update(request: Request) -> Response:
     if token.expiration < now:
         token.delete()
         return unprocessable_entity_response(
-            message=_("The confirmation ID provided was expired.")
+            message=gettext_lazy("The confirmation ID provided was expired.")
         )
 
     user = token.user
@@ -212,4 +212,4 @@ def signup_confirmation_update(request: Request) -> Response:
         {"user_id": user.id},  # type: ignore[attr-defined]
     )
 
-    return ok_response(message=_("Your signup was successfully confirmed."))
+    return ok_response(message=gettext_lazy("Your signup was successfully confirmed."))

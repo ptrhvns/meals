@@ -1,7 +1,7 @@
 from django.db import Error
 from django.db.transaction import atomic
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -79,7 +79,7 @@ def ingredient_create(request: Request, recipe_id: int) -> Response:
             Ingredient.objects.create(recipe=recipe, order=order, **ingredient_data)
     except Error:
         return unprocessable_entity_response(
-            message=_("Your information could not be saved.")
+            message=gettext_lazy("Your information could not be saved.")
         )
 
     return created_response()

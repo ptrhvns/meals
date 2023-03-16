@@ -9,7 +9,7 @@ from django.db.models import (
     ForeignKey,
     Model,
 )
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 
 from accounts.utils import build_token
 
@@ -17,20 +17,20 @@ from accounts.utils import build_token
 class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
 
-    email = EmailField(_("email address"), blank=False)
+    email = EmailField(gettext_lazy("email address"), blank=False)
     email_confirmed_datetime = DateTimeField(blank=True, null=True)
     is_active = BooleanField(
-        _("active"),
+        gettext_lazy("active"),
         default=False,
-        help_text=_(
+        help_text=gettext_lazy(
             "Designates whether this user should be treated as active. "
             "Unselect this instead of deleting accounts."
         ),
     )
     username = CharField(
-        _("username"),
-        error_messages={"unique": _("That username already exists.")},
-        help_text=_("At most 150 characters. Letters, numbers, @/./+/-/_."),
+        gettext_lazy("username"),
+        error_messages={"unique": gettext_lazy("That username already exists.")},
+        help_text=gettext_lazy("At most 150 characters. Letters, numbers, @/./+/-/_."),
         max_length=150,
         unique=True,
         validators=[username_validator],

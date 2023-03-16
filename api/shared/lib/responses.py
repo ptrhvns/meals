@@ -1,6 +1,6 @@
 from typing import Any
 
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
@@ -66,5 +66,5 @@ def data_response(data: object) -> Response:
 def invalid_request_data_response(serializer: BaseSerializer) -> Response:
     return unprocessable_entity_response(
         errors=serializer.errors,
-        message=_("The information you provided was invalid."),
+        message=gettext_lazy("The information you provided was invalid."),
     )

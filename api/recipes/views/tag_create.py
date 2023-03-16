@@ -1,5 +1,5 @@
 from django.db import Error
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -39,7 +39,7 @@ def tag_create(request: Request) -> Response:
         )[0]
     except Error:
         return internal_server_error_response(
-            message=_("Your information could not be saved.")
+            message=gettext_lazy("Your information could not be saved.")
         )
 
     return created_response() if created else ok_response()

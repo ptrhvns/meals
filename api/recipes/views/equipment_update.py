@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -37,8 +37,10 @@ def equipment_update(request: Request, equipment_id: int) -> Response:
         description=serializer.validated_data["description"], user=request.user
     ).exists():
         return unprocessable_entity_response(
-            errors={"description": [_("This description is already taken.")]},
-            message=_("The information you provided could not be saved."),
+            errors={
+                "description": [gettext_lazy("This description is already taken.")]
+            },
+            message=gettext_lazy("The information you provided could not be saved."),
         )
 
     serializer.save()

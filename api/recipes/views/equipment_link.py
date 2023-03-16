@@ -1,7 +1,7 @@
 from django.db import Error
 from django.db.transaction import atomic
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -44,7 +44,7 @@ def equipment_link(request: Request, recipe_id: int) -> Response:
                 equipment.recipes.add(recipe)
     except Error:
         return internal_server_error_response(
-            message=_("Your information could not be saved.")
+            message=gettext_lazy("Your information could not be saved.")
         )
 
     return created_response() if created else ok_response()

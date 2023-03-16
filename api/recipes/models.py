@@ -16,7 +16,7 @@ from django.db.models import (
     TextField,
     UniqueConstraint,
 )
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 
 from accounts.models import User
 
@@ -81,7 +81,7 @@ class Time(Model):
         units = ["days", "hours", "minutes"]
 
         if not any([getattr(self, u) for u in units]):
-            error = _("At least one unit is required.")
+            error = gettext_lazy("At least one unit is required.")
             raise exceptions.ValidationError({u: error for u in units})
 
 

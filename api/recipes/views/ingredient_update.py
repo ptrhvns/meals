@@ -1,6 +1,6 @@
 from django import shortcuts
 from django.db import Error, transaction
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -77,7 +77,7 @@ def ingredient_update(request: Request, ingredient_id: int) -> Response:
             ingredient.save()
     except Error:
         return unprocessable_entity_response(
-            message=_("Your information could not be saved.")
+            message=gettext_lazy("Your information could not be saved.")
         )
 
     return no_content_response()

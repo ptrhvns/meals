@@ -642,12 +642,17 @@ export function unitCreate(
   });
 }
 
-export function unitsGet(send: ApiSendFunction): Promise<ApiResponse> {
+export function unitsGet(
+  send: ApiSendFunction,
+  params?: { page?: number }
+): Promise<ApiResponse> {
+  const queryParam = params?.page ? `?page=${params?.page}` : "";
+
   return send({
     method: "GET",
     responseDataSchema: z.object({
       units: z.array(unitSchema),
     }),
-    url: `/api/recipes/units/`,
+    url: `/api/recipes/units/${queryParam}`,
   });
 }

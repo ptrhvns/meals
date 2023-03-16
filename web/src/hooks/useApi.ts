@@ -309,6 +309,6 @@ export default function useApi() {
     timeGet: withSendAndArgs(timeGet),
     timeUpdate: withSendAndArgs(timeUpdate),
     unitCreate: withSendAndArgs(unitCreate),
-    unitsGet: withSend(unitsGet),
+    unitsGet: withSendAndOptionalArgs(unitsGet),
   };
 }

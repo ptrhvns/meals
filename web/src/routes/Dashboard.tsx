@@ -11,6 +11,7 @@ import PageSection from "../components/PageSection";
 import RecipeList from "../components/RecipeList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagList from "../components/TagList";
+import UnitList from "../components/UnitList";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { useEffectOnce } from "../hooks/useEffectOnce";
@@ -158,6 +159,8 @@ export default function Dashboard() {
               <Anchor to="/unit/new" variant="filled">
                 Create
               </Anchor>
+
+              <UnitList />
             </TabsPrimitive.Content>
           </TabsPrimitive.Root>
         </PageSection>

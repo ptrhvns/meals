@@ -222,7 +222,7 @@ class Ingredient(Model):
         Unit,
         blank=True,
         null=True,
-        on_delete=CASCADE,
+        on_delete=SET_NULL,
         related_name="ingredients",
     )
 

@@ -49,7 +49,7 @@ export default function BrandEditForm({ brand, brands }: BrandEditFormProps) {
         <DialogContent onDismiss={() => setConfirmingDelete(false)}>
           <Paragraph>
             Are you sure you want to delete this brand, and unlink it from all
-            recipes?
+            ingredients?
           </Paragraph>
 
           <form

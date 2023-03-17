@@ -48,8 +48,8 @@ export default function FoodEditForm({ foodOne, foodMany }: FoodEditFormProps) {
       <Dialog open={confirmingDelete}>
         <DialogContent onDismiss={() => setConfirmingDelete(false)}>
           <Paragraph>
-            Are you sure you want to delete this food, and unlink it from all
-            recipes?
+            Are you sure you want to delete this food and delete all linked
+            ingredients?
           </Paragraph>
 
           <form

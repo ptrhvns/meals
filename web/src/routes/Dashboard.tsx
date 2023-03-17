@@ -24,6 +24,7 @@ const tabs = {
   food: "food",
   recipes: "recipes",
   tags: "tags",
+  times: "times",
   units: "units",
 };
 
@@ -63,9 +64,9 @@ export default function Dashboard() {
 
               <TabsPrimitive.Trigger
                 className={classes.tabsTrigger}
-                value={tabs.tags}
+                value={tabs.brands}
               >
-                Tags
+                Brands
               </TabsPrimitive.Trigger>
 
               <TabsPrimitive.Trigger
@@ -77,16 +78,23 @@ export default function Dashboard() {
 
               <TabsPrimitive.Trigger
                 className={classes.tabsTrigger}
-                value={tabs.brands}
+                value={tabs.food}
               >
-                Brands
+                Food
               </TabsPrimitive.Trigger>
 
               <TabsPrimitive.Trigger
                 className={classes.tabsTrigger}
-                value={tabs.food}
+                value={tabs.tags}
               >
-                Food
+                Tags
+              </TabsPrimitive.Trigger>
+
+              <TabsPrimitive.Trigger
+                className={classes.tabsTrigger}
+                value={tabs.times}
+              >
+                Times
               </TabsPrimitive.Trigger>
 
               <TabsPrimitive.Trigger
@@ -110,13 +118,13 @@ export default function Dashboard() {
 
             <TabsPrimitive.Content
               className={classes.tabsContent}
-              value={tabs.tags}
+              value={tabs.brands}
             >
-              <Anchor to="/tag/new" variant="filled">
+              <Anchor to="/brand/new" variant="filled">
                 Create
               </Anchor>
 
-              <TagList />
+              <BrandList />
             </TabsPrimitive.Content>
 
             <TabsPrimitive.Content
@@ -132,17 +140,6 @@ export default function Dashboard() {
 
             <TabsPrimitive.Content
               className={classes.tabsContent}
-              value={tabs.brands}
-            >
-              <Anchor to="/brand/new" variant="filled">
-                Create
-              </Anchor>
-
-              <BrandList />
-            </TabsPrimitive.Content>
-
-            <TabsPrimitive.Content
-              className={classes.tabsContent}
               value={tabs.food}
             >
               <Anchor to="/food/new" variant="filled">
@@ -150,6 +147,24 @@ export default function Dashboard() {
               </Anchor>
 
               <FoodList />
+            </TabsPrimitive.Content>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
+              value={tabs.tags}
+            >
+              <Anchor to="/tag/new" variant="filled">
+                Create
+              </Anchor>
+
+              <TagList />
+            </TabsPrimitive.Content>
+
+            <TabsPrimitive.Content
+              className={classes.tabsContent}
+              value={tabs.times}
+            >
+              Times
             </TabsPrimitive.Content>
 
             <TabsPrimitive.Content

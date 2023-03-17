@@ -64,7 +64,10 @@ import {
   timeGet,
   timeUpdate,
   unitCreate,
+  unitDestroy,
+  unitGet,
   unitsGet,
+  unitUpdate,
 } from "../fetchers/recipes";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -309,6 +312,9 @@ export default function useApi() {
     timeGet: withSendAndArgs(timeGet),
     timeUpdate: withSendAndArgs(timeUpdate),
     unitCreate: withSendAndArgs(unitCreate),
+    unitDestroy: withSendAndArgs(unitDestroy),
+    unitGet: withSendAndArgs(unitGet),
     unitsGet: withSendAndOptionalArgs(unitsGet),
+    unitUpdate: withSendAndArgs(unitUpdate),
   };
 }

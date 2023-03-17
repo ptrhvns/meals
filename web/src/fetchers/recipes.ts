@@ -642,6 +642,17 @@ export function unitCreate(
   });
 }
 
+export function unitGet(
+  send: ApiSendFunction,
+  { unitId }: { unitId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ unit: unitSchema }),
+    url: `/api/recipes/unit/${unitId}/`,
+  });
+}
+
 export function unitsGet(
   send: ApiSendFunction,
   params?: { page?: number }
@@ -654,5 +665,32 @@ export function unitsGet(
       units: z.array(unitSchema),
     }),
     url: `/api/recipes/units/${queryParam}`,
+  });
+}
+
+export function unitDestroy(
+  send: ApiSendFunction,
+  { unitId }: { unitId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/unit/${unitId}/destroy/`,
+  });
+}
+
+export function unitUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    unitId,
+  }: {
+    data: { name: string };
+    unitId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/unit/${unitId}/update/`,
   });
 }

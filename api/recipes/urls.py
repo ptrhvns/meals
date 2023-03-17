@@ -48,7 +48,10 @@ from recipes.views.time_categories import time_categories
 from recipes.views.time_create import time_create
 from recipes.views.time_destroy import time_destroy
 from recipes.views.time_update import time_update
+from recipes.views.unit import unit
 from recipes.views.unit_create import unit_create
+from recipes.views.unit_destroy import unit_destroy
+from recipes.views.unit_update import unit_update
 from recipes.views.units import units
 
 # fmt: off
@@ -100,6 +103,9 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("tags/", tags),
     path("time/<int:time_id>/destroy/", time_destroy),
     path("time_categories/", time_categories),
+    path("unit/<int:unit_id>/", unit),
+    path("unit/<int:unit_id>/destroy/", unit_destroy),
+    path("unit/<int:unit_id>/update/", unit_update),
     path("unit/create/", unit_create),
     path("units/", units),
 ]

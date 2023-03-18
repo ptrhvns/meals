@@ -164,7 +164,9 @@ export default function Dashboard() {
               className={classes.tabsContent}
               value={tabs.times}
             >
-              Times
+              <Anchor to="/time-category/new" variant="filled">
+                Create
+              </Anchor>
             </TabsPrimitive.Content>
 
             <TabsPrimitive.Content

@@ -562,6 +562,17 @@ export function timeCategoriesGet(send: ApiSendFunction): Promise<ApiResponse> {
   });
 }
 
+export function timeCategoryCreate(
+  send: ApiSendFunction,
+  { data }: { data: { name: string } }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/time-category/create/`,
+  });
+}
+
 export function timeCreate(
   send: ApiSendFunction,
   {

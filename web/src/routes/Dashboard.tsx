@@ -11,6 +11,7 @@ import PageSection from "../components/PageSection";
 import RecipeList from "../components/RecipeList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagList from "../components/TagList";
+import TimeCategoryList from "../components/TimeCategoryList";
 import UnitList from "../components/UnitList";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
@@ -167,6 +168,8 @@ export default function Dashboard() {
               <Anchor to="/time-category/new" variant="filled">
                 Create
               </Anchor>
+
+              <TimeCategoryList />
             </TabsPrimitive.Content>
 
             <TabsPrimitive.Content

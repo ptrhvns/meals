@@ -552,13 +552,18 @@ export function tagUpdate(
   });
 }
 
-export function timeCategoriesGet(send: ApiSendFunction): Promise<ApiResponse> {
+export function timeCategoriesGet(
+  send: ApiSendFunction,
+  params?: { page?: number }
+): Promise<ApiResponse> {
+  const queryParam = params?.page ? `?page=${params?.page}` : "";
+
   return send({
     method: "GET",
     responseDataSchema: z.object({
       timeCategories: z.array(timeCategorySchema),
     }),
-    url: `/api/recipes/time_categories/`,
+    url: `/api/recipes/time-categories/${queryParam}`,
   });
 }
 

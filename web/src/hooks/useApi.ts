@@ -307,7 +307,7 @@ export default function useApi() {
     tagsGet: withSendAndOptionalArgs(tagsGet),
     tagUnlink: withSendAndArgs(tagUnlink),
     tagUpdate: withSendAndArgs(tagUpdate),
-    timeCategoriesGet: withSend(timeCategoriesGet),
+    timeCategoriesGet: withSendAndOptionalArgs(timeCategoriesGet),
     timeCategoryCreate: withSendAndArgs(timeCategoryCreate),
     timeCreate: withSendAndArgs(timeCreate),
     timeDestroy: withSendAndArgs(timeDestroy),

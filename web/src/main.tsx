@@ -29,6 +29,7 @@ import SignupConfirmation from "./routes/SignupConfirmation";
 import TagEdit from "./routes/TagEdit";
 import TagForRecipeNew from "./routes/TagForRecipeNew";
 import TagNew from "./routes/TagNew";
+import TimeCategoryEdit from "./routes/TimeCategoryEdit";
 import TimeCategoryNew from "./routes/TimeCategoryNew";
 import TimeForRecipeEdit from "./routes/TimeForRecipeEdit";
 import TimeNew from "./routes/TimeNew";
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
       { path: "signup-confirmation/:token", element: <SignupConfirmation /> },
       { path: "tag/:tagId/edit", element: <TagEdit /> },
       { path: "tag/new", element: <TagNew /> },
+      { path: "time-category/:timeCategoryId/edit", element: <TimeCategoryEdit /> },
       { path: "time-category/new", element: <TimeCategoryNew /> },
       { path: "unit/:unitId/edit", element: <UnitEdit /> },
       { path: "unit/new", element: <UnitNew /> },

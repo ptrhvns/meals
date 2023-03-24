@@ -19,26 +19,22 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function UnitEdit() {
-  const [unit, setUnit] = useState<UnitData>();
-  const [units, setUnits] = useState<string[]>([]);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
-  const { unitGet, unitsGet } = useApi();
+  const [unit, setUnit] = useState<UnitData>();
+  const { unitGet } = useApi();
   const { unitId } = useParams() as { unitId: string };
 
   useEffectOnce(async () => {
-    const responses = await Promise.all([unitGet({ unitId }), unitsGet()]);
+    const response = await unitGet({ unitId });
     setLoading(false);
 
-    for (let i = 0; i < responses.length; i++) {
-      if (responses[i].isError) {
-        handleApiError(responses[i], { setError });
-        return;
-      }
+    if (response.isError) {
+      handleApiError(response, { setError });
+      return;
     }
 
-    setUnit(responses[0].data.unit);
-    setUnits(responses[1].data.units.map((b: { name: string }) => b.name));
+    setUnit(response.data.unit);
   });
 
   return (
@@ -63,7 +59,7 @@ export default function UnitEdit() {
           ) : error ? (
             <Alert variant="error">{error}</Alert>
           ) : (
-            <UnitEditForm unit={unit} units={units} />
+            <UnitEditForm unit={unit} />
           )}
         </PageSection>
       </FullPageViewport>

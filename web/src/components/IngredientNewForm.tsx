@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
@@ -10,7 +11,6 @@ import { handleApiError } from "../lib/utils";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Combobox from "./Combobox";
 
 interface IngredientNewFormProps {
   brands: string[];

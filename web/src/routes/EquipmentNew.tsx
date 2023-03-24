@@ -1,4 +1,3 @@
-import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import EquipmentNewForm from "../components/EquipmentNewForm";
@@ -7,36 +6,10 @@ import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
 import RequireAuthn from "../components/RequireAuthn";
-import useApi from "../hooks/useApi";
-import { buildTitle, handleApiError } from "../lib/utils";
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
-import { useEffectOnce } from "../hooks/useEffectOnce";
-import { useState } from "react";
 
 export default function EquipmentNew() {
-  const [equipment, setEquipment] = useState<string[]>([]);
-  const [error, setError] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const { equipmentManyGet } = useApi();
-
-  useEffectOnce(async () => {
-    const response = await equipmentManyGet();
-    setLoading(false);
-
-    if (response.isError) {
-      handleApiError(response, { setError });
-      return;
-    }
-
-    setEquipment(
-      response.data.equipmentMany.map(
-        (e: { description: string }) => e.description
-      )
-    );
-  });
-
   return (
     <RequireAuthn>
       <Helmet>
@@ -54,13 +27,7 @@ export default function EquipmentNew() {
 
           <Heading>Create Equipment</Heading>
 
-          {loading ? (
-            <FontAwesomeIcon icon={faCircleNotch} spin />
-          ) : error ? (
-            <Alert variant="error">{error}</Alert>
-          ) : (
-            <EquipmentNewForm equipment={equipment} />
-          )}
+          <EquipmentNewForm />
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

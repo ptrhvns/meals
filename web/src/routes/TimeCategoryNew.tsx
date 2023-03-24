@@ -1,4 +1,3 @@
-import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import FullPageViewport from "../components/FullPageViewport";
@@ -7,34 +6,10 @@ import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
 import RequireAuthn from "../components/RequireAuthn";
 import TimeCategoryNewForm from "../components/TimeCategoryNewForm";
-import useApi from "../hooks/useApi";
-import { buildTitle, handleApiError } from "../lib/utils";
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
-import { useEffectOnce } from "../hooks/useEffectOnce";
-import { useState } from "react";
 
 export default function TimeCategoryNew() {
-  const [error, setError] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [timeCategories, setTimeCategories] = useState<string[]>([]);
-  const { timeCategoriesGet } = useApi();
-
-  useEffectOnce(async () => {
-    const response = await timeCategoriesGet();
-    setLoading(false);
-
-    if (response.isError) {
-      handleApiError(response, { setError });
-      return;
-    }
-
-    setTimeCategories(
-      response.data.timeCategories.map((e: { name: string }) => e.name)
-    );
-  });
-
   return (
     <RequireAuthn>
       <Helmet>
@@ -52,13 +27,7 @@ export default function TimeCategoryNew() {
 
           <Heading>Create Time Category</Heading>
 
-          {loading ? (
-            <FontAwesomeIcon icon={faCircleNotch} spin />
-          ) : error ? (
-            <Alert variant="error">{error}</Alert>
-          ) : (
-            <TimeCategoryNewForm timeCategories={timeCategories} />
-          )}
+          <TimeCategoryNewForm />
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

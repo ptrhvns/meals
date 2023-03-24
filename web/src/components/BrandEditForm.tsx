@@ -1,8 +1,8 @@
 import Button from "./Button";
-import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
+import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import Paragraph from "./Paragraph";
@@ -16,14 +16,13 @@ import { useState } from "react";
 
 interface BrandEditFormProps {
   brand?: BrandData;
-  brands: string[];
 }
 
 interface FormData {
   name: string;
 }
 
-export default function BrandEditForm({ brand, brands }: BrandEditFormProps) {
+export default function BrandEditForm({ brand }: BrandEditFormProps) {
   const [confirmingDelete, setConfirmingDelete] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -31,12 +30,10 @@ export default function BrandEditForm({ brand, brands }: BrandEditFormProps) {
   const { brandDestroy, brandUpdate } = useApi();
 
   const {
-    clearErrors,
     formState: { errors: fieldErrors },
     handleSubmit,
     register,
     setError: setFieldError,
-    setValue,
   } = useForm<FormData>({
     defaultValues: { name: brand?.name ?? "" },
   });
@@ -119,13 +116,10 @@ export default function BrandEditForm({ brand, brands }: BrandEditFormProps) {
 
         <Field>
           <LabelDiv htmlFor="name">Name</LabelDiv>
-          <Combobox
-            clearErrors={() => clearErrors("name")}
+          <InputDiv
             disabled={submitting}
             error={!!fieldErrors?.name?.message}
             id="name"
-            options={brands}
-            setValue={(value: string) => setValue("name", value)}
             type="text"
             {...register("name", { required: "Name is required." })}
           />

@@ -1,8 +1,8 @@
 import Button from "./Button";
-import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
+import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
@@ -11,29 +11,21 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-interface TimeCategoryNewFormProps {
-  timeCategories: string[];
-}
-
 interface FormData {
   name: string;
 }
 
-export default function TimeCategoryNewForm({
-  timeCategories,
-}: TimeCategoryNewFormProps) {
+export default function TimeCategoryNewForm() {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>();
   const navigate = useNavigate();
   const { timeCategoryCreate } = useApi();
 
   const {
-    clearErrors,
     formState: { errors: fieldErrors },
     handleSubmit,
     register,
     setError: setFieldError,
-    setValue,
   } = useForm<FormData>();
 
   return (
@@ -55,13 +47,10 @@ export default function TimeCategoryNewForm({
 
       <Field>
         <LabelDiv htmlFor="name">Name</LabelDiv>
-        <Combobox
-          clearErrors={() => clearErrors("name")}
+        <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.name?.message}
           id="name"
-          options={timeCategories}
-          setValue={(value: string) => setValue("name", value)}
           type="text"
           {...register("name", { required: "Name is required." })}
         />

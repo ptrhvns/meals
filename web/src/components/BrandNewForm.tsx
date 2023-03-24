@@ -1,5 +1,4 @@
 import Button from "./Button";
-import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
@@ -10,28 +9,23 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { handleApiError } from "../lib/utils";
-
-interface BrandNewFormProps {
-  brands: string[];
-}
+import InputDiv from "./InputDiv";
 
 interface FormData {
   name: string;
 }
 
-export default function BrandNewForm({ brands }: BrandNewFormProps) {
+export default function BrandNewForm() {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>();
   const navigate = useNavigate();
   const { brandCreate } = useApi();
 
   const {
-    clearErrors,
     formState: { errors: fieldErrors },
     handleSubmit,
     register,
     setError: setFieldError,
-    setValue,
   } = useForm<FormData>();
 
   return (
@@ -53,13 +47,10 @@ export default function BrandNewForm({ brands }: BrandNewFormProps) {
 
       <Field>
         <LabelDiv htmlFor="name">Name</LabelDiv>
-        <Combobox
-          clearErrors={() => clearErrors("name")}
+        <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.name?.message}
           id="name"
-          options={brands}
-          setValue={(value: string) => setValue("name", value)}
           type="text"
           {...register("name", { required: "Name is required." })}
         />

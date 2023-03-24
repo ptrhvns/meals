@@ -20,25 +20,21 @@ import { useState } from "react";
 
 export default function BrandEdit() {
   const [brand, setBrand] = useState<BrandData>();
-  const [brands, setBrands] = useState<string[]>([]);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
-  const { brandGet, brandsGet } = useApi();
+  const { brandGet } = useApi();
   const { brandId } = useParams() as { brandId: string };
 
   useEffectOnce(async () => {
-    const responses = await Promise.all([brandGet({ brandId }), brandsGet()]);
+    const response = await brandGet({ brandId });
     setLoading(false);
 
-    for (let i = 0; i < responses.length; i++) {
-      if (responses[i].isError) {
-        handleApiError(responses[i], { setError });
-        return;
-      }
+    if (response.isError) {
+      handleApiError(response, { setError });
+      return;
     }
 
-    setBrand(responses[0].data.brand);
-    setBrands(responses[1].data.brands.map((b: { name: string }) => b.name));
+    setBrand(response.data.brand);
   });
 
   return (
@@ -63,7 +59,7 @@ export default function BrandEdit() {
           ) : error ? (
             <Alert variant="error">{error}</Alert>
           ) : (
-            <BrandEditForm brand={brand} brands={brands} />
+            <BrandEditForm brand={brand} />
           )}
         </PageSection>
       </FullPageViewport>

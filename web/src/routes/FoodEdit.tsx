@@ -21,31 +21,21 @@ import { useState } from "react";
 export default function FoodEdit() {
   const [error, setError] = useState<string>();
   const [food, setFood] = useState<FoodData>();
-  const [foodMany, setFoodMany] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { foodId } = useParams() as { foodId: string };
-  const { foodOneGet, foodManyGet } = useApi();
+  const { foodOneGet } = useApi();
 
   useEffectOnce(async () => {
-    const responses = await Promise.all([
-      foodOneGet({ foodId }),
-      foodManyGet(),
-    ]);
+    const response = await foodOneGet({ foodId });
 
     setLoading(false);
 
-    for (let i = 0; i < responses.length; i++) {
-      if (responses[i].isError) {
-        handleApiError(responses[i], { setError });
-        return;
-      }
+    if (response.isError) {
+      handleApiError(response, { setError });
+      return;
     }
 
-    setFood(responses[0].data.foodOne);
-
-    setFoodMany(
-      responses[1].data.foodMany.map((b: { name: string }) => b.name)
-    );
+    setFood(response.data.foodOne);
   });
 
   return (
@@ -70,7 +60,7 @@ export default function FoodEdit() {
           ) : error ? (
             <Alert variant="error">{error}</Alert>
           ) : (
-            <FoodEditForm foodOne={food} foodMany={foodMany} />
+            <FoodEditForm foodOne={food} />
           )}
         </PageSection>
       </FullPageViewport>

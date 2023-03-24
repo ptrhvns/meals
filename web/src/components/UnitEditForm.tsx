@@ -1,8 +1,8 @@
 import Button from "./Button";
-import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
+import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import Paragraph from "./Paragraph";
@@ -16,14 +16,13 @@ import { useState } from "react";
 
 interface UnitEditFormProps {
   unit?: UnitData;
-  units: string[];
 }
 
 interface FormData {
   name: string;
 }
 
-export default function UnitEditForm({ unit, units }: UnitEditFormProps) {
+export default function UnitEditForm({ unit }: UnitEditFormProps) {
   const [confirmingDelete, setConfirmingDelete] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -31,12 +30,10 @@ export default function UnitEditForm({ unit, units }: UnitEditFormProps) {
   const { unitDestroy, unitUpdate } = useApi();
 
   const {
-    clearErrors,
     formState: { errors: fieldErrors },
     handleSubmit,
     register,
     setError: setFieldError,
-    setValue,
   } = useForm<FormData>({
     defaultValues: { name: unit?.name ?? "" },
   });
@@ -119,13 +116,10 @@ export default function UnitEditForm({ unit, units }: UnitEditFormProps) {
 
         <Field>
           <LabelDiv htmlFor="name">Name</LabelDiv>
-          <Combobox
-            clearErrors={() => clearErrors("name")}
+          <InputDiv
             disabled={submitting}
             error={!!fieldErrors?.name?.message}
             id="name"
-            options={units}
-            setValue={(value: string) => setValue("name", value)}
             type="text"
             {...register("name", { required: "Name is required." })}
           />

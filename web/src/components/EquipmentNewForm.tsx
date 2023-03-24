@@ -1,8 +1,8 @@
 import Button from "./Button";
-import Combobox from "./Combobox";
 import Field from "./Field";
 import FormActions from "./FormActions";
 import FormError from "./FormError";
+import InputDiv from "./InputDiv";
 import InputError from "./InputError";
 import LabelDiv from "./LabelDiv";
 import useApi from "../hooks/useApi";
@@ -11,27 +11,21 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-interface EquipmentNewFormProps {
-  equipment: string[];
-}
-
 interface FormData {
   description: string;
 }
 
-export default function EquipmentNewForm({ equipment }: EquipmentNewFormProps) {
+export default function EquipmentNewForm() {
   const [error, setError] = useState<string>();
   const [submitting, setSubmitting] = useState<boolean>();
   const navigate = useNavigate();
   const { equipmentCreate } = useApi();
 
   const {
-    clearErrors,
     formState: { errors: fieldErrors },
     handleSubmit,
     register,
     setError: setFieldError,
-    setValue,
   } = useForm<FormData>();
 
   return (
@@ -53,13 +47,10 @@ export default function EquipmentNewForm({ equipment }: EquipmentNewFormProps) {
 
       <Field>
         <LabelDiv htmlFor="description">Description</LabelDiv>
-        <Combobox
-          clearErrors={() => clearErrors("description")}
+        <InputDiv
           disabled={submitting}
           error={!!fieldErrors?.description?.message}
           id="description"
-          options={equipment}
-          setValue={(value: string) => setValue("description", value)}
           type="text"
           {...register("description", { required: "Description is required." })}
         />

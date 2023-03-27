@@ -45,7 +45,10 @@ from recipes.views.tag_update import tag_update
 from recipes.views.tags import tags
 from recipes.views.time import time
 from recipes.views.time_categories import time_categories
+from recipes.views.time_category import time_category
 from recipes.views.time_category_create import time_category_create
+from recipes.views.time_category_destroy import time_category_destroy
+from recipes.views.time_category_update import time_category_update
 from recipes.views.time_create import time_create
 from recipes.views.time_destroy import time_destroy
 from recipes.views.time_update import time_update
@@ -103,6 +106,9 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("tag/create/", tag_create),
     path("tags/", tags),
     path("time-categories/", time_categories),
+    path("time-category/<int:time_category_id>/destroy/", time_category_destroy),
+    path("time-category/<int:time_category_id>/", time_category),
+    path("time-category/<int:time_category_id>/update/", time_category_update),
     path("time-category/create/", time_category_create),
     path("time/<int:time_id>/destroy/", time_destroy),
     path("unit/<int:unit_id>/", unit),

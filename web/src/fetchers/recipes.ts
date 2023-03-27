@@ -552,6 +552,17 @@ export function tagUpdate(
   });
 }
 
+export function timeCategoryGet(
+  send: ApiSendFunction,
+  { timeCategoryId }: { timeCategoryId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ timeCategory: timeCategorySchema }),
+    url: `/api/recipes/time-category/${timeCategoryId}/`,
+  });
+}
+
 export function timeCategoriesGet(
   send: ApiSendFunction,
   params?: { page?: number }
@@ -575,6 +586,33 @@ export function timeCategoryCreate(
     data,
     method: "POST",
     url: `/api/recipes/time-category/create/`,
+  });
+}
+
+export function timeCategoryDestroy(
+  send: ApiSendFunction,
+  { timeCategoryId }: { timeCategoryId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/recipes/time-category/${timeCategoryId}/destroy/`,
+  });
+}
+
+export function timeCategoryUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    timeCategoryId,
+  }: {
+    data: { name: string };
+    timeCategoryId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/time-category/${timeCategoryId}/update/`,
   });
 }
 

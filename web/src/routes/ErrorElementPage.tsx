@@ -1,7 +1,7 @@
-import Alert from "./Alert";
-import classes from "../styles/components/ErrorElementPage.module.scss";
-import Heading from "./Heading";
-import PageCenteredSection from "./PageCenteredSection";
+import Alert from "../components/Alert";
+import classes from "../styles/routes/ErrorElementPage.module.scss";
+import Heading from "../components/Heading";
+import PageCenteredSection from "../components/PageCenteredSection";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";

@@ -5,7 +5,7 @@ import PageCenteredSection from "../components/PageCenteredSection";
 import { buildTitle } from "../lib/utils";
 import { Helmet } from "react-helmet-async";
 
-export default function NotFoundErrorPage() {
+export default function ErrorNotFoundPage() {
   return (
     <>
       <Helmet>
@@ -17,8 +17,8 @@ export default function NotFoundErrorPage() {
           <Heading>Not Found (404)</Heading>
 
           <Alert variant="error">
-            We coudn&apos;t find the page you requested. Maybe you can find what
-            you&apos;re looking for by visiting the{" "}
+            We couldn&apos;t find the page you requested. Maybe you can find
+            what you&apos;re looking for by visiting the{" "}
             <Anchor color="red" to="/">
               home page
             </Anchor>

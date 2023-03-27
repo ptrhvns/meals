@@ -4,6 +4,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import Equipment from "../components/Equipment";
 import FullPageViewport from "../components/FullPageViewport";
+import Ingredients from "../components/Ingredients";
 import Navbar from "../components/Navbar";
 import Notes from "../components/Notes";
 import PageSection from "../components/PageSection";
@@ -23,7 +24,6 @@ import { RecipeData, RecipeReducerAction } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
 import { useReducer, useState } from "react";
-import Ingredients from "../components/Ingredients";
 
 interface ReducerState {
   recipe?: RecipeData;

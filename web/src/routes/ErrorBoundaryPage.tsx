@@ -9,20 +9,19 @@ export default function NotFound() {
   return (
     <>
       <Helmet>
-        <title>{buildTitle("Not Found (404)")}</title>
+        <title>{buildTitle("Error")}</title>
       </Helmet>
 
       <PageCenteredSection>
         <div>
-          <Heading>Not Found (404)</Heading>
+          <Heading>Error</Heading>
 
           <Alert variant="error">
-            We coudn&apos;t find the page you requested. Maybe you can find what
-            you&apos;re looking for by visiting the{" "}
+            An unexpected error occurred. You can start from the{" "}
             <Anchor color="red" to="/">
               home page
             </Anchor>
-            .
+            , and retry your request.
           </Alert>
         </div>
       </PageCenteredSection>

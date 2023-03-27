@@ -8,7 +8,7 @@ import Dashboard from "./routes/Dashboard";
 import EquipmentEdit from "./routes/EquipmentEdit";
 import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
 import EquipmentNew from "./routes/EquipmentNew";
-import ErrorPage from "./components/ErrorPage";
+import ErrorElementPage from "./components/ErrorElementPage";
 import FoodEdit from "./routes/FoodEdit";
 import FoodNew from "./routes/FoodNew";
 import Home from "./routes/Home";
@@ -16,7 +16,7 @@ import IngredientEdit from "./routes/IngredientEdit";
 import IngredientNew from "./routes/IngredientNew";
 import Login from "./routes/Login";
 import NotesEdit from "./routes/NotesEdit";
-import NotFound from "./routes/NotFound";
+import NotFoundErrorPage from "./routes/NotFoundErrorPage";
 import RatingEdit from "./routes/RatingEdit";
 import React from "react";
 import Recipe from "./routes/Recipe";
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorElementPage />,
     // prettier-ignore
     children: [
       { index: true, element: <Home /> },
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
       { path: "unit/new", element: <UnitNew /> },
     ],
   },
-  { path: "*", element: <NotFound /> },
+  { path: "*", element: <NotFoundErrorPage /> },
 ]);
 
 createRoot(document.getElementById("root") as HTMLElement).render(

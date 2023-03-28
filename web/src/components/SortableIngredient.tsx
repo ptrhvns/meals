@@ -37,11 +37,11 @@ export default function SortableIngredient({
       {...attributes}
     >
       <span className={classes.actions}>
-        <AccessibleIcon.Root label="Sort">
+        <AccessibleIcon.Root label="Drag to sort">
           <FontAwesomeIcon
             className={classes.gripIcon}
             icon={faGripLines}
-            title="Sort"
+            title="Drag to sort"
             {...listeners}
           />
         </AccessibleIcon.Root>

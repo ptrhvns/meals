@@ -176,6 +176,7 @@ export interface RecipeData {
 }
 
 export type RecipeReducerAction =
+  | { type: "setIngredients"; payload: IngredientData[] }
   | { type: "setRecipe"; payload: RecipeData }
   | { type: "unlinkEquipment"; payload: string }
   | { type: "unlinkTag"; payload: string };

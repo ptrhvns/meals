@@ -1,0 +1,16 @@
+.actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--spacing10);
+  vertical-align: bottom;
+}
+
+.gripIcon {
+  color: var(--slate11);
+  cursor: grab;
+  margin-top: 0.2rem;
+
+  &:hover {
+    color: var(--slate12);
+  }
+}

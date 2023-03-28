@@ -23,6 +23,7 @@ from recipes.views.ingredient import ingredient
 from recipes.views.ingredient_create import ingredient_create
 from recipes.views.ingredient_destroy import ingredient_destroy
 from recipes.views.ingredient_update import ingredient_update
+from recipes.views.ingredients_reorder import ingredients_reorder
 from recipes.views.notes_destroy import notes_destroy
 from recipes.views.notes_update import notes_update
 from recipes.views.rating import rating
@@ -79,6 +80,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("ingredient/<int:ingredient_id>/", ingredient),
     path("ingredient/<int:ingredient_id>/destroy/", ingredient_destroy),
     path("ingredient/<int:ingredient_id>/update/", ingredient_update),
+    path("ingredients/reorder/", ingredients_reorder),
     path("rating/<int:recipe_id>/", rating),
     path("rating/<int:recipe_id>/update/", rating_update),
     path("recipe/<int:recipe_id>/", recipe),

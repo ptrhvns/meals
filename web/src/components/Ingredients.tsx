@@ -1,17 +1,86 @@
+import Alert from "./Alert";
 import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Ingredients.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
-import { compact, isEmpty, join, sortBy } from "lodash";
-import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { RecipeData } from "../lib/types";
+import SortableIngredient from "./SortableIngredient";
+import useApi from "../hooks/useApi";
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { Dispatch, useState } from "react";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { isEmpty, pick, sortBy } from "lodash";
+import { RecipeData, RecipeReducerAction } from "../lib/types";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 interface IngredientsProps {
+  dispatch: Dispatch<RecipeReducerAction>;
   recipe?: RecipeData;
 }
 
-export default function Ingredients({ recipe }: IngredientsProps) {
+export default function Ingredients({ dispatch, recipe }: IngredientsProps) {
+  const [error, setError] = useState<string>();
+  const { ingredientsReorder } = useApi();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
   if (!recipe) return null;
+
+  async function handleDragEnd(event: DragEndEvent) {
+    if (!recipe) return;
+
+    const { active, over } = event;
+
+    if (!over) return;
+
+    if (active.id !== over.id) {
+      const oldIngredients = recipe.ingredients.slice();
+      const oldIndex = oldIngredients.findIndex((i) => i.id === active.id);
+      const newIndex = oldIngredients.findIndex((i) => i.id === over.id);
+      const newIngredients = recipe.ingredients.slice();
+
+      newIngredients.splice(
+        newIndex < 0 ? newIngredients.length + newIndex : newIndex,
+        0,
+        newIngredients.splice(oldIndex, 1)[0]
+      );
+
+      newIngredients.forEach((ingredient, index) => {
+        ingredient.order = index;
+      });
+
+      dispatch({ type: "setIngredients", payload: newIngredients });
+
+      const data = {
+        ingredients: newIngredients.map((i) => pick(i, ["id", "order"])),
+      };
+
+      const response = await ingredientsReorder({ data });
+
+      if (!response.isError) return;
+
+      dispatch({ type: "setIngredients", payload: oldIngredients });
+      setError(response.message ?? "Your ingredients couldn't be sorted.");
+    }
+  }
+
+  const sortedIngredients = sortBy(recipe.ingredients, "order");
 
   return (
     <>
@@ -24,33 +93,42 @@ export default function Ingredients({ recipe }: IngredientsProps) {
         />
       </RecipeSectionHeading>
 
+      {error && (
+        <Alert
+          alertClassName={classes.alert}
+          onDismiss={() => setError(undefined)}
+          variant="error"
+        >
+          {error}
+        </Alert>
+      )}
+
       {isEmpty(recipe.ingredients) && (
         <Paragraph variant="dimmed">No ingredients yet.</Paragraph>
       )}
 
       {!isEmpty(recipe.ingredients) && (
         <ul className={classes.list}>
-          {sortBy(recipe.ingredients, "order").map((ingredient) => (
-            <li className={classes.listItem} key={ingredient.id}>
-              <AnchorIcon
-                color="slate"
-                icon={faPenToSquare}
-                label="Edit"
-                to={`/recipe/${recipe.id}/ingredient/${ingredient.id}/edit`}
-              />
-              <span className={classes.listItemContent}>
-                {join(
-                  compact([
-                    ingredient.amount,
-                    ingredient.unit?.name,
-                    ingredient.brand?.name,
-                    ingredient.food.name,
-                  ]),
-                  " "
-                )}
-              </span>
-            </li>
-          ))}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={sortedIngredients}
+              strategy={verticalListSortingStrategy}
+            >
+              {sortedIngredients.map((ingredient) => (
+                <SortableIngredient
+                  ingredient={ingredient}
+                  key={ingredient.id}
+                  listItemClassname={classes.listItem}
+                  listItemContentClassname={classes.listItemContent}
+                  recipe={recipe}
+                />
+              ))}
+            </SortableContext>
+          </DndContext>
         </ul>
       )}
     </>

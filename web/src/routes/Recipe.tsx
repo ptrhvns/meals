@@ -38,6 +38,16 @@ export default function Recipe() {
   const [{ recipe }, dispatch] = useReducer(
     (state: ReducerState, action: RecipeReducerAction): ReducerState => {
       switch (action.type) {
+        case "setIngredients":
+          if (!state.recipe) return state;
+
+          return {
+            ...state,
+            recipe: {
+              ...state.recipe,
+              ingredients: action.payload,
+            },
+          };
         case "setRecipe":
           return { ...state, recipe: action.payload };
         case "unlinkEquipment":
@@ -71,7 +81,7 @@ export default function Recipe() {
     {}
   );
 
-  useEffectOnce(async () => {
+  async function handleRecipeGet() {
     const response = await recipeGet({ recipeId });
     setLoading(false);
 
@@ -81,7 +91,9 @@ export default function Recipe() {
     }
 
     dispatch({ type: "setRecipe", payload: response.data.recipe });
-  });
+  }
+
+  useEffectOnce(handleRecipeGet);
 
   return (
     <RequireAuthn>
@@ -138,7 +150,7 @@ export default function Recipe() {
             </PageSection>
 
             <PageSection className={classes.pageSection}>
-              <Ingredients recipe={recipe} />
+              <Ingredients dispatch={dispatch} recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

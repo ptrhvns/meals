@@ -294,6 +294,17 @@ export function ingredientGet(
   });
 }
 
+export function ingredientsReorder(
+  send: ApiSendFunction,
+  { data }: { data: { ingredients: { id: string; order: number }[] } }
+) {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/ingredients/reorder/`,
+  });
+}
+
 export function ingredientUpdate(
   send: ApiSendFunction,
   {

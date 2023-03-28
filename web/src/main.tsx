@@ -5,6 +5,7 @@ import AuthnProvider from "./providers/AuthnProvider";
 import BrandEdit from "./routes/BrandEdit";
 import BrandNew from "./routes/BrandNew";
 import Dashboard from "./routes/Dashboard";
+import DirectionNew from "./routes/DirectionNew";
 import EquipmentEdit from "./routes/EquipmentEdit";
 import EquipmentForRecipeNew from "./routes/EquipmentForRecipeNew";
 import EquipmentNew from "./routes/EquipmentNew";
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       { path: "food/new", element: <FoodNew /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
+      { path: "recipe/:recipeId/direction/new", element: <DirectionNew /> },
       { path: "recipe/:recipeId/equipment/new", element: <EquipmentForRecipeNew /> },
       { path: "recipe/:recipeId/ingredient/:ingredientId/edit", element: <IngredientEdit />, },
       { path: "recipe/:recipeId/ingredient/new", element: <IngredientNew /> },

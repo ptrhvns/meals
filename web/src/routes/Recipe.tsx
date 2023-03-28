@@ -2,6 +2,7 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
+import Directions from "../components/Directions";
 import Equipment from "../components/Equipment";
 import FullPageViewport from "../components/FullPageViewport";
 import Ingredients from "../components/Ingredients";
@@ -151,6 +152,10 @@ export default function Recipe() {
 
             <PageSection className={classes.pageSection}>
               <Ingredients dispatch={dispatch} recipe={recipe} />
+            </PageSection>
+
+            <PageSection className={classes.pageSection}>
+              <Directions recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

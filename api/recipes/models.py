@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Final
+
 from django.core import exceptions
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Deferrable  # type: ignore[attr-defined]
@@ -19,6 +21,8 @@ from django.db.models import (
 from django.utils.translation import gettext_lazy
 
 from accounts.models import User
+
+MAX_STR_LENGTH: Final = 25
 
 
 class Recipe(Model):
@@ -226,6 +230,15 @@ class Ingredient(Model):
         related_name="ingredients",
     )
 
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                deferrable=Deferrable.DEFERRED,  # type: ignore[call-arg]
+                fields=["order", "recipe"],
+                name="ingredient_unique_order_recipe",
+            )
+        ]
+
     def __str__(self) -> str:
         return " ".join(
             a
@@ -237,3 +250,26 @@ class Ingredient(Model):
             ]
             if a
         )
+
+
+class Direction(Model):
+    description = TextField()
+    order = PositiveIntegerField(default=0)
+    recipe: ForeignKey[Recipe] = ForeignKey(
+        Recipe, on_delete=CASCADE, related_name="directions"
+    )
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                deferrable=Deferrable.DEFERRED,  # type: ignore[call-arg]
+                fields=["order", "recipe"],
+                name="direction_unique_order_recipe",
+            )
+        ]
+
+    def __str__(self) -> str:
+        if len(self.description) > MAX_STR_LENGTH:
+            return f"{self.description[:MAX_STR_LENGTH]}..."
+
+        return self.description

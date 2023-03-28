@@ -75,7 +75,7 @@ def ingredient_create(request: Request, recipe_id: int) -> Response:
                 user=request.user,
             )[0]
 
-            order = Ingredient.objects.filter(recipe=recipe).count() + 1
+            order = Ingredient.objects.filter(recipe=recipe).count()
             Ingredient.objects.create(recipe=recipe, order=order, **ingredient_data)
     except Error:
         return unprocessable_entity_response(

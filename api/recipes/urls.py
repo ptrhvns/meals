@@ -6,6 +6,7 @@ from recipes.views.brand_create import brand_create
 from recipes.views.brand_destroy import brand_destroy
 from recipes.views.brand_update import brand_update
 from recipes.views.brands import brands
+from recipes.views.direction_create import direction_create
 from recipes.views.equipment_create import equipment_create
 from recipes.views.equipment_destroy import equipment_destroy
 from recipes.views.equipment_link import equipment_link
@@ -85,6 +86,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("rating/<int:recipe_id>/update/", rating_update),
     path("recipe/<int:recipe_id>/", recipe),
     path("recipe/<int:recipe_id>/destroy/", recipe_destroy),
+    path("recipe/<int:recipe_id>/direction/create/", direction_create),
     path("recipe/<int:recipe_id>/equipment/<int:equipment_id>/unlink/", equipment_unlink),
     path("recipe/<int:recipe_id>/equipment/link/", equipment_link),
     path("recipe/<int:recipe_id>/ingredient/create/", ingredient_create),

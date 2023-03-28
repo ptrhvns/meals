@@ -79,6 +79,17 @@ export function brandUpdate(
   });
 }
 
+export function directionCreate(
+  send: ApiSendFunction,
+  { data, recipeId }: { data: { description: string }; recipeId: string }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/recipes/recipe/${recipeId}/direction/create/`,
+  });
+}
+
 export function equipmentCreate(
   send: ApiSendFunction,
   { data }: { data: { description: string } }

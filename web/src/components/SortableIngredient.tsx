@@ -35,7 +35,6 @@ export default function SortableIngredient({
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
     >
       <span className={classes.actions}>
         <AccessibleIcon.Root label="Sort">
@@ -43,6 +42,7 @@ export default function SortableIngredient({
             className={classes.gripIcon}
             icon={faGripLines}
             title="Sort"
+            {...listeners}
           />
         </AccessibleIcon.Root>
 

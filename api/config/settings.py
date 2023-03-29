@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "rest_framework",
-    "accounts.apps.AccountsConfig",
-    "recipes.apps.RecipesConfig",
+    "main.apps.MainConfig",
 ]
 
 MIDDLEWARE = [
@@ -125,7 +124,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "accounts.User"
+AUTH_USER_MODEL = "main.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [

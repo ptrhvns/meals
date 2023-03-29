@@ -46,12 +46,11 @@ export default function SignupForm() {
         }}
       >
         <DialogContent onDismiss={() => setOpenSuccessDialog(false)}>
-          <Alert variant="success">
-            <DialogTitle asChild>
-              <h1 className={classes.dialogHeading}>Sign Up Success</h1>
-            </DialogTitle>
-            {successMessage}
-          </Alert>
+          <DialogTitle asChild>
+            <h1 className={classes.dialogHeading}>Sign Up Success</h1>
+          </DialogTitle>
+
+          <Alert variant="success">{successMessage}</Alert>
         </DialogContent>
       </Dialog>
 

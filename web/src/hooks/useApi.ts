@@ -1,13 +1,6 @@
 import Cookies from "js-cookie";
 import useAuthn from "./useAuthn";
 import {
-  accountDestroy,
-  login,
-  logout,
-  signupConfirmationUpdate,
-  signupCreate,
-} from "../fetchers/accounts";
-import {
   AnyFunction,
   ApiResponse,
   ApiSendParameter,
@@ -16,12 +9,13 @@ import {
 } from "../lib/types";
 import { isEmpty, omit } from "lodash";
 import {
-  directionCreate,
+  accountDestroy,
   brandCreate,
   brandDestroy,
   brandGet,
   brandsGet,
   brandUpdate,
+  directionCreate,
   equipmentCreate,
   equipmentDestroy,
   equipmentLink,
@@ -40,6 +34,8 @@ import {
   ingredientGet,
   ingredientsReorder,
   ingredientUpdate,
+  login,
+  logout,
   notesDestroy,
   notesUpdate,
   ratingDestroy,
@@ -52,6 +48,8 @@ import {
   recipeTitleUpdate,
   servingsDestroy,
   servingsUpdate,
+  signupConfirmationUpdate,
+  signupCreate,
   tagCreate,
   tagDestroy,
   tagGet,
@@ -74,7 +72,7 @@ import {
   unitGet,
   unitsGet,
   unitUpdate,
-} from "../fetchers/recipes";
+} from "../fetchers/main";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -133,7 +131,7 @@ export default function useApi() {
 
       if (!SAFE_METHODS.includes(method)) {
         try {
-          response = await fetch("/api/shared/csrf_token/", {
+          response = await fetch("/api/csrf_token/", {
             headers,
             method: "GET",
             mode,

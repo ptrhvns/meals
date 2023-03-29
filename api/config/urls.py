@@ -18,9 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = [
-    urls.path("api/accounts/", urls.include("accounts.urls")),
-    urls.path("api/recipes/", urls.include("recipes.urls")),
-    urls.path("api/shared/", urls.include("shared.urls")),
+    urls.path("api/", urls.include("main.urls")),
 ]
 
 if settings.DEBUG:

@@ -47,7 +47,7 @@ export default function TagList() {
           {error}
         </Alert>
       ) : isEmpty(tags) ? (
-        <Paragraph variant="dimmed">No tags have been created yet.</Paragraph>
+        <Paragraph variant="dimmed">No tags yet.</Paragraph>
       ) : (
         <>
           <Table className={classes.table} striped>

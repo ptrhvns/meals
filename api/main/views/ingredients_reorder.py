@@ -1,5 +1,6 @@
 from typing import Any, cast
 
+from django.db.transaction import atomic
 from django.shortcuts import get_list_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -62,5 +63,7 @@ def ingredients_reorder(request: Request) -> Response:
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)
 
-    serializer.save()
+    with atomic():
+        serializer.save()
+
     return no_content_response()

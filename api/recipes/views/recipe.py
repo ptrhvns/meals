@@ -7,6 +7,7 @@ from rest_framework.serializers import CharField, ModelSerializer
 
 from recipes.models import (
     Brand,
+    Direction,
     Equipment,
     Food,
     Ingredient,
@@ -19,7 +20,13 @@ from recipes.models import (
 from shared.lib.responses import data_response
 
 
-class EquipmentSerializer(ModelSerializer):
+class DirectionsResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Direction
+        fields = ("description", "id")
+
+
+class EquipmentResponseSerializer(ModelSerializer):
     class Meta:
         model = Equipment
         fields = ("description", "id")
@@ -90,6 +97,7 @@ class RecipeResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = (
+            "directions",
             "equipment",
             "id",
             "ingredients",
@@ -101,7 +109,8 @@ class RecipeResponseSerializer(ModelSerializer):
             "title",
         )
 
-    equipment = EquipmentSerializer(many=True, required=False)
+    directions = DirectionsResponseSerializer(many=True, required=False)
+    equipment = EquipmentResponseSerializer(many=True, required=False)
     ingredients = IngredientResponseSerializer(many=True, required=False)
     tags = TagResponseSerializer(many=True, required=False)
     times = TimeResponseSerializer(many=True, required=False)

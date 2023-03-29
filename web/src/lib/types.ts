@@ -37,6 +37,18 @@ export interface BrandData {
   name: string;
 }
 
+// Ensure this matches DirectionData.
+export const directionSchema = z.object({
+  id: z.string(),
+  description: z.string(),
+});
+
+// Ensure this matches directionSchema.
+export interface DirectionData {
+  id: string;
+  description: string;
+}
+
 // Ensure this matches EquipmentData.
 export const equipmentSchema = z.object({
   id: z.string(),
@@ -151,6 +163,7 @@ export interface IngredientData {
 
 // Ensure this matches RecipeData.
 export const recipeSchema = z.object({
+  directions: z.optional(z.array(directionSchema)),
   equipment: z.optional(z.array(equipmentSchema)),
   id: z.string(),
   ingredients: z.optional(z.array(ingredientSchema)),
@@ -164,6 +177,7 @@ export const recipeSchema = z.object({
 
 // Ensure this matches recipeSchema.
 export interface RecipeData {
+  directions: DirectionData[];
   equipment?: EquipmentData[];
   id: string;
   ingredients: IngredientData[];

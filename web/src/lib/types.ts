@@ -39,14 +39,16 @@ export interface BrandData {
 
 // Ensure this matches DirectionData.
 export const directionSchema = z.object({
-  id: z.string(),
   description: z.string(),
+  id: z.string(),
+  order: z.number(),
 });
 
 // Ensure this matches directionSchema.
 export interface DirectionData {
-  id: string;
   description: string;
+  id: string;
+  order: number;
 }
 
 // Ensure this matches EquipmentData.
@@ -190,6 +192,7 @@ export interface RecipeData {
 }
 
 export type RecipeReducerAction =
+  | { type: "setDirections"; payload: DirectionData[] }
   | { type: "setIngredients"; payload: IngredientData[] }
   | { type: "setRecipe"; payload: RecipeData }
   | { type: "unlinkEquipment"; payload: string }

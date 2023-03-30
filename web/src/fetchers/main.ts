@@ -123,6 +123,17 @@ export function directionGet(
   });
 }
 
+export function directionsReorder(
+  send: ApiSendFunction,
+  { data }: { data: { directions: { id: string; order: number }[] } }
+) {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/directions/reorder/`,
+  });
+}
+
 export function directionUpdate(
   send: ApiSendFunction,
   {

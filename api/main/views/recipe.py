@@ -21,7 +21,7 @@ from main.models.unit import Unit
 class DirectionsResponseSerializer(ModelSerializer):
     class Meta:
         model = Direction
-        fields = ("description", "id")
+        fields = ("description", "id", "order")
 
 
 class EquipmentResponseSerializer(ModelSerializer):

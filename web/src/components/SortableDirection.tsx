@@ -1,29 +1,29 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import AnchorIcon from "./AnchorIcon";
-import classes from "../styles/components/SortableIngredient.module.scss";
-import { compact, join } from "lodash";
+import classes from "../styles/components/SortableDirection.module.scss";
 import { CSS } from "@dnd-kit/utilities";
+import { DirectionData, RecipeData } from "../lib/types";
 import { faGripLines, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IngredientData, RecipeData } from "../lib/types";
 import { joinClassNames } from "../lib/utils";
 import { useSortable } from "@dnd-kit/sortable";
+import { omit } from "lodash";
 
-interface SortableIngredientProps {
-  ingredient: IngredientData;
+interface SortableDirectionProps {
+  direction: DirectionData;
   listItemClassname?: string;
   listItemContentClassname?: string;
   recipe: RecipeData;
 }
 
-export default function SortableIngredient({
-  ingredient,
+export default function SortableDirection({
+  direction,
   listItemClassname,
   listItemContentClassname,
   recipe,
-}: SortableIngredientProps) {
+}: SortableDirectionProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: ingredient.id });
+    useSortable({ id: direction.id });
 
   // Prevent vertical "squishing" of draggable.
   if (transform?.scaleY) transform.scaleY = 1.0;
@@ -36,7 +36,11 @@ export default function SortableIngredient({
   listItemClassname = joinClassNames(classes.listItem, listItemClassname);
 
   return (
-    <li className={listItemClassname} ref={setNodeRef} style={style}>
+    <li
+      className={listItemClassname}
+      ref={setNodeRef}
+      style={style}
+    >
       <span className={classes.actions}>
         <AccessibleIcon.Root label="Drag to sort">
           <FontAwesomeIcon
@@ -52,24 +56,11 @@ export default function SortableIngredient({
           color="slate"
           icon={faPenToSquare}
           label="Edit"
-          to={`/recipe/${recipe.id}/ingredient/${ingredient.id}/edit`}
+          to={`/recipe/${recipe.id}/direction/${direction.id}/edit`}
         />
       </span>
 
-      <span className={listItemContentClassname}>
-        {join(
-          compact([
-            ingredient.amount &&
-              (ingredient.amount % 1 !== 0
-                ? ingredient.amount
-                : Math.ceil(ingredient.amount)),
-            ingredient.unit?.name,
-            ingredient.brand?.name,
-            ingredient.food.name,
-          ]),
-          " "
-        )}
-      </span>
+      <span className={listItemContentClassname}>{direction.description}</span>
     </li>
   );
 }

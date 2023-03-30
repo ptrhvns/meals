@@ -39,6 +39,16 @@ export default function Recipe() {
   const [{ recipe }, dispatch] = useReducer(
     (state: ReducerState, action: RecipeReducerAction): ReducerState => {
       switch (action.type) {
+        case "setDirections":
+          if (!state.recipe) return state;
+
+          return {
+            ...state,
+            recipe: {
+              ...state.recipe,
+              directions: action.payload,
+            },
+          };
         case "setIngredients":
           if (!state.recipe) return state;
 
@@ -155,7 +165,7 @@ export default function Recipe() {
             </PageSection>
 
             <PageSection className={classes.pageSection}>
-              <Directions recipe={recipe} />
+              <Directions dispatch={dispatch} recipe={recipe} />
             </PageSection>
 
             <PageSection className={joinClassNames(classes.pageSection)}>

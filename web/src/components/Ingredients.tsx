@@ -5,19 +5,18 @@ import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
 import SortableIngredient from "./SortableIngredient";
 import useApi from "../hooks/useApi";
+import { cloneDeep, isEmpty, pick, sortBy } from "lodash";
 import {
   closestCenter,
   DndContext,
   DragEndEvent,
   KeyboardSensor,
   PointerSensor,
-  TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
 import { Dispatch, useState } from "react";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { isEmpty, pick, sortBy } from "lodash";
 import { RecipeData, RecipeReducerAction } from "../lib/types";
 import {
   SortableContext,
@@ -36,7 +35,6 @@ export default function Ingredients({ dispatch, recipe }: IngredientsProps) {
 
   const sensors = useSensors(
     useSensor(PointerSensor),
-    useSensor(TouchSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
@@ -50,10 +48,11 @@ export default function Ingredients({ dispatch, recipe }: IngredientsProps) {
     if (!over) return;
 
     if (active.id !== over.id) {
-      const oldIngredients = recipe.ingredients.slice();
+      const oldIngredients = cloneDeep(recipe.ingredients);
+
+      const newIngredients = cloneDeep(recipe.ingredients);
       const oldIndex = oldIngredients.findIndex((i) => i.id === active.id);
       const newIndex = oldIngredients.findIndex((i) => i.id === over.id);
-      const newIngredients = recipe.ingredients.slice();
 
       newIngredients.splice(
         newIndex < 0 ? newIngredients.length + newIndex : newIndex,
@@ -115,7 +114,7 @@ export default function Ingredients({ dispatch, recipe }: IngredientsProps) {
             onDragEnd={handleDragEnd}
           >
             <SortableContext
-              items={sortedIngredients}
+              items={sortedIngredients.map((i) => i.id)}
               strategy={verticalListSortingStrategy}
             >
               {sortedIngredients.map((ingredient) => (

@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.serializers import CharField, Serializer
+from rest_framework.serializers import CharField, DecimalField, Serializer
 
 from main.lib.responses import (
     created_response,
@@ -21,33 +21,23 @@ from main.models.unit import Unit
 
 
 class IngredientCreateRequestSerializer(Serializer):
-    amount = CharField(
-        allow_blank=True,
-        max_length=Ingredient._meta.get_field("amount").max_length,
-        required=False,
-    )
+    amount = DecimalField(decimal_places=2, max_digits=5, required=False)
     brand = CharField(
-        allow_blank=True,
-        max_length=Brand._meta.get_field("name").max_length,
-        required=False,
+        max_length=Brand._meta.get_field("name").max_length, required=False
     )
-    food = CharField(
-        allow_blank=False,
-        max_length=Food._meta.get_field("name").max_length,
-        required=True,
-    )
-    unit = CharField(
-        allow_blank=True,
-        max_length=Unit._meta.get_field("name").max_length,
-        required=False,
-    )
+    food = CharField(max_length=Food._meta.get_field("name").max_length)
+    unit = CharField(max_length=Unit._meta.get_field("name").max_length, required=False)
 
 
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def ingredient_create(request: Request, recipe_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    serializer = IngredientCreateRequestSerializer(data=request.data)
+
+    # Eliminate fields with an empty string.
+    pruned_data = {k: v for k, v in request.data.items() if v}
+
+    serializer = IngredientCreateRequestSerializer(data=pruned_data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

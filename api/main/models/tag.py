@@ -17,9 +17,7 @@ from main.models.user import User
 class Tag(Model):
     name = CharField(max_length=256)
     recipes: ManyToManyField[Recipe, Tag] = ManyToManyField(Recipe, related_name="tags")
-    user: ForeignKey[User] = ForeignKey(
-        User, blank=False, null=False, on_delete=CASCADE, related_name="tags"
-    )
+    user: ForeignKey[User] = ForeignKey(User, on_delete=CASCADE, related_name="tags")
 
     class Meta:
         constraints = [

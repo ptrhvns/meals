@@ -4,7 +4,7 @@ from django.db.models import Deferrable  # type: ignore[attr-defined]
 from django.db.models import (
     CASCADE,
     SET_NULL,
-    CharField,
+    DecimalField,
     ForeignKey,
     Model,
     PositiveIntegerField,
@@ -18,10 +18,9 @@ from main.models.unit import Unit
 
 
 class Ingredient(Model):
-    amount = CharField(blank=True, max_length=16)
+    amount = DecimalField(decimal_places=2, max_digits=5, null=True)
     brand: ForeignKey[Brand | None] = ForeignKey(
         Brand,
-        blank=True,
         null=True,
         on_delete=SET_NULL,
         related_name="ingredients",
@@ -35,7 +34,6 @@ class Ingredient(Model):
     )
     unit: ForeignKey[Unit | None] = ForeignKey(
         Unit,
-        blank=True,
         null=True,
         on_delete=SET_NULL,
         related_name="ingredients",
@@ -55,7 +53,7 @@ class Ingredient(Model):
         return " ".join(
             a
             for a in [
-                self.amount,
+                str(self.amount),
                 self.unit.name if self.unit else None,
                 self.brand.name if self.brand else None,
                 self.food.name if self.food else None,

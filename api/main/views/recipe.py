@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.serializers import CharField, ModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 from main.lib.responses import data_response
 from main.models.brand import Brand
@@ -35,23 +35,17 @@ class BrandResponseSerializer(ModelSerializer):
         model = Brand
         fields = ("id", "name")
 
-    name = CharField(allow_blank=False, allow_null=False, max_length=256)
-
 
 class FoodResponseSerializer(ModelSerializer):
     class Meta:
         model = Food
         fields = ("id", "name")
 
-    name = CharField(allow_blank=False, allow_null=False, max_length=256)
-
 
 class UnitResponseSerializer(ModelSerializer):
     class Meta:
         model = Unit
         fields = ("id", "name")
-
-    name = CharField(allow_blank=False, allow_null=False, max_length=256)
 
 
 class IngredientResponseSerializer(ModelSerializer):
@@ -66,9 +60,9 @@ class IngredientResponseSerializer(ModelSerializer):
             "unit",
         )
 
-    brand = BrandResponseSerializer(required=False)
-    food = FoodResponseSerializer(required=True)
-    unit = UnitResponseSerializer(required=False)
+    brand = BrandResponseSerializer()
+    food = FoodResponseSerializer()
+    unit = UnitResponseSerializer()
 
 
 class TagResponseSerializer(ModelSerializer):
@@ -107,11 +101,11 @@ class RecipeResponseSerializer(ModelSerializer):
             "title",
         )
 
-    directions = DirectionsResponseSerializer(many=True, required=False)
-    equipment = EquipmentResponseSerializer(many=True, required=False)
-    ingredients = IngredientResponseSerializer(many=True, required=False)
-    tags = TagResponseSerializer(many=True, required=False)
-    times = TimeResponseSerializer(many=True, required=False)
+    directions = DirectionsResponseSerializer(many=True)
+    equipment = EquipmentResponseSerializer(many=True)
+    ingredients = IngredientResponseSerializer(many=True)
+    tags = TagResponseSerializer(many=True)
+    times = TimeResponseSerializer(many=True)
 
 
 @api_view(http_method_names=["GET"])

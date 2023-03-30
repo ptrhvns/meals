@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy
 class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
 
-    email = EmailField(gettext_lazy("email address"), blank=False)
+    email = EmailField(gettext_lazy("email address"))
     email_confirmed_datetime = DateTimeField(blank=True, null=True)
     is_active = BooleanField(
         gettext_lazy("active"),

@@ -20,11 +20,7 @@ class Equipment(Model):
         Recipe, related_name="equipment"
     )
     user: ForeignKey[User] = ForeignKey(
-        User,
-        blank=False,
-        null=False,
-        on_delete=CASCADE,
-        related_name="equipment",
+        User, on_delete=CASCADE, related_name="equipment"
     )
 
     class Meta:

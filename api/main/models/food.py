@@ -8,13 +8,7 @@ from main.models.user import User
 
 class Food(Model):
     name = CharField(max_length=256)
-    user: ForeignKey[User] = ForeignKey(
-        User,
-        blank=False,
-        null=False,
-        on_delete=CASCADE,
-        related_name="food",
-    )
+    user: ForeignKey[User] = ForeignKey(User, on_delete=CASCADE, related_name="food")
 
     class Meta:
         constraints = [

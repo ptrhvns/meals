@@ -8,13 +8,7 @@ from main.models.user import User
 
 class Brand(Model):
     name = CharField(max_length=256)
-    user: ForeignKey[User] = ForeignKey(
-        User,
-        blank=False,
-        null=False,
-        on_delete=CASCADE,
-        related_name="brands",
-    )
+    user: ForeignKey[User] = ForeignKey(User, on_delete=CASCADE, related_name="brands")
 
     class Meta:
         constraints = [

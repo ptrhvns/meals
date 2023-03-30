@@ -8,13 +8,7 @@ from main.models.user import User
 
 class Unit(Model):
     name = CharField(max_length=256)
-    user: ForeignKey[User] = ForeignKey(
-        User,
-        blank=False,
-        null=False,
-        on_delete=CASCADE,
-        related_name="units",
-    )
+    user: ForeignKey[User] = ForeignKey(User, on_delete=CASCADE, related_name="units")
 
     class Meta:
         constraints = [

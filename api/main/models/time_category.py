@@ -17,7 +17,7 @@ from main.models.user import User
 class TimeCategory(Model):
     name = CharField(max_length=32)
     user: ForeignKey[User] = ForeignKey(
-        User, blank=False, null=False, on_delete=CASCADE, related_name="time_categories"
+        User, on_delete=CASCADE, related_name="time_categories"
     )
     recipes: ManyToManyField[Recipe, TimeCategory] = ManyToManyField(
         Recipe, through="Time", related_name="time_categories"

@@ -9,3 +9,9 @@
 .listItem + .listItem {
   margin-top: var(--spacing5);
 }
+
+.listItemContent {
+  border-left: 1px solid var(--slate8);
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+}

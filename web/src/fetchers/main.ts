@@ -2,6 +2,7 @@ import {
   ApiResponse,
   ApiSendFunction,
   brandSchema,
+  directionSchema,
   equipmentSchema,
   foodSchema,
   ingredientSchema,
@@ -98,6 +99,44 @@ export function directionCreate(
     data,
     method: "POST",
     url: `/api/recipe/${recipeId}/direction/create/`,
+  });
+}
+
+export function directionDestroy(
+  send: ApiSendFunction,
+  { directionId }: { directionId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "POST",
+    url: `/api/direction/${directionId}/destroy/`,
+  });
+}
+
+export function directionGet(
+  send: ApiSendFunction,
+  { directionId }: { directionId: string }
+): Promise<ApiResponse> {
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({ direction: directionSchema }),
+    url: `/api/direction/${directionId}/`,
+  });
+}
+
+export function directionUpdate(
+  send: ApiSendFunction,
+  {
+    data,
+    directionId,
+  }: {
+    data: { description: string };
+    directionId: string;
+  }
+): Promise<ApiResponse> {
+  return send({
+    data,
+    method: "POST",
+    url: `/api/direction/${directionId}/update/`,
   });
 }
 

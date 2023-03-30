@@ -8,7 +8,10 @@ from main.views.brand_destroy import brand_destroy
 from main.views.brand_update import brand_update
 from main.views.brands import brands
 from main.views.csrf_token import csrf_token
+from main.views.direction import direction
 from main.views.direction_create import direction_create
+from main.views.direction_destroy import direction_destroy
+from main.views.direction_update import direction_update
 from main.views.equipment_create import equipment_create
 from main.views.equipment_destroy import equipment_destroy
 from main.views.equipment_link import equipment_link
@@ -75,6 +78,9 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("brand/create/", brand_create),
     path("brands/", brands),
     path("csrf_token/", csrf_token),
+    path("direction/<int:direction_id>/", direction),
+    path("direction/<int:direction_id>/destroy/", direction_destroy),
+    path("direction/<int:direction_id>/update/", direction_update),
     path("equipment-many/", equipment_many),
     path("equipment-one/<int:equipment_id>/", equipment_one),
     path("equipment/<int:equipment_id>/destroy/", equipment_destroy),

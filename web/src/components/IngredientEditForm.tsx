@@ -1,19 +1,19 @@
+import Button from "./Button";
+import Combobox from "./Combobox";
+import Field from "./Field";
+import FormActions from "./FormActions";
+import FormError from "./FormError";
+import InputDiv from "./InputDiv";
+import InputError from "./InputError";
+import LabelDiv from "./LabelDiv";
+import Paragraph from "./Paragraph";
 import useApi from "../hooks/useApi";
+import { Dialog, DialogContent } from "./Dialog";
 import { handleApiError } from "../lib/utils";
 import { IngredientData } from "../lib/types";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import FormError from "./FormError";
-import Field from "./Field";
-import LabelDiv from "./LabelDiv";
-import InputDiv from "./InputDiv";
-import InputError from "./InputError";
-import Combobox from "./Combobox";
-import FormActions from "./FormActions";
-import Button from "./Button";
-import { Dialog, DialogContent } from "./Dialog";
-import Paragraph from "./Paragraph";
 
 interface IngredientEditFormProps {
   brands: string[];
@@ -118,10 +118,12 @@ export default function IngredientEditForm({
       <form
         onSubmit={handleSubmit(async (data: FormData) => {
           setSubmitting(true);
+
           const response = await ingredientUpdate({
             data,
             ingredientId: ingredient.id,
           });
+
           setSubmitting(false);
 
           if (response.isError) {

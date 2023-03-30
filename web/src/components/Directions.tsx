@@ -2,7 +2,7 @@ import AnchorIcon from "./AnchorIcon";
 import classes from "../styles/components/Directions.module.scss";
 import Paragraph from "./Paragraph";
 import RecipeSectionHeading from "./RecipeSectionHeading";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isEmpty, sortBy } from "lodash";
 import { RecipeData } from "../lib/types";
 
@@ -34,7 +34,16 @@ export default function Directions({ recipe }: DirectionsProps) {
         <ul className={classes.list}>
           {sortedDirections.map((direction) => (
             <li className={classes.listItem} key={direction.id}>
-              {direction.description}
+              <AnchorIcon
+                color="slate"
+                icon={faPenToSquare}
+                label="Edit"
+                to={`/recipe/${recipe.id}/direction/${direction.id}/edit`}
+              />
+
+              <span className={classes.listItemContent}>
+                {direction.description}
+              </span>
             </li>
           ))}
         </ul>

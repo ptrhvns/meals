@@ -7,7 +7,6 @@ import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
-import Paragraph from "../components/Paragraph";
 import RecipesForEquipmentList from "../components/RecipesForEquipmentList";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
@@ -72,9 +71,6 @@ export default function EquipmentEdit() {
               <RecipesForEquipmentList equipment={equipment} />
             </>
           )}
-          <Paragraph>
-            <Anchor to="/dashboard/recipes">Manage all recipes</Anchor>
-          </Paragraph>
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

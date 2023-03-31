@@ -6,7 +6,6 @@ import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
-import Paragraph from "../components/Paragraph";
 import RecipesForTagList from "../components/RecipesForTagList";
 import RequireAuthn from "../components/RequireAuthn";
 import TagEditForm from "../components/TagEditForm";
@@ -72,9 +71,6 @@ export default function TagEdit() {
               <RecipesForTagList tag={tag} />
             </>
           )}
-          <Paragraph>
-            <Anchor to="/dashboard/recipes">Manage all recipes</Anchor>
-          </Paragraph>
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

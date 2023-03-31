@@ -1,10 +1,13 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import classes from "../styles/routes/TimeNew.module.scss";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
+import HorizontalRule from "../components/HorizontalRule";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
+import Paragraph from "../components/Paragraph";
 import RequireAuthn from "../components/RequireAuthn";
 import TimeNewForm from "../components/TimeNewForm";
 import useApi from "../hooks/useApi";
@@ -62,6 +65,12 @@ export default function TimeNew() {
           ) : (
             <TimeNewForm recipeId={recipeId} timeCategories={timeCategories} />
           )}
+
+          <HorizontalRule className={classes.horizontalRule} />
+
+          <Paragraph>
+            <Anchor to="/dashboard/times">Manage all time categories</Anchor>
+          </Paragraph>
         </PageSection>
       </FullPageViewport>
     </RequireAuthn>

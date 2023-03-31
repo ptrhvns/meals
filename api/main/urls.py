@@ -5,6 +5,7 @@ from main.views.account_destroy import account_destroy
 from main.views.brand import brand
 from main.views.brand_create import brand_create
 from main.views.brand_destroy import brand_destroy
+from main.views.brand_recipes import brand_recipes
 from main.views.brand_update import brand_update
 from main.views.brands import brands
 from main.views.csrf_token import csrf_token
@@ -75,6 +76,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("account/destroy/", account_destroy),
     path("brand/<int:brand_id>/", brand),
     path("brand/<int:brand_id>/destroy/", brand_destroy),
+    path("brand/<int:brand_id>/recipes/", brand_recipes),
     path("brand/<int:brand_id>/update/", brand_update),
     path("brand/create/", brand_create),
     path("brands/", brands),

@@ -58,6 +58,22 @@ export function brandGet(
   });
 }
 
+export function brandRecipesGet(
+  send: ApiSendFunction,
+  params: { page?: number; brandId: string }
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(params.page ?? 1);
+
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/brand/${params.brandId}/recipes/?page=${page}`,
+  });
+}
+
 export function brandsGet(
   send: ApiSendFunction,
   params?: { page?: number }

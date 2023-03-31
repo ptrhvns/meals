@@ -7,6 +7,7 @@ import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
+import RecipesForBrandList from "../components/RecipesForBrandList";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
 import { BrandData } from "../lib/types";
@@ -60,6 +61,15 @@ export default function BrandEdit() {
             <Alert variant="error">{error}</Alert>
           ) : (
             <BrandEditForm brand={brand} />
+          )}
+        </PageSection>
+
+        <PageSection className={classes.pageSection} variant="narrow">
+          {!loading && !error && (
+            <>
+              <Heading size={2}>Linked Recipes</Heading>
+              <RecipesForBrandList brand={brand} />
+            </>
           )}
         </PageSection>
       </FullPageViewport>

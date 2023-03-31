@@ -322,6 +322,22 @@ export function foodOneGet(
   });
 }
 
+export function foodRecipesGet(
+  send: ApiSendFunction,
+  params: { page?: number; foodId: string }
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(params.page ?? 1);
+
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/food/${params.foodId}/recipes/?page=${page}`,
+  });
+}
+
 export function foodUpdate(
   send: ApiSendFunction,
   {

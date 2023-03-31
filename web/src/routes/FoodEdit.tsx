@@ -7,6 +7,7 @@ import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
+import RecipesForFoodList from "../components/RecipesForFoodList";
 import RequireAuthn from "../components/RequireAuthn";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
@@ -61,6 +62,15 @@ export default function FoodEdit() {
             <Alert variant="error">{error}</Alert>
           ) : (
             <FoodEditForm foodOne={food} />
+          )}
+        </PageSection>
+
+        <PageSection className={classes.pageSection} variant="narrow">
+          {!loading && !error && (
+            <>
+              <Heading size={2}>Linked Recipes</Heading>
+              <RecipesForFoodList food={food} />
+            </>
           )}
         </PageSection>
       </FullPageViewport>

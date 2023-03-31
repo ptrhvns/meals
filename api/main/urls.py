@@ -26,6 +26,7 @@ from main.views.food_create import food_create
 from main.views.food_destroy import food_destroy
 from main.views.food_many import food_many
 from main.views.food_one import food_one
+from main.views.food_recipes import food_recipes
 from main.views.food_update import food_update
 from main.views.ingredient import ingredient
 from main.views.ingredient_create import ingredient_create
@@ -94,6 +95,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("food-many/", food_many),
     path("food-one/<int:food_id>/", food_one),
     path("food/<int:food_id>/destroy/", food_destroy),
+    path("food/<int:food_id>/recipes/", food_recipes),
     path("food/<int:food_id>/update/", food_update),
     path("food/create/", food_create),
     path("ingredient/<int:ingredient_id>/", ingredient),

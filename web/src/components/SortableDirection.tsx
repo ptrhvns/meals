@@ -7,7 +7,6 @@ import { faGripLines, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinClassNames } from "../lib/utils";
 import { useSortable } from "@dnd-kit/sortable";
-import { omit } from "lodash";
 
 interface SortableDirectionProps {
   direction: DirectionData;

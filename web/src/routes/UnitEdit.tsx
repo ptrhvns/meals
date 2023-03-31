@@ -6,6 +6,7 @@ import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
+import RecipesForUnitList from "../components/RecipesForUnitList";
 import RequireAuthn from "../components/RequireAuthn";
 import UnitEditForm from "../components/UnitEditForm";
 import useApi from "../hooks/useApi";
@@ -60,6 +61,15 @@ export default function UnitEdit() {
             <Alert variant="error">{error}</Alert>
           ) : (
             <UnitEditForm unit={unit} />
+          )}
+        </PageSection>
+
+        <PageSection className={classes.pageSection} variant="narrow">
+          {!loading && !error && (
+            <>
+              <Heading size={2}>Linked Recipes</Heading>
+              <RecipesForUnitList unit={unit} />
+            </>
           )}
         </PageSection>
       </FullPageViewport>

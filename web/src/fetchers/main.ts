@@ -905,6 +905,22 @@ export function unitDestroy(
   });
 }
 
+export function unitRecipesGet(
+  send: ApiSendFunction,
+  params: { page?: number; unitId: string }
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(params.page ?? 1);
+
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/unit/${params.unitId}/recipes/?page=${page}`,
+  });
+}
+
 export function unitUpdate(
   send: ApiSendFunction,
   {

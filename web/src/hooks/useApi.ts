@@ -77,6 +77,7 @@ import {
   unitCreate,
   unitDestroy,
   unitGet,
+  unitRecipesGet,
   unitsGet,
   unitUpdate,
 } from "../fetchers/main";
@@ -338,6 +339,7 @@ export default function useApi() {
     unitCreate: withSendAndArgs(unitCreate),
     unitDestroy: withSendAndArgs(unitDestroy),
     unitGet: withSendAndArgs(unitGet),
+    unitRecipesGet: withSendAndArgs(unitRecipesGet),
     unitsGet: withSendAndOptionalArgs(unitsGet),
     unitUpdate: withSendAndArgs(unitUpdate),
   };

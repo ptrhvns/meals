@@ -70,6 +70,7 @@ from main.views.time_update import time_update
 from main.views.unit import unit
 from main.views.unit_create import unit_create
 from main.views.unit_destroy import unit_destroy
+from main.views.unit_recipes import unit_recipes
 from main.views.unit_update import unit_update
 from main.views.units import units
 
@@ -143,6 +144,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("time/<int:time_id>/destroy/", time_destroy),
     path("unit/<int:unit_id>/", unit),
     path("unit/<int:unit_id>/destroy/", unit_destroy),
+    path("unit/<int:unit_id>/recipes/", unit_recipes),
     path("unit/<int:unit_id>/update/", unit_update),
     path("unit/create/", unit_create),
     path("units/", units),

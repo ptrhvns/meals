@@ -6,6 +6,7 @@ import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import PageSection from "../components/PageSection";
+import RecipesForTimeCategoryList from "../components/RecipesForTimeCategoryList";
 import RequireAuthn from "../components/RequireAuthn";
 import TimeCategoryEditForm from "../components/TimeCategoryEditForm";
 import useApi from "../hooks/useApi";
@@ -60,6 +61,15 @@ export default function TimeCategoryEdit() {
             <Alert variant="error">{error}</Alert>
           ) : (
             <TimeCategoryEditForm timeCategory={timeCategory} />
+          )}
+        </PageSection>
+
+        <PageSection className={classes.pageSection} variant="narrow">
+          {!loading && !error && (
+            <>
+              <Heading size={2}>Linked Recipes</Heading>
+              <RecipesForTimeCategoryList timeCategory={timeCategory} />
+            </>
           )}
         </PageSection>
       </FullPageViewport>

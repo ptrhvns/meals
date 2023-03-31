@@ -756,6 +756,22 @@ export function timeCategoryDestroy(
   });
 }
 
+export function timeCategoryRecipesGet(
+  send: ApiSendFunction,
+  params: { page?: number; timeCategoryId: string }
+): Promise<ApiResponse> {
+  const page = encodeURIComponent(params.page ?? 1);
+
+  return send({
+    method: "GET",
+    responseDataSchema: z.object({
+      pagination: paginationSchema,
+      recipes: z.array(recipeSchema),
+    }),
+    url: `/api/time-category/${params.timeCategoryId}/recipes/?page=${page}`,
+  });
+}
+
 export function timeCategoryUpdate(
   send: ApiSendFunction,
   {

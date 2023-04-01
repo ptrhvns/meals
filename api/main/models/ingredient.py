@@ -4,6 +4,7 @@ from django.db.models import Deferrable  # type: ignore[attr-defined]
 from django.db.models import (
     CASCADE,
     SET_NULL,
+    CharField,
     DecimalField,
     ForeignKey,
     Model,
@@ -28,6 +29,7 @@ class Ingredient(Model):
     food: ForeignKey[Food] = ForeignKey(
         Food, on_delete=CASCADE, related_name="ingredients"
     )
+    note = CharField(blank=True, default="", max_length=32)
     order = PositiveIntegerField(default=0)
     recipe: ForeignKey[Recipe] = ForeignKey(
         Recipe, on_delete=CASCADE, related_name="ingredients"

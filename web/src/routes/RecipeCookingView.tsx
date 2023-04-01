@@ -110,6 +110,7 @@ export default function RecipeCookingView() {
                             ingredient.unit?.name,
                             ingredient.brand?.name,
                             ingredient.food.name,
+                            ingredient.note,
                           ]),
                           " "
                         )}

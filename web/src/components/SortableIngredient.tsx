@@ -66,6 +66,7 @@ export default function SortableIngredient({
             ingredient.unit?.name,
             ingredient.brand?.name,
             ingredient.food.name,
+            ingredient.note,
           ]),
           " "
         )}

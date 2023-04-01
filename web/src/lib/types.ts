@@ -149,6 +149,7 @@ export const ingredientSchema = z.object({
   brand: z.optional(brandSchema),
   food: foodSchema,
   id: z.string(),
+  note: z.optional(z.string()),
   order: z.number(),
   unit: z.optional(unitSchema),
 });
@@ -159,6 +160,7 @@ export interface IngredientData {
   brand?: BrandData;
   food: FoodData;
   id: string;
+  note?: string;
   order: number;
   unit?: UnitData;
 }

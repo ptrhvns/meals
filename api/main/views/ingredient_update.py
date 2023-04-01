@@ -25,6 +25,7 @@ class IngredientUpdateSerializer(Serializer):
         required=False,
     )
     food = CharField(max_length=Food._meta.get_field("name").max_length)
+    note = CharField(max_length=Ingredient._meta.get_field("note").max_length)
     unit = CharField(
         max_length=Unit._meta.get_field("name").max_length,
         required=False,
@@ -50,15 +51,6 @@ def ingredient_update(request: Request, ingredient_id: int) -> Response:
         with transaction.atomic():
             ingredient.amount = serializer.validated_data.get("amount")
 
-            if "unit" in serializer.validated_data:
-                ingredient.unit = Unit.objects.get_or_create(
-                    defaults={"name": serializer.validated_data["unit"]},
-                    name__iexact=serializer.validated_data["unit"],
-                    user=request.user,
-                )[0]
-            else:
-                ingredient.unit = None
-
             if "brand" in serializer.validated_data:
                 ingredient.brand = Brand.objects.get_or_create(
                     defaults={"name": serializer.validated_data["brand"]},
@@ -73,6 +65,17 @@ def ingredient_update(request: Request, ingredient_id: int) -> Response:
                 name__iexact=serializer.validated_data["food"],
                 user=request.user,
             )[0]
+
+            ingredient.note = serializer.validated_data.get("note")
+
+            if "unit" in serializer.validated_data:
+                ingredient.unit = Unit.objects.get_or_create(
+                    defaults={"name": serializer.validated_data["unit"]},
+                    name__iexact=serializer.validated_data["unit"],
+                    user=request.user,
+                )[0]
+            else:
+                ingredient.unit = None
 
             ingredient.save()
     except Error:

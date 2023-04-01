@@ -23,6 +23,7 @@ interface FormData {
   amount?: string;
   brand?: string;
   food: string;
+  note?: string;
   unit?: string;
 }
 
@@ -119,6 +120,18 @@ export default function IngredientNewForm({
           {...register("food", { required: "Food is required." })}
         />
         <InputError error={fieldErrors?.food?.message} />
+      </Field>
+
+      <Field>
+        <LabelDiv htmlFor="note">Note (e.g. diced)</LabelDiv>
+        <InputDiv
+          disabled={submitting}
+          error={!!fieldErrors?.note?.message}
+          id="note"
+          type="text"
+          {...register("note")}
+        />
+        <InputError error={fieldErrors?.note?.message} />
       </Field>
 
       <FormActions>

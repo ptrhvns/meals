@@ -365,6 +365,7 @@ export function ingredientCreate(
       amount?: string;
       brand?: string;
       food: string;
+      note?: string;
       unit?: string;
     };
     recipeId: string;
@@ -415,7 +416,13 @@ export function ingredientUpdate(
     data,
     ingredientId,
   }: {
-    data: { amount?: string; brand?: string; food: string; unit?: string };
+    data: {
+      amount?: string;
+      brand?: string;
+      food: string;
+      note?: string;
+      unit?: string;
+    };
     ingredientId: string;
   }
 ) {

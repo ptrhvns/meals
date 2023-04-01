@@ -56,6 +56,7 @@ class IngredientResponseSerializer(ModelSerializer):
             "brand",
             "food",
             "id",
+            "note",
             "order",
             "unit",
         )

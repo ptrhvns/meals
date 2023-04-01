@@ -33,7 +33,7 @@ class UnitResponseSerializer(ModelSerializer):
 class IngredientResponseSerializer(ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ("amount", "brand", "food", "id", "order", "unit")
+        fields = ("amount", "brand", "food", "id", "note", "order", "unit")
 
     brand = BrandResponseSerializer(required=False)
     food = FoodResponseSerializer()

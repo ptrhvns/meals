@@ -1,0 +1,24 @@
+.content {
+  margin-top: var(--spacing15);
+}
+
+.heading {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.listItem + .listItem {
+  margin-top: var(--spacing10);
+}
+
+.pageSection + .pageSection {
+  margin-top: var(--spacing20);
+}
+
+.section {
+  margin-top: var(--spacing30);
+}
+
+.sectionHeading {
+  font-size: 1.25rem;
+}

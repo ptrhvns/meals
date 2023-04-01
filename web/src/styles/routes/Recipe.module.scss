@@ -1,3 +1,10 @@
 .pageSection + .pageSection {
   margin-top: var(--spacing20);
 }
+
+.recipeActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing10);
+  justify-content: space-between;
+}

@@ -1,0 +1,15 @@
+.checked {
+  accent-color: var(--slate8);
+  color: var(--slate8);
+  text-decoration: line-through;
+}
+
+.checkboxContent {
+  margin-top: -0.1rem;
+}
+
+.checkboxLabel {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing10);
+}

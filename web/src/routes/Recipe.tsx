@@ -17,7 +17,7 @@ import Servings from "../components/Servings";
 import Tags from "../components/Tags";
 import Times from "../components/Times";
 import useApi from "../hooks/useApi";
-import { buildTitle, handleApiError, joinClassNames } from "../lib/utils";
+import { buildTitle, handleApiError } from "../lib/utils";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
@@ -168,8 +168,16 @@ export default function Recipe() {
               <Directions dispatch={dispatch} recipe={recipe} />
             </PageSection>
 
-            <PageSection className={joinClassNames(classes.pageSection)}>
-              <RecipeDeleteForm recipe={recipe} />
+            <PageSection className={classes.pageSection}>
+              <div className={classes.recipeActions}>
+                <Anchor
+                  to={`/recipe/${recipeId}/cooking-view`}
+                  variant="filled"
+                >
+                  Cooking view
+                </Anchor>
+                <RecipeDeleteForm recipe={recipe} />
+              </div>
             </PageSection>
           </>
         )}

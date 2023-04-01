@@ -22,6 +22,7 @@ import NotesEdit from "./routes/NotesEdit";
 import RatingEdit from "./routes/RatingEdit";
 import React from "react";
 import Recipe from "./routes/Recipe";
+import RecipeCookingView from "./routes/RecipeCookingView";
 import RecipeNew from "./routes/RecipeNew";
 import RecipeTitleEdit from "./routes/RecipeTitleEdit";
 import ServingsEdit from "./routes/ServingsEdit";
@@ -59,6 +60,7 @@ const router = createBrowserRouter([
       { path: "food/new", element: <FoodNew /> },
       { path: "login", element: <Login /> },
       { path: "recipe/:recipeId", element: <Recipe /> },
+      { path: "recipe/:recipeId/cooking-view", element: <RecipeCookingView /> },
       { path: "recipe/:recipeId/direction/:directionId/edit", element: <DirectionEdit />, },
       { path: "recipe/:recipeId/direction/new", element: <DirectionNew /> },
       { path: "recipe/:recipeId/equipment/new", element: <EquipmentForRecipeNew /> },

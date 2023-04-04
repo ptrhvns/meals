@@ -4,7 +4,6 @@ import classes from "../styles/components/RecipesForTagList.module.scss";
 import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
-import TagRecipeUnlinkForm from "./TagRecipeUnlinkForm";
 import useApi from "../hooks/useApi";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -64,7 +63,6 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Action</th>
               </tr>
             </thead>
 
@@ -73,10 +71,6 @@ export default function RecipesForTagList({ tag }: RecipesForTagListProps) {
                 <tr key={recipe.id}>
                   <td>
                     <Anchor to={`/recipe/${recipe.id}`}>{recipe.title}</Anchor>
-                  </td>
-
-                  <td>
-                    <TagRecipeUnlinkForm recipe={recipe} tag={tag} />
                   </td>
                 </tr>
               ))}

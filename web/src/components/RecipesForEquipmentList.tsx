@@ -1,7 +1,6 @@
 import Alert from "./Alert";
 import Anchor from "./Anchor";
 import classes from "../styles/components/RecipesForEquipmentList.module.scss";
-import EquipmentRecipeUnlinkForm from "./EquipmentRecipeUnlinkForm";
 import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
@@ -69,7 +68,6 @@ export default function RecipesForEquipmentList({
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Action</th>
               </tr>
             </thead>
 
@@ -78,13 +76,6 @@ export default function RecipesForEquipmentList({
                 <tr key={recipe.id}>
                   <td>
                     <Anchor to={`/recipe/${recipe.id}`}>{recipe.title}</Anchor>
-                  </td>
-
-                  <td>
-                    <EquipmentRecipeUnlinkForm
-                      recipe={recipe}
-                      equipment={equipment}
-                    />
                   </td>
                 </tr>
               ))}

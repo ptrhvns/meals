@@ -298,16 +298,22 @@ export function foodDestroy(
 
 export function foodManyGet(
   send: ApiSendFunction,
-  params?: { page?: number }
+  params?: {
+    data?: { query?: string };
+    page?: number;
+  }
 ): Promise<ApiResponse> {
-  const queryParam = params?.page ? `?page=${params?.page}` : "";
+  let sp: URLSearchParams | string = new URLSearchParams();
+  if (params?.page) sp.append("page", params.page.toString());
+  if (params?.data?.query) sp.append("query", params.data.query);
+  sp = sp.toString();
 
   return send({
     method: "GET",
     responseDataSchema: z.object({
       foodMany: z.array(foodSchema),
     }),
-    url: `/api/food-many/${queryParam}`,
+    url: sp ? `/api/food-many/?${sp}` : `/api/food-many/`,
   });
 }
 

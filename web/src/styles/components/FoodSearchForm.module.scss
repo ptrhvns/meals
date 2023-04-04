@@ -1,0 +1,19 @@
+.alert {
+  margin-top: var(--spacing15);
+}
+
+.searchWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: var(--spacing15);
+
+  input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+}

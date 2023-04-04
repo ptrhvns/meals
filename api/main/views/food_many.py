@@ -18,7 +18,14 @@ class FoodManyResponseSerializer(ModelSerializer):
 @api_view(http_method_names=["GET"])
 @permission_classes([IsAuthenticated])
 def food_many(request: Request) -> Response:
+    query = request.query_params.get("query")
     food = Food.objects.filter(user=request.user).order_by("name").all()
+
+    if not query:
+        food = food.filter(user=request.user)
+    else:
+        food = food.filter(name__icontains=query, user=request.user)
+
     page_num = request.query_params.get("page")
 
     if page_num is None:

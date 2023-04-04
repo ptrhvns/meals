@@ -1,6 +1,6 @@
 import * as AccessibleIcon from "@radix-ui/react-accessible-icon";
 import Button from "./Button";
-import classes from "../styles/components/RecipeSearchForm.module.scss";
+import classes from "../styles/components/FoodSearchForm.module.scss";
 import Input from "./Input";
 import Label from "./Label";
 import { ChangeEvent } from "react";
@@ -11,7 +11,7 @@ import { useDebouncedFunction } from "../hooks/useDebouncedFunction";
 import { useForm } from "react-hook-form";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-interface RecipeSearchFormProps {
+interface FoodSearchFormProps {
   search: ({ page, query }: { page?: number; query?: string }) => Promise<void>;
 }
 
@@ -19,7 +19,7 @@ interface FormData {
   query: string;
 }
 
-export default function RecipeSearchForm({ search }: RecipeSearchFormProps) {
+export default function FoodSearchForm({ search }: FoodSearchFormProps) {
   const {
     formState: { errors: fieldErrors },
     handleSubmit,
@@ -46,7 +46,7 @@ export default function RecipeSearchForm({ search }: RecipeSearchFormProps) {
             inputProps.onChange(event);
             searchDebounced(event.target.value);
           }}
-          placeholder="Search recipes"
+          placeholder="Search food"
           type="text"
           {...omit(inputProps, "onChange")}
         />

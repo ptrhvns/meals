@@ -1,40 +1,92 @@
 import Alert from "./Alert";
 import Anchor from "./Anchor";
 import classes from "../styles/components/FoodList.module.scss";
+import FoodSearchForm from "./FoodSearchForm";
 import Pagination from "./Pagination";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
 import useApi from "../hooks/useApi";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FoodData, PaginationData } from "../lib/types";
-import { handleApiError } from "../lib/utils";
+import { FoodData, FoodListReducerAction, PaginationData } from "../lib/types";
 import { isEmpty } from "lodash";
 import { useEffectOnce } from "../hooks/useEffectOnce";
-import { useState } from "react";
+import { useReducer } from "react";
+
+interface ReducerState {
+  error?: string;
+  food?: FoodData[];
+  loading: boolean;
+  page?: number;
+  pagination?: PaginationData;
+  savedQuery?: string;
+}
 
 export default function FoodList() {
-  const [error, setError] = useState<string>();
-  const [food, setFood] = useState<FoodData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [pagination, setPagination] = useState<PaginationData>();
   const { foodManyGet } = useApi();
 
-  async function handleFoodGet(page?: number) {
-    page ||= 1;
-    const response = await foodManyGet({ page });
-    setLoading(false);
+  const [{ error, loading, pagination, food, savedQuery }, dispatch] =
+    useReducer(
+      (state: ReducerState, action: FoodListReducerAction): ReducerState => {
+        switch (action.type) {
+          case "clearError":
+            return {
+              ...state,
+              error: undefined,
+            };
+          case "loadingError":
+            return {
+              ...state,
+              error: action.payload.response.message,
+              loading: false,
+            };
+          case "loadingSuccess":
+            return {
+              ...state,
+              loading: false,
+              pagination: action.payload.response.data.pagination,
+              food: action.payload.response.data.foodMany,
+            };
+          case "searchError":
+            return {
+              ...state,
+              error: action.payload.response.message,
+              savedQuery: action.payload.query,
+            };
+          case "searchSuccess":
+            return {
+              ...state,
+              pagination: action.payload.response.data.pagination,
+              food: action.payload.response.data.foodMany,
+              savedQuery: action.payload.query,
+            };
+          default:
+            return state;
+        }
+      },
+      { loading: true }
+    );
 
-    if (response.isError) {
-      handleApiError(response, { setError });
-      return;
-    }
+  async function search({ page, query }: { page?: number; query?: string }) {
+    const response = await foodManyGet({
+      data: { query: query ?? savedQuery },
+      page: page ?? 1,
+    });
 
-    setPagination(response.data.pagination);
-    setFood(response.data.foodMany);
+    dispatch({
+      payload: { response, query: query ?? savedQuery },
+      type: response.isError ? "searchError" : "searchSuccess",
+    });
   }
 
-  useEffectOnce(handleFoodGet);
+  useEffectOnce(async () => {
+    const response = await foodManyGet({ page: 1 });
+
+    dispatch({
+      type: response.isError ? "loadingError" : "loadingSuccess",
+      payload: { response },
+    });
+  });
 
   return (
     <>
@@ -43,22 +95,36 @@ export default function FoodList() {
           <FontAwesomeIcon icon={faCircleNotch} spin />
         </Paragraph>
       ) : error ? (
-        <Alert alertClassName={classes.alert} variant="error">
+        <Alert
+          alertClassName={classes.alert}
+          onDismiss={() => dispatch({ type: "clearError" })}
+          variant="error"
+        >
           {error}
         </Alert>
       ) : isEmpty(food) ? (
         <Paragraph variant="dimmed">No food yet.</Paragraph>
       ) : (
         <>
+          <FoodSearchForm search={search} />
+
           <Table className={classes.table} striped>
             <thead>
               <tr>
-                <th>Name</th>
+                <th>
+                  Name
+                  {savedQuery && (
+                    <>
+                      {" "}
+                      <span className={classes.filteredNote}>(Filtered)</span>
+                    </>
+                  )}
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              {food.map((food) => (
+              {food?.map((food) => (
                 <tr key={food.id}>
                   <td>
                     <Anchor to={`/food/${food.id}/edit`}>{food.name}</Anchor>
@@ -71,7 +137,7 @@ export default function FoodList() {
           {pagination && pagination.total > 1 && (
             <Pagination
               navClassName={classes.pagination}
-              onChange={handleFoodGet}
+              onChange={(page) => search({ page })}
               page={pagination.page}
               total={pagination.total}
             />

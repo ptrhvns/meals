@@ -115,7 +115,15 @@ export default function RecipeList() {
           <Table className={classes.table} striped>
             <thead>
               <tr>
-                <th>Title</th>
+                <th>
+                  Title
+                  {savedQuery && (
+                    <>
+                      {" "}
+                      <span className={classes.filteredNote}>(Filtered)</span>
+                    </>
+                  )}
+                </th>
               </tr>
             </thead>
 

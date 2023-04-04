@@ -167,6 +167,7 @@ Ubuntu 20.04).
   python -m pip list --outdated
   $EDITOR pyproject.toml # Update package version specifications
 
+  # Production
   python -m piptools compile \
     --allow-unsafe \
     --generate-hashes \
@@ -174,7 +175,8 @@ Ubuntu 20.04).
     --resolver=backtracking \
     --upgrade \
     pyproject.toml
-  
+
+  # Development
   python -m piptools compile \
     --allow-unsafe \
     --extra dev \

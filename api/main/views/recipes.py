@@ -9,7 +9,7 @@ from main.lib.responses import data_response
 from main.models.recipe import Recipe
 
 
-class RecipeResponseSerializer(ModelSerializer):
+class RecipesResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("id", "title")
@@ -18,10 +18,23 @@ class RecipeResponseSerializer(ModelSerializer):
 @api_view(http_method_names=["GET"])
 @permission_classes([IsAuthenticated])
 def recipes(request: Request) -> Response:
-    recipes = Recipe.objects.filter(user=request.user).order_by("title").all()
+    query = request.query_params.get("query")
+    recipes = Recipe.objects.order_by("title")
+
+    if not query:
+        recipes = recipes.filter(user=request.user)
+    else:
+        recipes = recipes.filter(title__icontains=query, user=request.user)
+
+    page_num = request.query_params.get("page")
+
+    if page_num is None:
+        serializer = RecipesResponseSerializer(recipes, many=True)
+        return data_response(data={"recipes": serializer.data})
+
     paginator = Paginator(recipes, per_page=10)
-    page = paginator.get_page(request.query_params.get("page", 1))
-    serializer = RecipeResponseSerializer(page.object_list, many=True)
+    page = paginator.get_page(page_num)
+    serializer = RecipesResponseSerializer(page.object_list, many=True)
 
     return data_response(
         data={

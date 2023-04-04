@@ -530,9 +530,15 @@ export function recipeGet(
 
 export function recipesGet(
   send: ApiSendFunction,
-  params: { page?: number }
+  params?: {
+    data?: { query?: string };
+    page?: number;
+  }
 ): Promise<ApiResponse> {
-  const page = encodeURIComponent(params.page ?? 1);
+  let sp: URLSearchParams | string = new URLSearchParams();
+  if (params?.page) sp.append("page", params.page.toString());
+  if (params?.data?.query) sp.append("query", params.data.query);
+  sp = sp.toString();
 
   return send({
     method: "GET",
@@ -540,7 +546,7 @@ export function recipesGet(
       pagination: paginationSchema,
       recipes: z.array(recipeSchema),
     }),
-    url: `/api/recipes/?page=${page}`,
+    url: sp ? `/api/recipes/?${sp}` : `/api/recipes/`,
   });
 }
 

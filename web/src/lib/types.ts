@@ -193,6 +193,16 @@ export interface RecipeData {
   title: string;
 }
 
+export type RecipeListReducerAction =
+  | { type: "clearError" }
+  | { type: "loadingError"; payload: { response: ApiResponse } }
+  | { type: "loadingSuccess"; payload: { response: ApiResponse } }
+  | { type: "searchError"; payload: { response: ApiResponse; query?: string } }
+  | {
+      type: "searchSuccess";
+      payload: { response: ApiResponse; query?: string };
+    };
+
 export type RecipeReducerAction =
   | { type: "setDirections"; payload: DirectionData[] }
   | { type: "setIngredients"; payload: IngredientData[] }

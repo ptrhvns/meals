@@ -312,7 +312,7 @@ export default function useApi() {
     recipeCreate: withSendAndArgs(recipeCreate),
     recipeDestroy: withSendAndArgs(recipeDestroy),
     recipeGet: withSendAndArgs(recipeGet),
-    recipesGet: withSendAndArgs(recipesGet),
+    recipesGet: withSendAndOptionalArgs(recipesGet),
     recipeTitleUpdate: withSendAndArgs(recipeTitleUpdate),
     servingsDestroy: withSendAndArgs(servingsDestroy),
     servingsUpdate: withSendAndArgs(servingsUpdate),

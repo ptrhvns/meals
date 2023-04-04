@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
-    "check": "npm run check:lint && npm run check:types",
-    "check:lint": "eslint --ext=.js,.jsx,.ts,.tsx .",
-    "check:types": "tsc --noEmit",
+    "check": "npm run check:eslint && npm run check:stylelint && npm run check:tsc",
+    "check:eslint": "eslint --ext=.js,.jsx,.ts,.tsx .",
+    "check:stylelint": "stylelint src/styles",
+    "check:tsc": "tsc --noEmit",
     "dev": "vite",
     "preview": "vite preview"
   },

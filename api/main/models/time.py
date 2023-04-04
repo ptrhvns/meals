@@ -31,6 +31,6 @@ class Time(Model):
     def clean(self) -> None:
         units = ["days", "hours", "minutes"]
 
-        if not any([getattr(self, u) for u in units]):
+        if not any(getattr(self, u) for u in units):
             error = gettext_lazy("At least one unit is required.")
             raise exceptions.ValidationError({u: error for u in units})

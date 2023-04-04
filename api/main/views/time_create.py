@@ -43,7 +43,7 @@ class TimeRequestSerializer(ModelSerializer):
         units = ["days", "hours", "minutes"]
         error = gettext_lazy("At least one unit is required.")
 
-        if not any([data.get(u) for u in units]):
+        if not any(data.get(u) for u in units):
             raise ValidationError({u: error for u in units})
 
         return data

@@ -79,6 +79,7 @@ export default function RatingEditForm({
           isDisabled={submitting}
           onChange={async (value: number) => {
             if (submitting) return;
+            if (value === 0) return;
             setSubmitting(true);
 
             const response = await ratingUpdate({

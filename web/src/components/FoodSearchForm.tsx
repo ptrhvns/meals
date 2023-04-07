@@ -53,7 +53,7 @@ export default function FoodSearchForm({ search }: FoodSearchFormProps) {
 
         <Button type="submit">
           <AccessibleIcon.Root label="Search">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            <FontAwesomeIcon icon={faMagnifyingGlass} title="Search" />
           </AccessibleIcon.Root>
         </Button>
       </span>

@@ -58,6 +58,22 @@
   }
 }
 
+// TODO: uncomment to show banner to signify WIP status.
+// body::after {
+//   background-color: var(--red9);
+//   border: 0;
+//   color: white;
+//   content: "ALPHA";
+//   float: left;
+//   left: -2.25rem;
+//   opacity: 0.7;
+//   padding: 0.5rem 3rem;
+//   position: absolute;
+//   top: 1rem;
+//   transform: rotate(-45deg);
+//   z-index: 999999999;
+// }
+
 body {
   color: var(--slate12);
   font-family: var(--font-family-sans);

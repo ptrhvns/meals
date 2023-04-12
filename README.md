@@ -1,4 +1,4 @@
-# Meals
+# Meal Gizmo
 
 ## Description
 

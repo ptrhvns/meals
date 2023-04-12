@@ -23,7 +23,7 @@ export default function PageCenteredSection({
       <div className={classes.wrapper}>
         <div className={classes.innerWrapper}>
           <Anchor className={linkClassName} to="/">
-            <FontAwesomeIcon icon={faUtensils} /> Meals
+            <FontAwesomeIcon icon={faUtensils} /> Meal Gizmo
           </Anchor>
 
           <section className={contentClassName}>{children}</section>

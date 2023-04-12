@@ -2,6 +2,7 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/RecipeCookingView.module.scss";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -11,10 +12,10 @@ import RequireAuthn from "../components/RequireAuthn";
 import StrikethroughCheckbox from "../components/StrikethroughCheckbox";
 import useApi from "../hooks/useApi";
 import { buildTitle, handleApiError } from "../lib/utils";
+import { compact, isEmpty, join, sortBy } from "lodash";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet-async";
-import { compact, isEmpty, join, sortBy } from "lodash";
 import { RecipeData } from "../lib/types";
 import { useEffectOnce } from "../hooks/useEffectOnce";
 import { useParams } from "react-router-dom";
@@ -148,6 +149,8 @@ export default function RecipeCookingView() {
           </Anchor>
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

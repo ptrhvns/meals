@@ -24,8 +24,11 @@
   --box-shadow-inset: inset 0 2px 8px var(--slate3);
   --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
 
-  // Spacing
+  // Component heights
+  --footer-height: 57px;
   --navbar-height: 50px;
+
+  // Spacing
   --spacing0: 0;
   --spacing1: 0.0625rem;
   --spacing2: 0.125rem;

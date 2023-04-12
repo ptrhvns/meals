@@ -1,6 +1,7 @@
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import DirectionNewForm from "../components/DirectionNewForm";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -34,6 +35,8 @@ export default function DirectionNew() {
           <DirectionNewForm recipeId={recipeId} />
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

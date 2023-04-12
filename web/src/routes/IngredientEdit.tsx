@@ -1,6 +1,7 @@
 import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import IngredientEditForm from "../components/IngredientEditForm";
@@ -86,6 +87,8 @@ export default function IngredientEdit() {
           )}
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

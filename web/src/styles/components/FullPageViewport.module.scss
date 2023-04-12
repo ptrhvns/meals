@@ -1,6 +1,6 @@
 .viewport {
   background-color: var(--slate3);
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
   padding-block: var(--spacing10);
 
   @media (min-width: 27rem) {

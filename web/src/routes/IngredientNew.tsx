@@ -2,6 +2,7 @@ import Alert from "../components/Alert";
 import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/IngredientNew.module.scss";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import HorizontalRule from "../components/HorizontalRule";
@@ -91,6 +92,8 @@ export default function IngredientNew() {
           </Paragraph>
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

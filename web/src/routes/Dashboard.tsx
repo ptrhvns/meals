@@ -4,6 +4,7 @@ import BrandList from "../components/BrandList";
 import classes from "../styles/routes/Dashboard.module.scss";
 import EquipmentList from "../components/EquipmentList";
 import FoodList from "../components/FoodList";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -185,6 +186,8 @@ export default function Dashboard() {
           </TabsPrimitive.Root>
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

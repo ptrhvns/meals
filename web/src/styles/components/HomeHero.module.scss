@@ -19,7 +19,6 @@ h1.heading {
 }
 
 div.viewport {
-  // TODO redo height after home page content is added:
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
   padding-block: 10vh 12vh;
 }

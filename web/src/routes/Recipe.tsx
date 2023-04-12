@@ -4,6 +4,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/Recipe.module.scss";
 import Directions from "../components/Directions";
 import Equipment from "../components/Equipment";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Ingredients from "../components/Ingredients";
 import Navbar from "../components/Navbar";
@@ -182,6 +183,8 @@ export default function Recipe() {
           </>
         )}
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

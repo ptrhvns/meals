@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import HomeHero from "../components/HomeHero";
 import Navbar from "../components/Navbar";
 import RequireGuest from "../components/RequireGuest";
@@ -13,6 +14,7 @@ export default function Home() {
 
       <Navbar />
       <HomeHero />
+      <Footer />
     </RequireGuest>
   );
 }

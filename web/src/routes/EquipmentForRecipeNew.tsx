@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/EquipmentForRecipeNew.module.scss";
 import EquipmentForRecipeNewForm from "../components/EquipmentForRecipeNewForm";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import HorizontalRule from "../components/HorizontalRule";
@@ -78,6 +79,8 @@ export default function EquipmentForRecipeNew() {
           </Paragraph>
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

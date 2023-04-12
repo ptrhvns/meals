@@ -1,6 +1,7 @@
 import Anchor from "../components/Anchor";
 import BrandNewForm from "../components/BrandNewForm";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -30,6 +31,8 @@ export default function BrandNew() {
           <BrandNewForm />
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/EquipmentEdit.module.scss";
 import EquipmentEditForm from "../components/EquipmentEditForm";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -73,6 +74,8 @@ export default function EquipmentEdit() {
           )}
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

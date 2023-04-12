@@ -1,6 +1,7 @@
 import AccountDeleteForm from "../components/AccountDeleteForm";
 import Alert from "../components/Alert";
 import classes from "../styles/routes/Settings.module.scss";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -37,6 +38,8 @@ export default function Settings() {
           <AccountDeleteForm />
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </>
   );
 }

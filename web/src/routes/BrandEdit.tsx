@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import BrandEditForm from "../components/BrandEditForm";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/BrandEdit.module.scss";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -73,6 +74,8 @@ export default function BrandEdit() {
           )}
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

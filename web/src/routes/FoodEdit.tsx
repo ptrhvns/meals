@@ -3,6 +3,7 @@ import Anchor from "../components/Anchor";
 import Breadcrumbs from "../components/Breadcrumbs";
 import classes from "../styles/routes/FoodEdit.module.scss";
 import FoodEditForm from "../components/FoodEditForm";
+import Footer from "../components/Footer";
 import FullPageViewport from "../components/FullPageViewport";
 import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
@@ -74,6 +75,8 @@ export default function FoodEdit() {
           )}
         </PageSection>
       </FullPageViewport>
+
+      <Footer />
     </RequireAuthn>
   );
 }

@@ -10,25 +10,31 @@
 
 :root {
   // Typography
+
   --font-family-sans: seravek, "Gill Sans Nova", ubuntu, calibri, "DejaVu Sans",
     source-sans-pro, sans-serif;
 
   // Borders
+
   --border-radius: 4px;
 
   // Shadows
+
   --box-shadow-error: 0 4px 6px -1px rgb(255 248 248),
     0 2px 4px -2px rgb(255 248 248);
-  --box-shadow-inset-error: inset 0 2px 8px var(--red3);
-  --box-shadow-inset-light: inset 0 2px 8px var(--slate2);
-  --box-shadow-inset: inset 0 2px 8px var(--slate3);
+  --box-shadow-inset-dark: inset 0 3px 6px var(--slate6);
+  --box-shadow-inset-error: inset 0 3px 6px var(--red3);
+  --box-shadow-inset-light: inset 0 3px 6px var(--slate2);
+  --box-shadow-inset: inset 0 3px 6px var(--slate3);
   --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
 
   // Component heights
+
   --footer-height: 57px;
   --navbar-height: 50px;
 
   // Spacing
+
   --spacing0: 0;
   --spacing1: 0.0625rem;
   --spacing2: 0.125rem;

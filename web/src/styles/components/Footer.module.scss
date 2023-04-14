@@ -1,5 +1,6 @@
 div.viewport {
-  border-top: 1px solid var(--slate6);
+  border-top: 1px solid var(--slate7);
+  box-shadow: inset 0 3px 6px var(--slate5);
   display: flex;
   height: var(--footer-height);
 }

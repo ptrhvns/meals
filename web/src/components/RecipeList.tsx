@@ -106,45 +106,53 @@ export default function RecipeList() {
         >
           {error}
         </Alert>
-      ) : isEmpty(recipes) ? (
-        <Paragraph variant="dimmed">No recipes yet.</Paragraph>
       ) : (
         <>
           <RecipeSearchForm search={search} />
 
-          <Table className={classes.table} striped>
-            <thead>
-              <tr>
-                <th>
-                  Title
-                  {savedQuery && (
-                    <>
-                      {" "}
-                      <span className={classes.filteredNote}>(Filtered)</span>
-                    </>
-                  )}
-                </th>
-              </tr>
-            </thead>
+          {isEmpty(recipes) ? (
+            <Paragraph variant="dimmed">No recipes.</Paragraph>
+          ) : (
+            <>
+              <Table className={classes.table} striped>
+                <thead>
+                  <tr>
+                    <th>
+                      Title
+                      {savedQuery && (
+                        <>
+                          {" "}
+                          <span className={classes.filteredNote}>
+                            (Filtered)
+                          </span>
+                        </>
+                      )}
+                    </th>
+                  </tr>
+                </thead>
 
-            <tbody>
-              {recipes?.map((recipe) => (
-                <tr key={recipe.id}>
-                  <td>
-                    <Anchor to={`/recipe/${recipe.id}`}>{recipe.title}</Anchor>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+                <tbody>
+                  {recipes?.map((recipe) => (
+                    <tr key={recipe.id}>
+                      <td>
+                        <Anchor to={`/recipe/${recipe.id}`}>
+                          {recipe.title}
+                        </Anchor>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
 
-          {pagination && pagination.total > 1 && (
-            <Pagination
-              navClassName={classes.pagination}
-              onChange={(page) => search({ page })}
-              page={pagination.page}
-              total={pagination.total}
-            />
+              {pagination && pagination.total > 1 && (
+                <Pagination
+                  navClassName={classes.pagination}
+                  onChange={(page) => search({ page })}
+                  page={pagination.page}
+                  total={pagination.total}
+                />
+              )}
+            </>
           )}
         </>
       )}

@@ -2,7 +2,8 @@
 
 ## Description
 
-This is a portfolio website for managing meals (e.g. recipes, menus, shopping lists, etc.).
+This is a portfolio project. The website is for managing recipes, menus,
+shopping lists, etc.
 
 ## Technologies
 

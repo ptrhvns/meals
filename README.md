@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a website for managing meals (e.g. recipes, menus, shopping lists, etc.).
+This is a portfolio website for managing meals (e.g. recipes, menus, shopping lists, etc.).
 
 ## Technologies
 

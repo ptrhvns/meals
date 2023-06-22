@@ -143,7 +143,7 @@ Ubuntu 20.04).
   python manage.py migrate
   ```
 
-- Create Django superuser for access to the admin site:
+- Create Django superuser for access to the admin site (not currently used):
 
   ```sh
   cd api

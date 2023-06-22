@@ -2,8 +2,7 @@
 
 ## Description
 
-This is a portfolio project. It's a web application for managing recipes, menus,
-shopping lists, etc.
+This is a portfolio project. It's a web application for managing recipes.
 
 ## Technologies
 

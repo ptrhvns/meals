@@ -9,7 +9,7 @@ export default function Footer() {
     <Viewport className={classes.viewport}>
       <Content>
         <footer className={classes.footer}>
-          &copy; {currentYear} Bower Cat. All rights reserved.
+          &copy; {currentYear} Company. All rights reserved.
         </footer>
       </Content>
     </Viewport>

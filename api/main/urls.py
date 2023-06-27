@@ -78,7 +78,7 @@ from main.views.units import units
 urlpatterns: list[URLPattern | URLResolver] = [
     path("account/destroy/", account_destroy, name="account_destroy"),
     path("brand/<int:brand_id>/", brand, name="brand"),
-    path("brand/<int:brand_id>/destroy/", brand_destroy),
+    path("brand/<int:brand_id>/destroy/", brand_destroy, name="brand_destroy"),
     path("brand/<int:brand_id>/recipes/", brand_recipes),
     path("brand/<int:brand_id>/update/", brand_update),
     path("brand/create/", brand_create, name="brand_create"),

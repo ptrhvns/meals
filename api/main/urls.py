@@ -76,12 +76,12 @@ from main.views.units import units
 
 # fmt: off
 urlpatterns: list[URLPattern | URLResolver] = [
-    path("account/destroy/", account_destroy),
-    path("brand/<int:brand_id>/", brand),
+    path("account/destroy/", account_destroy, name="account_destroy"),
+    path("brand/<int:brand_id>/", brand, name="brand"),
     path("brand/<int:brand_id>/destroy/", brand_destroy),
     path("brand/<int:brand_id>/recipes/", brand_recipes),
     path("brand/<int:brand_id>/update/", brand_update),
-    path("brand/create/", brand_create),
+    path("brand/create/", brand_create, name="brand_create"),
     path("brands/", brands),
     path("csrf_token/", csrf_token),
     path("direction/<int:direction_id>/", direction),

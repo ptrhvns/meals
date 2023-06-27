@@ -1,6 +1,6 @@
 import logging
 
-from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import logout
 from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -8,7 +8,11 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import CharField, Serializer
 
-from main.lib.responses import no_content_response, unprocessable_entity_response
+from main.lib.responses import (
+    forbidden,
+    no_content_response,
+    unprocessable_entity_response,
+)
 from main.models.user import User
 
 logger = logging.getLogger(__name__)
@@ -49,7 +53,7 @@ def account_destroy(request: Request) -> Response:
             {"user_id": request.user.id},  # type: ignore[union-attr]
         )
 
-        return unprocessable_entity_response(
+        return forbidden(
             errors={"password": [gettext_lazy("Password is invalid.")]},
             message=gettext_lazy("The information you provided was invalid."),
         )
@@ -63,5 +67,5 @@ def account_destroy(request: Request) -> Response:
     )
 
     request.user.delete()
-    auth_logout(request)
+    logout(request)
     return no_content_response()

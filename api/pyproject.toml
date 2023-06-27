@@ -34,6 +34,7 @@ dev = [
     "pytest-django ~= 4.5.2",
     "pytest-mock ~= 3.10.0",
     "ruff ~= 0.0.246",
+    "types-factory-boy ~= 0.4.1",
     "watchdog[watchmedo] ~= 3.0.0",
     "wheel ~= 0.40.0",
 ]

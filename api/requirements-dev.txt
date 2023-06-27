@@ -280,7 +280,9 @@ executing==1.2.0 \
 factory-boy==3.2.1 \
     --hash=sha256:a98d277b0c047c75eb6e4ab8508a7f81fb03d2cb21986f627913546ef7a2a55e \
     --hash=sha256:eb02a7dd1b577ef606b75a253b9818e6f9eaf996d94449c9d5ebb124f90dc795
-    # via api (pyproject.toml)
+    # via
+    #   api (pyproject.toml)
+    #   types-factory-boy
 faker==18.10.1 \
     --hash=sha256:633b278caa3ec239463f9139c74da2607c8da5710e56d5d7d30fc8a7440104c4 \
     --hash=sha256:d9f363720c4a6cf9884c6c3e26e2ce26266ffe5d741a9bc7cb9256779bc62190
@@ -641,6 +643,10 @@ traitlets==5.9.0 \
     # via
     #   ipython
     #   matplotlib-inline
+types-factory-boy==0.4.1 \
+    --hash=sha256:275b9e17a6ad79992bec77b956bb707770f7b0256e4172265e2139e48faf6faf \
+    --hash=sha256:a1fa265fad8b24ddf2d4363227d675d0c4cd44951b71d68ea8fc58aa90b0f85d
+    # via api (pyproject.toml)
 typing-extensions==4.6.3 \
     --hash=sha256:88a4153d8505aabbb4e13aacb7c486c2b4a33ca3b3f807914a9b4c844c471c26 \
     --hash=sha256:d91d5919357fe7f681a9f2b5b4cb2a5f1ef0a1e9f59c4d8ff0d3491e05c0ffd5
@@ -649,6 +655,7 @@ typing-extensions==4.6.3 \
     #   mypy
     #   psycopg
     #   psycopg-pool
+    #   types-factory-boy
 urllib3==2.0.3 \
     --hash=sha256:48e7fafa40319d358848e1bc6809b208340fafe2096f1725d05d67443d0483d1 \
     --hash=sha256:bee28b5e56addb8226c96f7f13ac28cb4c301dd5ea8a6ca179c0b9835e032825

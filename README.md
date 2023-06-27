@@ -211,3 +211,26 @@ Ubuntu 20.04).
   cd web
   npm run dev
   ```
+
+### Running Back-End / API Tests
+
+- Run tests:
+
+  ```sh
+  cd api
+  python -m venv venv
+  pytest
+  ```
+
+- Run tests, and report on test coverage:
+
+  ```sh
+  cd api
+  python -m venv venv
+
+  # Pick one of:
+  pytest --cov --cov-report html # HTML report
+  pytest --cov --cov-report term-missing # terminal report
+
+  # Open htmlcov/index.html with a browser if HTML report was chosen.
+  ```

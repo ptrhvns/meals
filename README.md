@@ -24,6 +24,17 @@ API server:
 - Python
 - Redis
 
+## Architecture Notes
+
+For the API, I wanted to try following the advice in this article:
+
+[Django Views — The Right Way](https://spookylukey.github.io/django-views-the-right-way/)
+
+That article inspired me to create code that's simpler and easier to understand
+than what I would have created otherwise. However, I also ended up creating too
+much "boilerplate," which I'm not happy with. In the future, I'd like to find a
+way to improve things.
+
 ## Setting Up a Development Environment
 
 The following assumes the use of a Linux development environment (tested on

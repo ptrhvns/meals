@@ -32,10 +32,12 @@ def brand_update(request: Request, brand_id: int) -> Response:
     if brand.name == serializer.validated_data["name"]:
         return no_content_response()
 
-    # Use this test instead of a validator for a better user experience.
-    if Brand.objects.filter(
+    brand2 = Brand.objects.filter(
         name=serializer.validated_data["name"], user=request.user
-    ).exists():
+    )
+
+    # Use this test instead of a validator for a better user experience.
+    if brand2.exists():
         return unprocessable_entity_response(
             errors={"name": [gettext_lazy("This name is already taken.")]},
             message=gettext_lazy("The information you provided could not be saved."),

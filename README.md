@@ -160,46 +160,6 @@ Ubuntu 20.04).
   python manage.py createsuperuser
   ```
 
-## Updating Development Dependencies
-
-- Identify outdated web packages, and update them:
-
-  ```sh
-  cd web
-  npm outdated
-  $EDITOR package.json # Update package version specifications
-  npm update --save
-  ```
-
-- Identify outdated API packages, and update them:
-
-  ```sh
-  cd api
-  python -m pip list --outdated
-  $EDITOR pyproject.toml # Update package version specifications
-
-  # Production
-  python -m piptools compile \
-    --allow-unsafe \
-    --generate-hashes \
-    --output-file requirements.txt \
-    --resolver=backtracking \
-    --upgrade \
-    pyproject.toml
-
-  # Development
-  python -m piptools compile \
-    --allow-unsafe \
-    --extra dev \
-    --generate-hashes \
-    --output-file requirements-dev.txt \
-    --resolver=backtracking \
-    --upgrade \
-    pyproject.toml
-
-  python -m piptools sync requirements.txt requirements-dev.txt
-  ```
-
 ## Running Development Processes
 
 - Start the Django server (API server):
@@ -244,4 +204,44 @@ Ubuntu 20.04).
   pytest --cov --cov-report term-missing # terminal report
 
   # Open htmlcov/index.html with a browser if HTML report was chosen.
+  ```
+
+## Updating Development Dependencies
+
+- Identify outdated web packages, and update them:
+
+  ```sh
+  cd web
+  npm outdated
+  $EDITOR package.json # Update package version specifications
+  npm update --save
+  ```
+
+- Identify outdated API packages, and update them:
+
+  ```sh
+  cd api
+  python -m pip list --outdated
+  $EDITOR pyproject.toml # Update package version specifications
+
+  # Production
+  python -m piptools compile \
+    --allow-unsafe \
+    --generate-hashes \
+    --output-file requirements.txt \
+    --resolver=backtracking \
+    --upgrade \
+    pyproject.toml
+
+  # Development
+  python -m piptools compile \
+    --allow-unsafe \
+    --extra dev \
+    --generate-hashes \
+    --output-file requirements-dev.txt \
+    --resolver=backtracking \
+    --upgrade \
+    pyproject.toml
+
+  python -m piptools sync requirements.txt requirements-dev.txt
   ```

@@ -138,6 +138,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ...if not already active.
   cp config/.env.example config/.env
 
   # Generate a SECRET_KEY for use below.
@@ -151,6 +152,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ...if not already active.
   python manage.py migrate
   ```
 
@@ -158,6 +160,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ..if not already active.
   python manage.py createsuperuser
   ```
 
@@ -167,6 +170,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ..if not already active.
   python ./manage.py runserver
   ```
 
@@ -174,6 +178,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ..if not already active.
   watchmedo auto-restart --directory=./ -p '*tasks*.py' -R -- celery -A config worker -l INFO
   ```
 
@@ -190,6 +195,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ..if not already active.
   python -m venv venv
   pytest
   ```
@@ -198,6 +204,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ..if not already active.
   python -m venv venv
 
   # Pick one of:
@@ -222,6 +229,7 @@ Ubuntu 20.04).
 
   ```sh
   cd api
+  source venv/bin/activate # ..if not already active.
   python -m pip list --outdated
   $EDITOR pyproject.toml # Update package version specifications
 

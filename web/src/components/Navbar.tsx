@@ -30,7 +30,7 @@ export default function Navbar() {
               className={joinClassNames(classes.logo, classes.link)}
               to="/"
             >
-              <FontAwesomeIcon icon={faUtensils} /> Meal Gizmo
+              <FontAwesomeIcon icon={faUtensils} /> Meals
             </Anchor>
 
             <div>

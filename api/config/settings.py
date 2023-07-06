@@ -134,7 +134,7 @@ REST_FRAMEWORK = {
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
-SITE_TITLE = "Meal Gizmo"
+SITE_TITLE = "Meals"
 
 if DEBUG:
     LOGGING = {

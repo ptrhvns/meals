@@ -17,7 +17,7 @@ import {
 } from "react-hook-form";
 
 export function buildTitle(subtitle?: string): string {
-  return subtitle ? `${subtitle} - Meal Gizmo` : "Meal Gizmo";
+  return subtitle ? `${subtitle} - Meals` : "Meals";
 }
 
 export function joinClassNames(...args: Optional<string>[]): string {

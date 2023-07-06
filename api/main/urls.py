@@ -85,7 +85,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("brands/", brands, name="brands"),
     path("csrf_token/", csrf_token, name="csrf_token"),
     path("direction/<int:direction_id>/", direction),
-    path("direction/<int:direction_id>/destroy/", direction_destroy),
+    path("direction/<int:direction_id>/destroy/", direction_destroy, name="direction_destroy"),
     path("direction/<int:direction_id>/update/", direction_update),
     path("directions/reorder/", directions_reorder),
     path("equipment-many/", equipment_many),

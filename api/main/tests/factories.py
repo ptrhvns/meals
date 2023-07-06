@@ -5,6 +5,7 @@ from factory import LazyAttribute, Sequence, post_generation  # type: ignore[imp
 from factory.django import DjangoModelFactory  # type: ignore[import]
 
 from main.models.brand import Brand
+from main.models.direction import Direction
 from main.models.food import Food
 from main.models.ingredient import Ingredient
 from main.models.recipe import Recipe
@@ -16,6 +17,13 @@ class BrandFactory(DjangoModelFactory):  # type: ignore[misc]
         model = Brand
 
     name = Sequence(lambda n: f"Brand{n + 1}")
+
+
+class DirectionFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = Direction
+
+    description = Sequence(lambda n: f"Take action #{n + 1}.")
 
 
 class FoodFactory(DjangoModelFactory):  # type: ignore[misc]

@@ -253,4 +253,5 @@ Ubuntu 20.04).
     pyproject.toml
 
   python -m piptools sync requirements.txt requirements-dev.txt
+  # Manually check there are no breaks and run tests.
   ```

@@ -6,6 +6,7 @@ from factory.django import DjangoModelFactory  # type: ignore[import]
 
 from main.models.brand import Brand
 from main.models.direction import Direction
+from main.models.equipment import Equipment
 from main.models.food import Food
 from main.models.ingredient import Ingredient
 from main.models.recipe import Recipe
@@ -24,6 +25,13 @@ class DirectionFactory(DjangoModelFactory):  # type: ignore[misc]
         model = Direction
 
     description = Sequence(lambda n: f"Take action #{n + 1}.")
+
+
+class EquipmentFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = Equipment
+
+    description = Sequence(lambda n: f"Equipment #{n + 1}")
 
 
 class FoodFactory(DjangoModelFactory):  # type: ignore[misc]

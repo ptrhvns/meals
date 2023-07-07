@@ -42,6 +42,8 @@ class DirectionsReorderSerializer(ModelSerializer):
     # validated_data so that the list serializer update works correctly.
     id = IntegerField()  # noqa: A003
 
+    order = IntegerField(max_value=2147483647, min_value=0, required=True)
+
 
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])

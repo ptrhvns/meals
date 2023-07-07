@@ -5,47 +5,47 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 from rest_framework.test import APIRequestFactory
 
-from main.tests.factories import BrandFactory, UserFactory
+from main.tests.factories import DirectionFactory, RecipeFactory, UserFactory
 from main.tests.support.drf_view_helpers import (
     sets_http_method_names,
     sets_permission_classes,
 )
 from main.tests.support.request_helpers import authenticate
-from main.views.brand import brand
+from main.views.direction import direction
 
 
 def test_http_method_names() -> None:
-    assert sets_http_method_names(brand, ["get", "options"])
+    assert sets_http_method_names(direction, ["get", "options"])
 
 
 def test_permission_classes() -> None:
     permission_classes = [IsAuthenticated]
-    assert sets_permission_classes(brand, permission_classes)
+    assert sets_permission_classes(direction, permission_classes)
 
 
-def test_brand_not_found(api_rf: APIRequestFactory, mocker: MockerFixture) -> None:
-    request = api_rf.get(reverse("brand", kwargs={"brand_id": 1}))
+def test_direction_not_found(api_rf: APIRequestFactory, mocker: MockerFixture) -> None:
+    request = api_rf.get(reverse("direction", kwargs={"direction_id": 1}))
     user = UserFactory.build()
     authenticate(request, user)
     mocker.patch(
-        "main.views.brand.get_object_or_404",
+        "main.views.direction.get_object_or_404",
         autospec=True,
         side_effect=Http404,
     )
-    response = brand(request, 1)
+    response = direction(request, 1)
     assert response.status_code == HTTP_404_NOT_FOUND
 
 
-def test_getting_brand_successfully(
+def test_getting_direction_successfully(
     api_rf: APIRequestFactory, mocker: MockerFixture
 ) -> None:
-    request = api_rf.get(reverse("brand", kwargs={"brand_id": 1}))
+    request = api_rf.get(reverse("direction", kwargs={"direction_id": 1}))
     user = UserFactory.build()
     authenticate(request, user)
-    brand_instance = BrandFactory.build(user=user, id=1, name="Acme")
+    drctn = DirectionFactory.build(recipe=RecipeFactory.build(user=user))
     mocker.patch(
-        "main.views.brand.get_object_or_404", autospec=True, return_value=brand_instance
+        "main.views.direction.get_object_or_404", autospec=True, return_value=drctn
     )
-    response = brand(request, 1)
+    response = direction(request, 1)
     assert response.status_code == HTTP_200_OK
-    assert response.data["data"]["brand"]["name"] == brand_instance.name  # type: ignore[index]
+    assert response.data["data"]["direction"]["description"] == drctn.description  # type: ignore[index]

@@ -196,7 +196,6 @@ Ubuntu 20.04).
   ```sh
   cd api
   source venv/bin/activate # ..if not already active.
-  python -m venv venv
   pytest
   ```
 
@@ -205,7 +204,6 @@ Ubuntu 20.04).
   ```sh
   cd api
   source venv/bin/activate # ..if not already active.
-  python -m venv venv
 
   # Pick one of:
   pytest --cov --cov-report html # HTML report

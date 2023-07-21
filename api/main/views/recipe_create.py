@@ -8,13 +8,13 @@ from main.lib.responses import data_response, invalid_request_data_response
 from main.models.recipe import Recipe
 
 
-class RecipeRequestSerializer(ModelSerializer):
+class RecipeCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("title",)
 
 
-class RecipeResponseSerializer(ModelSerializer):
+class RecipeCreateResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("id",)
@@ -23,11 +23,11 @@ class RecipeResponseSerializer(ModelSerializer):
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def recipe_create(request: Request) -> Response:
-    serializer = RecipeRequestSerializer(data=request.data)
+    serializer = RecipeCreateRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)
 
     recipe = serializer.save(user=request.user)
-    data = RecipeResponseSerializer(instance=recipe).data
+    data = RecipeCreateResponseSerializer(instance=recipe).data
     return data_response(data={"recipe": data})

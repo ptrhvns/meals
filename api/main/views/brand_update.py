@@ -14,7 +14,7 @@ from main.lib.responses import (
 from main.models.brand import Brand
 
 
-class BrandRequestSerializer(ModelSerializer):
+class BrandUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Brand
         fields = ("name",)
@@ -24,7 +24,7 @@ class BrandRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def brand_update(request: Request, brand_id: int) -> Response:
     brand = get_object_or_404(Brand, pk=brand_id, user=request.user)
-    serializer = BrandRequestSerializer(instance=brand, data=request.data)
+    serializer = BrandUpdateRequestSerializer(instance=brand, data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

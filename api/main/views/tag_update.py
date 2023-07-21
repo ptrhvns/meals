@@ -14,7 +14,7 @@ from main.lib.responses import (
 from main.models.tag import Tag
 
 
-class TagRequestSerializer(ModelSerializer):
+class TagUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("name",)
@@ -24,7 +24,7 @@ class TagRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def tag_update(request: Request, tag_id: int) -> Response:
     tag = get_object_or_404(Tag, pk=tag_id, user=request.user)
-    serializer = TagRequestSerializer(instance=tag, data=request.data)
+    serializer = TagUpdateRequestSerializer(instance=tag, data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

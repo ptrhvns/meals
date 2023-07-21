@@ -15,7 +15,7 @@ from main.lib.responses import (
 from main.models.tag import Tag
 
 
-class TagRequestSerializer(ModelSerializer):
+class TagCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("name",)
@@ -24,7 +24,7 @@ class TagRequestSerializer(ModelSerializer):
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def tag_create(request: Request) -> Response:
-    serializer = TagRequestSerializer(data=request.data)
+    serializer = TagCreateRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

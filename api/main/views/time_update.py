@@ -25,7 +25,7 @@ class TimeCategoryRequestSerializer(ModelSerializer):
         fields = ("name",)
 
 
-class TimeRequestSerializer(ModelSerializer):
+class TimeUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Time
         fields = (
@@ -58,7 +58,7 @@ def time_update(request: Request, recipe_id: int, time_id: int) -> Response:
         Time, pk=time_id, recipe__user=request.user, recipe_id=recipe_id
     )
 
-    serializer = TimeRequestSerializer(instance=time, data=pruned_data)
+    serializer = TimeUpdateRequestSerializer(instance=time, data=pruned_data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

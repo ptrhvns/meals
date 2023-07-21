@@ -10,7 +10,7 @@ from main.models.direction import Direction
 from main.models.recipe import Recipe
 
 
-class DirectionRequestSerializer(ModelSerializer):
+class DirectionCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = Direction
         fields = ("description",)
@@ -20,7 +20,7 @@ class DirectionRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def direction_create(request: Request, recipe_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    serializer = DirectionRequestSerializer(data=request.data)
+    serializer = DirectionCreateRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

@@ -9,7 +9,7 @@ from main.lib.responses import data_response
 from main.models.recipe import Recipe
 
 
-class RecipeResponseSerializer(ModelSerializer):
+class RatingResponseSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("rating",)
@@ -19,5 +19,5 @@ class RecipeResponseSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def rating(request: Request, recipe_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    data = RecipeResponseSerializer(instance=recipe).data
+    data = RatingResponseSerializer(instance=recipe).data
     return data_response(data={"rating": data})

@@ -9,7 +9,7 @@ from main.lib.responses import invalid_request_data_response, no_content_respons
 from main.models.direction import Direction
 
 
-class DirectionRequestSerializer(ModelSerializer):
+class DirectionUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Direction
         fields = ("description",)
@@ -19,7 +19,7 @@ class DirectionRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def direction_update(request: Request, direction_id: int) -> Response:
     direction = get_object_or_404(Direction, pk=direction_id, recipe__user=request.user)
-    serializer = DirectionRequestSerializer(instance=direction, data=request.data)
+    serializer = DirectionUpdateRequestSerializer(instance=direction, data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

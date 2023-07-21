@@ -26,7 +26,7 @@ class TimeCategoryRequestSerializer(ModelSerializer):
         fields = ("name",)
 
 
-class TimeRequestSerializer(ModelSerializer):
+class TimeCreateRequestSerializer(ModelSerializer):
     class Meta:
         model = Time
         fields = (
@@ -55,7 +55,7 @@ class TimeCategoryResponseSerializer(ModelSerializer):
         fields = ("id", "name")
 
 
-class TimeResponseSerializer(ModelSerializer):
+class TimeCreateResponseSerializer(ModelSerializer):
     class Meta:
         model = Time
         fields = (
@@ -76,7 +76,7 @@ def time_create(request: Request, recipe_id: int) -> Response:
     # Eliminate fields with an empty string.
     pruned_data = {k: v for k, v in request.data.items() if v}
 
-    serializer = TimeRequestSerializer(data=pruned_data)
+    serializer = TimeCreateRequestSerializer(data=pruned_data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

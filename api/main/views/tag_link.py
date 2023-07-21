@@ -18,7 +18,7 @@ from main.models.recipe import Recipe
 from main.models.tag import Tag
 
 
-class TagRequestSerializer(ModelSerializer):
+class TagLinkRequestSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("name",)
@@ -28,7 +28,7 @@ class TagRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def tag_link(request: Request, recipe_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    serializer = TagRequestSerializer(data=request.data)
+    serializer = TagLinkRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

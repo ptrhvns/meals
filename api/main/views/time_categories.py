@@ -9,7 +9,7 @@ from main.lib.responses import data_response
 from main.models.time_category import TimeCategory
 
 
-class TimeCategoryResponseSerializer(ModelSerializer):
+class TimeCategoriesResponseSerializer(ModelSerializer):
     class Meta:
         model = TimeCategory
         fields = ("id", "name")
@@ -24,12 +24,12 @@ def time_categories(request: Request) -> Response:
     page_num = request.query_params.get("page")
 
     if page_num is None:
-        serializer = TimeCategoryResponseSerializer(time_categories, many=True)
+        serializer = TimeCategoriesResponseSerializer(time_categories, many=True)
         return data_response(data={"timeCategories": serializer.data})
 
     paginator = Paginator(time_categories, per_page=10)
     page = paginator.get_page(page_num)
-    serializer = TimeCategoryResponseSerializer(page.object_list, many=True)
+    serializer = TimeCategoriesResponseSerializer(page.object_list, many=True)
 
     return data_response(
         data={

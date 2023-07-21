@@ -9,7 +9,7 @@ from main.lib.responses import invalid_request_data_response, no_content_respons
 from main.models.recipe import Recipe
 
 
-class RecipeRequestSerializer(ModelSerializer):
+class RatingUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("rating",)
@@ -19,7 +19,7 @@ class RecipeRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def rating_update(request: Request, recipe_id: int) -> Response:
     recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
-    serializer = RecipeRequestSerializer(data=request.data, instance=recipe)
+    serializer = RatingUpdateRequestSerializer(data=request.data, instance=recipe)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

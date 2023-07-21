@@ -14,7 +14,7 @@ from main.lib.responses import (
 from main.models.equipment import Equipment
 
 
-class EquipmentRequestSerializer(ModelSerializer):
+class EquipmentUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Equipment
         fields = ("description",)
@@ -24,7 +24,7 @@ class EquipmentRequestSerializer(ModelSerializer):
 @permission_classes([IsAuthenticated])
 def equipment_update(request: Request, equipment_id: int) -> Response:
     equipment = get_object_or_404(Equipment, pk=equipment_id, user=request.user)
-    serializer = EquipmentRequestSerializer(instance=equipment, data=request.data)
+    serializer = EquipmentUpdateRequestSerializer(instance=equipment, data=request.data)
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)

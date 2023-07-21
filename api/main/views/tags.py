@@ -9,7 +9,7 @@ from main.lib.responses import data_response
 from main.models.tag import Tag
 
 
-class TagResponseSerializer(ModelSerializer):
+class TagsResponseSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ("id", "name")
@@ -22,12 +22,12 @@ def tags(request: Request) -> Response:
     page_num = request.query_params.get("page")
 
     if page_num is None:
-        serializer = TagResponseSerializer(tags, many=True)
+        serializer = TagsResponseSerializer(tags, many=True)
         return data_response(data={"tags": serializer.data})
 
     paginator = Paginator(tags, per_page=10)
     page = paginator.get_page(page_num)
-    serializer = TagResponseSerializer(page.object_list, many=True)
+    serializer = TagsResponseSerializer(page.object_list, many=True)
 
     return data_response(
         data={

@@ -88,7 +88,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("direction/<int:direction_id>/destroy/", direction_destroy, name="direction_destroy"),
     path("direction/<int:direction_id>/update/", direction_update, name="direction_update"),
     path("directions/reorder/", directions_reorder, name="directions_reorder"),
-    path("equipment-many/", equipment_many),
+    path("equipment-many/", equipment_many, name="equipment_many"),
     path("equipment-one/<int:equipment_id>/", equipment_one),
     path("equipment/<int:equipment_id>/destroy/", equipment_destroy, name="equipment_destroy"),
     path("equipment/<int:equipment_id>/recipes/", equipment_recipes),

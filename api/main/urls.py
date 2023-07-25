@@ -98,7 +98,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("food-one/<int:food_id>/", food_one, name="food_one"),
     path("food/<int:food_id>/destroy/", food_destroy, name="food_destroy"),
     path("food/<int:food_id>/recipes/", food_recipes, name="food_recipes"),
-    path("food/<int:food_id>/update/", food_update),
+    path("food/<int:food_id>/update/", food_update, name="food_update"),
     path("food/create/", food_create, name="food_create"),
     path("ingredient/<int:ingredient_id>/", ingredient),
     path("ingredient/<int:ingredient_id>/destroy/", ingredient_destroy),

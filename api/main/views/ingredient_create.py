@@ -26,7 +26,9 @@ class IngredientCreateRequestSerializer(Serializer):
         max_length=Brand._meta.get_field("name").max_length, required=False
     )
     food = CharField(max_length=Food._meta.get_field("name").max_length)
-    note = CharField(max_length=Ingredient._meta.get_field("note").max_length)
+    note = CharField(
+        max_length=Ingredient._meta.get_field("note").max_length, required=False
+    )
     unit = CharField(max_length=Unit._meta.get_field("name").max_length, required=False)
 
 
@@ -63,7 +65,8 @@ def ingredient_create(request: Request, recipe_id: int) -> Response:
                 user=request.user,
             )[0]
 
-            ingredient_data["note"] = serializer.validated_data.get("note")
+            if "note" in serializer.validated_data:
+                ingredient_data["note"] = serializer.validated_data.get("note")
 
             if "unit" in serializer.validated_data:
                 ingredient_data["unit"] = Unit.objects.get_or_create(

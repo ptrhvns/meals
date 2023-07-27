@@ -10,6 +10,7 @@ from main.models.equipment import Equipment
 from main.models.food import Food
 from main.models.ingredient import Ingredient
 from main.models.recipe import Recipe
+from main.models.unit import Unit
 from main.models.user import User
 
 
@@ -68,3 +69,10 @@ class UserFactory(DjangoModelFactory):  # type: ignore[misc]
     def password(obj: Any, create, extracted, **kwargs):  # type: ignore[no-untyped-def] # noqa: N805
         if extracted:
             obj.set_password(extracted)
+
+
+class UnitFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = Unit
+
+    name = Sequence(lambda n: f"Unit{n + 1}")

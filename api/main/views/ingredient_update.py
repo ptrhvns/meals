@@ -1,5 +1,6 @@
-from django import shortcuts
-from django.db import Error, transaction
+from django.db import Error
+from django.db.transaction import atomic
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -25,7 +26,9 @@ class IngredientUpdateSerializer(Serializer):
         required=False,
     )
     food = CharField(max_length=Food._meta.get_field("name").max_length)
-    note = CharField(max_length=Ingredient._meta.get_field("note").max_length)
+    note = CharField(
+        max_length=Ingredient._meta.get_field("note").max_length, required=False
+    )
     unit = CharField(
         max_length=Unit._meta.get_field("name").max_length,
         required=False,
@@ -35,7 +38,7 @@ class IngredientUpdateSerializer(Serializer):
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def ingredient_update(request: Request, ingredient_id: int) -> Response:
-    ingredient = shortcuts.get_object_or_404(
+    ingredient = get_object_or_404(
         Ingredient, pk=ingredient_id, recipe__user=request.user
     )
 
@@ -48,7 +51,7 @@ def ingredient_update(request: Request, ingredient_id: int) -> Response:
         return invalid_request_data_response(serializer)
 
     try:
-        with transaction.atomic():
+        with atomic():
             ingredient.amount = serializer.validated_data.get("amount")
 
             if "brand" in serializer.validated_data:
@@ -66,7 +69,7 @@ def ingredient_update(request: Request, ingredient_id: int) -> Response:
                 user=request.user,
             )[0]
 
-            ingredient.note = serializer.validated_data.get("note")
+            ingredient.note = serializer.validated_data.get("note", "")
 
             if "unit" in serializer.validated_data:
                 ingredient.unit = Unit.objects.get_or_create(

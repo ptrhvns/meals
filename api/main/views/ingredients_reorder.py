@@ -17,11 +17,11 @@ class IngredientsReorderListSerializer(ListSerializer):
         self, instance: list[Ingredient], validated_data: Any
     ) -> list[Ingredient]:
         ingredients_mapping = {i.id: i for i in instance}  # type: ignore[attr-defined]
-        data_mapping = {d["id"]: d for d in validated_data}
+        validated_data_mapping = {d["id"]: d for d in validated_data}
         result = []
 
-        for ingredient_id, data in data_mapping.items():
-            ingredient = ingredients_mapping[ingredient_id]
+        for key, data in validated_data_mapping.items():
+            ingredient = ingredients_mapping[key]
 
             result.append(
                 cast(IngredientsReorderSerializer, self.child).update(

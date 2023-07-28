@@ -42,6 +42,9 @@ class IngredientsReorderSerializer(ModelSerializer):
     # serializer update can do its work properly.
     id = IntegerField()  # noqa: A003
 
+    # TODO figure out how to programmatically obtain min and max values.
+    order = IntegerField(max_value=2147483647, min_value=0, required=True)
+
 
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])

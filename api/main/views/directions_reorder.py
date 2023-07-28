@@ -15,15 +15,13 @@ from main.models.direction import Direction
 class DirectionsReorderListSerializer(ListSerializer):
     def update(self, instance: list[Direction], validated_data: Any) -> list[Direction]:
         directions_mapping = {i.id: i for i in instance}  # type: ignore[attr-defined]
-        data_mapping = {d["id"]: d for d in validated_data}
+        validated_data_mapping = {d["id"]: d for d in validated_data}
         result = []
 
-        for direction_id, data in data_mapping.items():
-            direction = directions_mapping[direction_id]
-
+        for key, data in validated_data_mapping.items():
             result.append(
                 cast(DirectionsReorderSerializer, self.child).update(
-                    direction, {"order": data["order"]}
+                    directions_mapping[key], {"order": data["order"]}
                 )
             )
 
@@ -36,12 +34,13 @@ class DirectionsReorderSerializer(ModelSerializer):
         fields = ("id", "order")
         list_serializer_class = DirectionsReorderListSerializer
 
-    # Ensure the id field is specified here explicitly. This will ensure that
-    # it's not marked as readonly. Such attributes are removed from
-    # validated_data during updates, and we need the id field to be in
-    # validated_data so that the list serializer update works correctly.
+    # Specify the id field explicitly. This ensures that the id field is not
+    # marked as readonly. Readonly fields are removed from validated_data during
+    # updates. We need the id field to be in validated_data so that the list
+    # serializer update can do its work properly.
     id = IntegerField()  # noqa: A003
 
+    # TODO figure out how to programmatically obtain min and max values.
     order = IntegerField(max_value=2147483647, min_value=0, required=True)
 
 

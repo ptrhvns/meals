@@ -21,11 +21,9 @@ class IngredientsReorderListSerializer(ListSerializer):
         result = []
 
         for key, data in validated_data_mapping.items():
-            ingredient = ingredients_mapping[key]
-
             result.append(
                 cast(IngredientsReorderSerializer, self.child).update(
-                    ingredient, {"order": data["order"]}
+                    ingredients_mapping[key], {"order": data["order"]}
                 )
             )
 

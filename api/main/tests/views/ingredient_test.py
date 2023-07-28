@@ -79,7 +79,7 @@ def test_getting_ingredient_successfully(
                 "food": {"id": food.id, "name": food.name},
                 "id": ing.id,
                 "note": note,
-                "order": 0,
+                "order": ing.order,
                 "unit": {"id": unit.id, "name": unit.name},
             },
         },

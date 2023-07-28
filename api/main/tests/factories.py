@@ -45,6 +45,8 @@ class IngredientFactory(DjangoModelFactory):  # type: ignore[misc]
     class Meta:
         model = Ingredient
 
+    order = Sequence(lambda n: n)
+
 
 class RecipeFactory(DjangoModelFactory):  # type: ignore[misc]
     class Meta:

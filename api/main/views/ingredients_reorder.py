@@ -38,10 +38,10 @@ class IngredientsReorderSerializer(ModelSerializer):
         fields = ("id", "order")
         list_serializer_class = IngredientsReorderListSerializer
 
-    # Ensure the id field is specified here explicitly. This will ensure that
-    # it's not marked as readonly. Such attributes are removed from
-    # validated_data during updates, and we need the id field to be in
-    # validated_data so that the list serializer update works correctly.
+    # Specify the id field explicitly. This ensures that the id field is not
+    # marked as readonly. Readonly fields are removed from validated_data during
+    # updates. We need the id field to be in validated_data so that the list
+    # serializer update can do its work properly.
     id = IntegerField()  # noqa: A003
 
 

@@ -1,4 +1,3 @@
-from random import randrange
 from typing import Any
 
 from factory import LazyAttribute, Sequence, post_generation  # type: ignore[import]
@@ -45,8 +44,6 @@ class FoodFactory(DjangoModelFactory):  # type: ignore[misc]
 class IngredientFactory(DjangoModelFactory):  # type: ignore[misc]
     class Meta:
         model = Ingredient
-
-    amount = LazyAttribute(lambda i: randrange(10))  # noqa: S311
 
 
 class RecipeFactory(DjangoModelFactory):  # type: ignore[misc]

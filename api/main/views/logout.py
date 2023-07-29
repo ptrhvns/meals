@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 @permission_classes([IsAuthenticated])
 def logout(request: Request) -> Response:
     logger.info(
-        "logging out username %(username)s",
+        "logging out username `%(username)s`",
         {"username": cast(User, request.user).username},
     )
 

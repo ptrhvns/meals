@@ -31,12 +31,12 @@ class LoginRequestSerializer(Serializer):
 @api_view(http_method_names=["POST"])
 def login(request: Request) -> Response:
     username = request.data.get("username")
-    logger.info("attempting login for username %(username)s", {"username": username})
+    logger.info("attempting login for username `%(username)s`", {"username": username})
     serializer = LoginRequestSerializer(data=request.data)
 
     if not serializer.is_valid():
         logger.warning(
-            "login failed with invalid request data for username %(username)s",
+            "login failed with invalid request data for username `%(username)s`",
             {"username": username},
         )
         return invalid_request_data_response(serializer)
@@ -50,7 +50,7 @@ def login(request: Request) -> Response:
 
     if user is None:
         logger.warning(
-            "login failed authentication check for username %(username)s",
+            "login failed authentication check for username `%(username)s`",
             {"username": username},
         )
         return unprocessable_entity_response(
@@ -58,7 +58,7 @@ def login(request: Request) -> Response:
             " might be wrong, or there may be an issue with your account."
         )
 
-    logger.info("login succeeded for username %(username)s", {"username": username})
+    logger.info("login succeeded for username `%(username)s`", {"username": username})
     auth_login(request, user)
 
     if request.data.get("remember_me"):

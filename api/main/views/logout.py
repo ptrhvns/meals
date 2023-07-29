@@ -1,7 +1,7 @@
 import logging
 from typing import cast
 
-from django.contrib.auth import logout as auth_logout
+from django.contrib import auth
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -20,7 +20,5 @@ def logout(request: Request) -> Response:
         "logging out username `%(username)s`",
         {"username": cast(User, request.user).username},
     )
-
-    auth_logout(request)
-
+    auth.logout(request)
     return no_content_response()

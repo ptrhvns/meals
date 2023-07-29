@@ -22,7 +22,7 @@ class LoginRequestSerializer(Serializer):
     password = CharField(
         max_length=User._meta.get_field("password").max_length, required=True
     )
-    remember_me = BooleanField()
+    remember_me = BooleanField(required=False)
     username = CharField(
         max_length=User._meta.get_field("username").max_length, required=True
     )

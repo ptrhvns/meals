@@ -104,7 +104,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("ingredient/<int:ingredient_id>/destroy/", ingredient_destroy, name="ingredient_destroy"),
     path("ingredient/<int:ingredient_id>/update/", ingredient_update, name="ingredient_update"),
     path("ingredients/reorder/", ingredients_reorder, name="ingredients_reorder"),
-    path("login/", login),
+    path("login/", login, name="login"),
     path("logout/", logout),
     path("rating/<int:recipe_id>/", rating),
     path("rating/<int:recipe_id>/update/", rating_update),

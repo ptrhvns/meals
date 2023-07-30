@@ -1,7 +1,13 @@
 from __future__ import annotations
 
-from django.db.models import Deferrable  # type: ignore[attr-defined]
-from django.db.models import CASCADE, CharField, ForeignKey, Model, UniqueConstraint
+from django.db.models import (
+    CASCADE,
+    CharField,
+    Deferrable,  # type: ignore[attr-defined]
+    ForeignKey,
+    Model,
+    UniqueConstraint,
+)
 
 from main.models.user import User
 

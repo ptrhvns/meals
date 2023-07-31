@@ -496,7 +496,7 @@ export function ratingGet(
 ): Promise<ApiResponse> {
   return send({
     method: "GET",
-    responseDataSchema: z.object({ rating: z.object({ rating: z.number() }) }),
+    responseDataSchema: z.object({ rating: z.number() }),
     url: `/api/rating/${recipeId}/`,
   });
 }

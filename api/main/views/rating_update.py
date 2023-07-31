@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import IntegerField, ModelSerializer
 
 from main.lib.responses import invalid_request_data_response, no_content_response
 from main.models.recipe import Recipe
@@ -13,6 +13,8 @@ class RatingUpdateRequestSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         fields = ("rating",)
+
+    rating = IntegerField(allow_null=True, max_value=5, min_value=1, required=True)
 
 
 @api_view(http_method_names=["POST"])

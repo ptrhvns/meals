@@ -4,7 +4,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 
-from main.lib.responses import data_response, invalid_request_data_response
+from main.lib.responses import created_response, invalid_request_data_response
 from main.models.recipe import Recipe
 
 
@@ -30,4 +30,4 @@ def recipe_create(request: Request) -> Response:
 
     recipe = serializer.save(user=request.user)
     data = RecipeCreateResponseSerializer(instance=recipe).data
-    return data_response(data={"recipe": data})
+    return created_response(data={"recipe": data})

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from django.db.models import (
+from django.db.models import (  # type: ignore[attr-defined]
     CASCADE,
     SET_NULL,
     CharField,
     DecimalField,
-    Deferrable,  # type: ignore[attr-defined]
+    Deferrable,
     ForeignKey,
     Model,
     PositiveIntegerField,

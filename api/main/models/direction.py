@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from typing import Final
 
-from django.db.models import (
+from django.db.models import (  # type: ignore[attr-defined]
     CASCADE,
-    Deferrable,  # type: ignore[attr-defined]
+    Deferrable,
     ForeignKey,
     Model,
     PositiveIntegerField,

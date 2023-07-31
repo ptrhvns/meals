@@ -9,6 +9,9 @@ from main.models.equipment import Equipment
 from main.models.food import Food
 from main.models.ingredient import Ingredient
 from main.models.recipe import Recipe
+from main.models.tag import Tag
+from main.models.time import Time
+from main.models.time_category import TimeCategory
 from main.models.unit import Unit
 from main.models.user import User
 
@@ -53,6 +56,27 @@ class RecipeFactory(DjangoModelFactory):  # type: ignore[misc]
         model = Recipe
 
     title = Sequence(lambda n: f"Recipe{n + 1}")
+
+
+class TagFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = Tag
+
+    name = Sequence(lambda n: f"Tag{n + 1}")
+
+
+class TimeFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = Time
+
+    minutes = Sequence(lambda n: n + 1)
+
+
+class TimeCategoryFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = TimeCategory
+
+    name = Sequence(lambda n: f"TimeCategory{n + 1}")
 
 
 # XXX: consider using main.models.User.create_user() instead.

@@ -1,10 +1,14 @@
+from datetime import datetime, timedelta
 from typing import Any
+from zoneinfo import ZoneInfo
 
+from django.conf import settings
 from factory import LazyAttribute, Sequence, post_generation  # type: ignore[import]
 from factory.django import DjangoModelFactory  # type: ignore[import]
 
 from main.models.brand import Brand
 from main.models.direction import Direction
+from main.models.email_confirmation_token import EmailConfirmationToken
 from main.models.equipment import Equipment
 from main.models.food import Food
 from main.models.ingredient import Ingredient
@@ -28,6 +32,15 @@ class DirectionFactory(DjangoModelFactory):  # type: ignore[misc]
         model = Direction
 
     description = Sequence(lambda n: f"Take action #{n + 1}.")
+
+
+class EmailConfirmationTokenFactory(DjangoModelFactory):  # type: ignore[misc]
+    class Meta:
+        model = EmailConfirmationToken
+
+    expiration = LazyAttribute(
+        lambda _: datetime.now(tz=ZoneInfo(settings.TIME_ZONE)) + timedelta(hours=1)
+    )
 
 
 class EquipmentFactory(DjangoModelFactory):  # type: ignore[misc]

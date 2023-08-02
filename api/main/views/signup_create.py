@@ -3,7 +3,7 @@ from datetime import timedelta
 from typing import Any, cast
 
 from django.contrib.auth import password_validation
-from django.core.exceptions import ValidationError as DValidationError
+from django.core.exceptions import ValidationError as DjValidationError
 from django.db import Error
 from django.db.transaction import atomic
 from django.utils.timezone import now
@@ -33,10 +33,11 @@ class SignupCreateRequestSerializer(ModelSerializer):
         fields = ("id", "username", "email", "password")
 
     def validate_password(self, value: str) -> str:
+        user = self.instance or User(**self.initial_data)
+
         try:
-            user = self.instance or User(**self.initial_data)
             password_validation.validate_password(value, user)
-        except DValidationError as error:
+        except DjValidationError as error:
             raise DRFValidationError from error
 
         return value
@@ -47,7 +48,6 @@ class SignupCreateRequestSerializer(ModelSerializer):
             email=validated_data["email"],
             password=validated_data["password"],
         )
-
         logger.info("created new user with ID %(user_id)s", {"user_id": user.id})
         return cast(User, user)
 
@@ -61,12 +61,7 @@ def signup_create(request: Request) -> Response:
 
     try:
         with atomic():
-            user = User.objects.create_user(  # type: ignore[attr-defined]
-                username=serializer.validated_data["username"],
-                email=serializer.validated_data["email"],
-                password=serializer.validated_data["password"],
-            )
-
+            user = serializer.save()
             token = EmailConfirmationToken.objects.create(
                 expiration=now() + timedelta(hours=24),
                 user=user,

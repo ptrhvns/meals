@@ -135,7 +135,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("tag/<int:tag_id>/update/", tag_update, name="tag_update"),
     path("tag/create/", tag_create, name="tag_create"),
     path("tags/", tags, name="tags"),
-    path("time-categories/", time_categories),
+    path("time-categories/", time_categories, name="time_categories"),
     path("time-category/<int:time_category_id>/", time_category),
     path("time-category/<int:time_category_id>/destroy/", time_category_destroy),
     path("time-category/<int:time_category_id>/recipes/", time_category_recipes),

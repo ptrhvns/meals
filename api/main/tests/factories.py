@@ -20,72 +20,72 @@ from main.models.unit import Unit
 from main.models.user import User
 
 
-class BrandFactory(DjangoModelFactory):  # type: ignore[misc]
+class BrandFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Brand
 
     name = Sequence(lambda n: f"Brand{n + 1}")
 
 
-class DirectionFactory(DjangoModelFactory):  # type: ignore[misc]
+class DirectionFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Direction
 
     description = Sequence(lambda n: f"Take action #{n + 1}.")
 
 
-class EmailConfirmationTokenFactory(DjangoModelFactory):  # type: ignore[misc]
+class EmailConfirmationTokenFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = EmailConfirmationToken
 
-    expiration = LazyAttribute(
+    expiration = LazyAttribute(  # type: ignore[misc]
         lambda _: datetime.now(tz=ZoneInfo(settings.TIME_ZONE)) + timedelta(hours=1)
     )
 
 
-class EquipmentFactory(DjangoModelFactory):  # type: ignore[misc]
+class EquipmentFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Equipment
 
     description = Sequence(lambda n: f"Equipment #{n + 1}")
 
 
-class FoodFactory(DjangoModelFactory):  # type: ignore[misc]
+class FoodFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Food
 
     name = Sequence(lambda n: f"Food{n + 1}")
 
 
-class IngredientFactory(DjangoModelFactory):  # type: ignore[misc]
+class IngredientFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Ingredient
 
     order = Sequence(lambda n: n)
 
 
-class RecipeFactory(DjangoModelFactory):  # type: ignore[misc]
+class RecipeFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Recipe
 
     title = Sequence(lambda n: f"Recipe{n + 1}")
 
 
-class TagFactory(DjangoModelFactory):  # type: ignore[misc]
+class TagFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Tag
 
     name = Sequence(lambda n: f"Tag{n + 1}")
 
 
-class TimeFactory(DjangoModelFactory):  # type: ignore[misc]
+class TimeFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Time
 
     minutes = Sequence(lambda n: n + 1)
 
 
-class TimeCategoryFactory(DjangoModelFactory):  # type: ignore[misc]
+class TimeCategoryFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = TimeCategory
 
@@ -93,11 +93,11 @@ class TimeCategoryFactory(DjangoModelFactory):  # type: ignore[misc]
 
 
 # XXX: consider using main.models.User.create_user() instead.
-class UserFactory(DjangoModelFactory):  # type: ignore[misc]
+class UserFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = User
 
-    email = LazyAttribute(lambda u: f"{u.username}@example.com")
+    email = LazyAttribute(lambda u: f"{u.username}@example.com")  # type: ignore[misc]
     is_active = True
     username = Sequence(lambda n: f"user{n + 1}")
 
@@ -107,7 +107,7 @@ class UserFactory(DjangoModelFactory):  # type: ignore[misc]
             obj.set_password(extracted)
 
 
-class UnitFactory(DjangoModelFactory):  # type: ignore[misc]
+class UnitFactory(DjangoModelFactory):  # type: ignore[type-arg]
     class Meta:
         model = Unit
 

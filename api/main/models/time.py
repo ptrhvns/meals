@@ -14,9 +14,7 @@ class Time(Model):
     minutes = PositiveIntegerField(blank=True, null=True)
     note = CharField(blank=True, default="", max_length=64)
     recipe = ForeignKey(Recipe, on_delete=CASCADE, related_name="times")
-    time_category: ForeignKey[TimeCategory] = ForeignKey(
-        "TimeCategory", on_delete=CASCADE, related_name="times"
-    )
+    time_category = ForeignKey(TimeCategory, on_delete=CASCADE, related_name="times")
 
     class Meta:
         db_table = "times"

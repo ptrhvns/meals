@@ -30,11 +30,11 @@ def time_category_create(request: Request) -> Response:
         return invalid_request_data_response(serializer)
 
     try:
-        created, _ = TimeCategory.objects.get_or_create(
+        created = TimeCategory.objects.get_or_create(
             defaults={"user": request.user, **serializer.validated_data},
             name__iexact=serializer.validated_data["name"],
             user=request.user,
-        )
+        )[0]
     except Error:
         return internal_server_error_response(
             message=gettext_lazy("Your information could not be saved.")

@@ -73,6 +73,8 @@ class TimeCreateResponseSerializer(ModelSerializer):
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def time_create(request: Request, recipe_id: int) -> Response:
+    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
+
     # Eliminate fields with an empty string.
     pruned_data = {k: v for k, v in request.data.items() if v}
 
@@ -80,8 +82,6 @@ def time_create(request: Request, recipe_id: int) -> Response:
 
     if not serializer.is_valid():
         return invalid_request_data_response(serializer)
-
-    recipe = get_object_or_404(Recipe, pk=recipe_id, user=request.user)
 
     try:
         with atomic():

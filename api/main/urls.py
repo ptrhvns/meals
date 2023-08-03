@@ -121,7 +121,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("recipe/<int:recipe_id>/servings/update/", servings_update, name="servings_update"),
     path("recipe/<int:recipe_id>/tag/<int:tag_id>/unlink/", tag_unlink, name="tag_unlink"),
     path("recipe/<int:recipe_id>/tag/link/", tag_link, name="tag_link"),
-    path("recipe/<int:recipe_id>/time/<int:time_id>/", time),
+    path("recipe/<int:recipe_id>/time/<int:time_id>/", time, name="time"),
     path("recipe/<int:recipe_id>/time/<int:time_id>/update/", time_update),
     path("recipe/<int:recipe_id>/time/create/", time_create),
     path("recipe/<int:recipe_id>/title/update/", recipe_title_update, name="recipe_title_update"),

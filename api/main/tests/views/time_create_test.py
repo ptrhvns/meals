@@ -12,12 +12,7 @@ from rest_framework.status import (
 )
 from rest_framework.test import APIRequestFactory
 
-# from main.models.time import Time
-from main.tests.factories import (
-    RecipeFactory,
-    # TimeFactory,
-    UserFactory,
-)
+from main.tests.factories import RecipeFactory, UserFactory
 from main.tests.support.drf_view_helpers import (
     sets_http_method_names,
     sets_permission_classes,

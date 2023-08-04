@@ -51,12 +51,12 @@ class TimeUpdateRequestSerializer(ModelSerializer):
 @api_view(http_method_names=["POST"])
 @permission_classes([IsAuthenticated])
 def time_update(request: Request, recipe_id: int, time_id: int) -> Response:
-    # Eliminate fields with an empty string.
-    pruned_data = {k: v for k, v in request.data.items() if v}
-
     time = get_object_or_404(
         Time, pk=time_id, recipe__user=request.user, recipe_id=recipe_id
     )
+
+    # Eliminate fields with an empty string.
+    pruned_data = {k: v for k, v in request.data.items() if v}
 
     serializer = TimeUpdateRequestSerializer(instance=time, data=pruned_data)
 

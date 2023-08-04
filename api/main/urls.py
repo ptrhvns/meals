@@ -146,6 +146,6 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("unit/<int:unit_id>/destroy/", unit_destroy),
     path("unit/<int:unit_id>/recipes/", unit_recipes),
     path("unit/<int:unit_id>/update/", unit_update),
-    path("unit/create/", unit_create),
+    path("unit/create/", unit_create, name="unit_create"),
     path("units/", units),
 ]

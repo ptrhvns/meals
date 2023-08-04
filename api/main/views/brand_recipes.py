@@ -26,7 +26,7 @@ def brand_recipes(request: Request, brand_id: int) -> Response:
     def key(r: Recipe) -> str:
         return r.title.lower()
 
-    recipes = sorted([i.recipe for i in ingredients], key=key)
+    recipes = sorted({i.recipe for i in ingredients}, key=key)
     paginator = Paginator(recipes, per_page=10)
     page = paginator.get_page(request.query_params.get("page", 1))
     serializer = BrandRecipesResponseSerializer(page.object_list, many=True)

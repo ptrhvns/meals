@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from django.core import exceptions
+from django.core.exceptions import ValidationError
 from django.db.models import CASCADE, CharField, ForeignKey, Model, PositiveIntegerField
 from django.utils.translation import gettext_lazy
 
@@ -31,4 +31,4 @@ class Time(Model):
 
         if not any(getattr(self, u) for u in units):
             error = gettext_lazy("At least one unit is required.")
-            raise exceptions.ValidationError({u: error for u in units})
+            raise ValidationError({u: error for u in units})

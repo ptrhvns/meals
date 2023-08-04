@@ -15,6 +15,14 @@ logger = log.get_logger(__name__)
 def send_signup_confirmation(
     user_id: int, site_url: str, confirmation_url: str
 ) -> None:
+    return do_send_signup_confirmation(
+        user_id, site_url, confirmation_url
+    )  # pragma: no cover
+
+
+def do_send_signup_confirmation(
+    user_id: int, site_url: str, confirmation_url: str
+) -> None:
     logger.info(
         "attempting to send signup confirmation email to user ID %(user_id)s",
         {"user_id": user_id},
@@ -26,9 +34,7 @@ def send_signup_confirmation(
         "site_url": site_url,
     }
 
-    message = render_to_string(
-        "main/email/signup_confirmation.txt", context=context
-    )
+    message = render_to_string("main/email/signup_confirmation.txt", context=context)
 
     html_message = render_to_string(
         "main/email/signup_confirmation.html", context=context

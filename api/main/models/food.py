@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from django.db.models import (
+from django.db.models import (  # type: ignore[attr-defined]
     CASCADE,
     CharField,
-    Deferrable,  # type: ignore[attr-defined]
+    Deferrable,
     ForeignKey,
     Model,
     UniqueConstraint,

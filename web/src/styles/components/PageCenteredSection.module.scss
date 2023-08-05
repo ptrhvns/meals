@@ -44,6 +44,6 @@ a.slate.link {
   background-color: var(--slate3);
   display: inline-flex;
   justify-content: center;
-  min-height: calc(100vh - var(--footer-height));
+  min-height: calc(100dvh - var(--footer-height));
   width: 100%;
 }

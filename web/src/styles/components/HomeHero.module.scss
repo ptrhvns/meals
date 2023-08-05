@@ -19,6 +19,6 @@ h1.heading {
 }
 
 div.viewport {
-  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+  min-height: calc(100dvh - var(--navbar-height) - var(--footer-height));
   padding-block: 10vh 12vh;
 }

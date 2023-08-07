@@ -114,7 +114,7 @@ Ubuntu 20.04).
   python -m venv venv
   source venv/bin/activate
   python -m pip install --upgrade pip wheel
-  python -m pip install -r requirements.txt -r requirements-dev.txt
+  python -m pip install . && pip install .[dev]
   python -m pip check # Ensure no broken dependencies
   ```
 
@@ -223,33 +223,13 @@ Ubuntu 20.04).
   npm update --save
   ```
 
-- Identify outdated API packages, and update them:
+- Identify outdated API packages, and update them (not necessarily a good
+  production process, but good enough for a portfolio project):
 
   ```sh
   cd api
   source venv/bin/activate # ..if not already active.
   python -m pip list --outdated
   $EDITOR pyproject.toml # Update package version specifications
-
-  # Production
-  python -m piptools compile \
-    --allow-unsafe \
-    --generate-hashes \
-    --output-file requirements.txt \
-    --resolver=backtracking \
-    --upgrade \
-    pyproject.toml
-
-  # Development
-  python -m piptools compile \
-    --allow-unsafe \
-    --extra dev \
-    --generate-hashes \
-    --output-file requirements-dev.txt \
-    --resolver=backtracking \
-    --upgrade \
-    pyproject.toml
-
-  python -m piptools sync requirements.txt requirements-dev.txt
-  # Manually check there are no breaks and run tests.
+  python -m pip install . && pip install .[dev]
   ```

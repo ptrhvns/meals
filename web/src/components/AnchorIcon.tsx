@@ -3,7 +3,7 @@ import Anchor, { AnchorProps } from "./Anchor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-interface AnchorIconProps extends AnchorProps {
+export interface AnchorIconProps extends AnchorProps {
   icon: IconProp;
   label: string;
 }

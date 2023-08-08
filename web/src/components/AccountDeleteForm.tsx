@@ -49,6 +49,7 @@ export default function AccountDeleteForm() {
             onSubmit={async (event) => {
               event.preventDefault();
 
+              // Test for empty data to make TypeScript happy.
               if (isEmpty(data)) {
                 setConfirming(false);
                 return;

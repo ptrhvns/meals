@@ -31,6 +31,7 @@ export const DialogContent = forwardRef<DialogContentRef, DialogContentProps>(
           <DialogPrimitive.Close asChild>
             <Button
               className={classes.closeButton}
+              data-testid="dialog-dismiss-button"
               onClick={onDismiss}
               title="Dismiss"
               variant="unstyled"

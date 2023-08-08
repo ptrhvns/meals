@@ -46,10 +46,12 @@ export default function AccountDeleteForm() {
           </Paragraph>
 
           <form
+            data-testid="account-delete-form-confirmation-form"
             onSubmit={async (event) => {
               event.preventDefault();
 
               // Test for empty data to make TypeScript happy.
+              // istanbul ignore if -- @preserve
               if (isEmpty(data)) {
                 setConfirming(false);
                 return;

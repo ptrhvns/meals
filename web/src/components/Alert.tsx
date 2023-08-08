@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { joinClassNames } from "../lib/utils";
 import { MouseEventHandler, ReactNode } from "react";
 
-interface AlertProps {
+export interface AlertProps {
   alertClassName?: string;
   children: ReactNode;
   onDismiss?: MouseEventHandler<HTMLButtonElement>;
@@ -34,22 +34,34 @@ export default function Alert({
       <div>
         {variant === "error" && (
           <AccessibleIcon.Root label="Error">
-            <FontAwesomeIcon icon={faCircleExclamation} />
+            <FontAwesomeIcon
+              data-testid="alert-icon-error"
+              icon={faCircleExclamation}
+            />
           </AccessibleIcon.Root>
         )}
         {variant === "info" && (
           <AccessibleIcon.Root label="Information">
-            <FontAwesomeIcon icon={faCircleInfo} />
+            <FontAwesomeIcon
+              data-testid="alert-icon-info"
+              icon={faCircleInfo}
+            />
           </AccessibleIcon.Root>
         )}
         {variant === "success" && (
           <AccessibleIcon.Root label="Success">
-            <FontAwesomeIcon icon={faCircleCheck} />
+            <FontAwesomeIcon
+              data-testid="alert-icon-success"
+              icon={faCircleCheck}
+            />
           </AccessibleIcon.Root>
         )}
         {variant === "warning" && (
           <AccessibleIcon.Root label="Warning">
-            <FontAwesomeIcon icon={faCircleExclamation} />
+            <FontAwesomeIcon
+              data-testid="alert-icon-warning"
+              icon={faCircleExclamation}
+            />
           </AccessibleIcon.Root>
         )}{" "}
         {children}

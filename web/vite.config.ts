@@ -21,7 +21,7 @@ export default defineConfig({
         "src/vite-env.d.ts",
       ],
       include: ["src/**/*.ts", "src/**/*.tsx"],
-      provider: "v8",
+      provider: "istanbul",
       reporter: ["text"],
     },
     environment: "jsdom",

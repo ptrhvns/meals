@@ -12,10 +12,11 @@ module.exports = {
   plugins: ["@typescript-eslint", "react", "react-hooks", "jsx-a11y", "import"],
   root: true,
   rules: {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "import/no-unresolved": "error",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "import/no-unresolved": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
   },
   settings: {
     "import/parsers": {

@@ -10,7 +10,7 @@ import { MemoryRouter } from "react-router-dom";
 
 vi.mock("../../hooks/useApi", () => ({
   // @ts-ignore
-  default: vi.fn(() => ({ accountDestroy: vi.fn(() => ({})) })),
+  default: vi.fn(() => ({ accountDestroy: vi.fn(() => Promise.resolve({})) })),
 }));
 
 vi.mock("../../hooks/useAuthn", () => ({

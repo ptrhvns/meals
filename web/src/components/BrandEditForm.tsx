@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-interface BrandEditFormProps {
+export interface BrandEditFormProps {
   brand?: BrandData;
 }
 
@@ -50,18 +50,15 @@ export default function BrandEditForm({ brand }: BrandEditFormProps) {
           </Paragraph>
 
           <form
+            data-testid="brand-edit-form-confirmation-form"
             onSubmit={async (event) => {
               event.preventDefault();
-
-              if (!brand) {
-                setConfirmingDelete(false);
-                return;
-              }
-
               setSubmitting(true);
+
               const response = await brandDestroy({
                 brandId: brand.id,
               });
+
               setSubmitting(false);
               setConfirmingDelete(false);
 
@@ -98,10 +95,12 @@ export default function BrandEditForm({ brand }: BrandEditFormProps) {
       <form
         onSubmit={handleSubmit(async (data: FormData) => {
           setSubmitting(true);
+
           const response = await brandUpdate({
             data,
             brandId: brand.id,
           });
+
           setSubmitting(false);
 
           if (response.isError) {

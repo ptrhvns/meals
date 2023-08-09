@@ -54,7 +54,11 @@ export default function Pagination({
   const paginationValues = buildPaginationValues(page, total);
 
   return (
-    <nav aria-label="Pagination" className={navClassName}>
+    <nav
+      aria-label="Pagination"
+      className={navClassName}
+      data-testid="pagination"
+    >
       <ol className={classes.list}>
         <li>
           <Button

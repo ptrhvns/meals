@@ -40,7 +40,7 @@ export default function BrandNewForm() {
           return;
         }
 
-        navigate(`/dashboard/brands`, { replace: true });
+        navigate("/dashboard/brands", { replace: true });
       })}
     >
       <FormError error={error} setError={setError} />
@@ -69,7 +69,7 @@ export default function BrandNewForm() {
 
         <Button
           disabled={submitting}
-          onClick={() => navigate(`/dashboard/brands`)}
+          onClick={() => navigate("/dashboard/brands")}
           type="button"
         >
           Dismiss

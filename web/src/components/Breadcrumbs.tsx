@@ -1,7 +1,7 @@
 import classes from "../styles/components/Breadcrumbs.module.scss";
 import { Children, ReactNode } from "react";
 
-interface BreadcrumbsProps {
+export interface BreadcrumbsProps {
   children: ReactNode;
 }
 
@@ -10,7 +10,7 @@ export default function Breadcrumbs({ children }: BreadcrumbsProps) {
     (elements, child, index) => {
       if (index > 0) {
         elements.push(
-          <span className={classes.crumbSeparator} key={`spearator-${index}`}>
+          <span className={classes.crumbSeparator} key={`separator-${index}`}>
             &gt;
           </span>
         );

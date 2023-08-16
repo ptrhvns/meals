@@ -15,7 +15,7 @@ import { isEmpty, isNumber } from "lodash";
 import { joinClassNames } from "../lib/utils";
 import { Optional } from "../lib/types";
 
-interface ComboboxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface ComboboxProps extends InputHTMLAttributes<HTMLInputElement> {
   clearErrors: () => void;
   error: boolean;
   options: string[];
@@ -30,13 +30,13 @@ interface ReducerState {
 }
 
 type ReducerAction =
-  | { type: "blurCombobox" }
+  | { type: "arrowDown" }
+  | { type: "arrowUp" }
+  | { type: "blurCombobox"; payload: FocusEvent<HTMLInputElement, Element> }
   | { type: "changeInput"; payload: string }
   | { type: "closeListbox" }
   | { type: "focusCombobox" }
-  | { type: "selectMatch"; payload?: number }
-  | { type: "targetNextMatch" }
-  | { type: "targetPreviousMatch" };
+  | { type: "selectMatch"; payload?: number };
 
 const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   (
@@ -63,8 +63,39 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
         let matches;
 
         switch (action.type) {
+          case "arrowDown":
+            if (state.matches.length < 1) return state;
+
+            matchActiveIndex = 0;
+
+            if (state.listboxOpen) {
+              matchActiveIndex = (state.matchActiveIndex ?? -1) + 1;
+            }
+
+            if (matchActiveIndex >= state.matches.length) {
+              matchActiveIndex = state.matches.length - 1;
+            }
+
+            setTimeout(() => matchActiveRef.current?.scrollIntoView?.());
+            return { ...state, listboxOpen: true, matchActiveIndex };
+          case "arrowUp":
+            if (state.matches.length < 1) return state;
+
+            matchActiveIndex = state.matches.length - 1;
+
+            if (state.listboxOpen) {
+              matchActiveIndex =
+                (state.matchActiveIndex ?? state.matches.length) - 1;
+            }
+
+            if (matchActiveIndex <= 0) {
+              matchActiveIndex = 0;
+            }
+
+            setTimeout(() => matchActiveRef.current?.scrollIntoView?.());
+            return { ...state, listboxOpen: true, matchActiveIndex };
           case "blurCombobox":
-            if (state.inputBlurEvent) onBlur?.(state.inputBlurEvent);
+            onBlur?.(action.payload);
 
             return {
               ...state,
@@ -106,38 +137,8 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
               listboxOpen: false,
               matchActiveIndex: null,
             };
-          case "targetNextMatch":
-            if (state.matches.length < 1) return state;
-
-            if (state.listboxOpen) {
-              matchActiveIndex = (state.matchActiveIndex ?? -1) + 1;
-            } else {
-              matchActiveIndex = 0;
-            }
-
-            if (matchActiveIndex >= state.matches.length) {
-              matchActiveIndex = state.matches.length - 1;
-            }
-
-            setTimeout(() => matchActiveRef.current?.scrollIntoView());
-            return { ...state, listboxOpen: true, matchActiveIndex };
-          case "targetPreviousMatch":
-            if (state.matches.length < 1) return state;
-
-            if (state.listboxOpen) {
-              matchActiveIndex =
-                (state.matchActiveIndex ?? state.matches.length) - 1;
-            } else {
-              matchActiveIndex = state.matches.length - 1;
-            }
-
-            if (matchActiveIndex <= 0) {
-              matchActiveIndex = 0;
-            }
-
-            setTimeout(() => matchActiveRef.current?.scrollIntoView());
-            return { ...state, listboxOpen: true, matchActiveIndex };
           default:
+            // istanbul ignore next -- @preserve
             return state;
         }
       },
@@ -152,26 +153,22 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
     const listboxId = `listbox-${randomId}`;
 
     return (
-      <div
-        onBlur={() => dispatch({ type: "blurCombobox" })}
-        onFocus={() => dispatch({ type: "focusCombobox" })}
-      >
+      <>
         <div
+          data-testid="combobox-input-wrapper"
           className={(() => {
             let extraClassName;
 
             if (error) {
-              if (inputRef.current === document.activeElement) {
-                extraClassName = classes.inputWrapperErrorFocus;
-              } else {
-                extraClassName = classes.inputWrapperError;
-              }
+              extraClassName =
+                inputRef.current === document.activeElement
+                  ? classes.inputWrapperErrorFocus
+                  : classes.inputWrapperErrorNoFocus;
             } else {
-              if (inputRef.current === document.activeElement) {
-                extraClassName = classes.inputWrapperFocus;
-              } else {
-                extraClassName = classes.inputWrapperNoFocus;
-              }
+              extraClassName =
+                inputRef.current === document.activeElement
+                  ? classes.inputWrapperFocus
+                  : classes.inputWrapperNoFocus;
             }
 
             return joinClassNames(classes.inputWrapper, extraClassName);
@@ -190,20 +187,23 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
               className
             )}
             name={name}
-            onBlur={(event) => onBlur?.(event)}
+            onBlur={(event) =>
+              dispatch({ type: "blurCombobox", payload: event })
+            }
             onChange={(event) => {
               dispatch({ type: "changeInput", payload: event.target.value });
               onChange?.(event);
             }}
+            onFocus={() => dispatch({ type: "focusCombobox" })}
             onKeyDown={(event) => {
               switch (event.key) {
                 case "ArrowDown":
                   event.preventDefault();
-                  dispatch({ type: "targetNextMatch" });
+                  dispatch({ type: "arrowDown" });
                   break;
                 case "ArrowUp":
                   event.preventDefault();
-                  dispatch({ type: "targetPreviousMatch" });
+                  dispatch({ type: "arrowUp" });
                   break;
                 case "Enter":
                   if (listboxOpen && !isEmpty(matches)) {
@@ -224,9 +224,11 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             ref={(element) => {
               inputRef.current = element;
 
+              // istanbul ignore if -- @preserve
               if (typeof ref === "function") {
                 ref(element);
               } else if (ref) {
+                // istanbul ignore next -- @preserve
                 ref.current = element;
               }
             }}
@@ -240,7 +242,7 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             type="button"
             variant="unstyled"
           >
-            <AccessibleIcon.Root label="Toggle">
+            <AccessibleIcon.Root label="Open Listbox">
               <FontAwesomeIcon icon={faChevronDown} />
             </AccessibleIcon.Root>
           </Button>
@@ -267,7 +269,7 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     classes.listboxItem,
                     index === matchActiveIndex
                       ? classes.listboxItemActive
-                      : "debug"
+                      : undefined
                   )}
                   key={index}
                   onMouseDown={(event) => {
@@ -284,7 +286,7 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             </ul>
           </div>
         )}
-      </div>
+      </>
     );
   }
 );

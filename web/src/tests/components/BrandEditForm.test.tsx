@@ -107,7 +107,7 @@ describe("when the `Update` button is clicked", () => {
 });
 
 describe("when the `Dismiss button is clicked`", () => {
-  it("navigates the user", async () => {
+  it("navigates to `/dashboard/brands`", async () => {
     const navigate = vi.fn();
 
     // @ts-ignore

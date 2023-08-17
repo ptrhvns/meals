@@ -181,10 +181,10 @@ export const recipeSchema = z.object({
 
 // Ensure this matches recipeSchema.
 export interface RecipeData {
-  directions: DirectionData[];
+  directions?: DirectionData[];
   equipment?: EquipmentData[];
   id: string;
-  ingredients: IngredientData[];
+  ingredients?: IngredientData[];
   notes?: string;
   rating?: number;
   servings?: number;

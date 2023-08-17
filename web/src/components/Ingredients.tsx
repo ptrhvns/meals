@@ -43,6 +43,8 @@ export default function Ingredients({ dispatch, recipe }: IngredientsProps) {
   async function handleDragEnd(event: DragEndEvent) {
     if (!recipe) return;
 
+    if (!recipe.ingredients) return;
+
     const { active, over } = event;
 
     if (!over) return;

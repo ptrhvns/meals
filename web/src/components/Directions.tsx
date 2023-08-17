@@ -43,6 +43,8 @@ export default function Directions({ dispatch, recipe }: DirectionsProps) {
   async function handleDragEnd(event: DragEndEvent) {
     if (!recipe) return;
 
+    if (!recipe.directions) return;
+
     const { active, over } = event;
 
     if (!over) return;

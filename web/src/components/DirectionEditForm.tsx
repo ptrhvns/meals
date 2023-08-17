@@ -45,7 +45,7 @@ export default function DirectionEditForm({
   if (!direction) return null;
 
   return (
-    <>
+    <div data-testid="direction-edit-form">
       <Dialog open={confirmingDelete}>
         <DialogContent onDismiss={() => setConfirmingDelete(false)}>
           <Paragraph>Are you sure you want to delete this direction?</Paragraph>
@@ -157,6 +157,6 @@ export default function DirectionEditForm({
           </Button>
         </FormActions>
       </form>
-    </>
+    </div>
   );
 }

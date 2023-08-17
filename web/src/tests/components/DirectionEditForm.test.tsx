@@ -51,6 +51,17 @@ it("renders successfully", () => {
   act(() => root.render(buildComponent()));
 });
 
+describe("when direction is not given", () => {
+  it("renders null", () => {
+    render(
+      <MemoryRouter>
+        <DirectionEditForm recipeId={"1"} />
+      </MemoryRouter>
+    );
+    expect(screen.queryByTestId("direction-edit-form")).toBeFalsy();
+  });
+});
+
 describe("when `Dismiss` button is clicked", () => {
   it("navigates to `/recipe/${recipeId}`", async () => {
     const navigate = vi.fn();

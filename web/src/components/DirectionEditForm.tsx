@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-interface DirectionEditFormProps {
+export interface DirectionEditFormProps {
   direction?: DirectionData;
   recipeId: string;
 }
@@ -51,6 +51,7 @@ export default function DirectionEditForm({
           <Paragraph>Are you sure you want to delete this direction?</Paragraph>
 
           <form
+            data-testid="direction-edit-form-confirmation-form"
             onSubmit={async (event) => {
               event.preventDefault();
               setSubmitting(true);

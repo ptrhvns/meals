@@ -122,7 +122,7 @@ export default function DirectionEditForm({
             error={!!fieldErrors?.description?.message}
             id="description"
             {...register("description", {
-              required: "Description is required",
+              required: "Description is required.",
             })}
           />
           <InputError error={fieldErrors?.description?.message} />

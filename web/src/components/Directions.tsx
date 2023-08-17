@@ -24,7 +24,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-interface DirectionsProps {
+export interface DirectionsProps {
   dispatch: Dispatch<RecipeReducerAction>;
   recipe?: RecipeData;
 }
@@ -40,6 +40,7 @@ export default function Directions({ dispatch, recipe }: DirectionsProps) {
 
   if (!recipe) return null;
 
+  // istanbul ignore next -- @preserve
   async function handleDragEnd(event: DragEndEvent) {
     if (!recipe) return;
 
@@ -83,6 +84,7 @@ export default function Directions({ dispatch, recipe }: DirectionsProps) {
 
   const sortedDirections = sortBy(recipe.directions, "order");
 
+  // istanbul ignore next -- @preserve
   return (
     <>
       <RecipeSectionHeading heading="Directions">

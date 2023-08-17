@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-interface DirectionNewFormProps {
+export interface DirectionNewFormProps {
   recipeId: string;
 }
 
@@ -57,7 +57,7 @@ export default function DirectionNewForm({ recipeId }: DirectionNewFormProps) {
           disabled={submitting}
           error={!!fieldErrors?.description?.message}
           id="description"
-          {...register("description", { required: "Description is required" })}
+          {...register("description", { required: "Description is required." })}
         />
         <InputError error={fieldErrors?.description?.message} />
       </Field>

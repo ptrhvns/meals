@@ -1,5 +1,8 @@
 # Meals
 
+NOTE: I have paused work on this project to focus on getting an AWS
+certification.
+
 ## Description
 
 This is a portfolio project. It's a web application for managing meals (e.g.
@@ -132,6 +135,12 @@ Ubuntu 20.04).
   ```sh
   cd web
   npm install
+  npx playwright install chromium firefox
+
+  # To avoid running this sudo command, run the end-to-end tests for the web
+  # subproject, and follow the instructions in the test errors to install the
+  # dependencies directly for the browsers above.
+  sudo npx playwright install-deps chromium firefox
   ```
 
 - Setup environment variables for API server:
@@ -189,9 +198,67 @@ Ubuntu 20.04).
   npm run dev
   ```
 
+### Running Front-End / Web Tests
+
+- Create test user within the API:
+
+  ```sh
+  cd api
+  source venv/bin/activate # ..if not already active.
+  python manage.py shell # TODO this user creation needs to be automated
+
+      >>> from datetime import datetime
+      >>> from django.conf import settings
+      >>> from django.contrib.auth.models import User
+      >>> from zoneinfo import ZoneInfo
+      >>> user = User.objects.create_user('testuser', password='testpassword')
+      >>> user.email_confirmed_datetime = datetime.now(tz=ZoneInfo(settings.TIME_ZONE))
+      >>> user.is_active=True
+      >>> user.save()
+      >>> exit()
+  ```
+
+- Ensure API server is running on correct port:
+
+  ```sh
+  # In a separate shell...
+  cd api
+  source venv/bin/activate # ..if not already active.
+  python ./manage.py runserver 5174
+  ```
+
+- Run all tests:
+
+  ```sh
+  cd web
+  npm test
+  ```
+
+- Run unit tests:
+
+  ```sh
+  cd web
+  npm run test:unit
+  ```
+
+- Run unit tests, and report on test coverage:
+
+  ```sh
+  cd web
+  npm run test:unit:coverage
+  ```
+
+- Run end-to-end (e2e) tests:
+
+  ```sh
+  cd web
+  npm run test:e2e
+  npm run test:e2e:report # Optional: see HTML report.
+  ```
+
 ### Running Back-End / API Tests
 
-- Run tests:
+- Run unit tests:
 
   ```sh
   cd api
@@ -199,7 +266,7 @@ Ubuntu 20.04).
   pytest
   ```
 
-- Run tests, and report on test coverage:
+- Run unit tests, and report on test coverage:
 
   ```sh
   cd api
@@ -224,7 +291,7 @@ Ubuntu 20.04).
   ```
 
 - Identify outdated API packages, and update them (not necessarily a good
-  production process, but good enough for a portfolio project):
+  production process, but good enough for this project):
 
   ```sh
   cd api

@@ -1,6 +1,6 @@
 # Meals
 
-NOTE: I have paused work on this project to focus on an AWS certification.
+NOTE: I have paused work on this project to focus on getting certifications.
 
 ## Description
 

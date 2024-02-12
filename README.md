@@ -7,8 +7,7 @@ they all have good coverage with automated tests.
 
 ## Description
 
-This is a portfolio project. It's a web application for managing meals (e.g.
-recipes).
+This is a single-page web application for managing meals (e.g. recipes).
 
 ## Technologies
 

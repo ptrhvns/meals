@@ -1,6 +1,6 @@
 # Meals
 
-NOTE: I have paused work on this project to focus on other things.                                                                     
+NOTE: I have paused work on this project to focus on other things.
 However, there are a number of completed features worth checking out.
 They were implemented using a number of interesting technologies, and
 they all have good coverage with automated tests.
